@@ -59,3 +59,6 @@ window.addEventListener("scroll", () => {
     }
   });
 });
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+}
