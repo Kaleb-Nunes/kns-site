@@ -54,6 +54,9 @@ body {
   text-decoration: none;
   font-weight: 600;
   transition: 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  cursor: pointer;
+  border: none;
 }
 
 .primary {
@@ -169,6 +172,7 @@ footer {
 .whatsapp-float:hover {
   transform: scale(1.1);
 }
+
 /* Animação de entrada */
 .card, .lista li {
   opacity: 0;
@@ -180,29 +184,8 @@ footer {
   opacity: 1 !important;
   transform: translateY(0) !important;
 }
-.btn {
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-}
-.expandable {
-  cursor: pointer;
-}
 
-.expandable .detalhes {
-  display: none;
-  margin-top: 15px;
-  font-size: 0.95rem;
-  color: #cbd5f5;
-  line-height: 1.6;
-}
-
-.expandable.open .detalhes {
-  display: block;
-}
-
-.expandable h4 {
-  color: #38bdf8;
-  margin-bottom: 10px;
-}
+/* Modal */
 .modal {
   display: none;
   position: fixed;
@@ -211,7 +194,8 @@ footer {
   top: 0;
   width: 100%;
   height: 100%;
-  background: rgba(2,6,23,0.9);
+  background: rgba(2,6,23,0.85);
+  backdrop-filter: blur(6px);
   justify-content: center;
   align-items: center;
 }
@@ -224,6 +208,22 @@ footer {
   width: 90%;
   color: #e5e7eb;
   box-shadow: 0 0 40px rgba(56,189,248,0.3);
+  animation: modalIn 0.3s ease;
+}
+
+.modal-content h4 {
+  color: #38bdf8;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+}
+
+.modal-content p {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.modal-content strong {
+  color: #60a5fa;
 }
 
 .close {
@@ -233,4 +233,14 @@ footer {
   color: #38bdf8;
 }
 
-
+/* Animação do modal */
+@keyframes modalIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
