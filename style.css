@@ -1,112 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: 'Inter', Arial, sans-serif;
 }
 
 body {
-  background: #0f172a;
+  background: #0b1220;
   color: #e5e7eb;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
+/* Containers */
 .container {
   max-width: 1100px;
   margin: auto;
-  padding: 40px 20px;
+  padding: 60px 20px;
 }
 
+/* HERO */
 .hero {
-  background: linear-gradient(135deg, #020617, #0f172a);
+  background: radial-gradient(circle at top, #0f172a, #020617);
   text-align: center;
-  padding: 100px 20px;
+  padding: 120px 20px 100px;
 }
 
 .hero h1 {
-  font-size: 2.4rem;
+  font-size: 2.6rem;
   color: #38bdf8;
-  margin-bottom: 20px;
+  font-weight: 700;
+  margin-bottom: 25px;
 }
 
 .hero p {
-  max-width: 800px;
+  max-width: 850px;
   margin: auto;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   color: #cbd5f5;
 }
 
+/* Buttons */
 .buttons {
-  margin-top: 30px;
+  margin-top: 40px;
 }
 
 .btn {
   display: inline-block;
-  padding: 12px 24px;
+  padding: 14px 28px;
   margin: 10px;
-  border-radius: 6px;
+  border-radius: 10px;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
+  transition: 0.3s ease;
 }
 
 .primary {
-  background: #2563eb;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
   color: white;
 }
 
+.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(37,99,235,0.4);
+}
+
 .whatsapp {
-  background: #22c55e;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
   color: #022c22;
 }
 
+.whatsapp:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(34,197,94,0.4);
+}
+
+/* Sections */
 .section {
   background: #020617;
 }
 
 .section.dark {
-  background: #0f172a;
+  background: #0b1220;
 }
 
 h2 {
   color: #38bdf8;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   text-align: center;
+  font-size: 2rem;
 }
 
+/* Diferenciais */
 .lista {
   list-style: none;
-  max-width: 800px;
+  max-width: 900px;
   margin: auto;
 }
 
 .lista li {
-  padding: 10px;
+  padding: 14px 10px;
   border-bottom: 1px solid #1e293b;
+  color: #cbd5f5;
 }
 
+/* Serviços */
 .servicos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
 }
 
 .card {
-  background: #020617;
-  padding: 20px;
-  border-radius: 8px;
+  background: linear-gradient(180deg, #020617, #020617);
+  padding: 30px 25px;
+  border-radius: 14px;
   border: 1px solid #1e293b;
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: #38bdf8;
+  box-shadow: 0 15px 30px rgba(56,189,248,0.15);
 }
 
 .card h3 {
   color: #60a5fa;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  font-size: 1.2rem;
 }
 
+.card p {
+  color: #cbd5f5;
+}
+
+/* Contato */
+#contato p {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Footer */
 footer {
   background: #020617;
   text-align: center;
-  padding: 20px;
+  padding: 25px;
   font-size: 0.9rem;
   color: #94a3b8;
 }
 
+/* WhatsApp flutuante */
+.whatsapp-float {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #25D366;
+  color: #022c22;
+  padding: 16px 18px;
+  border-radius: 50%;
+  font-size: 20px;
+  text-decoration: none;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  transition: 0.3s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
