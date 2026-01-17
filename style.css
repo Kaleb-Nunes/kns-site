@@ -183,4 +183,25 @@ footer {
 .btn {
   box-shadow: 0 8px 20px rgba(0,0,0,0.4);
 }
+.expandable {
+  cursor: pointer;
+}
+
+.expandable .detalhes {
+  display: none;
+  margin-top: 15px;
+  font-size: 0.95rem;
+  color: #cbd5f5;
+  line-height: 1.6;
+}
+
+.expandable.open .detalhes {
+  display: block;
+}
+
+.expandable h4 {
+  color: #38bdf8;
+  margin-bottom: 10px;
+}
+
 
