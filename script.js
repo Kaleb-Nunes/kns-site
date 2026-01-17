@@ -1,3 +1,5 @@
+// ========== MODAIS ==========
+
 // NOC / SOC
 function openModal() {
   document.getElementById("nocModal").style.display = "flex";
