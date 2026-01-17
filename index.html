@@ -6,43 +6,8 @@
   <link rel="stylesheet" href="style.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<!-- MODAL MONITORAMENTO DE LINKS -->
-<div id="linksModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeLinksModal()">×</span>
-    <h4>Monitoramento Contínuo de Conectividade</h4>
-    <p>Garanta a disponibilidade dos seus links de internet e conexões críticas com monitoramento em tempo real.</p>
-    <p><strong>Detecção de Falhas</strong><br>Alertas imediatos para indisponibilidades e oscilações.</p>
-    <p><strong>Gargalos de Banda</strong><br>Identifique saturações antes de impactar usuários.</p>
-    <p><strong>Qualidade de Conexão</strong><br>Latência, jitter e perda de pacotes.</p>
-  </div>
-</div>
-
-<!-- MODAL GESTÃO DE TRÁFEGO -->
-<div id="trafegoModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeTrafegoModal()">×</span>
-    <h4>Controle Inteligente de Tráfego</h4>
-    <p>Gerencie o fluxo de dados da sua rede com eficiência e estabilidade.</p>
-    <p><strong>Otimização de Rotas</strong><br>Reduza latência e evite congestionamentos.</p>
-    <p><strong>Priorização de Aplicações</strong><br>Garanta banda para sistemas críticos.</p>
-    <p><strong>Balanceamento de Carga</strong><br>Distribuição inteligente entre links.</p>
-  </div>
-</div>
 
 <body>
-
-  <!-- MODAL NOC / SOC -->
-  <div id="nocModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">×</span>
-      <h4>Operação Contínua e Segurança</h4>
-      <p>Atuação proativa na detecção de falhas operacionais e ameaças de segurança em ambientes críticos.</p>
-      <p><strong>Monitoramento 24/7</strong><br>Acompanhamento contínuo de infraestrutura, redes e serviços.</p>
-      <p><strong>Gestão de Incidentes</strong><br>Resposta rápida para minimizar impactos e restaurar serviços.</p>
-      <p><strong>Prevenção de Riscos</strong><br>Redução de falhas, vulnerabilidades e indisponibilidades.</p>
-    </div>
-  </div>
 
   <!-- HEADER -->
   <header class="hero">
@@ -94,54 +59,36 @@
 
       <div class="servicos-grid">
 
-        <!-- Monitoramento de Links -->
-        <div class="card expandable">
+        <div class="card">
           <h3>Monitoramento de Links</h3>
-          <p class="resumo">Identificação rápida de falhas e gargalos antes que afetem seus clientes.</p>
-          <div class="detalhes">
-            <h4>Monitoramento Contínuo</h4>
-            <p>Garanta a disponibilidade dos seus links em tempo real.</p>
-            <p><strong>Detecção de Falhas</strong><br>Alertas imediatos.</p>
-            <p><strong>Gargalos</strong><br>Evite saturações.</p>
-            <p><strong>Qualidade</strong><br>Latência, jitter e perda.</p>
-          </div>
+          <p class="resumo">Identificação rápida de falhas e gargalos.</p>
+          <button class="btn primary" onclick="openLinksModal()">Ver detalhes</button>
         </div>
 
-        <!-- Gestão de Tráfego -->
-        <div class="card expandable">
+        <div class="card">
           <h3>Gestão de Tráfego</h3>
-          <p class="resumo">Otimização de rotas e uso de banda para garantir performance constante.</p>
-          <div class="detalhes">
-            <h4>Controle Inteligente</h4>
-            <p>Gerencie o fluxo de dados com eficiência.</p>
-            <p><strong>Otimização</strong><br>Menor latência.</p>
-            <p><strong>Priorização</strong><br>Banda para sistemas críticos.</p>
-            <p><strong>Balanceamento</strong><br>Distribuição inteligente.</p>
-          </div>
+          <p class="resumo">Otimização de rotas e uso de banda.</p>
+          <button class="btn primary" onclick="openTrafegoModal()">Ver detalhes</button>
         </div>
 
-        <!-- Observabilidade -->
         <div class="card">
           <h3>Observabilidade</h3>
           <p class="resumo">Visibilidade total do ambiente.</p>
           <button class="btn primary" onclick="openObsModal()">Ver detalhes</button>
         </div>
 
-        <!-- Infraestrutura -->
         <div class="card">
           <h3>Infraestrutura</h3>
           <p class="resumo">Gestão e estabilidade de ambientes críticos.</p>
           <button class="btn primary" onclick="openInfraModal()">Ver detalhes</button>
         </div>
 
-        <!-- NOC / SOC -->
         <div class="card">
           <h3>NOC / SOC</h3>
           <p class="resumo">Monitoramento contínuo para reduzir riscos.</p>
           <button class="btn primary" onclick="openModal()">Ver detalhes</button>
         </div>
 
-        <!-- Consultoria -->
         <div class="card">
           <h3>Consultoria</h3>
           <p class="resumo">Diagnóstico técnico e soluções práticas.</p>
@@ -169,23 +116,64 @@
   <a href="https://wa.me/5547988901616" class="whatsapp-float" target="_blank">💬</a>
 
   <!-- MODAIS -->
+
+  <div id="linksModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeLinksModal()">×</span>
+      <h4>Monitoramento Contínuo</h4>
+      <p>Disponibilidade dos links em tempo real.</p>
+      <p><strong>Detecção</strong><br>Alertas imediatos.</p>
+      <p><strong>Gargalos</strong><br>Evite saturações.</p>
+      <p><strong>Qualidade</strong><br>Latência e perda.</p>
+    </div>
+  </div>
+
+  <div id="trafegoModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeTrafegoModal()">×</span>
+      <h4>Controle de Tráfego</h4>
+      <p>Fluxo de dados eficiente.</p>
+      <p><strong>Rotas</strong><br>Menor latência.</p>
+      <p><strong>Prioridade</strong><br>Sistemas críticos.</p>
+      <p><strong>Balanceamento</strong><br>Distribuição inteligente.</p>
+    </div>
+  </div>
+
+  <div id="nocModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">×</span>
+      <h4>Operação Contínua</h4>
+      <p>Detecção de falhas e ameaças.</p>
+      <p><strong>24/7</strong><br>Infraestrutura e redes.</p>
+      <p><strong>Incidentes</strong><br>Resposta rápida.</p>
+      <p><strong>Prevenção</strong><br>Menos vulnerabilidades.</p>
+    </div>
+  </div>
+
   <div id="infraModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeInfraModal()">×</span>
-      <h4>Gestão Proativa de Links</h4>
-      <p>Antecipe gargalos e evite quedas.</p>
-      <p><strong>Alertas 80%</strong><br>Antes da saturação.</p>
-      <p><strong>Latência PTT</strong><br>Roteamento otimizado.</p>
+  
+      <h4>Gestão Proativa de Links e Tráfego</h4>
+  
+      <p>Antecipe gargalos, evite quedas e mantenha a performance da sua rede em alto nível.</p>
+  
+      <p><strong>Alertas de Utilização (80%)</strong><br>
+      Não espere o link atingir 100% de uso. Com alertas em 80%, você pode balancear a carga ou ativar links de contingência antes que a navegação degrade.</p>
+  
+      <p><strong>Monitoramento de Latência por PTT/IX.br</strong><br>
+      Acompanhe o RTT para destinos críticos como Google, Netflix e Facebook. Se a latência subir em um IX específico, o roteamento pode ser ajustado proativamente.</p>
     </div>
   </div>
 
   <div id="obsModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeObsModal()">×</span>
-      <h4>Visão Completa</h4>
-      <p>Monitoramento avançado.</p>
+      <h4>Observabilidade Completa</h4>
+      <p>Monitoramento avançado de ambientes críticos.</p>
       <p><strong>Detecção</strong><br>Falhas antecipadas.</p>
       <p><strong>Performance</strong><br>Métricas em tempo real.</p>
+      <p><strong>Correlação</strong><br>Diagnóstico rápido.</p>
     </div>
   </div>
 
@@ -196,6 +184,7 @@
       <p>Análise completa do ambiente.</p>
       <p><strong>Avaliação</strong><br>Infraestrutura.</p>
       <p><strong>Plano</strong><br>Melhoria contínua.</p>
+      <p><strong>Apoio</strong><br>Decisões estratégicas.</p>
     </div>
   </div>
 
