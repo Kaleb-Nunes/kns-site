@@ -8,18 +8,19 @@
 </head>
 
 <body>
+
   <button class="theme-toggle" onclick="toggleTheme()">🌙 / ☀️</button>
 
   <!-- HEADER -->
   <header class="hero">
     <div class="container">
-      <h1>Especialista em Monitoramento, Observabilidade e Infraestrutura para ambientes críticos.</h1>
+      <h1>Especialista em Monitoramento, Observabilidade e Infraestrutura para ambientes críticos</h1>
 
-      <p style="margin-top:20px; color:#a5b4fc; font-weight:600;">
+      <p class="hero-highlight">
         Evite falhas, reduza riscos e mantenha sua operação no ar 24/7.
       </p>
 
-      <p>
+      <p class="hero-text">
         Atuo na prevenção de falhas, otimização de desempenho e garantia de disponibilidade de ambientes de TI.  
         Com foco em monitoramento de links, gestão de tráfego, observabilidade e operações NOC/SOC, ajudo empresas de software e provedores 
         a manterem seus serviços estáveis, rápidos e confiáveis, mesmo em cenários de alta demanda.
@@ -27,7 +28,7 @@
 
       <div class="buttons">
         <a href="#servicos" class="btn primary">Saiba Mais</a>
-        <a href="https://wa.me/5547988901616" class="btn whatsapp">Fale Conosco</a>
+        <a href="https://wa.me/5547988901616" class="btn secondary">Fale Conosco</a>
       </div>
     </div>
   </header>
@@ -35,20 +36,20 @@
   <!-- DIFERENCIAIS -->
   <section id="diferenciais" class="section">
     <div class="container">
-      <h2>Nossos Diferenciais</h2>
+      <h2>Por que escolher a KNS?</h2>
       <ul class="lista">
-        <li>Monitoramento proativo para evitar quedas</li>
-        <li>Alertas de gargalo antes da saturação do link</li>
-        <li>Controle de latência e rotas por PTT/IX.br</li>
-        <li>Redução de indisponibilidades</li>
-        <li>Aumento da performance da rede</li>
-        <li>Observabilidade de ambientes críticos</li>
-        <li>Gestão completa de infraestrutura</li>
-        <li>Suporte NOC / SOC</li>
-        <li>Diagnóstico rápido e preciso</li>
-        <li>Soluções sob medida</li>
-        <li>Menos riscos operacionais</li>
-        <li>Mais estabilidade para o seu negócio</li>
+        <li>Monitoramento proativo de links, rotas e serviços críticos</li>
+        <li>Alertas inteligentes antes da saturação de banda</li>
+        <li>Análise de latência por PTT/IX.br</li>
+        <li>Redução comprovada de indisponibilidades</li>
+        <li>Melhoria contínua de performance de rede</li>
+        <li>Observabilidade completa de ambientes críticos</li>
+        <li>Gestão técnica de infraestrutura</li>
+        <li>Operação NOC / SOC especializada</li>
+        <li>Diagnóstico técnico preciso</li>
+        <li>Soluções personalizadas</li>
+        <li>Redução de riscos operacionais</li>
+        <li>Ambientes mais estáveis e seguros</li>
       </ul>
     </div>
   </section>
@@ -86,7 +87,7 @@
 
         <div class="card">
           <h3>NOC / SOC</h3>
-          <p class="resumo">Monitoramento contínuo para reduzir riscos.</p>
+          <p class="resumo">Monitoramento contínuo e segurança.</p>
           <button class="btn primary" onclick="openModal()">Ver detalhes</button>
         </div>
 
@@ -105,7 +106,7 @@
     <div class="container">
       <h2>Contato</h2>
       <p>Agende uma avaliação técnica e descubra como evitar falhas no seu ambiente.</p>
-      <a href="https://wa.me/5547988901616" class="btn whatsapp">Chamar no WhatsApp</a>
+      <a href="https://wa.me/5547988901616" class="btn secondary">Chamar no WhatsApp</a>
     </div>
   </section>
 
@@ -114,65 +115,62 @@
     <p>© 2026 - KNS Consultoria em TI | Kaleb Nunes dos Santos</p>
   </footer>
 
-  <a href="https://wa.me/5547988901616" class="whatsapp-float" target="_blank">💬</a>
+  <!-- Botão flutuante corporativo -->
+  <a href="https://wa.me/5547988901616" class="whatsapp-float corporate" target="_blank">
+    WhatsApp
+  </a>
 
   <!-- MODAIS -->
 
   <div id="linksModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeLinksModal()">×</span>
-      <h4>Monitoramento Contínuo</h4>
-      <p>Disponibilidade dos links em tempo real.</p>
-      <p><strong>Detecção</strong><br>Alertas imediatos.</p>
-      <p><strong>Gargalos</strong><br>Evite saturações.</p>
-      <p><strong>Qualidade</strong><br>Latência e perda.</p>
+      <h4>Monitoramento de Links</h4>
+      <p>Monitoramento contínuo de conectividade para garantir disponibilidade e performance.</p>
+      <p><strong>Falhas em tempo real</strong><br>Alertas imediatos de indisponibilidade.</p>
+      <p><strong>Gargalos de banda</strong><br>Identificação de saturação antes do impacto.</p>
+      <p><strong>Qualidade de conexão</strong><br>Análise de latência, jitter e perda.</p>
     </div>
   </div>
 
   <div id="trafegoModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeTrafegoModal()">×</span>
-      <h4>Controle de Tráfego</h4>
-      <p>Fluxo de dados eficiente.</p>
-      <p><strong>Rotas</strong><br>Menor latência.</p>
-      <p><strong>Prioridade</strong><br>Sistemas críticos.</p>
-      <p><strong>Balanceamento</strong><br>Distribuição inteligente.</p>
+      <h4>Gestão de Tráfego</h4>
+      <p>Controle inteligente do fluxo de dados para máxima eficiência.</p>
+      <p><strong>Otimização de rotas</strong><br>Menor latência e congestionamento.</p>
+      <p><strong>Priorização</strong><br>Aplicações críticas com banda garantida.</p>
+      <p><strong>Balanceamento</strong><br>Distribuição inteligente entre links.</p>
     </div>
   </div>
 
   <div id="nocModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal()">×</span>
-      <h4>Operação Contínua</h4>
-      <p>Detecção de falhas e ameaças.</p>
-      <p><strong>24/7</strong><br>Infraestrutura e redes.</p>
-      <p><strong>Incidentes</strong><br>Resposta rápida.</p>
-      <p><strong>Prevenção</strong><br>Menos vulnerabilidades.</p>
+      <h4>NOC / SOC</h4>
+      <p>Operação contínua focada em disponibilidade e segurança.</p>
+      <p><strong>Monitoramento 24/7</strong><br>Infraestrutura e redes.</p>
+      <p><strong>Gestão de incidentes</strong><br>Resposta rápida e eficaz.</p>
+      <p><strong>Prevenção de riscos</strong><br>Redução de vulnerabilidades.</p>
     </div>
   </div>
 
   <div id="infraModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeInfraModal()">×</span>
-  
-      <h4>Gestão Proativa de Links e Tráfego</h4>
-  
-      <p>Antecipe gargalos, evite quedas e mantenha a performance da sua rede em alto nível.</p>
-  
-      <p><strong>Alertas de Utilização (80%)</strong><br>
-      Não espere o link atingir 100% de uso. Com alertas em 80%, você pode balancear a carga ou ativar links de contingência antes que a navegação degrade.</p>
-  
-      <p><strong>Monitoramento de Latência por PTT/IX.br</strong><br>
-      Acompanhe o RTT para destinos críticos como Google, Netflix e Facebook. Se a latência subir em um IX específico, o roteamento pode ser ajustado proativamente.</p>
+      <h4>Infraestrutura</h4>
+      <p>Gestão proativa de ambientes críticos.</p>
+      <p><strong>Alertas 80%</strong><br>Antes da saturação do link.</p>
+      <p><strong>Latência PTT/IX.br</strong><br>Roteamento otimizado.</p>
     </div>
   </div>
 
   <div id="obsModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeObsModal()">×</span>
-      <h4>Observabilidade Completa</h4>
-      <p>Monitoramento avançado de ambientes críticos.</p>
-      <p><strong>Detecção</strong><br>Falhas antecipadas.</p>
+      <h4>Observabilidade</h4>
+      <p>Visão completa do ambiente de TI.</p>
+      <p><strong>Detecção proativa</strong><br>Falhas antecipadas.</p>
       <p><strong>Performance</strong><br>Métricas em tempo real.</p>
       <p><strong>Correlação</strong><br>Diagnóstico rápido.</p>
     </div>
@@ -181,11 +179,11 @@
   <div id="consModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeConsModal()">×</span>
-      <h4>Consultoria Técnica</h4>
-      <p>Análise completa do ambiente.</p>
-      <p><strong>Avaliação</strong><br>Infraestrutura.</p>
-      <p><strong>Plano</strong><br>Melhoria contínua.</p>
-      <p><strong>Apoio</strong><br>Decisões estratégicas.</p>
+      <h4>Consultoria</h4>
+      <p>Análise técnica completa do ambiente.</p>
+      <p><strong>Avaliação</strong><br>Infraestrutura e redes.</p>
+      <p><strong>Plano de melhoria</strong><br>Estabilidade e performance.</p>
+      <p><strong>Apoio estratégico</strong><br>Decisões técnicas.</p>
     </div>
   </div>
 
