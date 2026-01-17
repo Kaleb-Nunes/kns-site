@@ -1,36 +1,47 @@
-// Scroll suave para links internos (#)
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener('click', (e) => {
-    const targetId = link.getAttribute('href');
-    const targetEl = document.querySelector(targetId);
-    if (!targetEl) return;
-
-    e.preventDefault();
-    targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-});
-
-// Animação leve ao aparecer na tela (cards e listas)
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('reveal');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.15 });
-
-document.querySelectorAll('.card, .lista li').forEach(el => observer.observe(el));
-document.querySelectorAll('.expandable').forEach(card => {
-  card.addEventListener('click', () => {
-    card.classList.toggle('open');
-  });
-});
+// NOC / SOC
 function openModal() {
   document.getElementById("nocModal").style.display = "flex";
 }
-
 function closeModal() {
   document.getElementById("nocModal").style.display = "none";
 }
 
+// Infraestrutura
+function openInfraModal() {
+  document.getElementById("infraModal").style.display = "flex";
+}
+function closeInfraModal() {
+  document.getElementById("infraModal").style.display = "none";
+}
+
+// Observabilidade
+function openObsModal() {
+  document.getElementById("obsModal").style.display = "flex";
+}
+function closeObsModal() {
+  document.getElementById("obsModal").style.display = "none";
+}
+
+// Consultoria
+function openConsModal() {
+  document.getElementById("consModal").style.display = "flex";
+}
+function closeConsModal() {
+  document.getElementById("consModal").style.display = "none";
+}
+
+// Monitoramento de Links
+function openLinksModal() {
+  document.getElementById("linksModal").style.display = "flex";
+}
+function closeLinksModal() {
+  document.getElementById("linksModal").style.display = "none";
+}
+
+// Gestão de Tráfego
+function openTrafegoModal() {
+  document.getElementById("trafegoModal").style.display = "flex";
+}
+function closeTrafegoModal() {
+  document.getElementById("trafegoModal").style.display = "none";
+}
