@@ -47,3 +47,15 @@ function openTrafegoModal() {
 function closeTrafegoModal() {
   document.getElementById("trafegoModal").style.display = "none";
 }
+const elements = document.querySelectorAll(".card, .lista li");
+
+window.addEventListener("scroll", () => {
+  elements.forEach(el => {
+    const position = el.getBoundingClientRect().top;
+    const screenHeight = window.innerHeight;
+
+    if (position < screenHeight - 100) {
+      el.classList.add("reveal");
+    }
+  });
+});
