@@ -26,4 +26,11 @@ document.querySelectorAll('.expandable').forEach(card => {
     card.classList.toggle('open');
   });
 });
+function openModal() {
+  document.getElementById("nocModal").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("nocModal").style.display = "none";
+}
 
