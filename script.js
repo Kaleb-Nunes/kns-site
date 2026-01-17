@@ -21,3 +21,9 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 
 document.querySelectorAll('.card, .lista li').forEach(el => observer.observe(el));
+document.querySelectorAll('.expandable').forEach(card => {
+  card.addEventListener('click', () => {
+    card.classList.toggle('open');
+  });
+});
+
