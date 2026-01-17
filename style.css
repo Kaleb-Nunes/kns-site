@@ -1,88 +1,73 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Inter', Arial, sans-serif;
-}
-
 body {
   background: #f8fafc;
   color: #0f172a;
-  line-height: 1.7;
+  font-family: Inter, Arial, sans-serif;
 }
 
-/* Containers */
 .container {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: auto;
   padding: 80px 20px;
 }
 
 /* HERO */
+
 .hero {
   background: linear-gradient(180deg, #e0f2fe, #f8fafc);
-  text-align: center;
 }
 
-.hero h1 {
-  font-size: 2.6rem;
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 40px;
+}
+
+.hero-text h1 {
+  font-size: 2.8rem;
   color: #1e40af;
-  font-weight: 700;
-  margin-bottom: 25px;
 }
 
-.hero .subtitle {
-  color: #1d4ed8;
+.subtitle {
+  color: #2563eb;
   font-weight: 600;
-  margin-top: 20px;
+  margin: 20px 0;
 }
 
-.hero .description {
-  max-width: 850px;
-  margin: 25px auto;
+.description {
   color: #334155;
+  max-width: 520px;
 }
 
-/* Buttons */
-.buttons {
-  margin-top: 40px;
+.hero-image img {
+  width: 100%;
+  max-width: 480px;
 }
+
+/* BOTÕES */
 
 .btn {
-  display: inline-block;
   padding: 14px 28px;
-  margin: 10px;
   border-radius: 8px;
-  text-decoration: none;
   font-weight: 600;
-  transition: 0.2s ease;
+  text-decoration: none;
+  margin-right: 10px;
 }
 
 .primary {
-  background: #1d4ed8;
+  background: #2563eb;
   color: white;
-}
-
-.primary:hover {
-  background: #1e40af;
 }
 
 .secondary {
-  background: white;
-  border: 2px solid #1d4ed8;
-  color: #1d4ed8;
+  border: 2px solid #2563eb;
+  color: #2563eb;
 }
 
-.secondary:hover {
-  background: #1d4ed8;
-  color: white;
-}
+/* SEÇÕES */
 
-/* Sections */
 .section {
-  background: #ffffff;
+  background: white;
 }
 
 .section.dark {
@@ -90,26 +75,19 @@ body {
 }
 
 h2 {
-  color: #1e40af;
-  margin-bottom: 40px;
   text-align: center;
-  font-size: 2rem;
+  color: #1e40af;
 }
 
-/* Diferenciais */
-.lista {
-  list-style: none;
-  max-width: 900px;
-  margin: auto;
-}
+/* DIFERENCIAIS */
 
 .lista li {
-  padding: 14px 10px;
+  padding: 14px;
   border-bottom: 1px solid #e2e8f0;
-  color: #334155;
 }
 
-/* Serviços */
+/* SERVIÇOS */
+
 .servicos-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -118,65 +96,14 @@ h2 {
 
 .card {
   background: white;
-  padding: 30px 25px;
+  padding: 30px;
   border-radius: 12px;
-  border: 1px solid #e2e8f0;
-  transition: 0.2s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
   text-align: center;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  border-color: #1d4ed8;
-  box-shadow: 0 10px 25px rgba(29,78,216,0.15);
-}
-
-.card h3 {
-  color: #1e40af;
-  margin-bottom: 12px;
-  font-size: 1.2rem;
-}
-
-.card p {
-  color: #475569;
-}
-
-/* Contato */
-#contato p {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #334155;
-}
-
-/* Footer */
-footer {
-  background: #f1f5f9;
-  text-align: center;
-  padding: 25px;
-  font-size: 0.9rem;
-  color: #475569;
-}
-
-/* WhatsApp flutuante */
-.whatsapp-float {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  background: #22c55e;
-  color: #022c22;
-  padding: 16px 18px;
-  border-radius: 50%;
-  font-size: 20px;
-  text-decoration: none;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-  transition: 0.2s ease;
-}
-
-.whatsapp-float:hover {
-  transform: scale(1.1);
 }
 
 /* MODAIS */
+
 .modal {
   display: none;
   position: fixed;
@@ -192,22 +119,11 @@ footer {
   border-radius: 12px;
   max-width: 600px;
   width: 90%;
-  color: #0f172a;
 }
 
-.modal-content h4 {
-  color: #1e40af;
-  margin-bottom: 15px;
-}
+/* WHATSAPP */
 
-.modal-content p {
-  margin-bottom: 10px;
-  color: #334155;
-}
-
-.close {
-  float: right;
-  font-size: 26px;
-  cursor: pointer;
-  color: #1d4ed8;
+.whatsapp-float {
+  background: #22c55e;
+  color: white;
 }
