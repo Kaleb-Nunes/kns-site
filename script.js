@@ -1,63 +1,59 @@
-// ========== MODAIS ==========
-
-// NOC / SOC
-function openModal() {
-  document.getElementById("nocModal").style.display = "flex";
-}
-function closeModal() {
-  document.getElementById("nocModal").style.display = "none";
+// ========= MODAIS (um padrão só) =========
+function openModalById(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.setAttribute("aria-hidden", "false");
 }
 
-// Infraestrutura
-function openInfraModal() {
-  document.getElementById("infraModal").style.display = "flex";
-}
-function closeInfraModal() {
-  document.getElementById("infraModal").style.display = "none";
+function closeModal(el) {
+  el.setAttribute("aria-hidden", "true");
 }
 
-// Observabilidade
-function openObsModal() {
-  document.getElementById("obsModal").style.display = "flex";
-}
-function closeObsModal() {
-  document.getElementById("obsModal").style.display = "none";
-}
+document.addEventListener("click", (e) => {
+  const openBtn = e.target.closest("[data-modal]");
+  if (openBtn) {
+    const id = openBtn.getAttribute("data-modal");
+    openModalById(id);
+    return;
+  }
 
-// Consultoria
-function openConsModal() {
-  document.getElementById("consModal").style.display = "flex";
-}
-function closeConsModal() {
-  document.getElementById("consModal").style.display = "none";
-}
+  const closeBtn = e.target.closest("[data-close]");
+  if (closeBtn) {
+    const modal = closeBtn.closest(".modal");
+    if (modal) closeModal(modal);
+    return;
+  }
 
-// Monitoramento de Links
-function openLinksModal() {
-  document.getElementById("linksModal").style.display = "flex";
-}
-function closeLinksModal() {
-  document.getElementById("linksModal").style.display = "none";
-}
-
-// Gestão de Tráfego
-function openTrafegoModal() {
-  document.getElementById("trafegoModal").style.display = "flex";
-}
-function closeTrafegoModal() {
-  document.getElementById("trafegoModal").style.display = "none";
-}
-const elements = document.querySelectorAll(".card, .lista li");
-
-window.addEventListener("scroll", () => {
-  elements.forEach(el => {
-    const position = el.getBoundingClientRect().top;
-    const screenHeight = window.innerHeight;
-
-    if (position < screenHeight - 100) {
-      el.classList.add("reveal");
-    }
-  });
+  // clicar fora do box fecha
+  const modalBg = e.target.classList.contains("modal") ? e.target : null;
+  if (modalBg) closeModal(modalBg);
 });
-  document.body.classList.toggle("dark");
+
+// ESC fecha modal
+document.addEventListener("keydown", (e) => {
+  if (e.key !== "Escape") return;
+  const opened = document.querySelector('.modal[aria-hidden="false"]');
+  if (opened) closeModal(opened);
+});
+
+// ========= FORM -> WHATSAPP =========
+function openWhatsAppDiag(event) {
+  event.preventDefault();
+
+  const ambiente = document.getElementById("qAmbiente")?.value || "";
+  const dor = document.getElementById("qDor")?.value || "";
+  const urgencia = document.getElementById("qUrgencia")?.value || "";
+
+  const msg =
+    `Olá! Quero um diagnóstico técnico.\n\n` +
+    `• Ambiente: ${ambiente}\n` +
+    `• Principal dor: ${dor}\n` +
+    `• Urgência: ${urgencia}\n\n` +
+    `Pode me orientar com os próximos passos?`;
+
+  const phone = "5547988901616";
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+  window.open(url, "_blank", "noopener,noreferrer");
+
+  return false;
 }
