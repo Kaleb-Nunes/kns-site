@@ -180,4 +180,7 @@ footer {
   opacity: 1 !important;
   transform: translateY(0) !important;
 }
+.btn {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
 
