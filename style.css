@@ -1,5 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
+:root {
+  --bg: #f8fafc;
+  --bg-alt: #f1f5f9;
+  --text: #0f172a;
+  --primary: #2563eb;
+  --secondary: #0ea5e9;
+  --card: #ffffff;
+  --border: #e2e8f0;
+}
+
+/* Dark mode */
+body.dark {
+  --bg: #0b1220;
+  --bg-alt: #020617;
+  --text: #e5e7eb;
+  --primary: #38bdf8;
+  --secondary: #60a5fa;
+  --card: #020617;
+  --border: #1e293b;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -8,9 +29,10 @@
 }
 
 body {
-  background: #0b1220;
-  color: #e5e7eb;
+  background: var(--bg);
+  color: var(--text);
   line-height: 1.7;
+  transition: 0.3s ease;
 }
 
 /* Containers */
@@ -20,11 +42,16 @@ body {
   padding: 60px 20px;
 }
 
-/* HERO */
+/* HERO COM IMAGEM */
 .hero {
-  background: radial-gradient(circle at top, #0f172a, #020617);
+  background:
+    linear-gradient(rgba(2,6,23,0.65), rgba(2,6,23,0.65)),
+    url("assets/bg.jpg");
+  background-size: cover;
+  background-position: center;
   text-align: center;
   padding: 120px 20px 100px;
+  color: white;
 }
 
 .hero h1 {
@@ -38,14 +65,24 @@ body {
   max-width: 850px;
   margin: auto;
   font-size: 1.15rem;
-  color: #cbd5f5;
+  color: #e2e8f0;
+}
+
+/* Botão tema */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 9999;
 }
 
 /* Buttons */
-.buttons {
-  margin-top: 40px;
-}
-
 .btn {
   display: inline-block;
   padding: 14px 28px;
@@ -54,61 +91,37 @@ body {
   text-decoration: none;
   font-weight: 600;
   transition: 0.3s ease;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   cursor: pointer;
   border: none;
 }
 
 .primary {
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
   color: white;
 }
 
 .primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(37,99,235,0.4);
-}
-
-.whatsapp {
-  background: linear-gradient(135deg, #22c55e, #16a34a);
-  color: #022c22;
-}
-
-.whatsapp:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(34,197,94,0.4);
 }
 
 /* Sections */
 .section {
-  background: #020617;
+  background: var(--bg);
 }
 
 .section.dark {
-  background: #0b1220;
+  background: var(--bg-alt);
 }
 
 h2 {
-  color: #38bdf8;
+  color: var(--primary);
   margin-bottom: 40px;
   text-align: center;
   font-size: 2rem;
 }
 
-/* Diferenciais */
-.lista {
-  list-style: none;
-  max-width: 900px;
-  margin: auto;
-}
-
-.lista li {
-  padding: 14px 10px;
-  border-bottom: 1px solid #1e293b;
-  color: #cbd5f5;
-}
-
-/* Serviços */
+/* Cards estilo SaaS */
 .servicos-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -116,45 +129,66 @@ h2 {
 }
 
 .card {
-  background: linear-gradient(180deg, #020617, #020617);
+  background: var(--card);
   padding: 30px 25px;
   border-radius: 14px;
-  border: 1px solid #1e293b;
+  border: 1px solid var(--border);
   transition: 0.3s ease;
 }
 
 .card:hover {
   transform: translateY(-6px);
-  border-color: #38bdf8;
-  box-shadow: 0 15px 30px rgba(56,189,248,0.15);
+  border-color: var(--primary);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
 }
 
 .card h3 {
-  color: #60a5fa;
+  color: var(--primary);
   margin-bottom: 12px;
   font-size: 1.2rem;
 }
 
 .card p {
-  color: #cbd5f5;
+  color: var(--text);
 }
 
-/* Contato */
-#contato p {
-  text-align: center;
-  margin-bottom: 20px;
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  justify-content: center;
+  align-items: center;
 }
 
-/* Footer */
-footer {
-  background: #020617;
-  text-align: center;
-  padding: 25px;
-  font-size: 0.9rem;
-  color: #94a3b8;
+.modal-content {
+  background: var(--card);
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+  color: var(--text);
+  animation: modalIn 0.3s ease;
 }
 
-/* WhatsApp flutuante */
+.close {
+  float: right;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--primary);
+}
+
+@keyframes modalIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* WhatsApp */
 .whatsapp-float {
   position: fixed;
   bottom: 25px;
@@ -166,70 +200,4 @@ footer {
   font-size: 20px;
   text-decoration: none;
   box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-  transition: 0.3s ease;
-}
-
-.whatsapp-float:hover {
-  transform: scale(1.1);
-}
-
-
-/* Modal */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(2,6,23,0.85);
-  backdrop-filter: blur(6px);
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  background: #020617;
-  padding: 30px;
-  border-radius: 12px;
-  max-width: 600px;
-  width: 90%;
-  color: #e5e7eb;
-  box-shadow: 0 0 40px rgba(56,189,248,0.3);
-  animation: modalIn 0.3s ease;
-}
-
-.modal-content h4 {
-  color: #38bdf8;
-  margin-bottom: 15px;
-  font-size: 1.3rem;
-}
-
-.modal-content p {
-  margin-bottom: 10px;
-  line-height: 1.6;
-}
-
-.modal-content strong {
-  color: #60a5fa;
-}
-
-.close {
-  float: right;
-  font-size: 28px;
-  cursor: pointer;
-  color: #38bdf8;
-}
-
-/* Animação do modal */
-@keyframes modalIn {
-  from {
-    transform: scale(0.9);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
 }
