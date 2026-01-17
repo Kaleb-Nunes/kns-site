@@ -6,6 +6,24 @@
   <link rel="stylesheet" href="style.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+  <div id="nocModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">×</span>
+
+    <h4>Operação Contínua e Segurança</h4>
+
+    <p>Atuação proativa na detecção de falhas operacionais e ameaças de segurança em ambientes críticos.</p>
+
+    <p><strong>Monitoramento 24/7</strong><br>
+    Acompanhamento contínuo de infraestrutura, redes e serviços.</p>
+
+    <p><strong>Gestão de Incidentes</strong><br>
+    Resposta rápida para minimizar impactos e restaurar serviços.</p>
+
+    <p><strong>Prevenção de Riscos</strong><br>
+    Redução de falhas, vulnerabilidades e indisponibilidades.</p>
+  </div>
+</div>
 <body>
 
   <header class="hero">
@@ -106,17 +124,11 @@
   </div>
 
   <!-- NOC / SOC -->
-  <div class="card expandable">
-    <h3>NOC / SOC</h3>
-    <p class="resumo">Monitoramento contínuo para reduzir riscos operacionais e de segurança.</p>
-    <div class="detalhes">
-      <h4>Operação Contínua</h4>
-      <p>Detecção de falhas e ameaças em tempo real.</p>
-      <p><strong>Monitoramento 24/7</strong><br>Infraestrutura sempre observada.</p>
-      <p><strong>Gestão de Incidentes</strong><br>Resposta rápida.</p>
-      <p><strong>Prevenção de Riscos</strong><br>Redução de vulnerabilidades.</p>
-    </div>
-  </div>
+<div class="card" id="nocCard">
+  <h3>NOC / SOC</h3>
+  <p class="resumo">Monitoramento contínuo para reduzir riscos operacionais e de segurança.</p>
+  <button class="btn primary" onclick="openModal()">Ver detalhes</button>
+</div>
 
   <!-- Consultoria -->
   <div class="card expandable">
