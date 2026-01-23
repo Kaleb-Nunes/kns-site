@@ -4,47 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="KNS Consultoria - Engenharia de Redes IPv6 SAGE. Soluções de infraestrutura de elite.">
+    <meta name="author" content="Kaleb Nunes">
     <title>KNS CONSULTORIA | IPv6 SAGE Certified</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- ENGINE CORE --- */
+        /* --- CORE ENGINE VARIABLES --- */
         :root {
-            /* DARK MODE (DEFAULT) */
+            /* DARK MODE (DEFAULT - HACKER ELITE) */
             --primary: #00ff88;
-            --primary-dim: rgba(0, 255, 136, 0.1);
-            --primary-glow: rgba(0, 255, 136, 0.5);
-            --bg-deep: #020202;
+            --primary-dim: rgba(0, 255, 136, 0.15);
+            --primary-glow: rgba(0, 255, 136, 0.6);
+            --bg-deep: #050505;
             --bg-surface: #0a0a0a;
             --text-main: #ffffff;
-            --text-muted: #b0b0b0;
+            --text-muted: #9ca3af;
             --border: rgba(255, 255, 255, 0.15);
             --glass: rgba(10, 10, 10, 0.7);
-            --glass-blur: blur(25px);
+            --glass-blur: blur(20px);
             --grid-color: rgba(0, 255, 136, 0.15);
-            --monitor-bg: #000;
-            --card-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            --monitor-frame: #111;
+            --card-hover: rgba(0, 255, 136, 0.03);
+            --nav-bg: rgba(5, 5, 5, 0.9);
+            --shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
         [data-theme="light"] {
-            /* LIGHT MODE (CORRIGIDO PARA ALTO CONTRASTE) */
-            --primary: #008f4c; /* Verde mais escuro para leitura no branco */
+            /* LIGHT MODE (CORPORATE LUXURY) */
+            --primary: #008f4c; /* Verde Esmeralda Corporativo */
             --primary-dim: rgba(0, 143, 76, 0.1);
             --primary-glow: rgba(0, 143, 76, 0.2);
-            --bg-deep: #eef2f6; /* Cinza azulado business */
-            --bg-surface: #ffffff;
-            --text-main: #050505; /* Preto absoluto */
-            --text-muted: #404040; /* Cinza escuro */
-            --border: rgba(0, 0, 0, 0.2); /* Bordas visíveis */
+            --bg-deep: #f0f2f5; /* Cinza Gelo */
+            --bg-surface: #ffffff; /* Branco Puro */
+            --text-main: #111827; /* Preto Carvão */
+            --text-muted: #4b5563; /* Cinza Chumbo */
+            --border: rgba(0, 0, 0, 0.15);
             --glass: rgba(255, 255, 255, 0.85);
             --glass-blur: blur(30px);
-            --grid-color: rgba(0, 0, 0, 0.08);
-            --monitor-bg: #222;
-            --card-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            --grid-color: rgba(0, 0, 0, 0.05); /* Grade sutil */
+            --monitor-frame: #222; /* Monitor continua escuro para contraste */
+            --card-hover: rgba(0, 0, 0, 0.02);
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
 
+        /* --- GLOBAL RESET --- */
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         
         body { 
@@ -55,37 +61,39 @@
             transition: background 0.5s ease, color 0.5s ease;
         }
 
-        /* --- 3D MOVING GRID BACKGROUND (SURPRESA!) --- */
-        .cyber-plane {
+        /* --- 3D CYBER GRID (BACKGROUND ANIMATION) --- */
+        .cyber-grid {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
             background-image: 
                 linear-gradient(var(--grid-color) 1px, transparent 1px), 
                 linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
             background-size: 60px 60px;
-            background-position: center bottom;
-            transform: perspective(500px) rotateX(60deg) scale(2) translateY(-100px);
+            transform: perspective(500px) rotateX(60deg) scale(2.5) translateY(-100px);
             transform-origin: center top;
-            animation: planeMove 15s linear infinite;
-            z-index: -1;
-            mask-image: linear-gradient(to bottom, transparent 0%, black 40%);
-            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 40%);
+            animation: gridMove 20s linear infinite;
+            z-index: -2;
+            mask-image: linear-gradient(to bottom, transparent 5%, black 40%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 5%, black 40%);
+            pointer-events: none;
         }
 
-        @keyframes planeMove {
-            from { background-position: center 0; }
-            to { background-position: center 60px; }
-        }
+        @keyframes gridMove { from { background-position: 0 0; } to { background-position: 0 60px; } }
 
         /* --- TYPOGRAPHY --- */
-        h1, h2, h3, h4 { font-family: 'Orbitron', sans-serif; letter-spacing: -0.5px; }
+        h1, h2, h3, h4 { font-family: 'Orbitron', sans-serif; letter-spacing: -0.03em; }
         .mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* --- NAV --- */
+        /* --- SCROLL REVEAL CLASS --- */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- NAVIGATION --- */
         nav {
-            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            position: fixed; top: 0; width: 100%; padding: 15px 5%;
             display: flex; justify-content: space-between; align-items: center;
-            background: rgba(var(--bg-surface), 0.8); backdrop-filter: blur(15px);
+            background: var(--nav-bg); backdrop-filter: var(--glass-blur);
             border-bottom: 1px solid var(--border); z-index: 1000;
+            transition: 0.3s;
         }
         .brand { font-size: 1.5rem; font-weight: 900; color: var(--text-main); display: flex; align-items: center; gap: 10px; }
         .brand span { color: var(--primary); }
@@ -93,109 +101,142 @@
         .nav-controls { display: flex; align-items: center; gap: 10px; }
         .ctrl-btn {
             background: transparent; border: 1px solid var(--border);
-            color: var(--text-main); padding: 8px 12px; border-radius: 6px;
+            color: var(--text-main); padding: 8px 14px; border-radius: 6px;
             cursor: pointer; font-family: 'JetBrains Mono'; font-size: 0.75rem; font-weight: 700;
             transition: 0.3s;
         }
-        .ctrl-btn:hover, .ctrl-btn.active { border-color: var(--primary); color: var(--bg-deep); background: var(--primary); }
-        .theme-toggle { background: none; border: none; font-size: 1.2rem; color: var(--text-main); cursor: pointer; padding: 0 15px; }
+        .ctrl-btn:hover, .ctrl-btn.active { border-color: var(--primary); background: var(--primary); color: #fff; }
+        .theme-toggle { background: none; border: none; font-size: 1.2rem; color: var(--text-main); cursor: pointer; padding: 0 10px; transition: 0.3s; }
+        .theme-toggle:hover { color: var(--primary); transform: rotate(20deg); }
 
-        /* --- HERO --- */
+        /* --- HERO SECTION --- */
         .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 160px 5% 100px; }
         
         .status-pill {
             background: var(--primary-dim); border: 1px solid var(--primary);
-            padding: 10px 25px; border-radius: 50px; font-size: 0.8rem;
+            padding: 8px 20px; border-radius: 50px; font-size: 0.8rem;
             color: var(--primary); margin-bottom: 30px; display: inline-flex; align-items: center; gap: 10px;
-            font-family: 'JetBrains Mono'; box-shadow: 0 0 20px var(--primary-dim);
+            font-family: 'JetBrains Mono'; box-shadow: 0 0 15px var(--primary-dim);
         }
-        .status-dot { width: 8px; height: 8px; background: var(--primary); border-radius: 50%; animation: blink 2s infinite; }
+        .status-dot { width: 8px; height: 8px; background: var(--primary); border-radius: 50%; animation: pulse 2s infinite; }
 
         .hero-title { font-size: clamp(2.5rem, 6vw, 5rem); line-height: 1.1; font-weight: 900; margin-bottom: 25px; }
-        .hero-title span { color: var(--primary); text-shadow: 0 0 30px var(--primary-dim); }
-        .hero-desc { font-size: 1.2rem; color: var(--text-muted); max-width: 800px; margin-bottom: 50px; line-height: 1.6; }
+        .hero-title span { 
+            color: var(--primary);
+            text-shadow: 0 0 40px var(--primary-dim);
+        }
+        .hero-desc { font-size: 1.25rem; color: var(--text-muted); max-width: 800px; margin-bottom: 50px; line-height: 1.6; }
 
         .btn-primary {
-            background: var(--primary); color: #000; padding: 20px 50px;
+            background: var(--primary); color: #fff; padding: 18px 45px;
             border-radius: 8px; text-decoration: none; font-weight: 800; font-family: 'Orbitron';
             transition: 0.3s; display: inline-block; box-shadow: 0 0 30px var(--primary-glow);
+            text-transform: uppercase; letter-spacing: 1px;
         }
-        .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 0 50px var(--primary-glow); }
+        .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 0 60px var(--primary-glow); filter: brightness(1.1); }
 
-        /* --- MONITOR FRAME --- */
-        .monitor-wrapper { width: 100%; max-width: 1000px; margin: 60px auto 0; position: relative; perspective: 1000px; }
+        /* --- MONITOR FRAME (CSS ART) --- */
+        .monitor-wrapper { width: 100%; max-width: 1000px; margin: 80px auto 0; position: relative; perspective: 1000px; }
+        .rec-tag {
+            position: absolute; top: -30px; left: 50%; transform: translateX(-50%);
+            color: #ff3333; font-family: 'JetBrains Mono'; font-size: 0.8rem; font-weight: 800;
+            display: flex; align-items: center; gap: 8px; letter-spacing: 2px;
+            animation: blinkRed 2s infinite; text-shadow: 0 0 10px rgba(255, 51, 51, 0.3);
+        }
+        .monitor-frame {
+            background: var(--monitor-frame); padding: 15px; border-radius: 12px;
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.1), 0 30px 60px rgba(0,0,0,0.4);
+            position: relative; z-index: 2;
+        }
         .monitor-screen {
-            border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
-            background: #000; aspect-ratio: 16/9; position: relative; z-index: 2;
-            box-shadow: 0 0 0 10px var(--monitor-bg), 0 20px 50px rgba(0,0,0,0.6);
+            background: #000; border-radius: 4px; overflow: hidden;
+            aspect-ratio: 16/9; position: relative; border: 1px solid rgba(255,255,255,0.05);
+        }
+        .monitor-stand {
+            width: 180px; height: 50px; background: linear-gradient(180deg, var(--monitor-frame) 0%, #000 100%);
+            margin: -5px auto 0; position: relative; z-index: 1; clip-path: polygon(15% 0, 85% 0, 100% 100%, 0% 100%);
         }
         .monitor-base {
-            width: 30%; height: 20px; background: var(--monitor-bg); margin: 0 auto;
-            border-radius: 0 0 10px 10px; box-shadow: 0 50px 50px var(--primary-glow); z-index: 1;
+            width: 300px; height: 10px; background: var(--monitor-frame);
+            margin: 0 auto; border-radius: 4px; box-shadow: 0 0 40px var(--primary-glow);
         }
 
-        /* --- SAGE AUTHORITY (WITH IMAGE) --- */
+        /* --- SAGE AUTHORITY --- */
         .sage-section {
-            padding: 100px 8%; background: var(--bg-surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+            padding: 120px 8%; background: var(--bg-surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
             display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 60px;
         }
-        .sage-img-container {
-            width: 250px; position: relative;
-        }
-        .sage-img { width: 100%; filter: drop-shadow(0 0 30px var(--primary-glow)); animation: float 6s ease-in-out infinite; }
-        .sage-text { max-width: 600px; }
-        .sage-text h2 { font-size: 2.5rem; margin-bottom: 20px; }
-        .sage-text p { font-size: 1.1rem; line-height: 1.7; color: var(--text-muted); }
+        .sage-img { width: 100%; max-width: 280px; filter: drop-shadow(0 0 30px var(--primary-glow)); animation: float 6s ease-in-out infinite; }
+        .sage-text { max-width: 650px; }
+        .sage-text h2 { font-size: 2.8rem; margin-bottom: 25px; color: var(--text-main); }
+        .sage-text p { font-size: 1.15rem; line-height: 1.8; color: var(--text-muted); }
 
         /* --- PROTOCOLO 09 --- */
-        .p9-section { padding: 120px 8%; }
+        .p9-section { padding: 140px 8%; position: relative; }
         .p9-card {
             background: var(--glass); backdrop-filter: var(--glass-blur);
-            border: 1px solid var(--border); border-radius: 24px; padding: 60px;
-            display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px; align-items: center;
-            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border); border-radius: 30px; padding: 70px;
+            display: grid; grid-template-columns: 1.5fr 1fr; gap: 80px; align-items: center;
+            box-shadow: var(--shadow);
+        }
+        .p9-visual {
+            text-align: center; border: 1px solid var(--primary); padding: 40px; border-radius: 20px;
+            background: radial-gradient(circle, var(--primary-dim) 0%, transparent 70%);
         }
         
-        /* --- SERVICES CARDS (IMPROVED) --- */
-        .services-section { padding: 80px 8%; }
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .service-card {
+        /* --- ARSENAL TÉCNICO (CHIPS) --- */
+        .tech-section { padding: 100px 8%; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        
+        .tech-card {
             background: var(--bg-surface); border: 1px solid var(--border);
-            padding: 40px; border-radius: 16px; transition: 0.4s;
-            display: flex; flex-direction: column; justify-content: space-between;
+            padding: 40px; border-radius: 20px; transition: 0.4s; position: relative;
+            overflow: hidden; box-shadow: var(--shadow);
         }
-        .service-card:hover { border-color: var(--primary); transform: translateY(-10px); }
+        .tech-card:hover { border-color: var(--primary); transform: translateY(-10px); background: var(--card-hover); }
+        .tech-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--primary); opacity: 0; transition: 0.3s;
+        }
+        .tech-card:hover::before { opacity: 1; }
         
-        .svc-icon-large { font-size: 3rem; color: var(--primary); margin-bottom: 20px; }
-        
-        /* Tool Tags (Observabilidade) */
-        .tool-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
-        .tool-tag {
+        .chip-container { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 25px; }
+        .chip {
             font-size: 0.75rem; font-family: 'JetBrains Mono'; font-weight: 700;
             background: var(--primary-dim); color: var(--text-main); border: 1px solid var(--border);
-            padding: 5px 10px; border-radius: 4px;
+            padding: 6px 12px; border-radius: 6px; display: flex; align-items: center; gap: 8px;
         }
+        .chip i { color: var(--primary); }
+        .tech-card:hover .chip { border-color: var(--primary); }
+
+        /* --- ORIGIN STORY --- */
+        .origin-container { padding: 100px 8%; max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2fr; gap: 60px; align-items: center; }
+        .origin-img { width: 100%; border-radius: 20px; border: 2px solid var(--primary); box-shadow: 0 0 30px var(--primary-dim); }
+        .origin-quote { border-left: 4px solid var(--primary); padding-left: 30px; font-style: italic; font-size: 1.1rem; color: var(--text-muted); margin-top: 30px; }
 
         /* --- FOOTER --- */
-        footer { padding: 80px 8%; background: var(--bg-deep); text-align: center; border-top: 1px solid var(--border); }
+        footer { padding: 80px 8% 40px; background: var(--bg-surface); text-align: center; border-top: 1px solid var(--border); }
         .socials { display: flex; justify-content: center; gap: 30px; margin: 40px 0; }
-        .socials a { color: var(--text-muted); font-size: 1.8rem; transition: 0.3s; }
-        .socials a:hover { color: var(--primary); transform: scale(1.2); }
+        .socials a { color: var(--text-muted); font-size: 2rem; transition: 0.3s; }
+        .socials a:hover { color: var(--primary); transform: scale(1.1); }
 
         /* ANIMATIONS */
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        @keyframes blinkRed { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
         @media (max-width: 900px) {
             .hero-title { font-size: 3rem; }
-            .p9-card { grid-template-columns: 1fr; }
+            .p9-card { grid-template-columns: 1fr; padding: 40px; }
             .sage-section { text-align: center; }
+            .origin-container { grid-template-columns: 1fr; }
+            .monitor-stand, .monitor-base { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <div class="cyber-plane"></div>
+    <div class="cyber-grid"></div>
 
     <nav>
         <div class="brand"><i class="fa-solid fa-code-branch" style="color: var(--primary);"></i> KNS<span>.CONSULTORIA</span></div>
@@ -207,14 +248,14 @@
         </div>
     </nav>
 
-    <section class="hero">
+    <section class="hero reveal">
         <div class="status-pill">
-            <span class="status-dot"></span> <span data-i18n="hero_status">SISTEMA ONLINE // IPv6 SAGE</span>
+            <span class="status-dot"></span> <span data-i18n="hero_status" class="mono">SISTEMA ONLINE // IPv6 SAGE</span>
         </div>
         
         <h1 class="hero-title">
-            <span data-i18n="hero_title_1">INSTABILIDADE CUSTA CARO.</span><br>
-            <span data-i18n="hero_title_2" style="color: var(--primary);">CONTINUIDADE CUSTA KNS.</span>
+            <span style="color: var(--text-main);" data-i18n="hero_t1">INSTABILIDADE CUSTA CARO.</span><br>
+            <span data-i18n="hero_t2" style="color: var(--primary);">CONTINUIDADE CUSTA KNS.</span>
         </h1>
         
         <p class="hero-desc" data-i18n="hero_desc">
@@ -223,18 +264,22 @@
 
         <a href="https://wa.me/5547988901616" target="_blank" class="btn-primary" data-i18n="cta_main">SOLICITAR BLINDAGEM</a>
 
-        <div class="monitor-wrapper">
-            <div class="monitor-screen">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/T9wvW0EYfE0" frameborder="0" allowfullscreen></iframe>
+        <div class="monitor-wrapper reveal">
+            <div class="rec-tag"><i class="fa-solid fa-circle"></i> REC // PROTOCOLO 09</div>
+            <div class="monitor-frame">
+                <div class="monitor-screen">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/T9wvW0EYfE0?rel=0" frameborder="0" allowfullscreen></iframe>
+                </div>
             </div>
+            <div class="monitor-stand"></div>
             <div class="monitor-base"></div>
         </div>
     </section>
 
-    <section class="sage-section">
+    <section class="sage-section reveal">
         <div class="sage-img-container">
-            <img src="./assets/sage_full.png" alt="SAGE Certified" class="sage-img" onerror="this.style.display='none'; document.getElementById('fallback-icon').style.display='block';">
-            <i id="fallback-icon" class="fa-solid fa-dragon" style="font-size: 8rem; color: var(--primary); display: none; margin: 0 auto;"></i>
+            <img src="./assets/sage_full.png" alt="SAGE Certified" class="sage-img" onerror="this.style.display='none'; document.getElementById('fallback-sage').style.display='block';">
+            <i id="fallback-sage" class="fa-solid fa-dragon" style="font-size: 8rem; color: var(--primary); display: none; margin: 0 auto; filter: drop-shadow(0 0 20px var(--primary));"></i>
         </div>
         <div class="sage-text">
             <h2 data-i18n="sage_title">AUTORIDADE GLOBAL SAGE</h2>
@@ -242,65 +287,76 @@
         </div>
     </section>
 
-    <section class="p9-section">
+    <section class="p9-section reveal">
         <div class="p9-card">
             <div>
-                <span class="mono" style="color: var(--primary); margin-bottom: 15px; display: block;" data-i18n="p9_tag">// METODOLOGIA PROPRIETÁRIA</span>
-                <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: var(--text-main);" data-i18n="p9_title">O QUE É O PROTOCOLO 09?</h2>
-                <p style="font-size: 1.2rem; color: var(--text-muted); line-height: 1.8;" data-i18n="p9_text">
+                <span class="mono" style="color: var(--primary); margin-bottom: 15px; display: block; font-weight: 700;" data-i18n="p9_tag">// METODOLOGIA PROPRIETÁRIA</span>
+                <h2 style="font-size: 3rem; margin-bottom: 25px; color: var(--text-main);" data-i18n="p9_title">O QUE É O PROTOCOLO 09?</h2>
+                <p style="font-size: 1.25rem; color: var(--text-muted); line-height: 1.8;" data-i18n="p9_text">
                     Imagine um sistema imunológico digital. Enquanto o mercado espera o servidor cair para abrir um chamado, o Protocolo 09 atua na prevenção ativa. Usamos automação em Python e sensores de latência para corrigir falhas antes que elas afetem o faturamento.
                 </p>
             </div>
-            <div style="text-align: center;">
-                <i class="fa-solid fa-shield-virus" style="font-size: 6rem; color: var(--primary);"></i>
-                <h3 style="margin-top: 20px; font-family: 'Orbitron';" data-i18n="p9_badge">BLINDAGEM ATIVA</h3>
+            <div class="p9-visual">
+                <i class="fa-solid fa-shield-virus" style="font-size: 6rem; color: var(--primary); filter: drop-shadow(0 0 20px var(--primary));"></i>
+                <h3 class="mono" style="margin-top: 20px; font-size: 1.5rem; color: var(--text-main);" data-i18n="p9_badge">BLINDAGEM ATIVA</h3>
             </div>
         </div>
     </section>
 
-    <section class="services-section">
-        <h2 style="text-align: center; margin-bottom: 60px; font-size: 2.5rem;" data-i18n="services_title">ARSENAL TÉCNICO</h2>
+    <section class="tech-section reveal">
+        <h2 style="text-align: center; margin-bottom: 60px; font-size: 3rem;" data-i18n="tech_title">ARSENAL TÉCNICO</h2>
         
         <div class="grid-3">
-            <div class="service-card">
-                <div>
-                    <i class="fa-solid fa-globe svc-icon-large"></i>
-                    <h3 data-i18n="svc_ipv6_title">Infraestrutura IPv6</h3>
-                    <p data-i18n="svc_ipv6_desc" style="color: var(--text-muted); margin-top: 15px;">Preparação total para o novo protocolo da internet com certificação SAGE.</p>
-                </div>
-                <div class="tool-tags">
-                    <span class="tool-tag">BGP</span>
-                    <span class="tool-tag">OSPFv3</span>
-                    <span class="tool-tag">Dual-Stack</span>
+            <div class="tech-card">
+                <i class="fa-solid fa-globe" style="font-size: 3rem; color: var(--primary); margin-bottom: 20px;"></i>
+                <h3 data-i18n="t_ipv6_t">Infraestrutura IPv6</h3>
+                <p data-i18n="t_ipv6_d" style="color: var(--text-muted); margin: 15px 0;">Preparação total para o novo protocolo da internet com certificação SAGE.</p>
+                <div class="chip-container">
+                    <span class="chip"><i class="fa-solid fa-check"></i> BGP</span>
+                    <span class="chip"><i class="fa-solid fa-check"></i> OSPFv3</span>
+                    <span class="chip"><i class="fa-solid fa-check"></i> Dual-Stack</span>
                 </div>
             </div>
 
-            <div class="service-card">
-                <div>
-                    <i class="fa-brands fa-python svc-icon-large"></i>
-                    <h3 data-i18n="svc_py_title">Automação Python</h3>
-                    <p data-i18n="svc_py_desc" style="color: var(--text-muted); margin-top: 15px;">Scripts de "Self-Healing". Seus servidores corrigem problemas sozinhos.</p>
-                </div>
-                <div class="tool-tags">
-                    <span class="tool-tag">Python</span>
-                    <span class="tool-tag">Shell Script</span>
-                    <span class="tool-tag">API Rest</span>
+            <div class="tech-card">
+                <i class="fa-brands fa-python" style="font-size: 3rem; color: var(--primary); margin-bottom: 20px;"></i>
+                <h3 data-i18n="t_py_t">Automação Python</h3>
+                <p data-i18n="t_py_d" style="color: var(--text-muted); margin: 15px 0;">Scripts de "Self-Healing". Seus servidores corrigem problemas sozinhos.</p>
+                <div class="chip-container">
+                    <span class="chip"><i class="fa-solid fa-code"></i> Python</span>
+                    <span class="chip"><i class="fa-solid fa-terminal"></i> Shell</span>
+                    <span class="chip"><i class="fa-solid fa-robot"></i> Auto-Heal</span>
                 </div>
             </div>
 
-            <div class="service-card">
-                <div>
-                    <i class="fa-solid fa-chart-line svc-icon-large"></i>
-                    <h3 data-i18n="svc_obs_title">Observabilidade</h3>
-                    <p data-i18n="svc_obs_desc" style="color: var(--text-muted); margin-top: 15px;">Dashboards de negócios. Transformamos logs em lucro.</p>
+            <div class="tech-card">
+                <i class="fa-solid fa-chart-line" style="font-size: 3rem; color: var(--primary); margin-bottom: 20px;"></i>
+                <h3 data-i18n="t_obs_t">Observabilidade</h3>
+                <p data-i18n="t_obs_d" style="color: var(--text-muted); margin: 15px 0;">Dashboards de negócios. Transformamos logs em lucro.</p>
+                <div class="chip-container">
+                    <span class="chip"><i class="fa-solid fa-eye"></i> ZABBIX</span>
+                    <span class="chip"><i class="fa-solid fa-chart-pie"></i> GRAFANA</span>
+                    <span class="chip"><i class="fa-solid fa-network-wired"></i> PRTG</span>
+                    <span class="chip"><i class="fa-solid fa-map"></i> THE DUDE</span>
+                    <span class="chip"><i class="fa-solid fa-server"></i> LIBRENMS</span>
                 </div>
-                <div class="tool-tags">
-                    <span class="tool-tag" style="border-color: #d00;">ZABBIX</span>
-                    <span class="tool-tag" style="border-color: #f90;">GRAFANA</span>
-                    <span class="tool-tag">PRTG</span>
-                    <span class="tool-tag">THE DUDE</span>
-                    <span class="tool-tag">LIBRENMS</span>
-                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="origin-container reveal">
+        <img src="./assets/foto.jpg" alt="Kaleb Nunes" class="origin-img" onerror="this.src='https://ui-avatars.com/api/?name=Kaleb+Nunes&background=00ff88&color=000&size=500'">
+        <div>
+            <h2 data-i18n="origin_title">QUEM É A KNS?</h2>
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-muted); margin-top: 20px;" data-i18n="origin_text">
+                A KNS Consultoria nasceu de uma inconformidade. Trabalhando em grandes operações, notei empresas pagando fortunas por terceirizadas que entregavam apenas "braços", mas nenhum cérebro. Decidi que o mercado precisava de menos "chamados abertos" e mais "problemas resolvidos".
+            </p>
+            <div class="origin-quote" data-i18n="origin_quote">
+                "Onde outros veem risco, nós vemos lógica e solução. Não vendo horas, vendo a garantia de que sua operação não para."
+            </div>
+            <div style="margin-top: 20px;">
+                <h4 style="color: var(--text-main);">KALEB NUNES</h4>
+                <span class="mono" style="color: var(--primary); font-size: 0.8rem;">CEO & LEAD ARCHITECT</span>
             </div>
         </div>
     </section>
@@ -308,15 +364,16 @@
     <footer>
         <h3 class="brand" style="justify-content: center; margin-bottom: 20px;">KNS<span>.CONSULTORIA</span></h3>
         <div class="socials">
-            <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://wa.me/5547988901616"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://linkedin.com/in/kalebnunes"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://github.com/kalebnunes"><i class="fa-brands fa-github"></i></a>
+            <a href="https://instagram.com/kaleb_nunesdossantos"><i class="fa-brands fa-instagram"></i></a>
         </div>
-        <p class="mono" style="font-size: 0.8rem; color: var(--text-muted);">CNPJ: 49.712.297/0001-07 | Balneário Camboriú - SC</p>
+        <p class="mono" style="font-size: 0.9rem; color: var(--text-muted);">CNPJ: 49.712.297/0001-07 | Balneário Camboriú - SC</p>
     </footer>
 
     <script>
-        // THEME LOGIC
+        // THEME TOGGLE
         function toggleTheme() {
             const html = document.documentElement;
             const btn = document.getElementById('themeBtn');
@@ -326,12 +383,23 @@
             btn.innerHTML = target === 'dark' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
         }
 
-        // DICTIONARY
+        // SCROLL REVEAL
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // LANGUAGE DICTIONARY
         const i18n = {
             pt: {
                 hero_status: "SISTEMA ONLINE // IPv6 SAGE",
-                hero_title_1: "INSTABILIDADE CUSTA CARO.",
-                hero_title_2: "CONTINUIDADE CUSTA KNS.",
+                hero_t1: "INSTABILIDADE CUSTA CARO.",
+                hero_t2: "CONTINUIDADE CUSTA KNS.",
                 hero_desc: "Engenharia de Redes de Elite. Transformamos infraestruturas caóticas em operações blindadas de alta performance para Provedores e Software Houses.",
                 cta_main: "SOLICITAR BLINDAGEM",
                 sage_title: "AUTORIDADE GLOBAL SAGE",
@@ -340,53 +408,62 @@
                 p9_title: "O QUE É O PROTOCOLO 09?",
                 p9_text: "Imagine um sistema imunológico digital. Enquanto o mercado espera o servidor cair para abrir um chamado, o Protocolo 09 atua na prevenção ativa. Usamos automação em Python e sensores de latência para corrigir falhas antes que elas afetem o faturamento.",
                 p9_badge: "BLINDAGEM ATIVA",
-                services_title: "ARSENAL TÉCNICO",
-                svc_ipv6_title: "Infraestrutura IPv6",
-                svc_ipv6_desc: "Preparação total para o novo protocolo da internet com certificação SAGE.",
-                svc_py_title: "Automação Python",
-                svc_py_desc: "Scripts de 'Self-Healing'. Seus servidores corrigem problemas sozinhos.",
-                svc_obs_title: "Observabilidade",
-                svc_obs_desc: "Dashboards de negócios. Transformamos logs em lucro."
+                tech_title: "ARSENAL TÉCNICO",
+                t_ipv6_t: "Infraestrutura IPv6",
+                t_ipv6_d: "Preparação total para o novo protocolo da internet com certificação SAGE.",
+                t_py_t: "Automação Python",
+                t_py_d: "Scripts de 'Self-Healing'. Seus servidores corrigem problemas sozinhos.",
+                t_obs_t: "Observabilidade",
+                t_obs_d: "Dashboards de negócios. Transformamos logs em lucro.",
+                origin_title: "QUEM É A KNS?",
+                origin_text: "A KNS Consultoria nasceu de uma inconformidade. Trabalhando em grandes operações, notei empresas pagando fortunas por terceirizadas que entregavam apenas 'braços', mas nenhum cérebro. Decidi que o mercado precisava de menos 'chamados abertos' e mais 'problemas resolvidos'.",
+                origin_quote: "\"Onde outros veem risco, nós vemos lógica e solução. Não vendo horas, vendo a garantia de que sua operação não para.\""
             },
             en: {
                 hero_status: "SYSTEM ONLINE // IPv6 SAGE",
-                hero_title_1: "INSTABILITY COSTS MONEY.",
-                hero_title_2: "CONTINUITY COSTS KNS.",
-                hero_desc: "Elite Network Engineering. We transform chaotic infrastructures into shielded high-performance operations for ISPs and Software Houses.",
+                hero_t1: "INSTABILITY COSTS MONEY.",
+                hero_t2: "CONTINUITY COSTS KNS.",
+                hero_desc: "Elite Network Engineering. We transform chaotic infrastructures into high-performance shielded operations for ISPs and Software Houses.",
                 cta_main: "REQUEST SHIELDING",
                 sage_title: "SAGE GLOBAL AUTHORITY",
-                sage_desc: "Hurricane Electric's IPv6 SAGE certification represents the pinnacle of the global networking elite. Less than 1% of professionals reach this level. Your infrastructure will be in the hands of someone who truly understands the internet protocol.",
+                sage_desc: "Hurricane Electric's IPv6 SAGE certification represents the pinnacle of the global networking elite. Less than 1% of professionals reach this level.",
                 p9_tag: "// PROPRIETARY METHODOLOGY",
                 p9_title: "WHAT IS PROTOCOL 09?",
-                p9_text: "Imagine a digital immune system. While the market waits for the server to crash to open a ticket, Protocol 09 acts proactively. We use Python automation and latency sensors to fix failures before they impact revenue.",
+                p9_text: "Imagine a digital immune system. Protocol 09 acts proactively using Python automation and latency sensors to fix failures before they impact revenue.",
                 p9_badge: "ACTIVE SHIELDING",
-                services_title: "TECHNICAL ARSENAL",
-                svc_ipv6_title: "IPv6 Infrastructure",
-                svc_ipv6_desc: "Full preparation for the new internet protocol with SAGE certification.",
-                svc_py_title: "Python Automation",
-                svc_py_desc: "'Self-Healing' scripts. Your servers fix problems by themselves.",
-                svc_obs_title: "Observability",
-                svc_obs_desc: "Business dashboards. We turn logs into profit."
+                tech_title: "TECHNICAL ARSENAL",
+                t_ipv6_t: "IPv6 Infrastructure",
+                t_ipv6_d: "Full preparation for the new internet protocol with SAGE certification.",
+                t_py_t: "Python Automation",
+                t_py_d: "'Self-Healing' scripts. Your servers fix problems by themselves.",
+                t_obs_t: "Observability",
+                t_obs_d: "Business dashboards. We turn logs into profit.",
+                origin_title: "WHO IS KNS?",
+                origin_text: "KNS Consultoria was born from nonconformity. Working in major operations, I saw companies paying fortunes for outsourced firms that delivered only 'arms' but no brains. The market needed fewer 'open tickets' and more 'solved problems'.",
+                origin_quote: "\"Where others see risk, we see logic and solution. We sell the guarantee that your operation won't stop.\""
             },
             es: {
                 hero_status: "SISTEMA EN LÍNEA // IPv6 SAGE",
-                hero_title_1: "LAINESTABILIDAD CUESTA CARO.",
-                hero_title_2: "LA CONTINUIDAD CUESTA KNS.",
+                hero_t1: "LA INESTABILIDAD CUESTA CARO.",
+                hero_t2: "LA CONTINUIDAD CUESTA KNS.",
                 hero_desc: "Ingeniería de Redes de Élite. Transformamos infraestructuras caóticas en operaciones blindadas de alto rendimiento para ISPs y Casas de Software.",
                 cta_main: "SOLICITAR BLINDAJE",
                 sage_title: "AUTORIDAD GLOBAL SAGE",
-                sage_desc: "La certificación IPv6 SAGE de Hurricane Electric representa la cima de la élite mundial de redes. Menos del 1% de los profesionales alcanzan este nivel. Su infraestructura estará en manos de alguien que realmente entiende el protocolo de internet.",
+                sage_desc: "La certificación IPv6 SAGE de Hurricane Electric representa la cima de la élite mundial de redes. Menos del 1% de los profesionales alcanzan este nivel.",
                 p9_tag: "// METODOLOGÍA PROPIETARIA",
                 p9_title: "¿QUÉ ES EL PROTOCOLO 09?",
-                p9_text: "Imagine un sistema inmunológico digital. Mientras el mercado espera que el servidor caiga para abrir un ticket, el Protocolo 09 actúa en la prevención activa. Usamos automatización en Python y sensores de latencia para corregir fallas antes de que afecten la facturación.",
+                p9_text: "Imagine un sistema inmunológico digital. Protocolo 09 actúa en la prevención activa. Usamos automatización en Python y sensores de latencia para corregir fallas antes de que afecten la facturación.",
                 p9_badge: "BLINDAJE ACTIVO",
-                services_title: "ARSENAL TÉCNICO",
-                svc_ipv6_title: "Infraestructura IPv6",
-                svc_ipv6_desc: "Preparación total para el nuevo protocolo de internet con certificación SAGE.",
-                svc_py_title: "Automatización Python",
-                svc_py_desc: "Scripts de 'Auto-Curación'. Sus servidores corrigen problemas solos.",
-                svc_obs_title: "Observabilidad",
-                svc_obs_desc: "Paneles de negocios. Convertimos registros en ganancias."
+                tech_title: "ARSENAL TÉCNICO",
+                t_ipv6_t: "Infraestructura IPv6",
+                t_ipv6_d: "Preparación total para el nuevo protocolo de internet con certificación SAGE.",
+                t_py_t: "Automatización Python",
+                t_py_d: "Scripts de 'Auto-Curación'. Sus servidores corrigen problemas solos.",
+                t_obs_t: "Observabilidad",
+                t_obs_d: "Paneles de negocios. Convertimos registros en ganancias.",
+                origin_title: "¿QUIÉN ES KNS?",
+                origin_text: "KNS Consultoria nació de la inconformidad. Trabajando en grandes operaciones, vi empresas pagando fortunas por tercerizadas que solo entregaban 'brazos' pero ningún cerebro. El mercado necesitaba menos 'tickets abiertos' y más 'problemas resueltos'.",
+                origin_quote: "\"Donde otros ven riesgo, nosotros vemos lógica y solución. Vendemos la garantía de que su operación no se detenga.\""
             }
         };
 
@@ -398,8 +475,6 @@
                     el.innerText = i18n[lang][key];
                 }
             });
-
-            // Update active button
             document.querySelectorAll('.ctrl-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
         }
