@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KNS CONSULTORIA | Observabilidade Elite</title>
+    <title>KNS CONSULTORIA | High-Performance Infra</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -20,123 +20,112 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { 
-            background: var(--bg); color: var(--text-bright); 
-            font-family: 'Inter', sans-serif; overflow-x: hidden;
-            background-image: radial-gradient(circle at 50% 0%, rgba(34, 197, 94, 0.1), transparent);
-        }
+        body { background: var(--bg); color: var(--text-bright); font-family: 'Inter', sans-serif; line-height: 1.6; }
 
-        nav { 
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 20px 8%; background: rgba(2, 6, 23, 0.9); backdrop-filter: blur(15px);
-            position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid var(--border);
-        }
+        /* HEADER */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 8%; background: rgba(2, 6, 23, 0.9); backdrop-filter: blur(15px); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid var(--border); }
         .logo { font-family: 'Orbitron'; font-weight: 900; color: var(--primary); letter-spacing: 3px; }
 
-        .hero { 
-            min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; padding: 120px 10% 60px; position: relative;
-        }
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 10% 60px; }
+        .main-title { font-family: 'Inter', sans-serif; font-weight: 800; font-size: clamp(2.2rem, 5vw, 3.5rem); color: #fff; margin-bottom: 20px; }
+        .main-title span { font-family: 'Orbitron'; color: var(--primary); display: block; }
 
-        .hero-badge-minimal {
-            display: inline-flex; align-items: center; gap: 10px; border: 1px solid var(--border);
-            background: rgba(255, 255, 255, 0.02); color: var(--text-dim); padding: 8px 20px;
-            border-radius: 30px; font-family: 'Orbitron'; font-size: 0.7rem; text-decoration: none;
-            letter-spacing: 1.5px; margin-bottom: 30px; transition: 0.3s;
-        }
+        .video-container { width: 100%; max-width: 650px; aspect-ratio: 16/9; background: #000; border: 2px solid var(--primary); border-radius: 15px; margin-bottom: 45px; box-shadow: 0 0 30px rgba(34, 197, 94, 0.2); overflow: hidden; }
 
-        .main-title { font-family: 'Inter', sans-serif; font-weight: 800; font-size: clamp(2.2rem, 5vw, 3.5rem); color: #fff; line-height: 1.2; margin-bottom: 30px; letter-spacing: -1px; }
-        .main-title span { font-family: 'Orbitron'; color: var(--primary); display: block; margin-top: 10px; }
+        /* CARDS DE SERVIÇO */
+        .section-title { font-family: 'Orbitron'; color: var(--primary); text-align: center; margin-bottom: 50px; font-size: 1.5rem; letter-spacing: 2px; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 0 8% 100px; }
+        .service-card { background: var(--surface); border: 1px solid var(--border); padding: 40px; border-radius: 15px; transition: 0.4s; position: relative; overflow: hidden; }
+        .service-card:hover { border-color: var(--primary); transform: translateY(-10px); }
+        .service-card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; display: block; }
+        .service-card h3 { font-family: 'Orbitron'; margin-bottom: 15px; font-size: 1.1rem; }
+        .service-card p { color: var(--text-dim); font-size: 0.95rem; }
 
-        /* BLOCO DO VÍDEO COMPACTO E CORRIGIDO */
-        .video-container { 
-            width: 100%; max-width: 650px; aspect-ratio: 16/9; background: #000; 
-            border: 2px solid var(--primary); border-radius: 15px; margin-bottom: 45px; 
-            box-shadow: 0 0 30px rgba(34, 197, 94, 0.2); overflow: hidden; 
-        }
+        /* BIO "SEDUÇÃO" ENTERPRISE */
+        .experience-section { padding: 100px 8%; background: rgba(15, 23, 42, 0.4); border-top: 1px solid var(--border); }
+        .exp-container { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; align-items: center; }
+        .exp-image { width: 100%; border-radius: 20px; border: 2px solid var(--primary); filter: grayscale(100%); transition: 0.5s; }
+        .exp-image:hover { filter: grayscale(0%); }
+        .exp-text h2 { font-family: 'Orbitron'; color: var(--primary); margin-bottom: 20px; }
+        .highlight-box { background: rgba(34, 197, 94, 0.1); border-left: 4px solid var(--primary); padding: 20px; margin: 25px 0; font-style: italic; }
 
-        /* TERMINAL OPERACIONAL */
-        .terminal {
-            max-width: 750px; width: 95%; background: #000; border-radius: 12px; border: 1px solid #333;
-            font-family: 'JetBrains Mono', monospace; padding: 25px; text-align: left; margin: 0 auto 45px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
-        }
-        .terminal-header { display: flex; gap: 8px; margin-bottom: 15px; }
-        .dot { width: 10px; height: 10px; border-radius: 50%; }
-        .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
-        .code { margin-bottom: 8px; font-size: 0.9rem; line-height: 1.6; }
+        /* TAGS TÉCNICAS */
+        .tags-container { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+        .tag { background: #1e293b; color: var(--primary); padding: 5px 15px; border-radius: 20px; font-size: 0.75rem; font-family: 'JetBrains Mono'; border: 1px solid var(--border); }
 
-        .cta-solid { background: var(--primary); color: #000; padding: 16px 32px; border-radius: 6px; text-decoration: none; font-family: 'Orbitron'; font-weight: 900; transition: 0.3s; display: inline-block; border: none; cursor: pointer; }
+        .cta-solid { background: var(--primary); color: #000; padding: 18px 36px; border-radius: 6px; text-decoration: none; font-family: 'Orbitron'; font-weight: 900; transition: 0.3s; display: inline-block; }
         .cta-solid:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(34, 197, 94, 0.4); }
 
-        footer { padding: 60px 8%; background: #010409; border-top: 1px solid var(--border); text-align: center; }
-        .copyright { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; margin-top: 50px; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #4b5563; flex-wrap: wrap; gap: 20px; }
-
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-        @media (max-width: 900px) { .copyright { justify-content: center; text-align: center; } }
+        footer { padding: 60px 8%; text-align: center; border-top: 1px solid var(--border); }
     </style>
 </head>
 <body>
 
     <nav>
         <div class="logo">KNS.CONSULTORIA</div>
-        <a href="https://linkedin.com/in/kalebnunes" target="_blank" class="cta-solid" style="padding: 10px 20px; font-size: 0.7rem;">CONTATO DIRETO</a>
+        <a href="https://linkedin.com/in/kalebnunes" target="_blank" class="cta-solid" style="padding: 10px 20px; font-size: 0.7rem;">DIAGNÓSTICO GRATUITO</a>
     </nav>
 
     <section class="hero">
-        <a href="https://youtu.be/T9wvW0EYfE0" target="_blank" class="hero-badge-minimal">
-            <span style="width: 6px; height: 6px; background: var(--primary); border-radius: 50%; box-shadow: 0 0 8px var(--primary); animation: blink 2s infinite;"></span> OPERACIONAL // PROTOCOLO 09 ATIVO
-        </a>
-
-        <h1 class="main-title">Modernize sua infraestrutura com a<span>KNS CONSULTORIA EMPRESARIAL</span></h1>
-
-        <div class="video-container">
-            <iframe 
-                width="100%" 
-                height="100%" 
-                src="https://www.youtube.com/embed/T9wvW0EYfE0" 
-                title="Protocolo 09" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-            </iframe>
-        </div>
+        <h1 class="main-title">A estabilidade que o seu <span>SLA exige.</span></h1>
         
-        <div class="terminal">
-            <div class="terminal-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
-            <div class="code" style="color: var(--primary);">> Iniciando KNS Command Center...</div>
-            <div class="code" style="color: #fff;">> Status: Monitorando Ambientes Híbridos (Linux/Windows)</div>
-            <div class="code" style="color: var(--primary);">> Protocolo 09: Mitigação ativa contra cancelamentos (Churn).</div>
-            <div class="code" style="color: #facc15;">> Analisando: 6+ anos de experiência IT Enterprise detectados.</div>
+        <div class="video-container">
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/T9wvW0EYfE0" frameborder="0" allowfullscreen></iframe>
         </div>
 
-        <div style="display: flex; gap: 20px; justify-content: center;">
-            <a href="https://linkedin.com/in/kalebnunes" target="_blank" class="cta-solid">ELIMINAR GARGALOS AGORA</a>
-        </div>
+        <p style="max-width: 700px; color: var(--text-dim); margin-bottom: 40px; font-size: 1.1rem;">
+            Especialista em eliminar gargalos de infraestrutura que geram cancelamentos (Churn). 
+            Eu não apenas monitoro; eu garanto a continuidade do seu negócio.
+        </p>
     </section>
 
-    <section style="background: #000; padding: 100px 8%; text-align: center; border-top: 1px solid var(--border);">
-        <h2 style="font-family:'Orbitron'; margin-bottom:50px; font-size: 1rem; color: var(--primary); letter-spacing: 2px;">CONECTIVIDADE_HOMOLOGADA</h2>
-        <div style="display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; align-items: center;">
-            <div style="text-align: center;"><img src="https://cdn.worldvectorlogo.com/logos/zabbix-1.svg" alt="Zabbix" style="height: 55px; margin-bottom: 15px; display: block; filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.3));"><span>ZABBIX</span></div>
-            <div style="text-align: center;"><img src="https://cdn.worldvectorlogo.com/logos/grafana.svg" alt="Grafana" style="height: 55px; margin-bottom: 15px; display: block; filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.3));"><span>GRAFANA</span></div>
-            <div style="text-align: center;"><img src="https://cdn.worldvectorlogo.com/logos/docker-4.svg" alt="Docker" style="height: 55px; margin-bottom: 15px; display: block; filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.3));"><span>DOCKER</span></div>
-            <div style="text-align: center;"><img src="https://cdn.worldvectorlogo.com/logos/python-5.svg" alt="Python" style="height: 55px; margin-bottom: 15px; display: block; filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.3));"><span>PYTHON</span></div>
-            <div style="text-align: center;"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/PowerShell_5.0_icon.png" alt="PowerShell" style="height: 55px; margin-bottom: 15px; display: block; filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.3));"><span>POWERSHELL</span></div>
+    <h2 class="section-title">SERVIÇOS DE ELITE</h2>
+    <div class="services-grid">
+        <div class="service-card">
+            <i class="fa-solid fa-microchip"></i>
+            <h3>Protocolo 09</h3>
+            <p>Metodologia proprietária de mitigação ativa. Detecção e correção de falhas críticas em milissegundos, protegendo contratos de grande porte.</p>
+        </div>
+        <div class="service-card">
+            <i class="fa-solid fa-eye"></i>
+            <h3>Observabilidade 360°</h3>
+            <p>Implementação de Zabbix, Grafana e PRTG com dashboards executivos e técnicos. Visibilidade total do seu ecossistema.</p>
+        </div>
+        <div class="service-card">
+            <i class="fa-solid fa-network-wired"></i>
+            <h3>Arquitetura Anti-Gargalo</h3>
+            <p>Reestruturação de redes e servidores para alta disponibilidade. Fim das oscilações e das desculpas padrão do suporte.</p>
+        </div>
+    </div>
+
+    <section class="experience-section">
+        <div class="exp-container">
+            <img src="./assets/foto.jpg" alt="Kaleb Nunes" class="exp-image">
+            <div class="exp-text">
+                <h2>Kaleb Nunes</h2>
+                <p>No mercado de tecnologia, tempo é dinheiro e instabilidade é veneno. Minha trajetória é marcada pela entrega de resultados onde outros viam caos.</p>
+                
+                <div class="highlight-box">
+                    "Fui convocado para reestruturar operações complexas na Ellevo Software, onde em apenas 30 dias saí da operação técnica para a consultoria estratégica de implantação devido ao impacto imediato gerado."
+                </div>
+
+                <p>Hoje, meu foco é blindar a infraestrutura de pequenos provedores e empresas de software, transformando o TI de um "centro de custo" em um pilar de retenção de clientes.</p>
+
+                <div class="tags-container">
+                    <span class="tag">#ZabbixExpert</span>
+                    <span class="tag">#InfrastructureStrategy</span>
+                    <span class="tag">#ChurnReduction</span>
+                    <span class="tag">#NOC_24x7</span>
+                    <span class="tag">#SLA_Optimizer</span>
+                </div>
+            </div>
         </div>
     </section>
 
     <footer>
-        <div style="margin-bottom: 40px;">
-            <div class="logo">KNS.CONSULTORIA</div>
-            <p style="color: var(--text-dim); font-size: 0.85rem;">Balneário Camboriú, SC | kaleb@knsconsultoria.com.br</p>
-        </div>
-        <div class="copyright">
-            <div>&copy; <span id="year"></span> **KNS CONSULTORIA EMPRESARIAL**. Todos os direitos reservados.</div>
-            <div style="font-family:'JetBrains Mono'; color:var(--primary);">v2.1.0-stable</div>
-        </div>
+        <div class="logo">KNS.CONSULTORIA</div>
+        <p style="margin-top: 20px; color: var(--text-dim);">Balneário Camboriú, SC | Especialista em Infraestrutura e Redes</p>
     </footer>
 
-    <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body>
 </html>
