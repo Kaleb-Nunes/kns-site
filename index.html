@@ -10,37 +10,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- CORE VARIABLES (ENGINE) --- */
+        /* --- CORE VARIABLES --- */
         :root {
             --primary: #00ff88;
             --primary-dim: rgba(0, 255, 136, 0.1);
-            --primary-glow: rgba(0, 255, 136, 0.4);
+            --primary-glow: rgba(0, 255, 136, 0.5);
             --bg-deep: #050505;
             --bg-surface: #0f0f0f;
             --text-main: #ffffff;
-            --text-muted: #9ca3af;
-            --border: rgba(255, 255, 255, 0.1);
-            --glass: rgba(15, 15, 15, 0.7);
+            --text-muted: #b0b0b0; /* Texto mais claro para leitura */
+            --border: rgba(255, 255, 255, 0.15);
+            --monitor-frame: #1a1a1a;
+            --glass: rgba(15, 15, 15, 0.85);
             --glass-blur: blur(20px);
-            --shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
-            --nav-bg: rgba(5, 5, 5, 0.8);
+            --nav-bg: rgba(5, 5, 5, 0.9);
         }
 
         [data-theme="light"] {
             --primary: #00bf63;
             --primary-dim: rgba(0, 191, 99, 0.1);
-            --primary-glow: rgba(0, 191, 99, 0.2);
             --bg-deep: #f3f4f6;
             --bg-surface: #ffffff;
             --text-main: #111827;
             --text-muted: #4b5563;
-            --border: rgba(0, 0, 0, 0.1);
-            --glass: rgba(255, 255, 255, 0.8);
-            --nav-bg: rgba(255, 255, 255, 0.9);
-            --shadow: 0 20px 40px -10px rgba(0,0,0,0.1);
+            --monitor-frame: #e5e7eb;
+            --glass: rgba(255, 255, 255, 0.9);
+            --nav-bg: rgba(255, 255, 255, 0.95);
         }
 
-        /* --- GLOBAL RESET --- */
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         
         body { 
@@ -48,133 +45,149 @@
             color: var(--text-main); 
             font-family: 'Plus Jakarta Sans', sans-serif; 
             overflow-x: hidden;
-            transition: background 0.4s ease, color 0.4s ease;
             background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
-            background-size: 50px 50px;
-            background-position: center top;
+            background-size: 60px 60px;
         }
 
-        /* Typo Hierarchy */
         h1, h2, h3, h4 { font-family: 'Orbitron', sans-serif; letter-spacing: -0.5px; }
         .mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* --- NAVIGATION (FIXED & BLURRED) --- */
+        /* --- NAVIGATION --- */
         nav {
             position: fixed; top: 0; width: 100%; padding: 15px 5%;
             display: flex; justify-content: space-between; align-items: center;
             background: var(--nav-bg); backdrop-filter: var(--glass-blur);
             border-bottom: 1px solid var(--border); z-index: 1000;
-            transition: 0.3s;
         }
         .brand { font-size: 1.4rem; font-weight: 900; color: var(--text-main); display: flex; align-items: center; gap: 10px; }
         .brand span { color: var(--primary); }
         
         .nav-controls { display: flex; align-items: center; gap: 15px; }
         
-        /* Language & Theme Buttons */
         .ctrl-btn {
             background: transparent; border: 1px solid var(--border);
             color: var(--text-muted); padding: 8px 12px; border-radius: 8px;
-            cursor: pointer; font-family: 'JetBrains Mono'; font-size: 0.75rem;
+            cursor: pointer; font-family: 'JetBrains Mono'; font-size: 0.8rem;
             transition: 0.3s;
         }
         .ctrl-btn:hover, .ctrl-btn.active { border-color: var(--primary); color: var(--primary); background: var(--primary-dim); }
-        
-        .theme-toggle { font-size: 1.1rem; padding: 8px; border: none; color: var(--text-main); cursor: pointer; }
-        .theme-toggle:hover { color: var(--primary); transform: rotate(15deg); }
+        .theme-toggle { font-size: 1.2rem; padding: 8px; border: none; color: var(--text-main); cursor: pointer; background: none; }
 
         /* --- HERO SECTION --- */
         .hero {
             min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; padding: 160px 5% 100px; position: relative;
-        }
-        .hero::before {
-            content: ''; position: absolute; width: 300px; height: 300px; background: var(--primary);
-            filter: blur(150px); opacity: 0.15; z-index: -1; border-radius: 50%;
+            text-align: center; padding: 180px 5% 100px; position: relative;
         }
 
         .status-pill {
             background: var(--primary-dim); color: var(--primary);
-            padding: 8px 20px; border-radius: 50px; font-size: 0.8rem;
+            padding: 10px 25px; border-radius: 50px; font-size: 0.9rem;
             border: 1px solid var(--primary); margin-bottom: 30px;
-            display: inline-flex; align-items: center; gap: 8px;
+            display: inline-flex; align-items: center; gap: 10px;
             font-family: 'JetBrains Mono';
         }
-        .status-dot { width: 8px; height: 8px; background: var(--primary); border-radius: 50%; animation: pulse 2s infinite; }
+        .status-dot { width: 10px; height: 10px; background: var(--primary); border-radius: 50%; animation: pulse 2s infinite; }
 
         .hero-title {
-            font-size: clamp(2.5rem, 6vw, 5rem); line-height: 1.05; font-weight: 800;
-            margin-bottom: 25px; background: linear-gradient(to bottom, var(--text-main), var(--text-muted));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-size: clamp(2.5rem, 6vw, 5.5rem); line-height: 1.1; font-weight: 800;
+            margin-bottom: 25px;
         }
-        .hero-title span { color: var(--primary); -webkit-text-fill-color: var(--primary); }
+        .hero-title span { color: var(--primary); }
 
         .hero-desc {
-            font-size: 1.25rem; color: var(--text-muted); max-width: 700px;
-            margin-bottom: 50px; line-height: 1.6;
+            font-size: 1.3rem; color: var(--text-muted); max-width: 800px;
+            margin-bottom: 60px; line-height: 1.6; font-weight: 400;
         }
 
-        /* --- CTA BUTTONS --- */
-        .btn-group { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+        /* --- MONITOR FRAME (CSS MAGIC) --- */
+        .monitor-container {
+            width: 100%; max-width: 1000px; margin: 0 auto;
+            perspective: 1000px; position: relative;
+        }
+        
+        /* Etiqueta de Gravação */
+        .rec-tag {
+            position: absolute; top: -40px; left: 50%; transform: translateX(-50%);
+            color: #ff4444; font-family: 'JetBrains Mono'; font-size: 0.8rem; font-weight: 700;
+            display: flex; align-items: center; gap: 8px; letter-spacing: 2px;
+            animation: blinkRed 2s infinite;
+        }
+
+        .monitor-frame {
+            background: var(--monitor-frame); padding: 15px; border-radius: 12px;
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 20px 50px rgba(0,0,0,0.5);
+            position: relative; z-index: 2;
+        }
+        
+        .monitor-screen {
+            background: #000; border-radius: 4px; overflow: hidden;
+            aspect-ratio: 16/9; position: relative;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .monitor-stand {
+            width: 200px; height: 60px; background: linear-gradient(180deg, var(--monitor-frame) 0%, #000 100%);
+            margin: 0 auto; position: relative; z-index: 1; margin-top: -5px;
+            clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
+        }
+        .monitor-base {
+            width: 320px; height: 12px; background: var(--monitor-frame);
+            margin: 0 auto; border-radius: 4px; box-shadow: 0 0 40px var(--primary-glow);
+        }
+
+        /* --- BUTTONS --- */
+        .btn-group { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; margin-bottom: 60px; }
         .btn-primary {
-            background: var(--primary); color: #000; padding: 18px 40px;
+            background: var(--primary); color: #000; padding: 20px 45px;
             border-radius: 12px; text-decoration: none; font-weight: 800;
-            font-family: 'Orbitron'; transition: 0.3s; border: none;
-            box-shadow: 0 0 20px var(--primary-glow);
+            font-family: 'Orbitron'; transition: 0.3s; border: none; font-size: 1rem;
+            box-shadow: 0 0 25px var(--primary-glow);
         }
-        .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 0 40px var(--primary-glow); }
+        .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 0 50px var(--primary-glow); }
 
-        /* --- PROTOCOLO 09 (REDESIGNED) --- */
-        .p9-section { padding: 120px 8%; position: relative; overflow: hidden; }
+        /* --- PROTOCOLO 09 SECTION --- */
+        .p9-section { padding: 120px 8%; position: relative; }
         .p9-card {
             background: var(--glass); backdrop-filter: var(--glass-blur);
-            border: 1px solid var(--border); border-radius: 24px;
-            padding: 60px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px;
-            align-items: center; box-shadow: var(--shadow);
+            border: 1px solid var(--border); border-radius: 30px;
+            padding: 70px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 80px;
+            align-items: center;
         }
-        .p9-text h2 { font-size: 3rem; margin-bottom: 25px; color: var(--text-main); }
-        .p9-text p { font-size: 1.2rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 20px; }
-        .p9-visual {
-            background: radial-gradient(circle at center, var(--primary-dim), transparent);
-            border: 2px solid var(--primary); border-radius: 20px;
-            height: 300px; display: flex; align-items: center; justify-content: center;
-            flex-direction: column; text-align: center; position: relative;
-        }
-        .p9-visual::after {
-            content: 'SYSTEM ACTIVE'; position: absolute; bottom: 20px;
-            font-family: 'JetBrains Mono'; color: var(--primary); font-size: 0.8rem; letter-spacing: 2px;
-        }
+        .p9-text h2 { font-size: 3.5rem; margin-bottom: 30px; color: var(--text-main); }
+        .p9-text p { font-size: 1.3rem; line-height: 1.9; color: var(--text-muted); margin-bottom: 25px; }
 
         /* --- SERVICES CARDS --- */
         .services-section { padding: 100px 8%; }
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
         .service-card {
-            background: var(--bg-surface); padding: 50px 40px; border-radius: 20px;
+            background: var(--bg-surface); padding: 50px 40px; border-radius: 24px;
             border: 1px solid var(--border); transition: 0.4s;
         }
         .service-card:hover { border-color: var(--primary); transform: translateY(-10px); }
-        .service-icon { font-size: 3rem; color: var(--primary); margin-bottom: 30px; }
-        .service-title { font-size: 1.5rem; margin-bottom: 15px; color: var(--text-main); }
-        .service-desc { color: var(--text-muted); line-height: 1.6; font-size: 1rem; }
+        .service-icon { font-size: 3.5rem; color: var(--primary); margin-bottom: 30px; }
+        .service-title { font-size: 1.8rem; margin-bottom: 15px; color: var(--text-main); }
+        .service-desc { color: var(--text-muted); line-height: 1.7; font-size: 1.1rem; }
 
-        /* --- SAGE BADGE (CENTERPIECE) --- */
+        /* --- SAGE BADGE --- */
         .sage-strip {
             background: var(--primary-dim); border-top: 1px solid var(--primary); border-bottom: 1px solid var(--primary);
-            padding: 40px 0; text-align: center; margin: 80px 0; display: flex; justify-content: center; align-items: center; gap: 30px;
+            padding: 50px 0; text-align: center; margin: 100px 0; display: flex; justify-content: center; align-items: center; gap: 30px;
         }
 
         /* --- FOOTER --- */
-        footer { padding: 80px 8% 40px; background: var(--bg-surface); border-top: 1px solid var(--border); text-align: center; }
-        .social-icons { display: flex; justify-content: center; gap: 30px; margin: 40px 0; }
-        .social-icons a { color: var(--text-muted); font-size: 1.8rem; transition: 0.3s; }
+        footer { padding: 100px 8% 50px; background: var(--bg-surface); border-top: 1px solid var(--border); text-align: center; }
+        .social-icons { display: flex; justify-content: center; gap: 40px; margin: 50px 0; }
+        .social-icons a { color: var(--text-muted); font-size: 2rem; transition: 0.3s; }
         .social-icons a:hover { color: var(--primary); transform: scale(1.1); }
 
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+        @keyframes blinkRed { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
         @media (max-width: 900px) {
-            .p9-card { grid-template-columns: 1fr; padding: 30px; }
-            .hero-title { font-size: 2.8rem; }
-            .grid-3 { grid-template-columns: 1fr; }
+            .p9-card { grid-template-columns: 1fr; padding: 40px; }
+            .hero-title { font-size: 3rem; }
+            .hero-desc { font-size: 1.1rem; }
+            .monitor-stand, .monitor-base { display: none; } /* Simplifica no mobile */
         }
     </style>
 </head>
@@ -204,7 +217,7 @@
         </h1>
         
         <p class="hero-desc" id="hero-desc">
-            Engenharia de Redes de Elite. Transformamos infraestruturas caóticas em operações blindadas de alta performance.
+            Engenharia de Redes de Elite. Transformamos infraestruturas caóticas em operações blindadas de alta performance para Provedores e Software Houses.
         </p>
 
         <div class="btn-group">
@@ -212,40 +225,51 @@
                 SOLICITAR BLINDAGEM
             </a>
         </div>
+
+        <div class="monitor-container">
+            <div class="rec-tag"><i class="fa-solid fa-circle"></i> CASE: PROTOCOLO 09</div>
+            <div class="monitor-frame">
+                <div class="monitor-screen">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/T9wvW0EYfE0?rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="monitor-stand"></div>
+            <div class="monitor-base"></div>
+        </div>
     </section>
 
     <div class="sage-strip">
-        <i class="fa-solid fa-dragon" style="font-size: 2.5rem; color: var(--primary);"></i>
+        <i class="fa-solid fa-dragon" style="font-size: 3rem; color: var(--primary);"></i>
         <div style="text-align: left;">
-            <h3 style="margin: 0; font-size: 1.2rem;">HURRICANE ELECTRIC SAGE</h3>
-            <span class="mono" style="font-size: 0.8rem;">GLOBAL CERTIFICATION ID: KALEB-NUNES</span>
+            <h3 style="margin: 0; font-size: 1.5rem;">HURRICANE ELECTRIC SAGE</h3>
+            <span class="mono" style="font-size: 0.9rem;">GLOBAL CERTIFICATION ID: KALEB-NUNES</span>
         </div>
     </div>
 
     <section class="p9-section">
         <div class="p9-card">
             <div class="p9-text">
-                <span class="mono" style="color: var(--primary); margin-bottom: 10px; display: block;">// METODOLOGIA PROPRIETÁRIA</span>
+                <span class="mono" style="color: var(--primary); margin-bottom: 15px; display: block; font-size: 1.1rem;">// METODOLOGIA PROPRIETÁRIA</span>
                 <h2 id="p9-title">O QUE É O PROTOCOLO 09?</h2>
                 
-                <p>Imagine um sistema imunológico digital para a sua empresa. Enquanto consultorias tradicionais esperam o "paciente adoecer" (o servidor cair) para agir, o Protocolo 09 atua na prevenção ativa.</p>
+                <p>Imagine um sistema imunológico digital. Enquanto consultorias tradicionais esperam o "paciente adoecer" (o servidor cair) para agir, o Protocolo 09 atua na prevenção ativa.</p>
                 
                 <p><strong>Não é suporte. É engenharia de prevenção.</strong></p>
                 
                 <p>Combinamos monitoramento de latência em tempo real, scripts de auto-cura em Python e roteamento inteligente (BGP/OSPF). O resultado? As falhas são corrigidas milissegundos antes de afetarem o faturamento.</p>
             </div>
             
-            <div class="p9-visual">
-                <i class="fa-solid fa-shield-halved" style="font-size: 5rem; color: var(--primary); margin-bottom: 20px;"></i>
-                <h3 class="mono">BLINDAGEM ATIVA</h3>
-                <p style="color: var(--text-muted);">ZERO CHURN TÉCNICO</p>
+            <div style="text-align: center;">
+                <i class="fa-solid fa-shield-virus" style="font-size: 6rem; color: var(--primary); margin-bottom: 30px; filter: drop-shadow(0 0 20px var(--primary));"></i>
+                <h3 class="mono" style="font-size: 1.5rem;">BLINDAGEM ATIVA</h3>
+                <p style="color: var(--text-muted); margin-top: 10px;">ZERO CHURN TÉCNICO</p>
             </div>
         </div>
     </section>
 
     <section class="services-section">
-        <div style="text-align: center; margin-bottom: 60px;">
-            <h2 id="services-title" style="font-size: 2.5rem;">ARSENAL TÉCNICO</h2>
+        <div style="text-align: center; margin-bottom: 80px;">
+            <h2 id="services-title" style="font-size: 3rem;">ARSENAL TÉCNICO</h2>
         </div>
         <div class="grid-3">
             <div class="service-card">
@@ -267,8 +291,8 @@
     </section>
 
     <footer>
-        <h3 class="brand" style="justify-content: center; margin-bottom: 20px;">KNS<span>.CONSULTORIA</span></h3>
-        <p class="mono" style="color: var(--text-muted);">CNPJ: 49.712.297/0001-07</p>
+        <h3 class="brand" style="justify-content: center; margin-bottom: 20px; font-size: 2rem;">KNS<span>.CONSULTORIA</span></h3>
+        <p class="mono" style="color: var(--text-muted); font-size: 1rem;">CNPJ: 49.712.297/0001-07</p>
         
         <div class="social-icons">
             <a href="https://wa.me/5547988901616"><i class="fa-brands fa-whatsapp"></i></a>
@@ -277,7 +301,7 @@
             <a href="https://instagram.com/kaleb_nunesdossantos"><i class="fa-brands fa-instagram"></i></a>
         </div>
         
-        <p class="mono" style="font-size: 0.8rem; color: var(--text-muted);">&copy; 2026 KNS CONSULTORIA | BALNEÁRIO CAMBORIÚ</p>
+        <p class="mono" style="font-size: 0.9rem; color: var(--text-muted);">&copy; 2026 KNS CONSULTORIA | BALNEÁRIO CAMBORIÚ</p>
     </footer>
 
     <script>
@@ -296,12 +320,12 @@
             }
         }
 
-        // LANGUAGE ENGINE (SIMULATION)
+        // LANGUAGE ENGINE
         const translations = {
             pt: {
                 status: "SISTEMA ONLINE // IPv6 SAGE",
                 span: "CONTINUIDADE CUSTA KNS.",
-                desc: "Engenharia de Redes de Elite. Transformamos infraestruturas caóticas em operações blindadas de alta performance.",
+                desc: "Engenharia de Redes de Elite. Transformamos infraestruturas caóticas em operações blindadas de alta performance para Provedores e Software Houses.",
                 cta: "SOLICITAR BLINDAGEM",
                 p9title: "O QUE É O PROTOCOLO 09?",
                 servTitle: "ARSENAL TÉCNICO"
@@ -309,7 +333,7 @@
             en: {
                 status: "SYSTEM ONLINE // IPv6 SAGE",
                 span: "CONTINUITY COSTS KNS.",
-                desc: "Elite Network Engineering. We transform chaotic infrastructures into high-performance shielded operations.",
+                desc: "Elite Network Engineering. We transform chaotic infrastructures into high-performance shielded operations for ISPs and Software Houses.",
                 cta: "REQUEST SHIELDING",
                 p9title: "WHAT IS PROTOCOL 09?",
                 servTitle: "TECHNICAL ARSENAL"
@@ -317,7 +341,7 @@
             es: {
                 status: "SISTEMA EN LÍNEA // IPv6 SAGE",
                 span: "CONTINUIDAD CUESTA KNS.",
-                desc: "Ingeniería de Redes de Élite. Transformamos infraestructuras caóticas en operaciones blindadas de alto rendimiento.",
+                desc: "Ingeniería de Redes de Élite. Transformamos infraestructuras caóticas en operaciones blindadas de alto rendimiento para ISPs y Casas de Software.",
                 cta: "SOLICITAR BLINDAJE",
                 p9title: "¿QUÉ ES EL PROTOCOLO 09?",
                 servTitle: "ARSENAL TÉCNICO"
@@ -325,7 +349,6 @@
         };
 
         function setLang(lang) {
-            // Update Text
             document.getElementById('status-text').innerText = translations[lang].status;
             document.getElementById('hero-span').innerText = translations[lang].span;
             document.getElementById('hero-desc').innerText = translations[lang].desc;
@@ -333,7 +356,6 @@
             document.getElementById('p9-title').innerText = translations[lang].p9title;
             document.getElementById('services-title').innerText = translations[lang].servTitle;
 
-            // Update Buttons State
             document.querySelectorAll('.ctrl-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
         }
