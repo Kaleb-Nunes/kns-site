@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="KNS Global - Mitigação de Risco Operacional e Engenharia de Continuidade para Grandes Corporações.">
+    <meta name="description" content="KNS Global - Mitigação de Risco Operacional e Engenharia de Continuidade via Protocolo 09.">
     <meta name="author" content="KNS Global Solutions">
     <meta property="og:title" content="KNS Global | Operational Risk Mitigation">
     <meta property="og:url" content="https://knsconsultoria.com.br">
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
     
-    <title>KNS GLOBAL | Enterprise Continuity</title>
+    <title>KNS GLOBAL | Risco Operacional Zero</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -21,7 +21,7 @@
             --primary: #00ff88;
             --primary-dim: rgba(0, 255, 136, 0.1);
             --primary-glow: rgba(0, 255, 136, 0.4);
-            --bg-deep: #020202; /* Preto absoluto para seriedade */
+            --bg-deep: #020202;
             --bg-surface: #0a0a0a;
             --text-main: #ffffff;
             --text-muted: #a0a0a0;
@@ -32,7 +32,7 @@
         }
 
         [data-theme="light"] {
-            --primary: #006640; /* Verde Banco/Financeiro */
+            --primary: #006640;
             --primary-dim: rgba(0, 102, 64, 0.08);
             --primary-glow: rgba(0, 102, 64, 0.15);
             --bg-deep: #f4f4f4;
@@ -54,7 +54,7 @@
             transition: background 0.5s ease, color 0.5s ease;
         }
 
-        /* --- BACKGROUND (SOBER & TECH) --- */
+        /* --- BACKGROUND --- */
         .mesh-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -2;
             background: radial-gradient(at 50% 0%, rgba(0,255,136,0.05) 0px, transparent 60%);
@@ -77,8 +77,8 @@
         .nav-link:hover { color: var(--primary); }
         .nav-actions { display: flex; gap: 10px; align-items: center; }
 
-        /* --- HERO (RISK FOCUSED) --- */
-        .hero { padding: 180px 5% 100px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+        /* --- HERO --- */
+        .hero { padding: 160px 5% 100px; text-align: center; display: flex; flex-direction: column; align-items: center; }
 
         .sage-badge-hero {
             display: flex; align-items: center; gap: 15px;
@@ -93,8 +93,7 @@
         .hero-title { font-size: clamp(2.5rem, 5vw, 4.2rem); line-height: 1.1; font-weight: 900; margin-bottom: 30px; text-transform: uppercase; }
         .hero-desc { font-size: 1.15rem; color: var(--text-muted); max-width: 850px; margin-bottom: 50px; line-height: 1.8; font-weight: 400; }
 
-        /* --- CTA (DIAGNOSTIC FOCUSED) --- */
-        .cta-container { display: flex; gap: 20px; align-items: center; justify-content: center; flex-wrap: wrap; }
+        .cta-container { display: flex; gap: 20px; align-items: center; justify-content: center; flex-wrap: wrap; margin-bottom: 80px; }
         
         .btn-executive {
             background: var(--primary); color: #fff; padding: 18px 45px;
@@ -111,10 +110,25 @@
         }
         .btn-secondary:hover { border-color: var(--primary); color: var(--text-main); }
 
-        /* --- KPI BAR (FINANCIAL FOCUS) --- */
+        /* --- VIDEO MONITOR (RESTORED) --- */
+        .monitor-wrapper { width: 100%; max-width: 900px; margin: 0 auto; position: relative; }
+        .monitor-frame {
+            border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+            background: #000; aspect-ratio: 16/9; position: relative;
+            box-shadow: 0 30px 100px -20px rgba(0,0,0,0.6);
+        }
+        .rec-tag {
+            position: absolute; top: -30px; left: 0;
+            color: #ff3333; font-family: 'JetBrains Mono'; font-size: 0.7rem; font-weight: 800;
+            display: flex; align-items: center; gap: 8px; letter-spacing: 1px;
+            animation: blinkRed 2s infinite;
+        }
+        @keyframes blinkRed { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+        /* --- KPI BAR --- */
         .kpi-section {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px; max-width: 1200px; margin: 80px auto 100px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+            gap: 20px; max-width: 1200px; margin: 100px auto; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
             padding: 40px 0;
         }
         .kpi-box { text-align: center; border-right: 1px solid var(--border); }
@@ -122,37 +136,37 @@
         .kpi-value { font-family: 'Orbitron'; font-size: 2.2rem; font-weight: 800; color: var(--text-main); display: block; margin-bottom: 5px; }
         .kpi-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
 
-        /* --- GOVERNANCE SECTION (STRONG INSTITUTIONAL) --- */
-        .gov-section { padding: 100px 8%; background: var(--bg-surface); border-top: 1px solid var(--border); }
+        /* --- PROTOCOLO 09 (RESTORED) --- */
+        .p9-section { padding: 100px 8%; background: var(--bg-surface); border-top: 1px solid var(--border); }
+        .p9-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .p9-visual { 
+            border: 1px solid var(--primary); padding: 40px; border-radius: 4px; text-align: center;
+            background: radial-gradient(circle, var(--primary-dim) 0%, transparent 70%);
+        }
+
+        /* --- GOVERNANCE SECTION --- */
+        .gov-section { padding: 100px 8%; background: var(--bg-deep); border-top: 1px solid var(--border); }
         .gov-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 60px; }
-        .gov-card { padding: 40px; border: 1px solid var(--border); background: var(--bg-deep); transition: 0.3s; position: relative; }
+        .gov-card { padding: 40px; border: 1px solid var(--border); background: var(--bg-surface); transition: 0.3s; position: relative; }
         .gov-card:hover { border-color: var(--primary); }
         .gov-icon { font-size: 2rem; color: var(--primary); margin-bottom: 25px; }
         .gov-title { font-size: 1.1rem; margin-bottom: 15px; font-family: 'Orbitron'; }
         .gov-text { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
 
-        /* --- CASE STUDY (ROI FOCUSED) --- */
-        .case-section { padding: 100px 8%; background: var(--bg-deep); border-top: 1px solid var(--border); }
+        /* --- CASE STUDY --- */
+        .case-section { padding: 100px 8%; background: var(--bg-surface); border-top: 1px solid var(--border); }
         .case-card {
-            background: var(--bg-surface); border: 1px solid var(--border);
+            background: var(--bg-deep); border: 1px solid var(--border);
             border-radius: 4px; overflow: hidden; display: grid; grid-template-columns: 1.2fr 0.8fr;
         }
         .case-content { padding: 80px; display: flex; flex-direction: column; justify-content: center; }
         .case-visual { 
-            background: radial-gradient(circle at center, var(--primary-dim), var(--bg-surface));
+            background: radial-gradient(circle at center, var(--primary-dim), var(--bg-deep));
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             border-left: 1px solid var(--border); position: relative;
         }
         
-        /* --- PROVA SOCIAL (INSTITUCIONAL) --- */
-        .industry-section { padding: 80px 8%; text-align: center; border-top: 1px solid var(--border); background: var(--bg-surface); }
-        .ind-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 80px; margin-top: 50px; opacity: 0.8; }
-        .ind-item { display: flex; flex-direction: column; align-items: center; gap: 15px; }
-        .ind-icon { font-size: 2.5rem; color: var(--text-muted); transition: 0.3s; }
-        .ind-item:hover .ind-icon { color: var(--primary); transform: scale(1.1); }
-        .ind-label { font-family: 'JetBrains Mono'; font-size: 0.8rem; color: var(--text-main); text-transform: uppercase; font-weight: 700; letter-spacing: 1px; }
-
-        /* --- LEADERSHIP (FOUNDER, NOT FREELANCER) --- */
+        /* --- LEADERSHIP (STORY RESTORED) --- */
         .leadership-section { padding: 100px 8%; background: var(--bg-deep); border-top: 1px solid var(--border); }
         .lead-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 60px; align-items: center; max-width: 1100px; margin: 0 auto; }
         .lead-img { width: 100%; border-radius: 2px; border: 1px solid var(--border); filter: grayscale(100%); transition: 0.3s; max-width: 300px; }
@@ -166,7 +180,7 @@
         .cert-thumb { height: 70px; transition: 0.3s; border: 1px solid #333; }
         .cert-thumb:hover { transform: scale(2.5); z-index: 100; border-color: var(--primary); box-shadow: 0 0 20px #000; }
 
-        /* --- FOOTER (LEGAL & STRUCTURED) --- */
+        /* --- FOOTER --- */
         footer { background: var(--bg-surface); padding: 80px 8% 40px; border-top: 1px solid var(--border); }
         .footer-cols { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
         .footer-link { display: block; color: var(--text-muted); text-decoration: none; margin-bottom: 12px; font-size: 0.85rem; transition: 0.2s; }
@@ -175,10 +189,10 @@
         @media (max-width: 900px) {
             .nav-links { display: none; }
             .kpi-box { border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
-            .case-card, .lead-grid { grid-template-columns: 1fr; }
+            .case-card, .lead-grid, .p9-grid { grid-template-columns: 1fr; }
             .footer-cols { grid-template-columns: 1fr; }
             .hero-title { font-size: 2rem; }
-            .hero { padding-top: 140px; }
+            .lead-img { margin-bottom: 30px; }
         }
 
         /* UI ELEMENTS */
@@ -194,7 +208,7 @@
         <div class="brand"><i class="fa-solid fa-layer-group" style="color: var(--primary);"></i> KNS<span style="font-weight: 300;">GLOBAL</span></div>
         
         <div class="nav-links">
-            <a href="#solucoes" class="nav-link" data-i18n="nav_sol">SOLUTIONS</a>
+            <a href="#protocolo" class="nav-link" data-i18n="nav_sol">PROTOCOLO 09</a>
             <a href="#governance" class="nav-link" data-i18n="nav_gov">GOVERNANCE</a>
             <a href="#case" class="nav-link" data-i18n="nav_case">RESULTS</a>
         </div>
@@ -229,7 +243,14 @@
             <a href="https://calendly.com/SEU_LINK_CALENDLY" target="_blank" class="btn-executive" data-i18n="cta_main">
                 <i class="fa-regular fa-calendar-check" style="margin-right: 10px;"></i> SOLICITAR ANÁLISE DE RISCO
             </a>
-            <a href="#governance" class="btn-secondary" data-i18n="cta_sec">NOSSA GOVERNANÇA</a>
+            <a href="#protocolo" class="btn-secondary" data-i18n="cta_sec">NOSSA METODOLOGIA</a>
+        </div>
+
+        <div class="monitor-wrapper">
+            <div class="rec-tag"><i class="fa-solid fa-circle"></i> NOC VIEW // LIVE</div>
+            <div class="monitor-frame">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/T9wvW0EYfE0?rel=0" frameborder="0" allowfullscreen></iframe>
+            </div>
         </div>
     </section>
 
@@ -240,7 +261,7 @@
         </div>
         <div class="kpi-box">
             <span class="kpi-value">-40%</span>
-            <span class="kpi-label" data-i18n="kpi_opex">CUSTO OPERACIONAL</span>
+            <span class="kpi-label" data-i18n="kpi_opex">REDUÇÃO DE OPEX</span>
         </div>
         <div class="kpi-box">
             <span class="kpi-value" style="color: var(--primary);">SAGE</span>
@@ -252,24 +273,23 @@
         </div>
     </section>
 
-    <section class="industry-section">
-        <p class="mono" style="margin-bottom: 40px; color: var(--text-muted); letter-spacing: 2px;" data-i18n="ind_title">SETORES DE ATUAÇÃO</p>
-        <div class="ind-grid">
-            <div class="ind-item">
-                <i class="fa-solid fa-server ind-icon"></i>
-                <span class="ind-label">SaaS & ENTERPRISE</span>
+    <section id="protocolo" class="p9-section">
+        <div class="p9-grid">
+            <div class="p9-visual">
+                <i class="fa-solid fa-microchip" style="font-size: 6rem; color: var(--primary); filter: drop-shadow(0 0 20px var(--primary));"></i>
+                <h3 class="mono" style="margin-top: 30px; font-size: 1.5rem;" data-i18n="p9_badge">PROTOCOLO 09</h3>
             </div>
-            <div class="ind-item">
-                <i class="fa-solid fa-building-columns ind-icon"></i>
-                <span class="ind-label">FINANCEIRO LATAM</span>
-            </div>
-            <div class="ind-item">
-                <i class="fa-solid fa-industry ind-icon"></i>
-                <span class="ind-label">INDÚSTRIA 4.0</span>
-            </div>
-            <div class="ind-item">
-                <i class="fa-solid fa-network-wired ind-icon"></i>
-                <span class="ind-label">TELECOM / ISP</span>
+            <div>
+                <span style="color: var(--primary); font-family: 'JetBrains Mono'; font-weight: 700; letter-spacing: 2px;">PROPRIETARY METHODOLOGY</span>
+                <h2 style="font-size: 2.5rem; margin-top: 15px; margin-bottom: 20px;" data-i18n="p9_title">IMUNIDADE DIGITAL ATIVA</h2>
+                <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 20px;" data-i18n="p9_text">
+                    Diferente do suporte tradicional que reage a falhas, o Protocolo 09 atua na camada preditiva. Utilizamos uma arquitetura proprietária de automação em Python (Self-Healing) e observabilidade avançada.
+                </p>
+                <ul style="color: var(--text-muted); line-height: 2;">
+                    <li><i class="fa-solid fa-check" style="color: var(--primary); margin-right: 10px;"></i> Correção automática de incidentes (0-touch)</li>
+                    <li><i class="fa-solid fa-check" style="color: var(--primary); margin-right: 10px;"></i> Auditoria contínua de segurança e rotas</li>
+                    <li><i class="fa-solid fa-check" style="color: var(--primary); margin-right: 10px;"></i> Dashboards executivos de ROI em tempo real</li>
+                </ul>
             </div>
         </div>
     </section>
@@ -338,10 +358,11 @@
                 </div>
             </div>
             <div>
-                <span style="color: var(--primary); font-family: 'JetBrains Mono'; font-weight: 700; display: block; margin-bottom: 20px;">// VISÃO INSTITUCIONAL</span>
+                <span style="color: var(--primary); font-family: 'JetBrains Mono'; font-weight: 700; display: block; margin-bottom: 20px;">// NOSSA ORIGEM</span>
                 <h2 style="font-size: 2.2rem; margin-bottom: 20px; line-height: 1.2;" data-i18n="bio_title">ENGENHARIA ALÉM DO INDIVÍDUO</h2>
                 <p style="color: var(--text-muted); line-height: 1.7; font-size: 1rem; margin-bottom: 20px;" data-i18n="bio_text">
-                    A KNS Global opera sob uma premissa inegociável: operações de missão crítica exigem sistemas, processos e redundância, não apenas talento individual. Nossa metodologia transfere a inteligência para a estrutura do cliente, garantindo perpetuidade e segurança operacional.
+                    A KNS Global nasceu de uma inconformidade. Trabalhando em grandes operações, vi empresas reféns de suporte lento e "chamados abertos". Decidi criar uma consultoria onde não vendemos horas, vendemos a solução definitiva.<br><br>
+                    Hoje, operamos sob uma premissa inegociável: operações críticas não podem depender de heróis, elas precisam de sistemas. Nossa metodologia transfere a inteligência para a estrutura do cliente.
                 </p>
                 
                 <div class="cert-box">
@@ -367,17 +388,17 @@
             </div>
             <div>
                 <h4 style="margin-bottom: 20px; font-size: 0.9rem;">SOLUÇÕES</h4>
-                <a href="#" class="footer-link">Protocolo 09 (Metodologia)</a>
-                <a href="#" class="footer-link">Compliance IPv6</a>
-                <a href="#" class="footer-link">Automação de Infraestrutura</a>
+                <a href="#protocolo" class="footer-link">Protocolo 09 (Metodologia)</a>
+                <a href="#" class="footer-link">IPv6 Compliance</a>
+                <a href="#" class="footer-link">Network Automation</a>
                 <a href="#" class="footer-link">Disaster Recovery (DR)</a>
             </div>
             <div>
                 <h4 style="margin-bottom: 20px; font-size: 0.9rem;">INSTITUCIONAL</h4>
+                <a href="#" class="footer-link">Sobre a KNS</a>
                 <a href="#" class="footer-link">Governança Corporativa</a>
                 <a href="#" class="footer-link">Política de Privacidade (LGPD)</a>
                 <a href="#" class="footer-link">Termos de Serviço (SLA)</a>
-                <a href="#" class="footer-link">Trabalhe Conosco</a>
             </div>
             <div>
                 <h4 style="margin-bottom: 20px; font-size: 0.9rem;">CONTATO</h4>
@@ -403,77 +424,86 @@
 
         const i18n = {
             pt: {
-                nav_sol: "SOLUÇÕES", nav_gov: "GOVERNANÇA", nav_case: "RESULTADOS",
+                nav_sol: "PROTOCOLO 09", nav_gov: "GOVERNANÇA", nav_case: "RESULTADOS",
                 hero_badge: "RISCO OPERACIONAL & CONTINUIDADE",
                 hero_t1: "CONTINUIDADE OPERACIONAL", hero_t2: "RISCO ZERO.",
                 hero_desc: "A KNS Global é uma firma de engenharia especializada em garantir a estabilidade financeira e operacional de grandes corporações. Eliminamos riscos de infraestrutura antes que impactem o faturamento.",
-                cta_main: "SOLICITAR ANÁLISE DE RISCO", cta_sec: "NOSSA GOVERNANÇA",
+                cta_main: "SOLICITAR ANÁLISE DE RISCO", cta_sec: "NOSSA METODOLOGIA",
                 kpi_uptime: "SLA DE DISPONIBILIDADE", kpi_opex: "REDUÇÃO DE OPEX", kpi_cert: "CERTIFICAÇÃO GLOBAL", kpi_mon: "STANDARDS ALIGNED",
                 
+                p9_badge: "PROTOCOLO 09",
+                p9_title: "IMUNIDADE DIGITAL ATIVA",
+                p9_text: "Diferente do suporte tradicional que reage a falhas, o Protocolo 09 atua na camada preditiva. Utilizamos uma arquitetura proprietária de automação em Python (Self-Healing) e observabilidade avançada.",
+
                 gov_title: "SEGURANÇA JURÍDICA E OPERACIONAL",
                 gov_desc: "Mitigação de riscos alinhada com as melhores práticas de mercado e exigências legais globais.",
                 gov_1_t: "SLA & Contratos", gov_1_d: "Acordos de Nível de Serviço (SLA) definidos contratualmente. Garantia financeira sobre a disponibilidade da operação.",
                 gov_2_t: "Compliance & LGPD", gov_2_d: "Arquitetura auditável e compatível com Leis de Proteção de Dados. Segurança da Informação como pilar.",
                 gov_3_t: "Padrões ITIL", gov_3_d: "Gestão de incidentes e mudanças baseada na biblioteca ITIL. Processos documentados e previsíveis.",
 
-                ind_title: "SETORES DE ATUAÇÃO",
                 case_title: "PROTEÇÃO DE RECEITA RECORRENTE",
                 case_p1: "<strong>Risco Identificado:</strong> Instabilidade na infraestrutura ameaçava contratos Enterprise de alto valor. Risco iminente de Churn e multas contratuais.",
                 case_p2: "<strong>Intervenção KNS:</strong> Implementação do Protocolo 09. Auditoria, reengenharia de tráfego e automação de 'Self-Healing'.",
                 case_p3: "Estabilidade total em 30 dias. <strong>Zero perda de receita</strong> por indisponibilidade no trimestre seguinte.",
 
                 bio_title: "ENGENHARIA ALÉM DO INDIVÍDUO",
-                bio_text: "A KNS Global opera sob uma premissa inegociável: operações de missão crítica exigem sistemas, processos e redundância, não apenas talento individual. Nossa metodologia transfere a inteligência para a estrutura do cliente.",
+                bio_text: "A KNS Global nasceu de uma inconformidade. Trabalhando em grandes operações, vi empresas reféns de suporte lento e 'chamados abertos'. Decidi criar uma consultoria onde não vendemos horas, vendemos a solução definitiva.<br><br>Hoje, operamos sob uma premissa inegociável: operações críticas não podem depender de heróis, elas precisam de sistemas. Nossa metodologia transfere a inteligência para a estrutura do cliente.",
                 
                 footer_about: "Engenharia de Redes & Governança.<br>Mitigação de riscos para operações de Missão Crítica.<br>Balneário Camboriú, SC - Brasil."
             },
             en: {
-                nav_sol: "SOLUTIONS", nav_gov: "GOVERNANCE", nav_case: "RESULTS",
+                nav_sol: "PROTOCOL 09", nav_gov: "GOVERNANCE", nav_case: "RESULTS",
                 hero_badge: "OPERATIONAL RISK & CONTINUITY",
                 hero_t1: "OPERATIONAL CONTINUITY", hero_t2: "ZERO RISK.",
                 hero_desc: "KNS Global is an engineering firm specialized in ensuring financial and operational stability for large corporations. We eliminate infrastructure risks before they impact revenue.",
-                cta_main: "REQUEST RISK ANALYSIS", cta_sec: "OUR GOVERNANCE",
+                cta_main: "REQUEST RISK ANALYSIS", cta_sec: "OUR METHODOLOGY",
                 kpi_uptime: "AVAILABILITY SLA", kpi_opex: "OPEX REDUCTION", kpi_cert: "GLOBAL CERTIFICATION", kpi_mon: "STANDARDS ALIGNED",
                 
+                p9_badge: "PROTOCOL 09",
+                p9_title: "ACTIVE DIGITAL IMMUNITY",
+                p9_text: "Unlike traditional support that reacts to failures, Protocol 09 acts on the predictive layer. We use proprietary Python automation architecture (Self-Healing) and advanced observability.",
+
                 gov_title: "LEGAL & OPERATIONAL SAFETY",
                 gov_desc: "Risk mitigation aligned with best market practices and global legal requirements.",
                 gov_1_t: "SLA & Contracts", gov_1_d: "Contractually defined Service Level Agreements (SLA). Financial guarantee on operation availability.",
                 gov_2_t: "Compliance & GDPR", gov_2_d: "Auditable architecture compatible with Data Protection Laws. Information Security as a pillar.",
                 gov_3_t: "ITIL Standards", gov_3_d: "Incident and change management based on ITIL library. Documented and predictable processes.",
 
-                ind_title: "INDUSTRIES SERVED",
                 case_title: "RECURRING REVENUE PROTECTION",
                 case_p1: "<strong>Identified Risk:</strong> Infrastructure instability threatened high-value Enterprise contracts. Imminent risk of Churn and contractual fines.",
                 case_p2: "<strong>KNS Intervention:</strong> Implementation of Protocol 09. Audit, traffic re-engineering, and 'Self-Healing' automation.",
                 case_p3: "Total stability in 30 days. <strong>Zero revenue loss</strong> due to downtime in the following quarter.",
 
                 bio_title: "ENGINEERING BEYOND THE INDIVIDUAL",
-                bio_text: "KNS Global operates under a non-negotiable premise: mission-critical operations require systems, processes, and redundancy, not just individual talent. Our methodology transfers intelligence to the client's structure.",
+                bio_text: "KNS Global was born from nonconformity. Working in large operations, I saw companies held hostage by slow support and 'open tickets'. I decided to create a consultancy where we don't sell hours, we sell the definitive solution.<br><br>Today, we operate under a non-negotiable premise: critical operations cannot depend on heroes, they need systems. Our methodology transfers intelligence to the client's structure.",
                 
                 footer_about: "Network Engineering & Governance.<br>Risk mitigation for Mission Critical operations.<br>Balneário Camboriú, SC - Brazil."
             },
             es: {
-                nav_sol: "SOLUCIONES", nav_gov: "GOBERNANZA", nav_case: "RESULTADOS",
+                nav_sol: "PROTOCOLO 09", nav_gov: "GOBERNANZA", nav_case: "RESULTADOS",
                 hero_badge: "RIESGO OPERATIVO Y CONTINUIDAD",
                 hero_t1: "CONTINUIDAD OPERATIVA", hero_t2: "CERO RIESGO.",
                 hero_desc: "KNS Global es una firma de ingeniería especializada en garantizar la estabilidad financiera y operativa de grandes corporaciones. Eliminamos riesgos de infraestructura antes de que afecten la facturación.",
-                cta_main: "SOLICITAR ANÁLISIS DE RIESGO", cta_sec: "NUESTRA GOBERNANZA",
+                cta_main: "SOLICITAR ANÁLISIS DE RIESGO", cta_sec: "NUESTRA METODOLOGÍA",
                 kpi_uptime: "SLA DE DISPONIBILIDAD", kpi_opex: "REDUCCIÓN DE OPEX", kpi_cert: "CERTIFICACIÓN GLOBAL", kpi_mon: "STANDARDS ALIGNED",
                 
+                p9_badge: "PROTOCOLO 09",
+                p9_title: "INMUNIDAD DIGITAL ACTIVA",
+                p9_text: "A diferencia del soporte tradicional que reacciona a fallas, el Protocolo 09 actúa en la capa predictiva. Utilizamos una arquitectura propietaria de automatización en Python (Self-Healing) y observabilidad avanzada.",
+
                 gov_title: "SEGURIDAD JURÍDICA Y OPERATIVA",
                 gov_desc: "Mitigación de riesgos alineada con las mejores prácticas del mercado y requisitos legales globales.",
                 gov_1_t: "SLA y Contratos", gov_1_d: "Acuerdos de Nivel de Servicio (SLA) definidos contractualmente. Garantía financiera sobre la disponibilidad.",
                 gov_2_t: "Cumplimiento y GDPR", gov_2_d: "Arquitectura auditable y compatible con Leyes de Protección de Datos. Seguridad de la Información como pilar.",
                 gov_3_t: "Estándares ITIL", gov_3_d: "Gestión de incidentes y cambios basada en la biblioteca ITIL. Procesos documentados y predecibles.",
 
-                ind_title: "SECTORES ATENDIDOS",
                 case_title: "PROTECCIÓN DE INGRESOS RECURRENTES",
                 case_p1: "<strong>Riesgo Identificado:</strong> La inestabilidad amenazaba contratos Enterprise de alto valor. Riesgo inminente de Churn y multas contractuales.",
                 case_p2: "<strong>Intervención KNS:</strong> Implementación del Protocolo 09. Auditoría, reingeniería y automatización de 'Self-Healing'.",
                 case_p3: "Estabilidad total en 30 días. <strong>Cero pérdida de ingresos</strong> por indisponibilidad en el trimestre siguiente.",
 
                 bio_title: "INGENIERÍA MÁS ALLÁ DEL INDIVIDUO",
-                bio_text: "KNS Global opera bajo una premisa innegociable: las operaciones de misión crítica requieren sistemas, procesos y redundancia. Nuestra metodología transfiere la inteligencia a la estructura del cliente.",
+                bio_text: "KNS Global nació de una inconformidad. Trabajando en grandes operaciones, vi empresas rehenes de un soporte lento. Decidí crear una consultoría donde no vendemos horas, vendemos la solución definitiva.<br><br>Hoy, operamos bajo una premisa innegociable: las operaciones críticas no pueden depender de héroes, necesitan sistemas. Nuestra metodología transfiere la inteligencia a la estructura del cliente.",
                 
                 footer_about: "Ingeniería de Redes y Gobernanza.<br>Mitigación de riesgos para operaciones de Misión Crítica.<br>Balneário Camboriú, SC - Brasil."
             }
