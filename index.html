@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="KNS Global - The Authority in Strategic Infrastructure.">
-    <title>KNS GLOBAL | Authority Seal</title>
+    <title>KNS GLOBAL | Fortress Command</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -12,7 +12,6 @@
     <style>
         /* --- THEME ENGINE --- */
         :root {
-            /* DARK MODE (DEFAULT) */
             --bg-body: #050505;
             --bg-panel: rgba(20, 20, 20, 0.6);
             --text-main: #ffffff;
@@ -26,10 +25,11 @@
             --hero-stroke: rgba(255,255,255,0.2);
             --marquee-bg: #000;
             --footer-bg: #000;
+            --error: #ff3333;
+            --success: #00ff88;
         }
 
         [data-theme="light"] {
-            /* LIGHT MODE */
             --bg-body: #f0f2f5;
             --bg-panel: rgba(255, 255, 255, 0.8);
             --text-main: #1a1a1a;
@@ -55,10 +55,7 @@
         }
 
         /* --- UTILS --- */
-        .glass-panel {
-            background: var(--bg-panel); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow);
-        }
+        .glass-panel { background: var(--bg-panel); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow); }
         .mono { font-family: 'JetBrains Mono'; }
         
         /* --- NAV --- */
@@ -69,144 +66,169 @@
         }
         .brand { font-family: 'Orbitron'; font-weight: 800; font-size: 1.4rem; letter-spacing: 1px; display: flex; align-items: center; gap: 10px; color: var(--text-main); }
         .nav-links { display: flex; gap: 30px; }
-        .nav-link { text-decoration: none; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; transition: 0.3s; }
+        .nav-link { text-decoration: none; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; transition: 0.3s; cursor: pointer; }
         .nav-link:hover { color: var(--neon); }
         .theme-switch { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 1.1rem; transition: 0.3s; }
         .theme-switch:hover { color: var(--text-main); transform: rotate(20deg); }
         .btn-action {
             padding: 12px 30px; background: var(--text-main); color: var(--bg-body); 
             font-family: 'Orbitron'; font-weight: 700; text-decoration: none; border-radius: 4px;
-            font-size: 0.75rem; letter-spacing: 1px; transition: 0.3s;
+            font-size: 0.75rem; letter-spacing: 1px; transition: 0.3s; cursor: pointer; border: none;
         }
         .btn-action:hover { box-shadow: 0 0 20px var(--neon-dim); transform: scale(1.02); color: var(--bg-body); }
 
+        .btn-login {
+            background: transparent; border: 1px solid var(--neon); color: var(--neon);
+            padding: 10px 25px; border-radius: 4px; font-family: 'Orbitron'; font-size: 0.7rem;
+            cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 8px;
+        }
+        .btn-login:hover { background: var(--neon); color: var(--bg-body); }
+
+        /* --- LOGIN MODAL --- */
+        #login-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); z-index: 2000;
+            display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.5s;
+        }
+        #login-modal.active { display: flex; opacity: 1; }
+        
+        .login-box {
+            width: 400px; padding: 40px; background: var(--bg-body); border: 1px solid var(--border);
+            border-radius: 12px; box-shadow: 0 0 50px rgba(0,255,136,0.1); position: relative;
+            transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        #login-modal.active .login-box { transform: scale(1); }
+        
+        .login-header { text-align: center; margin-bottom: 30px; }
+        .login-title { font-family: 'Orbitron'; font-size: 1.5rem; color: var(--text-main); margin-bottom: 5px; }
+        .login-sub { font-size: 0.8rem; color: var(--text-muted); }
+        
+        .input-group { margin-bottom: 20px; text-align: left; }
+        .input-label { display: block; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--text-muted); margin-bottom: 8px; }
+        .input-field { 
+            width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); 
+            color: var(--text-main); font-family: 'Plus Jakarta Sans'; border-radius: 4px; outline: none; transition: 0.3s;
+        }
+        .input-field:focus { border-color: var(--neon); box-shadow: 0 0 10px var(--neon-dim); }
+        
+        .btn-submit { 
+            width: 100%; padding: 15px; background: var(--neon); color: #000; border: none; 
+            font-family: 'Orbitron'; font-weight: 700; cursor: pointer; border-radius: 4px; margin-top: 10px;
+        }
+        .close-modal { position: absolute; top: 15px; right: 20px; color: var(--text-muted); cursor: pointer; font-size: 1.2rem; }
+
+        #mfa-section { display: none; text-align: center; }
+        .mfa-dots { display: flex; justify-content: center; gap: 10px; margin: 20px 0; }
+        .mfa-input { width: 40px; height: 50px; text-align: center; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--text-main); font-size: 1.2rem; border-radius: 4px; }
+
+        /* --- DASHBOARD ENTERPRISE LAYOUT --- */
+        #dashboard-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-body); z-index: 2500; display: none; /* Hidden by default */
+        }
+        .dash-container { display: flex; height: 100%; }
+        
+        /* Sidebar */
+        .dash-sidebar {
+            width: 250px; background: var(--bg-panel); border-right: 1px solid var(--border);
+            padding: 30px 20px; display: flex; flex-direction: column;
+        }
+        .dash-logo { font-family: 'Orbitron'; font-size: 1.2rem; color: var(--text-main); margin-bottom: 40px; display: flex; align-items: center; gap: 10px; }
+        .dash-menu { list-style: none; }
+        .dash-menu li { margin-bottom: 10px; }
+        .dash-btn {
+            width: 100%; padding: 12px 15px; background: transparent; border: none; 
+            color: var(--text-muted); text-align: left; font-family: 'JetBrains Mono'; font-size: 0.8rem;
+            cursor: pointer; border-radius: 4px; display: flex; align-items: center; gap: 10px; transition: 0.3s;
+        }
+        .dash-btn:hover, .dash-btn.active { background: var(--neon-dim); color: var(--neon); }
+        .dash-logout { margin-top: auto; border-top: 1px solid var(--border); pt-4; }
+
+        /* Main Content */
+        .dash-main { flex: 1; padding: 40px; overflow-y: auto; }
+        .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        
+        .dash-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .dash-card { background: var(--bg-panel); border: 1px solid var(--border); padding: 25px; border-radius: 8px; }
+        .dash-val { font-family: 'Orbitron'; font-size: 2rem; color: var(--text-main); margin: 10px 0; }
+        .dash-lbl { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--text-muted); }
+
+        /* Settings View */
+        #view-settings { display: none; }
+        .settings-form { max-width: 600px; }
+        .form-row { margin-bottom: 20px; }
+        .toggle-switch {
+            position: relative; display: inline-block; width: 50px; height: 24px;
+        }
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
+            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #333; transition: .4s; border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute; content: ""; height: 16px; width: 16px; left: 4px; bottom: 4px;
+            background-color: white; transition: .4s; border-radius: 50%;
+        }
+        input:checked + .slider { background-color: var(--neon); }
+        input:checked + .slider:before { transform: translateX(26px); }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed; bottom: 20px; right: 20px; background: var(--neon); color: #000;
+            padding: 15px 30px; border-radius: 4px; font-family: 'JetBrains Mono'; font-weight: 700;
+            transform: translateY(100px); transition: 0.3s; z-index: 3000;
+        }
+        .toast.show { transform: translateY(0); }
+
         /* --- HERO --- */
         .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 5% 0; }
-        
-        .status-pill {
-            display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; 
-            border-radius: 50px; border: 1px solid var(--neon); background: var(--neon-dim); 
-            color: var(--neon); font-size: 0.65rem; font-family: 'JetBrains Mono'; margin-bottom: 30px;
-        }
-
-        .hero-title-wrapper {
-            font-family: 'Orbitron'; font-weight: 900; line-height: 0.9; margin-bottom: 30px;
-            text-align: center; display: flex; flex-direction: column; gap: 5px; align-items: center;
-        }
-        .hero-word-1 {
-            font-size: clamp(2rem, 5vw, 4rem); letter-spacing: 2px;
-            color: var(--text-muted); font-weight: 600; display: block;
-        }
-        .hero-word-2 {
-            font-size: clamp(3rem, 8vw, 6rem);
-            color: transparent;
-            -webkit-text-stroke: 2px var(--hero-stroke);
-            position: relative; display: block;
-            text-transform: uppercase; letter-spacing: -2px;
-        }
-        .hero-word-2::before {
-            content: 'ABSOLUTA.'; position: absolute; top: 0; left: 0; width: 0%; height: 100%;
-            color: var(--neon); overflow: hidden; white-space: nowrap; border-right: 4px solid var(--neon);
-            -webkit-text-stroke: 0px; animation: typeFill 4s ease-in-out infinite alternate;
-        }
+        .status-pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 50px; border: 1px solid var(--neon); background: var(--neon-dim); color: var(--neon); font-size: 0.65rem; font-family: 'JetBrains Mono'; margin-bottom: 30px; }
+        .hero-title-wrapper { font-family: 'Orbitron'; font-weight: 900; line-height: 0.9; margin-bottom: 30px; text-align: center; display: flex; flex-direction: column; gap: 5px; align-items: center; }
+        .hero-word-1 { font-size: clamp(2rem, 5vw, 4rem); letter-spacing: 2px; color: var(--text-muted); font-weight: 600; display: block; }
+        .hero-word-2 { font-size: clamp(3rem, 8vw, 6rem); color: transparent; -webkit-text-stroke: 2px var(--hero-stroke); position: relative; display: block; text-transform: uppercase; letter-spacing: -2px; }
+        .hero-word-2::before { content: 'ABSOLUTA.'; position: absolute; top: 0; left: 0; width: 0%; height: 100%; color: var(--neon); overflow: hidden; white-space: nowrap; border-right: 4px solid var(--neon); -webkit-text-stroke: 0px; animation: typeFill 4s ease-in-out infinite alternate; }
         @keyframes typeFill { 0%, 20% { width: 0%; } 80%, 100% { width: 100%; } }
-        
         .hero-sub { font-size: 1rem; color: var(--text-muted); max-width: 600px; line-height: 1.6; margin-bottom: 50px; }
 
         /* --- MONITOR --- */
-        .xdr-wrapper {
-            margin-top: 60px; perspective: 1000px; width: 100%; max-width: 900px;
-            display: flex; flex-direction: column; align-items: center;
-        }
-        .xdr-frame {
-            width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 12px;
-            position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.4); border: 1px solid #333; padding: 12px; overflow: hidden;
-        }
+        .xdr-wrapper { margin-top: 60px; perspective: 1000px; width: 100%; max-width: 900px; display: flex; flex-direction: column; align-items: center; }
+        .xdr-frame { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 12px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.4); border: 1px solid #333; padding: 12px; overflow: hidden; }
         .xdr-screen { width: 100%; height: 100%; background: #000; border-radius: 4px; overflow: hidden; position: relative; }
         .xdr-stand-neck { width: 120px; height: 60px; background: linear-gradient(90deg, #2a2a2a, #444, #2a2a2a); margin-top: -5px; z-index: -1; }
         .xdr-stand-base { width: 240px; height: 15px; background: linear-gradient(90deg, #888, #ccc, #888); border-radius: 4px 4px 0 0; }
 
-        /* --- TECH MARQUEE --- */
-        .marquee-section {
-            background: var(--marquee-bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-            padding: 30px 0; overflow: hidden; white-space: nowrap; margin-top: 80px;
-            transition: background-color 0.5s ease;
-        }
+        /* --- MARQUEE --- */
+        .marquee-section { background: var(--marquee-bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 30px 0; overflow: hidden; white-space: nowrap; margin-top: 80px; transition: background-color 0.5s ease; }
         .marquee-track { display: inline-block; animation: scroll 40s linear infinite; }
-        .tech-logo-item {
-            display: inline-flex; align-items: center; gap: 15px; margin: 0 60px;
-            color: var(--text-muted); font-family: 'Orbitron'; font-weight: 700; font-size: 1.2rem;
-            transition: 0.3s; opacity: 0.7;
-        }
-        .tech-logo-item i { font-size: 1.8rem; }
+        .tech-logo-item { display: inline-flex; align-items: center; gap: 15px; margin: 0 60px; color: var(--text-muted); font-family: 'Orbitron'; font-weight: 700; font-size: 1.2rem; transition: 0.3s; opacity: 0.7; }
         .tech-logo-item:hover { color: var(--neon); opacity: 1; transform: scale(1.05); text-shadow: 0 0 15px var(--neon-dim); }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* --- SECTIONS GENERAL --- */
+        /* --- SECTIONS --- */
         .section-pad { padding: 120px 8%; }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
-
-        /* --- MANIFESTO --- */
-        .manifesto-box { max-width: 800px; margin: 0 auto; text-align: center; }
-        
-        /* --- GOVERNANCE CARDS --- */
-        .glass-card {
-            padding: 50px 40px; border: 1px solid var(--border); border-radius: 8px;
-            background: var(--bg-panel); transition: 0.3s;
-        }
+        .glass-card { padding: 50px 40px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-panel); transition: 0.3s; }
         .glass-card:hover { border-color: var(--neon); transform: translateY(-5px); box-shadow: var(--shadow); }
         .card-title { font-family: 'Orbitron'; font-size: 1.4rem; margin-bottom: 15px; color: var(--text-main); }
 
         /* --- PROTOCOLO 09 --- */
         .p9-hero-section { padding: 120px 8%; position: relative; background: var(--bg-body); }
-        .p9-container-box {
-            background: var(--bg-panel); border: 1px solid var(--neon-dim); border-radius: 20px; padding: 80px 40px;
-            text-align: center; position: relative; overflow: hidden;
-        }
-        .p9-card-boost {
-            background: var(--bg-panel); padding: 40px; border-radius: 12px; border: 1px solid var(--border);
-            text-align: left; transition: 0.3s;
-        }
+        .p9-container-box { background: var(--bg-panel); border: 1px solid var(--neon-dim); border-radius: 20px; padding: 80px 40px; text-align: center; position: relative; overflow: hidden; }
+        .p9-card-boost { background: var(--bg-panel); padding: 40px; border-radius: 12px; border: 1px solid var(--border); text-align: left; transition: 0.3s; }
         .p9-card-boost:hover { border-color: var(--neon); box-shadow: 0 0 20px var(--neon-dim); }
 
-        /* --- MODELS (TIERS) --- */
-        .tier-card {
-            border: 1px solid var(--border); padding: 50px 30px; text-align: center;
-            background: var(--bg-panel); transition: 0.3s; border-radius: 8px;
-        }
+        /* --- MODELS --- */
+        .tier-card { border: 1px solid var(--border); padding: 50px 30px; text-align: center; background: var(--bg-panel); transition: 0.3s; border-radius: 8px; }
         .tier-card:hover { border-color: var(--text-main); }
         .tier-card.featured { border-color: var(--neon); background: var(--bg-panel); box-shadow: var(--shadow); }
 
-        /* --- FOUNDER (NEW LAYOUT) --- */
-        .founder-box {
-            display: grid; grid-template-columns: 350px 1fr auto; gap: 50px; 
-            align-items: center; padding: 60px; position: relative;
-            background: var(--bg-panel); border: 1px solid var(--border); 
-            border-radius: 12px; margin: 100px auto; max-width: 1400px;
-        }
-        
-        .founder-photo { 
-            width: 100%; height: 350px; object-fit: cover; border-radius: 12px; 
-            border: 1px solid var(--border); box-shadow: var(--shadow);
-        }
-
-        .cert-badge-wrapper {
-            position: relative; width: 140px; height: 140px; display: flex; 
-            align-items: center; justify-content: center;
-        }
-        .cert-badge-img {
-            width: 100%; height: auto; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            filter: drop-shadow(0 0 10px rgba(0,0,0,0.5)); cursor: pointer;
-        }
-        .cert-badge-wrapper:hover .cert-badge-img {
-            transform: scale(1.8) translateX(-10px);
-            z-index: 999;
-        }
-        .cert-label {
-            position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%);
-            white-space: nowrap; font-size: 0.7rem; color: var(--neon); font-family: 'JetBrains Mono';
-            opacity: 0.7; letter-spacing: 1px;
-        }
+        /* --- FOUNDER --- */
+        .founder-box { display: grid; grid-template-columns: 350px 1fr auto; gap: 50px; align-items: center; padding: 60px; position: relative; background: var(--bg-panel); border: 1px solid var(--border); border-radius: 12px; margin: 100px auto; max-width: 1400px; }
+        .founder-photo { width: 100%; height: 350px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+        .cert-badge-wrapper { position: relative; width: 140px; height: 140px; display: flex; align-items: center; justify-content: center; }
+        .cert-badge-img { width: 100%; height: auto; transition: transform 0.4s; filter: drop-shadow(0 0 10px rgba(0,0,0,0.5)); cursor: pointer; }
+        .cert-badge-wrapper:hover .cert-badge-img { transform: scale(1.8) translateX(-10px); z-index: 999; }
+        .cert-label { position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 0.7rem; color: var(--neon); font-family: 'JetBrains Mono'; opacity: 0.7; letter-spacing: 1px; }
 
         /* --- FAQ --- */
         .faq-item { border-bottom: 1px solid var(--border); padding: 20px 0; }
@@ -215,16 +237,9 @@
         .faq-item.active .faq-a { display: block; }
 
         /* --- FOOTER --- */
-        footer { 
-            border-top: 1px solid var(--border); padding: 80px 5% 40px; 
-            background: var(--footer-bg); color: var(--text-muted);
-            transition: background-color 0.5s ease;
-        }
-        .footer-col h3, .footer-col h4 { color: var(--text-main); margin-bottom: 20px; font-family: 'Orbitron'; }
+        footer { border-top: 1px solid var(--border); padding: 80px 5% 40px; background: var(--footer-bg); color: var(--text-muted); transition: background-color 0.5s ease; }
         .contact-item { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-size: 0.9rem; color: var(--text-muted); text-decoration: none; transition: 0.3s; }
         .contact-item:hover { color: var(--neon); }
-        .social-btn { color: var(--text-main); font-size: 1.2rem; transition: 0.3s; }
-        .social-btn:hover { color: var(--neon); }
 
         @media (max-width: 1100px) {
             .founder-box { grid-template-columns: 1fr; padding: 40px; text-align: center; justify-items: center; }
@@ -237,6 +252,161 @@
 </head>
 <body>
 
+    <div id="toast" class="toast">SETTINGS SAVED SUCCESSFULLY</div>
+
+    <div id="login-modal">
+        <div class="login-box">
+            <span class="close-modal" onclick="toggleLogin()">&times;</span>
+            
+            <div id="step-login">
+                <div class="login-header">
+                    <div class="login-title">SYSTEM ACCESS</div>
+                    <span class="login-sub mono">SECURE GATEWAY v4.0</span>
+                </div>
+                <div class="input-group">
+                    <label class="input-label">USER</label>
+                    <input type="text" id="email" class="input-field" placeholder="username">
+                </div>
+                <div class="input-group">
+                    <label class="input-label">PASSPHRASE</label>
+                    <input type="password" id="password" class="input-field" placeholder="••••••••">
+                </div>
+                <button class="btn-submit" onclick="processLogin()">AUTHENTICATE</button>
+                <div id="login-error" style="color: var(--error); font-size: 0.7rem; margin-top: 10px; text-align: center; display: none;">ACCESS DENIED. INVALID CREDENTIALS.</div>
+            </div>
+
+            <div id="mfa-section">
+                <i class="fa-solid fa-shield-halved" style="font-size: 3rem; color: var(--neon); margin-bottom: 20px;"></i>
+                <div class="login-title">2FA REQUIRED</div>
+                <p class="login-sub">Enter the code from your authenticator app.</p>
+                <div class="mfa-dots">
+                    <input type="text" class="mfa-input" maxlength="1">
+                    <input type="text" class="mfa-input" maxlength="1">
+                    <input type="text" class="mfa-input" maxlength="1">
+                    <input type="text" class="mfa-input" maxlength="1">
+                    <input type="text" class="mfa-input" maxlength="1">
+                    <input type="text" class="mfa-input" maxlength="1">
+                </div>
+                <button class="btn-submit" onclick="finalizeLogin()">VERIFY TOKEN</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="dashboard-overlay">
+        <div class="dash-container">
+            <div class="dash-sidebar">
+                <div class="dash-logo"><i class="fa-solid fa-layer-group" style="color: var(--neon);"></i> KNS<span style="font-weight:300;">CORE</span></div>
+                <ul class="dash-menu">
+                    <li><button class="dash-btn active" onclick="switchTab('home')"><i class="fa-solid fa-chart-line"></i> DASHBOARD</button></li>
+                    <li><button class="dash-btn" onclick="switchTab('settings')"><i class="fa-solid fa-user-shield"></i> SECURITY</button></li>
+                    <li><button class="dash-btn" onclick="alert('Feature coming in Q2')"><i class="fa-solid fa-network-wired"></i> TOPOLOGY</button></li>
+                </ul>
+                <div class="dash-logout">
+                    <button class="dash-btn" onclick="logout()" style="color: var(--error);"><i class="fa-solid fa-power-off"></i> LOGOUT</button>
+                </div>
+            </div>
+
+            <div class="dash-main">
+                <div class="dash-header">
+                    <h2 style="font-family: 'Orbitron'; color: var(--text-main);">COMMAND CENTER</h2>
+                    <div style="display: flex; gap: 15px; align-items: center;">
+                        <span class="mono" style="font-size: 0.7rem; color: var(--neon);">● ONLINE</span>
+                        <div style="width: 35px; height: 35px; background: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: bold;">K</div>
+                    </div>
+                </div>
+
+                <div id="view-home">
+                    <div style="margin-bottom: 40px;">
+                        <h3 id="user-welcome" style="color: var(--text-main); margin-bottom: 5px;">WELCOME, KALEB</h3>
+                        <p style="color: var(--text-muted);" class="mono">ROLE: <span id="user-role" style="color: var(--neon);">SYSTEM ADMINISTRATOR</span> | SESSION: ACTIVE</p>
+                    </div>
+
+                    <div class="dash-grid">
+                        <div class="dash-card">
+                            <span class="dash-lbl">INFRASTRUCTURE HEALTH</span>
+                            <div class="dash-val" style="color: var(--neon);">100%</div>
+                            <div style="height: 4px; width: 100%; background: #333; border-radius: 2px;"><div style="height: 100%; width: 100%; background: var(--neon);"></div></div>
+                        </div>
+                        <div class="dash-card">
+                            <span class="dash-lbl">ACTIVE INCIDENTS</span>
+                            <div class="dash-val">0</div>
+                            <span style="font-size: 0.7rem; color: var(--text-muted);">LAST 24 HOURS</span>
+                        </div>
+                        <div class="dash-card">
+                            <span class="dash-lbl">NEXT AUDIT</span>
+                            <div class="dash-val" style="font-size: 1.5rem;">12 FEB</div>
+                            <span style="font-size: 0.7rem; color: var(--text-muted);">AUTOMATED SCHEDULE</span>
+                        </div>
+                        <div class="dash-card">
+                            <span class="dash-lbl">SAVINGS (YTD)</span>
+                            <div class="dash-val">R$ 420k</div>
+                            <span style="font-size: 0.7rem; color: var(--neon);">+12% VS TARGET</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 40px; background: rgba(255,255,255,0.03); padding: 30px; border-radius: 8px; border: 1px solid var(--border);">
+                        <h4 class="mono" style="color: var(--text-muted); margin-bottom: 20px;">// SYSTEM LOGS</h4>
+                        <ul style="list-style: none; line-height: 2; color: var(--text-muted); font-size: 0.9rem;" class="mono">
+                            <li>[03:42:12] SYSTEM: AUTO-HEALING SCRIPT EXECUTED ON NODE-04</li>
+                            <li>[03:40:05] SECURITY: FAILED LOGIN ATTEMPT BLOCKED (IP: 192.168.X.X)</li>
+                            <li>[02:15:00] BACKUP: INCREMENTAL BACKUP COMPLETED (2.4TB)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="view-settings">
+                    <div style="margin-bottom: 30px;">
+                        <h3 style="color: var(--text-main);">SECURITY CONFIGURATION</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Manage access credentials and session security.</p>
+                    </div>
+
+                    <div class="settings-form">
+                        <div class="glass-panel" style="padding: 30px; margin-bottom: 30px;">
+                            <h4 style="color: var(--neon); margin-bottom: 20px; font-family: 'Orbitron';">CREDENTIALS</h4>
+                            <div class="form-row">
+                                <label class="input-label">CURRENT PASSWORD</label>
+                                <input type="password" class="input-field" value="••••••••" disabled>
+                            </div>
+                            <div class="form-row">
+                                <label class="input-label">NEW PASSWORD</label>
+                                <input type="password" class="input-field" placeholder="Enter new strong password">
+                            </div>
+                            <div class="form-row">
+                                <label class="input-label">CONFIRM PASSWORD</label>
+                                <input type="password" class="input-field" placeholder="Confirm new password">
+                            </div>
+                            <button class="btn-action" onclick="saveSettings()">UPDATE PASSWORD</button>
+                        </div>
+
+                        <div class="glass-panel" style="padding: 30px;">
+                            <h4 style="color: var(--neon); margin-bottom: 20px; font-family: 'Orbitron';">ACCESS CONTROL</h4>
+                            
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 20px;">
+                                <div>
+                                    <div style="color: var(--text-main); font-weight: bold;">MULTI-FACTOR AUTH (MFA)</div>
+                                    <div style="font-size: 0.8rem; color: var(--text-muted);">Require token for login attempts.</div>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <div style="color: var(--text-main); font-weight: bold;">ACTIVE SESSIONS</div>
+                                    <div style="font-size: 0.8rem; color: var(--text-muted);">1 Session active (Current Device)</div>
+                                </div>
+                                <button class="btn-login" style="border-color: var(--error); color: var(--error);" onclick="alert('All other sessions terminated.')">KILL ALL SESSIONS</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <nav>
         <div class="brand"><i class="fa-solid fa-layer-group" style="color: var(--neon);"></i> KNS</div>
         <div class="nav-links">
@@ -245,8 +415,9 @@
             <a href="#models" class="nav-link">Modelos</a>
             <a href="#about" class="nav-link">Founder</a>
         </div>
-        <div style="display: flex; gap: 20px; align-items: center;">
+        <div style="display: flex; gap: 15px; align-items: center;">
             <button class="theme-switch" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i></button>
+            <button class="btn-login" onclick="toggleLogin()"><i class="fa-solid fa-lock"></i> PORTAL DO CLIENTE</button>
             <a href="https://calendly.com/kalebdossantos1206/30min" target="_blank" class="btn-action">FALE COM O BOARD</a>
         </div>
     </nav>
@@ -383,29 +554,18 @@
 
     <section id="about" class="section-pad" style="padding-top: 0;">
         <div class="founder-box">
-            <div>
-                <img src="./assets/foto.jpg" alt="Kaleb Nunes" class="founder-photo">
-            </div>
-            
+            <div><img src="./assets/foto.jpg" alt="Kaleb Nunes" class="founder-photo"></div>
             <div style="text-align: left;">
                 <span class="mono" style="color: var(--neon); letter-spacing: 1px;">FOUNDER & HEAD OF ENGINEERING</span>
                 <h3 style="font-family: 'Orbitron'; font-size: 2.5rem; margin: 15px 0; color: var(--text-main);">KALEB NUNES</h3>
                 <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 30px; font-size: 1.05rem;">
                     "Minha missão é simples: garantir que a tecnologia seja um ativo invisível, não um problema visível. Com o Protocolo 09, entregamos a paz de espírito que apenas a engenharia de precisão pode oferecer."
                 </p>
-                
                 <div style="display: flex; gap: 30px; border-top: 1px solid var(--border); padding-top: 20px;">
-                    <div>
-                        <span style="display: block; font-size: 1.5rem; font-weight: 700; color: var(--text-main);">+10</span>
-                        <span style="font-size: 0.75rem; color: var(--text-muted);">ANOS DE EXPERIÊNCIA</span>
-                    </div>
-                    <div>
-                        <span style="display: block; font-size: 1.5rem; font-weight: 700; color: var(--text-main);">TOP 1%</span>
-                        <span style="font-size: 0.75rem; color: var(--text-muted);">SAGE CERTIFIED GLOBAL</span>
-                    </div>
+                    <div><span style="display: block; font-size: 1.5rem; font-weight: 700; color: var(--text-main);">+10</span><span style="font-size: 0.75rem; color: var(--text-muted);">ANOS DE EXPERIÊNCIA</span></div>
+                    <div><span style="display: block; font-size: 1.5rem; font-weight: 700; color: var(--text-main);">TOP 1%</span><span style="font-size: 0.75rem; color: var(--text-muted);">SAGE CERTIFIED GLOBAL</span></div>
                 </div>
             </div>
-
             <div class="cert-badge-wrapper">
                 <img src="./assets/sage_full.png" alt="SAGE Badge" class="cert-badge-img">
                 <span class="cert-label">VERIFIED</span>
@@ -435,22 +595,13 @@
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 50px;">
             <div class="footer-col">
                 <h3>KNS GLOBAL</h3>
-                <p style="font-size: 0.85rem; line-height: 1.6;">
-                    Engenharia de Continuidade.<br>
-                    Balneário Camboriú, SC - Brasil.
-                </p>
+                <p style="font-size: 0.85rem; line-height: 1.6;">Engenharia de Continuidade.<br>Balneário Camboriú, SC - Brasil.</p>
             </div>
-            
             <div class="footer-col">
                 <h4>CONTATO DIRETO</h4>
-                <a href="https://wa.me/5547988901616" class="contact-item">
-                    <i class="fa-brands fa-whatsapp"></i> +55 (47) 98890-1616
-                </a>
-                <a href="mailto:comercial@knsconsultoria.com.br" class="contact-item">
-                    <i class="fa-solid fa-envelope"></i> comercial@knsconsultoria.com.br
-                </a>
+                <a href="https://wa.me/5547988901616" class="contact-item"><i class="fa-brands fa-whatsapp"></i> +55 (47) 98890-1616</a>
+                <a href="mailto:comercial@knsconsultoria.com.br" class="contact-item"><i class="fa-solid fa-envelope"></i> comercial@knsconsultoria.com.br</a>
             </div>
-
             <div class="footer-col">
                 <h4>REDES</h4>
                 <div style="display: flex; gap: 15px;">
@@ -460,7 +611,6 @@
                 </div>
             </div>
         </div>
-        
         <div style="text-align: center; font-size: 0.75rem; border-top: 1px solid var(--border); padding-top: 20px;">
             &copy; 2026 KNS GLOBAL SOLUTIONS. ALL RIGHTS RESERVED.
         </div>
@@ -471,6 +621,67 @@
             const html = document.documentElement;
             const current = html.getAttribute('data-theme');
             html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+        }
+
+        function toggleLogin() {
+            const modal = document.getElementById('login-modal');
+            modal.classList.toggle('active');
+            document.getElementById('step-login').style.display = 'block';
+            document.getElementById('mfa-section').style.display = 'none';
+            document.getElementById('login-error').style.display = 'none';
+        }
+
+        let currentUserRole = '';
+
+        function processLogin() {
+            const email = document.getElementById('email').value;
+            const pass = document.getElementById('password').value;
+            const errorMsg = document.getElementById('login-error');
+
+            if ((email === 'kaleb.nunes' && pass === '13091993') || (email === 'ceo@cliente.com' && pass === '123')) {
+                currentUserRole = email === 'kaleb.nunes' ? 'ADMIN' : 'CLIENT';
+                errorMsg.style.display = 'none';
+                document.getElementById('step-login').style.display = 'none';
+                document.getElementById('mfa-section').style.display = 'block';
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        }
+
+        function finalizeLogin() {
+            toggleLogin();
+            document.getElementById('dashboard-overlay').style.display = 'block';
+            document.getElementById('user-welcome').innerText = currentUserRole === 'ADMIN' ? 'WELCOME, COMMANDER' : 'WELCOME, BOARD MEMBER';
+            document.getElementById('user-role').innerText = currentUserRole === 'ADMIN' ? 'SYSTEM ADMINISTRATOR' : 'CLIENT VIEWER';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function logout() {
+            document.getElementById('dashboard-overlay').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            document.getElementById('email').value = '';
+            document.getElementById('password').value = '';
+            switchTab('home'); // Reset view
+        }
+
+        function switchTab(tabName) {
+            document.getElementById('view-home').style.display = 'none';
+            document.getElementById('view-settings').style.display = 'none';
+            document.querySelectorAll('.dash-btn').forEach(btn => btn.classList.remove('active'));
+            
+            if(tabName === 'home') {
+                document.getElementById('view-home').style.display = 'block';
+                document.querySelector('.dash-btn:nth-child(1)').classList.add('active'); // Dirty selector for demo
+            } else if(tabName === 'settings') {
+                document.getElementById('view-settings').style.display = 'block';
+                document.querySelectorAll('.dash-btn')[1].classList.add('active');
+            }
+        }
+
+        function saveSettings() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => { toast.classList.remove('show'); }, 3000);
         }
     </script>
 </body>
