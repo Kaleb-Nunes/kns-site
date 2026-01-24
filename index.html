@@ -49,7 +49,7 @@
             transition: 0.5s;
         }
 
-        /* --- SYSTEM STATUS BAR (NOVO: CREDIBILIDADE IMEDIATA) --- */
+        /* --- SYSTEM STATUS BAR --- */
         .system-bar {
             background: #000; border-bottom: 1px solid var(--border);
             padding: 8px 5%; font-family: 'JetBrains Mono'; font-size: 0.65rem;
@@ -78,7 +78,7 @@
         .nav-link { color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
         .nav-link:hover { color: var(--primary); }
 
-        /* --- HERO: FINANCIAL FOCUS --- */
+        /* --- HERO --- */
         .hero { padding: 120px 5% 80px; text-align: center; max-width: 1400px; margin: 0 auto; }
         
         .trust-label {
@@ -116,7 +116,7 @@
         }
         .btn-outline:hover { border-color: var(--primary); color: var(--text-main); }
 
-        /* --- METRICS GRID (The "Proof" Bar) --- */
+        /* --- METRICS GRID --- */
         .metrics-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
@@ -126,7 +126,7 @@
         .metric-num { display: block; font-size: 2.5rem; font-weight: 800; font-family: 'Orbitron'; margin-bottom: 5px; color: var(--text-main); }
         .metric-lbl { font-size: 0.7rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; font-weight: 600; }
 
-        /* --- CORPORATE GOVERNANCE (THE "BORING" BUT VITAL PART) --- */
+        /* --- CORPORATE GOVERNANCE --- */
         .section-header { text-align: center; max-width: 800px; margin: 0 auto 60px; }
         .section-tag { color: var(--primary); font-family: 'JetBrains Mono'; font-size: 0.8rem; letter-spacing: 2px; font-weight: 700; display: block; margin-bottom: 15px; }
         .section-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 15px; letter-spacing: -1px; }
@@ -141,7 +141,7 @@
         .gov-card::before { content: ''; position: absolute; top: 0; left: 0; width: 2px; height: 100%; background: var(--primary); opacity: 0; transition: 0.3s; }
         .gov-card:hover::before { opacity: 1; }
         
-        /* --- PROTOCOL 09 (THE PRODUCT) --- */
+        /* --- PROTOCOL 09 --- */
         .p9-section { padding: 100px 5%; border-top: 1px solid var(--border); }
         .p9-container { 
             display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; 
@@ -160,17 +160,21 @@
         .tech-item { display: inline-block; padding: 0 40px; font-family: 'JetBrains Mono'; color: var(--text-muted); font-size: 0.9rem; font-weight: 700; }
         @keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-        /* --- FOUNDER & VISION (AUTHENTICITY) --- */
+        /* --- FOUNDER & VISION --- */
         .vision-section { padding: 100px 5%; background: var(--bg-deep); }
         .founder-box { 
             display: flex; gap: 50px; align-items: center; max-width: 1100px; margin: 0 auto; 
             border: 1px solid var(--border); padding: 50px; position: relative;
             background: linear-gradient(45deg, var(--bg-surface), var(--bg-deep));
         }
-        .founder-img { width: 180px; height: 180px; object-fit: cover; border-radius: 50%; border: 2px solid var(--border); filter: grayscale(100%); }
+        /* ALTERAÇÃO AQUI: REMOVIDO O FILTER: GRAYSCALE */
+        .founder-img { 
+            width: 180px; height: 180px; object-fit: cover; 
+            border-radius: 50%; border: 2px solid var(--border); 
+        }
         .quote-icon { font-size: 4rem; color: var(--border); position: absolute; top: 30px; right: 40px; }
 
-        /* --- FOOTER (LEGAL & COMPLIANCE) --- */
+        /* --- FOOTER --- */
         footer { background: #000; padding: 80px 5% 30px; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--text-muted); }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
         .legal-links a { color: var(--text-muted); margin-right: 20px; text-decoration: none; font-size: 0.75rem; transition: 0.3s; }
