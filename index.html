@@ -3,42 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="KNS Global - The Authority in Strategic Infrastructure.">
-    <title>KNS GLOBAL | Fortress Command</title>
+    <meta name="description" content="KNS Global - Autoridade em Infraestrutura Estratégica.">
+    <title>KNS GLOBAL | Command Center</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- THEME ENGINE --- */
+        /* --- ENGINE VISUAL --- */
         :root {
             --bg-body: #050505;
-            --bg-panel: rgba(20, 20, 20, 0.6);
+            --bg-panel: rgba(20, 20, 20, 0.7);
             --text-main: #ffffff;
             --text-muted: #8f9ba8;
             --neon: #00ff88;
             --neon-dim: rgba(0, 255, 136, 0.1);
             --border: rgba(255, 255, 255, 0.08);
             --shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-            --nav-bg: rgba(5,5,5,0.9);
+            --nav-bg: rgba(5,5,5,0.95);
             --gradient-text: linear-gradient(135deg, #ffffff 0%, #b0b0b0 100%);
             --hero-stroke: rgba(255,255,255,0.2);
             --marquee-bg: #000;
             --footer-bg: #000;
             --error: #ff3333;
-            --success: #00ff88;
+            --warning: #ffcc00;
         }
 
         [data-theme="light"] {
             --bg-body: #f0f2f5;
-            --bg-panel: rgba(255, 255, 255, 0.8);
+            --bg-panel: rgba(255, 255, 255, 0.9);
             --text-main: #1a1a1a;
             --text-muted: #555555;
             --neon: #009c53;
             --neon-dim: rgba(0, 156, 83, 0.1);
             --border: rgba(0, 0, 0, 0.15);
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            --nav-bg: rgba(240, 242, 245, 0.9);
+            --nav-bg: rgba(240, 242, 245, 0.95);
             --gradient-text: linear-gradient(135deg, #1a1a1a 0%, #444444 100%);
             --hero-stroke: rgba(0,0,0,0.8);
             --marquee-bg: #e0e0e0;
@@ -54,7 +54,7 @@
             overflow-x: hidden;
         }
 
-        /* --- UTILS --- */
+        /* --- UTILITÁRIOS --- */
         .glass-panel { background: var(--bg-panel); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow); }
         .mono { font-family: 'JetBrains Mono'; }
         
@@ -87,7 +87,7 @@
         /* --- LOGIN MODAL --- */
         #login-modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); z-index: 2000;
+            background: rgba(0,0,0,0.9); backdrop-filter: blur(15px); z-index: 2000;
             display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.5s;
         }
         #login-modal.active { display: flex; opacity: 1; }
@@ -124,13 +124,13 @@
         /* --- DASHBOARD ENTERPRISE LAYOUT --- */
         #dashboard-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg-body); z-index: 2500; display: none; /* Hidden by default */
+            background: var(--bg-body); z-index: 2500; display: none;
         }
         .dash-container { display: flex; height: 100%; }
         
         /* Sidebar */
         .dash-sidebar {
-            width: 250px; background: var(--bg-panel); border-right: 1px solid var(--border);
+            width: 260px; background: var(--bg-panel); border-right: 1px solid var(--border);
             padding: 30px 20px; display: flex; flex-direction: column;
         }
         .dash-logo { font-family: 'Orbitron'; font-size: 1.2rem; color: var(--text-main); margin-bottom: 40px; display: flex; align-items: center; gap: 10px; }
@@ -142,101 +142,106 @@
             cursor: pointer; border-radius: 4px; display: flex; align-items: center; gap: 10px; transition: 0.3s;
         }
         .dash-btn:hover, .dash-btn.active { background: var(--neon-dim); color: var(--neon); }
-        .dash-logout { margin-top: auto; border-top: 1px solid var(--border); pt-4; }
+        .dash-logout { margin-top: auto; border-top: 1px solid var(--border); padding-top: 20px; }
 
         /* Main Content */
-        .dash-main { flex: 1; padding: 40px; overflow-y: auto; }
+        .dash-main { flex: 1; padding: 40px; overflow-y: auto; position: relative; }
         .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
         
+        /* Header Profile Avatar */
+        .header-profile { display: flex; gap: 20px; align-items: center; }
+        .header-avatar {
+            width: 45px; height: 45px; border-radius: 50%; object-fit: cover;
+            border: 2px solid var(--neon); padding: 2px; background: var(--bg-body);
+        }
+        
+        /* Live Clock */
+        .live-clock {
+            font-family: 'JetBrains Mono'; color: var(--text-muted); font-size: 0.9rem;
+            border-right: 1px solid var(--border); padding-right: 20px;
+        }
+
         .dash-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
         .dash-card { background: var(--bg-panel); border: 1px solid var(--border); padding: 25px; border-radius: 8px; }
         .dash-val { font-family: 'Orbitron'; font-size: 2rem; color: var(--text-main); margin: 10px 0; }
         .dash-lbl { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--text-muted); }
 
-        /* Settings View */
-        #view-settings { display: none; }
-        .settings-form { max-width: 600px; }
-        .form-row { margin-bottom: 20px; }
-        .toggle-switch {
-            position: relative; display: inline-block; width: 50px; height: 24px;
+        /* --- VISUAL DE TOPOLOGIA --- */
+        #view-topology { display: none; height: 100%; }
+        .topology-map {
+            width: 100%; height: 500px; background: rgba(0,0,0,0.3); border: 1px solid var(--border);
+            border-radius: 8px; position: relative; overflow: hidden; margin-top: 20px;
+            background-image: radial-gradient(var(--border) 1px, transparent 1px); background-size: 20px 20px;
         }
-        .toggle-switch input { opacity: 0; width: 0; height: 0; }
-        .slider {
-            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
-            background-color: #333; transition: .4s; border-radius: 34px;
+        
+        .node {
+            position: absolute; width: 60px; height: 60px; background: var(--bg-panel);
+            border: 1px solid var(--neon); border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            color: var(--neon); font-size: 1.5rem; box-shadow: 0 0 20px var(--neon-dim); z-index: 10;
+            transition: 0.3s; cursor: pointer;
         }
-        .slider:before {
-            position: absolute; content: ""; height: 16px; width: 16px; left: 4px; bottom: 4px;
-            background-color: white; transition: .4s; border-radius: 50%;
+        .node:hover { transform: scale(1.1); background: var(--neon); color: #000; }
+        .node-label {
+            position: absolute; bottom: -25px; width: 150px; text-align: center; left: 50%; transform: translateX(-50%);
+            font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--text-muted);
         }
-        input:checked + .slider { background-color: var(--neon); }
-        input:checked + .slider:before { transform: translateX(26px); }
+        
+        /* Posições dos Nós */
+        .node.core { top: 50%; left: 50%; transform: translate(-50%, -50%); border-color: #fff; color: #fff; width: 80px; height: 80px; }
+        .node.fw { top: 20%; left: 50%; transform: translateX(-50%); }
+        .node.cloud { top: 20%; left: 20%; }
+        .node.zabbix { bottom: 20%; right: 20%; }
+        .node.office { bottom: 20%; left: 20%; }
+        .node.isp { top: 20%; right: 20%; }
 
-        /* Toast Notification */
-        .toast {
-            position: fixed; bottom: 20px; right: 20px; background: var(--neon); color: #000;
-            padding: 15px 30px; border-radius: 4px; font-family: 'JetBrains Mono'; font-weight: 700;
-            transform: translateY(100px); transition: 0.3s; z-index: 3000;
+        /* Linhas de conexão (Simuladas) */
+        .link-line {
+            position: absolute; background: var(--border); height: 2px; transform-origin: left center; z-index: 1;
         }
-        .toast.show { transform: translateY(0); }
+        .packet {
+            position: absolute; width: 6px; height: 6px; background: var(--neon); border-radius: 50%;
+            top: -2px; left: 0; box-shadow: 0 0 10px var(--neon);
+            animation: flow 2s infinite linear;
+        }
+        @keyframes flow { 0% { left: 0; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
 
-        /* --- HERO --- */
+        /* --- ELEMENTOS GERAIS DO SITE --- */
         .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 5% 0; }
         .status-pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 50px; border: 1px solid var(--neon); background: var(--neon-dim); color: var(--neon); font-size: 0.65rem; font-family: 'JetBrains Mono'; margin-bottom: 30px; }
         .hero-title-wrapper { font-family: 'Orbitron'; font-weight: 900; line-height: 0.9; margin-bottom: 30px; text-align: center; display: flex; flex-direction: column; gap: 5px; align-items: center; }
         .hero-word-1 { font-size: clamp(2rem, 5vw, 4rem); letter-spacing: 2px; color: var(--text-muted); font-weight: 600; display: block; }
         .hero-word-2 { font-size: clamp(3rem, 8vw, 6rem); color: transparent; -webkit-text-stroke: 2px var(--hero-stroke); position: relative; display: block; text-transform: uppercase; letter-spacing: -2px; }
         .hero-word-2::before { content: 'ABSOLUTA.'; position: absolute; top: 0; left: 0; width: 0%; height: 100%; color: var(--neon); overflow: hidden; white-space: nowrap; border-right: 4px solid var(--neon); -webkit-text-stroke: 0px; animation: typeFill 4s ease-in-out infinite alternate; }
-        @keyframes typeFill { 0%, 20% { width: 0%; } 80%, 100% { width: 100%; } }
-        .hero-sub { font-size: 1rem; color: var(--text-muted); max-width: 600px; line-height: 1.6; margin-bottom: 50px; }
-
-        /* --- MONITOR --- */
         .xdr-wrapper { margin-top: 60px; perspective: 1000px; width: 100%; max-width: 900px; display: flex; flex-direction: column; align-items: center; }
         .xdr-frame { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 12px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.4); border: 1px solid #333; padding: 12px; overflow: hidden; }
         .xdr-screen { width: 100%; height: 100%; background: #000; border-radius: 4px; overflow: hidden; position: relative; }
         .xdr-stand-neck { width: 120px; height: 60px; background: linear-gradient(90deg, #2a2a2a, #444, #2a2a2a); margin-top: -5px; z-index: -1; }
         .xdr-stand-base { width: 240px; height: 15px; background: linear-gradient(90deg, #888, #ccc, #888); border-radius: 4px 4px 0 0; }
-
-        /* --- MARQUEE --- */
         .marquee-section { background: var(--marquee-bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 30px 0; overflow: hidden; white-space: nowrap; margin-top: 80px; transition: background-color 0.5s ease; }
         .marquee-track { display: inline-block; animation: scroll 40s linear infinite; }
         .tech-logo-item { display: inline-flex; align-items: center; gap: 15px; margin: 0 60px; color: var(--text-muted); font-family: 'Orbitron'; font-weight: 700; font-size: 1.2rem; transition: 0.3s; opacity: 0.7; }
         .tech-logo-item:hover { color: var(--neon); opacity: 1; transform: scale(1.05); text-shadow: 0 0 15px var(--neon-dim); }
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-        /* --- SECTIONS --- */
         .section-pad { padding: 120px 8%; }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
         .glass-card { padding: 50px 40px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-panel); transition: 0.3s; }
         .glass-card:hover { border-color: var(--neon); transform: translateY(-5px); box-shadow: var(--shadow); }
         .card-title { font-family: 'Orbitron'; font-size: 1.4rem; margin-bottom: 15px; color: var(--text-main); }
-
-        /* --- PROTOCOLO 09 --- */
         .p9-hero-section { padding: 120px 8%; position: relative; background: var(--bg-body); }
         .p9-container-box { background: var(--bg-panel); border: 1px solid var(--neon-dim); border-radius: 20px; padding: 80px 40px; text-align: center; position: relative; overflow: hidden; }
         .p9-card-boost { background: var(--bg-panel); padding: 40px; border-radius: 12px; border: 1px solid var(--border); text-align: left; transition: 0.3s; }
         .p9-card-boost:hover { border-color: var(--neon); box-shadow: 0 0 20px var(--neon-dim); }
-
-        /* --- MODELS --- */
         .tier-card { border: 1px solid var(--border); padding: 50px 30px; text-align: center; background: var(--bg-panel); transition: 0.3s; border-radius: 8px; }
         .tier-card:hover { border-color: var(--text-main); }
         .tier-card.featured { border-color: var(--neon); background: var(--bg-panel); box-shadow: var(--shadow); }
-
-        /* --- FOUNDER --- */
         .founder-box { display: grid; grid-template-columns: 350px 1fr auto; gap: 50px; align-items: center; padding: 60px; position: relative; background: var(--bg-panel); border: 1px solid var(--border); border-radius: 12px; margin: 100px auto; max-width: 1400px; }
         .founder-photo { width: 100%; height: 350px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
         .cert-badge-wrapper { position: relative; width: 140px; height: 140px; display: flex; align-items: center; justify-content: center; }
         .cert-badge-img { width: 100%; height: auto; transition: transform 0.4s; filter: drop-shadow(0 0 10px rgba(0,0,0,0.5)); cursor: pointer; }
         .cert-badge-wrapper:hover .cert-badge-img { transform: scale(1.8) translateX(-10px); z-index: 999; }
-        .cert-label { position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 0.7rem; color: var(--neon); font-family: 'JetBrains Mono'; opacity: 0.7; letter-spacing: 1px; }
-
-        /* --- FAQ --- */
         .faq-item { border-bottom: 1px solid var(--border); padding: 20px 0; }
         .faq-q { font-family: 'Orbitron'; font-size: 1.1rem; cursor: pointer; display: flex; justify-content: space-between; color: var(--text-main); }
         .faq-a { display: none; margin-top: 15px; color: var(--text-muted); line-height: 1.6; }
         .faq-item.active .faq-a { display: block; }
-
-        /* --- FOOTER --- */
         footer { border-top: 1px solid var(--border); padding: 80px 5% 40px; background: var(--footer-bg); color: var(--text-muted); transition: background-color 0.5s ease; }
         .contact-item { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-size: 0.9rem; color: var(--text-muted); text-decoration: none; transition: 0.3s; }
         .contact-item:hover { color: var(--neon); }
@@ -252,7 +257,7 @@
 </head>
 <body>
 
-    <div id="toast" class="toast">SETTINGS SAVED SUCCESSFULLY</div>
+    <div id="toast" class="toast" style="position: fixed; bottom: 20px; right: 20px; background: var(--neon); color: #000; padding: 15px 30px; border-radius: 4px; font-family: 'JetBrains Mono'; font-weight: 700; transform: translateY(100px); transition: 0.3s; z-index: 3000;">CONFIGURAÇÕES SALVAS</div>
 
     <div id="login-modal">
         <div class="login-box">
@@ -260,25 +265,25 @@
             
             <div id="step-login">
                 <div class="login-header">
-                    <div class="login-title">SYSTEM ACCESS</div>
+                    <div class="login-title">ACESSO AO SISTEMA</div>
                     <span class="login-sub mono">SECURE GATEWAY v4.0</span>
                 </div>
                 <div class="input-group">
-                    <label class="input-label">USER</label>
-                    <input type="text" id="email" class="input-field" placeholder="username">
+                    <label class="input-label">USUÁRIO</label>
+                    <input type="text" id="email" class="input-field" placeholder="ex: kaleb.nunes">
                 </div>
                 <div class="input-group">
-                    <label class="input-label">PASSPHRASE</label>
+                    <label class="input-label">SENHA</label>
                     <input type="password" id="password" class="input-field" placeholder="••••••••">
                 </div>
-                <button class="btn-submit" onclick="processLogin()">AUTHENTICATE</button>
-                <div id="login-error" style="color: var(--error); font-size: 0.7rem; margin-top: 10px; text-align: center; display: none;">ACCESS DENIED. INVALID CREDENTIALS.</div>
+                <button class="btn-submit" onclick="processLogin()">AUTENTICAR</button>
+                <div id="login-error" style="color: var(--error); font-size: 0.7rem; margin-top: 10px; text-align: center; display: none;">ACESSO NEGADO. CREDENCIAIS INVÁLIDAS.</div>
             </div>
 
             <div id="mfa-section">
                 <i class="fa-solid fa-shield-halved" style="font-size: 3rem; color: var(--neon); margin-bottom: 20px;"></i>
-                <div class="login-title">2FA REQUIRED</div>
-                <p class="login-sub">Enter the code from your authenticator app.</p>
+                <div class="login-title">AUTENTICAÇÃO 2FA</div>
+                <p class="login-sub">Digite o código do seu aplicativo autenticador.</p>
                 <div class="mfa-dots">
                     <input type="text" class="mfa-input" maxlength="1">
                     <input type="text" class="mfa-input" maxlength="1">
@@ -287,7 +292,7 @@
                     <input type="text" class="mfa-input" maxlength="1">
                     <input type="text" class="mfa-input" maxlength="1">
                 </div>
-                <button class="btn-submit" onclick="finalizeLogin()">VERIFY TOKEN</button>
+                <button class="btn-submit" onclick="finalizeLogin()">VERIFICAR TOKEN</button>
             </div>
         </div>
     </div>
@@ -298,106 +303,122 @@
                 <div class="dash-logo"><i class="fa-solid fa-layer-group" style="color: var(--neon);"></i> KNS<span style="font-weight:300;">CORE</span></div>
                 <ul class="dash-menu">
                     <li><button class="dash-btn active" onclick="switchTab('home')"><i class="fa-solid fa-chart-line"></i> DASHBOARD</button></li>
-                    <li><button class="dash-btn" onclick="switchTab('settings')"><i class="fa-solid fa-user-shield"></i> SECURITY</button></li>
-                    <li><button class="dash-btn" onclick="alert('Feature coming in Q2')"><i class="fa-solid fa-network-wired"></i> TOPOLOGY</button></li>
+                    <li><button class="dash-btn" onclick="switchTab('topology')"><i class="fa-solid fa-network-wired"></i> TOPOLOGIA</button></li>
+                    <li><button class="dash-btn" onclick="switchTab('settings')"><i class="fa-solid fa-user-shield"></i> SEGURANÇA</button></li>
                 </ul>
                 <div class="dash-logout">
-                    <button class="dash-btn" onclick="logout()" style="color: var(--error);"><i class="fa-solid fa-power-off"></i> LOGOUT</button>
+                    <button class="dash-btn" onclick="logout()" style="color: var(--error);"><i class="fa-solid fa-power-off"></i> SAIR</button>
                 </div>
             </div>
 
             <div class="dash-main">
                 <div class="dash-header">
-                    <h2 style="font-family: 'Orbitron'; color: var(--text-main);">COMMAND CENTER</h2>
-                    <div style="display: flex; gap: 15px; align-items: center;">
+                    <h2 style="font-family: 'Orbitron'; color: var(--text-main);">CENTRO DE COMANDO</h2>
+                    <div class="header-profile">
+                        <div id="live-clock" class="live-clock mono">00:00:00</div>
                         <span class="mono" style="font-size: 0.7rem; color: var(--neon);">● ONLINE</span>
-                        <div style="width: 35px; height: 35px; background: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: bold;">K</div>
+                        <img src="./assets/foto.jpg" class="header-avatar" alt="User" onerror="this.src='https://via.placeholder.com/40'">
                     </div>
                 </div>
 
                 <div id="view-home">
                     <div style="margin-bottom: 40px;">
-                        <h3 id="user-welcome" style="color: var(--text-main); margin-bottom: 5px;">WELCOME, KALEB</h3>
-                        <p style="color: var(--text-muted);" class="mono">ROLE: <span id="user-role" style="color: var(--neon);">SYSTEM ADMINISTRATOR</span> | SESSION: ACTIVE</p>
+                        <h3 id="user-welcome" style="color: var(--text-main); margin-bottom: 5px;">BEM-VINDO, COMANDANTE</h3>
+                        <p style="color: var(--text-muted);" class="mono">CARGO: <span id="user-role" style="color: var(--neon);">ADMINISTRADOR DO SISTEMA</span> | SESSÃO: ATIVA</p>
                     </div>
 
                     <div class="dash-grid">
                         <div class="dash-card">
-                            <span class="dash-lbl">INFRASTRUCTURE HEALTH</span>
+                            <span class="dash-lbl">SAÚDE DA INFRAESTRUTURA</span>
                             <div class="dash-val" style="color: var(--neon);">100%</div>
                             <div style="height: 4px; width: 100%; background: #333; border-radius: 2px;"><div style="height: 100%; width: 100%; background: var(--neon);"></div></div>
                         </div>
                         <div class="dash-card">
-                            <span class="dash-lbl">ACTIVE INCIDENTS</span>
+                            <span class="dash-lbl">INCIDENTES ATIVOS</span>
                             <div class="dash-val">0</div>
-                            <span style="font-size: 0.7rem; color: var(--text-muted);">LAST 24 HOURS</span>
+                            <span style="font-size: 0.7rem; color: var(--text-muted);">ÚLTIMAS 24 HORAS</span>
                         </div>
                         <div class="dash-card">
-                            <span class="dash-lbl">NEXT AUDIT</span>
-                            <div class="dash-val" style="font-size: 1.5rem;">12 FEB</div>
-                            <span style="font-size: 0.7rem; color: var(--text-muted);">AUTOMATED SCHEDULE</span>
+                            <span class="dash-lbl">PRÓXIMA AUDITORIA</span>
+                            <div class="dash-val" id="next-audit-date" style="font-size: 1.5rem;">--</div>
+                            <span style="font-size: 0.7rem; color: var(--text-muted);">AGENDAMENTO AUTOMÁTICO</span>
                         </div>
                         <div class="dash-card">
-                            <span class="dash-lbl">SAVINGS (YTD)</span>
+                            <span class="dash-lbl">ECONOMIA (ANUAL)</span>
                             <div class="dash-val">R$ 420k</div>
-                            <span style="font-size: 0.7rem; color: var(--neon);">+12% VS TARGET</span>
+                            <span style="font-size: 0.7rem; color: var(--neon);">+12% vs META</span>
                         </div>
                     </div>
 
                     <div style="margin-top: 40px; background: rgba(255,255,255,0.03); padding: 30px; border-radius: 8px; border: 1px solid var(--border);">
-                        <h4 class="mono" style="color: var(--text-muted); margin-bottom: 20px;">// SYSTEM LOGS</h4>
-                        <ul style="list-style: none; line-height: 2; color: var(--text-muted); font-size: 0.9rem;" class="mono">
-                            <li>[03:42:12] SYSTEM: AUTO-HEALING SCRIPT EXECUTED ON NODE-04</li>
-                            <li>[03:40:05] SECURITY: FAILED LOGIN ATTEMPT BLOCKED (IP: 192.168.X.X)</li>
-                            <li>[02:15:00] BACKUP: INCREMENTAL BACKUP COMPLETED (2.4TB)</li>
-                        </ul>
+                        <h4 class="mono" style="color: var(--text-muted); margin-bottom: 20px;">// LOGS DO SISTEMA</h4>
+                        <ul id="activity-log" style="list-style: none; line-height: 2; color: var(--text-muted); font-size: 0.9rem;" class="mono">
+                            </ul>
                     </div>
                 </div>
 
-                <div id="view-settings">
-                    <div style="margin-bottom: 30px;">
-                        <h3 style="color: var(--text-main);">SECURITY CONFIGURATION</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem;">Manage access credentials and session security.</p>
+                <div id="view-topology">
+                    <div style="margin-bottom: 30px; display: flex; justify-content: space-between; align-items: end;">
+                        <div>
+                            <h3 style="color: var(--text-main);">TOPOLOGIA DE REDE</h3>
+                            <p style="color: var(--text-muted); font-size: 0.9rem;">Visualização em tempo real dos ativos críticos.</p>
+                        </div>
+                        <div class="mono" style="font-size: 0.8rem; color: var(--neon);">TRÁFEGO: 4.2 GBps</div>
                     </div>
 
-                    <div class="settings-form">
+                    <div class="topology-map">
+                        <div class="node fw" title="Firewall Edge"><i class="fa-solid fa-shield-halved"></i><span class="node-label">EDGE FIREWALL</span></div>
+                        <div class="node core" title="Core Switch"><i class="fa-solid fa-network-wired"></i><span class="node-label">CORE SWITCH</span></div>
+                        <div class="node cloud" title="AWS Gateway"><i class="fa-brands fa-aws"></i><span class="node-label">AWS CLOUD</span></div>
+                        <div class="node zabbix" title="Monitoring"><i class="fa-solid fa-eye"></i><span class="node-label">ZABBIX PROXY</span></div>
+                        <div class="node office" title="HQ Link"><i class="fa-solid fa-building"></i><span class="node-label">MATRIZ</span></div>
+                        <div class="node isp" title="ISP Link"><i class="fa-solid fa-globe"></i><span class="node-label">ISP LINK</span></div>
+
+                        <div class="link-line" style="top: 35%; left: 50%; height: 15%; width: 2px; transform: translateX(-50%);"><div class="packet" style="animation-delay: 0.5s;"></div></div>
+                        <div class="link-line" style="top: 35%; left: 35%; width: 15%; height: 2px; transform: rotate(145deg);"><div class="packet" style="animation-delay: 1s;"></div></div>
+                        <div class="link-line" style="top: 65%; left: 65%; width: 15%; height: 2px; transform: rotate(45deg);"><div class="packet" style="animation-delay: 0.2s;"></div></div>
+                    </div>
+                </div>
+
+                <div id="view-settings" style="display: none;">
+                    <div style="margin-bottom: 30px;">
+                        <h3 style="color: var(--text-main);">CONFIGURAÇÃO DE SEGURANÇA</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Gerencie credenciais de acesso e segurança da sessão.</p>
+                    </div>
+
+                    <div style="max-width: 600px;">
                         <div class="glass-panel" style="padding: 30px; margin-bottom: 30px;">
-                            <h4 style="color: var(--neon); margin-bottom: 20px; font-family: 'Orbitron';">CREDENTIALS</h4>
-                            <div class="form-row">
-                                <label class="input-label">CURRENT PASSWORD</label>
+                            <h4 style="color: var(--neon); margin-bottom: 20px; font-family: 'Orbitron';">CREDENCIAIS</h4>
+                            <div style="margin-bottom: 20px;">
+                                <label class="input-label">SENHA ATUAL</label>
                                 <input type="password" class="input-field" value="••••••••" disabled>
                             </div>
-                            <div class="form-row">
-                                <label class="input-label">NEW PASSWORD</label>
-                                <input type="password" class="input-field" placeholder="Enter new strong password">
+                            <div style="margin-bottom: 20px;">
+                                <label class="input-label">NOVA SENHA</label>
+                                <input type="password" class="input-field" placeholder="Digite uma senha forte">
                             </div>
-                            <div class="form-row">
-                                <label class="input-label">CONFIRM PASSWORD</label>
-                                <input type="password" class="input-field" placeholder="Confirm new password">
+                            <div style="margin-bottom: 20px;">
+                                <label class="input-label">CONFIRMAR SENHA</label>
+                                <input type="password" class="input-field" placeholder="Confirme a nova senha">
                             </div>
-                            <button class="btn-action" onclick="saveSettings()">UPDATE PASSWORD</button>
+                            <button class="btn-action" onclick="saveSettings()">ATUALIZAR SENHA</button>
                         </div>
 
                         <div class="glass-panel" style="padding: 30px;">
-                            <h4 style="color: var(--neon); margin-bottom: 20px; font-family: 'Orbitron';">ACCESS CONTROL</h4>
-                            
+                            <h4 style="color: var(--neon); margin-bottom: 20px; font-family: 'Orbitron';">CONTROLE DE ACESSO</h4>
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 20px;">
                                 <div>
-                                    <div style="color: var(--text-main); font-weight: bold;">MULTI-FACTOR AUTH (MFA)</div>
-                                    <div style="font-size: 0.8rem; color: var(--text-muted);">Require token for login attempts.</div>
+                                    <div style="color: var(--text-main); font-weight: bold;">MFA (2 FATORES)</div>
+                                    <div style="font-size: 0.8rem; color: var(--text-muted);">Exigir token para login.</div>
                                 </div>
-                                <label class="toggle-switch">
-                                    <input type="checkbox" checked>
-                                    <span class="slider"></span>
-                                </label>
+                                <div style="color: var(--neon); font-weight: bold;">ATIVADO</div>
                             </div>
-
                             <div style="display: flex; justify-content: space-between; align-items: center;">
                                 <div>
-                                    <div style="color: var(--text-main); font-weight: bold;">ACTIVE SESSIONS</div>
-                                    <div style="font-size: 0.8rem; color: var(--text-muted);">1 Session active (Current Device)</div>
+                                    <div style="color: var(--text-main); font-weight: bold;">SESSÕES ATIVAS</div>
+                                    <div style="font-size: 0.8rem; color: var(--text-muted);">1 Sessão ativa (Dispositivo Atual)</div>
                                 </div>
-                                <button class="btn-login" style="border-color: var(--error); color: var(--error);" onclick="alert('All other sessions terminated.')">KILL ALL SESSIONS</button>
+                                <button class="btn-login" style="border-color: var(--error); color: var(--error);" onclick="alert('Todas as outras sessões foram encerradas.')">ENCERRAR SESSÕES</button>
                             </div>
                         </div>
                     </div>
@@ -425,7 +446,7 @@
     <section class="hero">
         <div class="status-pill">
             <span style="width: 6px; height: 6px; background: var(--neon); border-radius: 50%;"></span>
-            SYSTEM ONLINE
+            SISTEMA ONLINE
         </div>
 
         <div class="hero-title-wrapper">
@@ -574,7 +595,7 @@
     </section>
 
     <section class="section-pad">
-        <h2 style="text-align: center; font-family: 'Orbitron'; margin-bottom: 40px; color: var(--text-main);">EXECUTIVE FAQ</h2>
+        <h2 style="text-align: center; font-family: 'Orbitron'; margin-bottom: 40px; color: var(--text-main);">FAQ EXECUTIVO</h2>
         <div style="max-width: 800px; margin: 0 auto;">
             <div class="faq-item" onclick="this.classList.toggle('active')">
                 <div class="faq-q">A KNS substitui minha equipe? <i class="fa-solid fa-chevron-down"></i></div>
@@ -612,7 +633,7 @@
             </div>
         </div>
         <div style="text-align: center; font-size: 0.75rem; border-top: 1px solid var(--border); padding-top: 20px;">
-            &copy; 2026 KNS GLOBAL SOLUTIONS. ALL RIGHTS RESERVED.
+            &copy; 2026 KNS GLOBAL SOLUTIONS. TODOS OS DIREITOS RESERVADOS.
         </div>
     </footer>
 
@@ -651,9 +672,20 @@
         function finalizeLogin() {
             toggleLogin();
             document.getElementById('dashboard-overlay').style.display = 'block';
-            document.getElementById('user-welcome').innerText = currentUserRole === 'ADMIN' ? 'WELCOME, COMMANDER' : 'WELCOME, BOARD MEMBER';
-            document.getElementById('user-role').innerText = currentUserRole === 'ADMIN' ? 'SYSTEM ADMINISTRATOR' : 'CLIENT VIEWER';
+            document.getElementById('user-welcome').innerText = currentUserRole === 'ADMIN' ? 'BEM-VINDO, COMANDANTE' : 'BEM-VINDO, MEMBRO DO CONSELHO';
+            document.getElementById('user-role').innerText = currentUserRole === 'ADMIN' ? 'ADMINISTRADOR DO SISTEMA' : 'VISUALIZADOR CLIENTE';
             document.body.style.overflow = 'hidden';
+            
+            // Start Real-Time features
+            updateClock();
+            setInterval(updateClock, 1000);
+            populateDynamicLogs();
+            
+            // Dynamic Date
+            const now = new Date();
+            const tomorrow = new Date(now);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            document.getElementById('next-audit-date').innerText = tomorrow.getDate() + " FEV";
         }
 
         function logout() {
@@ -661,20 +693,25 @@
             document.body.style.overflow = 'auto';
             document.getElementById('email').value = '';
             document.getElementById('password').value = '';
-            switchTab('home'); // Reset view
+            switchTab('home');
         }
 
         function switchTab(tabName) {
             document.getElementById('view-home').style.display = 'none';
             document.getElementById('view-settings').style.display = 'none';
+            document.getElementById('view-topology').style.display = 'none';
+            
             document.querySelectorAll('.dash-btn').forEach(btn => btn.classList.remove('active'));
             
             if(tabName === 'home') {
                 document.getElementById('view-home').style.display = 'block';
-                document.querySelector('.dash-btn:nth-child(1)').classList.add('active'); // Dirty selector for demo
+                document.querySelectorAll('.dash-btn')[0].classList.add('active');
+            } else if(tabName === 'topology') {
+                document.getElementById('view-topology').style.display = 'block';
+                document.querySelectorAll('.dash-btn')[1].classList.add('active');
             } else if(tabName === 'settings') {
                 document.getElementById('view-settings').style.display = 'block';
-                document.querySelectorAll('.dash-btn')[1].classList.add('active');
+                document.querySelectorAll('.dash-btn')[2].classList.add('active');
             }
         }
 
@@ -682,6 +719,39 @@
             const toast = document.getElementById('toast');
             toast.classList.add('show');
             setTimeout(() => { toast.classList.remove('show'); }, 3000);
+        }
+
+        // REAL-TIME ENGINE
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('pt-BR');
+            document.getElementById('live-clock').innerText = timeString;
+        }
+
+        function populateDynamicLogs() {
+            const list = document.getElementById('activity-log');
+            list.innerHTML = ''; // Clear static
+            
+            const now = new Date();
+            
+            // Helper to subtract minutes
+            const minsAgo = (m) => {
+                const d = new Date(now.getTime() - m*60000);
+                return d.toLocaleTimeString('pt-BR');
+            };
+
+            const logs = [
+                `[${minsAgo(2)}] SYSTEM: SCRIPT DE AUTO-CURA EXECUTADO NO NODE-04`,
+                `[${minsAgo(5)}] SECURITY: TENTATIVA DE LOGIN FALHA BLOQUEADA (IP: 192.168.X.X)`,
+                `[${minsAgo(120)}] BACKUP: BACKUP INCREMENTAL CONCLUÍDO (2.4TB)`,
+                `[${minsAgo(300)}] CRON: RELATÓRIO DIÁRIO GERADO`
+            ];
+
+            logs.forEach(log => {
+                const li = document.createElement('li');
+                li.innerText = log;
+                list.appendChild(li);
+            });
         }
     </script>
 </body>
