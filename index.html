@@ -3,45 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="KNS Global - Engenharia de Infraestrutura e Observabilidade para Ambientes de Missão Crítica.">
+    <meta name="description" content="KNS Global - Mitigação de Risco Operacional e Engenharia de Continuidade para Grandes Corporações.">
     <meta name="author" content="KNS Global Solutions">
-    <meta property="og:title" content="KNS Global | Mission Critical Engineering">
+    <meta property="og:title" content="KNS Global | Operational Risk Mitigation">
     <meta property="og:url" content="https://knsconsultoria.com.br">
     
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
     
-    <title>KNS GLOBAL | Risco Operacional Zero</title>
+    <title>KNS GLOBAL | Enterprise Continuity</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- CORE ENGINE --- */
+        /* --- CORE ENGINE (CORPORATE SETTINGS) --- */
         :root {
             --primary: #00ff88;
             --primary-dim: rgba(0, 255, 136, 0.1);
             --primary-glow: rgba(0, 255, 136, 0.4);
-            --bg-deep: #050505;
-            --bg-surface: #0b0b0b;
+            --bg-deep: #020202; /* Preto absoluto para seriedade */
+            --bg-surface: #0a0a0a;
             --text-main: #ffffff;
-            --text-muted: #94a3b8;
-            --border: rgba(255, 255, 255, 0.12);
-            --glass: rgba(11, 11, 11, 0.9);
-            --glass-blur: blur(20px);
-            --nav-bg: rgba(5, 5, 5, 0.95);
+            --text-muted: #a0a0a0;
+            --border: rgba(255, 255, 255, 0.1);
+            --glass: rgba(10, 10, 10, 0.95);
+            --glass-blur: blur(30px);
+            --nav-bg: rgba(2, 2, 2, 0.98);
         }
 
         [data-theme="light"] {
-            --primary: #007a4d;
-            --primary-dim: rgba(0, 122, 77, 0.08);
-            --primary-glow: rgba(0, 122, 77, 0.2);
-            --bg-deep: #f2f5f9;
+            --primary: #006640; /* Verde Banco/Financeiro */
+            --primary-dim: rgba(0, 102, 64, 0.08);
+            --primary-glow: rgba(0, 102, 64, 0.15);
+            --bg-deep: #f4f4f4;
             --bg-surface: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #475569;
+            --text-main: #0a0a0a;
+            --text-muted: #555555;
             --border: rgba(0, 0, 0, 0.15);
-            --glass: rgba(255, 255, 255, 0.95);
-            --nav-bg: rgba(255, 255, 255, 0.98);
+            --glass: rgba(255, 255, 255, 0.98);
+            --nav-bg: #ffffff;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
@@ -54,12 +54,11 @@
             transition: background 0.5s ease, color 0.5s ease;
         }
 
-        /* --- MESH BG --- */
+        /* --- BACKGROUND (SOBER & TECH) --- */
         .mesh-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -2;
-            background: radial-gradient(at 0% 0%, rgba(0,255,136,0.03) 0px, transparent 50%),
-                        radial-gradient(at 100% 100%, rgba(0,255,136,0.03) 0px, transparent 50%);
-            background-size: cover;
+            background: radial-gradient(at 50% 0%, rgba(0,255,136,0.05) 0px, transparent 60%);
+            opacity: 0.6;
         }
 
         /* --- TYPOGRAPHY --- */
@@ -68,52 +67,51 @@
 
         /* --- NAV --- */
         nav {
-            position: fixed; top: 0; width: 100%; padding: 0 5%; height: 90px;
+            position: fixed; top: 0; width: 100%; padding: 0 5%; height: 85px;
             display: flex; justify-content: space-between; align-items: center;
-            background: var(--nav-bg); backdrop-filter: var(--glass-blur);
-            border-bottom: 1px solid var(--border); z-index: 1000;
+            background: var(--nav-bg); border-bottom: 1px solid var(--border); z-index: 1000;
         }
-        .brand { font-size: 1.5rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 12px; letter-spacing: 1px; }
+        .brand { font-size: 1.4rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 12px; letter-spacing: 1px; }
         .nav-links { display: flex; gap: 30px; }
-        .nav-link { color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-link { color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 0.8rem; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
         .nav-link:hover { color: var(--primary); }
         .nav-actions { display: flex; gap: 10px; align-items: center; }
 
-        /* --- HERO --- */
+        /* --- HERO (RISK FOCUSED) --- */
         .hero { padding: 180px 5% 100px; text-align: center; display: flex; flex-direction: column; align-items: center; }
 
         .sage-badge-hero {
             display: flex; align-items: center; gap: 15px;
             background: var(--primary-dim); border: 1px solid var(--primary);
-            padding: 10px 30px; border-radius: 4px; margin-bottom: 40px;
+            padding: 8px 25px; border-radius: 4px; margin-bottom: 40px;
             box-shadow: 0 0 40px var(--primary-dim); cursor: default;
         }
-        .sage-badge-hero i { font-size: 1.5rem; color: var(--primary); }
-        .sage-title { font-family: 'Orbitron'; font-weight: 900; color: var(--text-main); font-size: 1rem; }
-        .sage-sub { font-family: 'JetBrains Mono'; font-size: 0.75rem; color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        .sage-badge-hero i { font-size: 1.2rem; color: var(--primary); }
+        .sage-title { font-family: 'Orbitron'; font-weight: 800; color: var(--text-main); font-size: 0.9rem; }
+        .sage-sub { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 
-        .hero-title { font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.1; font-weight: 900; margin-bottom: 30px; text-transform: uppercase; }
-        .hero-desc { font-size: 1.2rem; color: var(--text-muted); max-width: 900px; margin-bottom: 50px; line-height: 1.7; font-weight: 400; }
+        .hero-title { font-size: clamp(2.5rem, 5vw, 4.2rem); line-height: 1.1; font-weight: 900; margin-bottom: 30px; text-transform: uppercase; }
+        .hero-desc { font-size: 1.15rem; color: var(--text-muted); max-width: 850px; margin-bottom: 50px; line-height: 1.8; font-weight: 400; }
 
-        /* --- CTA --- */
+        /* --- CTA (DIAGNOSTIC FOCUSED) --- */
         .cta-container { display: flex; gap: 20px; align-items: center; justify-content: center; flex-wrap: wrap; }
         
         .btn-executive {
             background: var(--primary); color: #fff; padding: 18px 45px;
-            border-radius: 4px; text-decoration: none; font-weight: 700;
+            border-radius: 2px; text-decoration: none; font-weight: 700;
             transition: 0.3s; box-shadow: 0 10px 40px var(--primary-glow);
-            text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; font-family: 'Orbitron';
+            text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; font-family: 'Orbitron';
         }
-        .btn-executive:hover { transform: translateY(-3px); box-shadow: 0 20px 60px var(--primary-glow); filter: brightness(1.1); }
+        .btn-executive:hover { transform: translateY(-2px); box-shadow: 0 20px 60px var(--primary-glow); }
         
         .btn-secondary {
             background: transparent; border: 1px solid var(--border); color: var(--text-muted);
-            padding: 16px 30px; border-radius: 4px; text-decoration: none; font-weight: 600;
-            transition: 0.3s; font-size: 0.9rem; text-transform: uppercase;
+            padding: 16px 30px; border-radius: 2px; text-decoration: none; font-weight: 600;
+            transition: 0.3s; font-size: 0.85rem; text-transform: uppercase;
         }
         .btn-secondary:hover { border-color: var(--primary); color: var(--text-main); }
 
-        /* --- KPI BAR --- */
+        /* --- KPI BAR (FINANCIAL FOCUS) --- */
         .kpi-section {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px; max-width: 1200px; margin: 80px auto 100px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
@@ -121,19 +119,19 @@
         }
         .kpi-box { text-align: center; border-right: 1px solid var(--border); }
         .kpi-box:last-child { border-right: none; }
-        .kpi-value { font-family: 'Orbitron'; font-size: 2.5rem; font-weight: 800; color: var(--text-main); display: block; margin-bottom: 5px; }
-        .kpi-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
+        .kpi-value { font-family: 'Orbitron'; font-size: 2.2rem; font-weight: 800; color: var(--text-main); display: block; margin-bottom: 5px; }
+        .kpi-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
 
-        /* --- GOVERNANCE SECTION --- */
+        /* --- GOVERNANCE SECTION (STRONG INSTITUTIONAL) --- */
         .gov-section { padding: 100px 8%; background: var(--bg-surface); border-top: 1px solid var(--border); }
         .gov-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 60px; }
-        .gov-card { padding: 30px; border: 1px solid var(--border); border-radius: 4px; background: var(--bg-deep); transition: 0.3s; position: relative; overflow: hidden; }
-        .gov-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--primary); }
-        .gov-icon { font-size: 2rem; color: var(--primary); margin-bottom: 20px; }
-        .gov-title { font-size: 1.2rem; margin-bottom: 10px; font-family: 'Orbitron'; }
+        .gov-card { padding: 40px; border: 1px solid var(--border); background: var(--bg-deep); transition: 0.3s; position: relative; }
+        .gov-card:hover { border-color: var(--primary); }
+        .gov-icon { font-size: 2rem; color: var(--primary); margin-bottom: 25px; }
+        .gov-title { font-size: 1.1rem; margin-bottom: 15px; font-family: 'Orbitron'; }
         .gov-text { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
 
-        /* --- CASE STUDY (INSTITUCIONAL) --- */
+        /* --- CASE STUDY (ROI FOCUSED) --- */
         .case-section { padding: 100px 8%; background: var(--bg-deep); border-top: 1px solid var(--border); }
         .case-card {
             background: var(--bg-surface); border: 1px solid var(--border);
@@ -145,43 +143,42 @@
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             border-left: 1px solid var(--border); position: relative;
         }
-
-        /* --- PROVA SOCIAL (SETORES) --- */
+        
+        /* --- PROVA SOCIAL (INSTITUCIONAL) --- */
         .industry-section { padding: 80px 8%; text-align: center; border-top: 1px solid var(--border); background: var(--bg-surface); }
-        .ind-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 60px; margin-top: 40px; opacity: 0.8; }
+        .ind-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 80px; margin-top: 50px; opacity: 0.8; }
         .ind-item { display: flex; flex-direction: column; align-items: center; gap: 15px; }
-        .ind-icon { font-size: 3rem; color: var(--text-muted); transition: 0.3s; }
+        .ind-icon { font-size: 2.5rem; color: var(--text-muted); transition: 0.3s; }
         .ind-item:hover .ind-icon { color: var(--primary); transform: scale(1.1); }
-        .ind-label { font-family: 'JetBrains Mono'; font-size: 0.9rem; color: var(--text-main); text-transform: uppercase; font-weight: 700; }
+        .ind-label { font-family: 'JetBrains Mono'; font-size: 0.8rem; color: var(--text-main); text-transform: uppercase; font-weight: 700; letter-spacing: 1px; }
 
-        /* --- LEADERSHIP & AUTHORITY --- */
+        /* --- LEADERSHIP (FOUNDER, NOT FREELANCER) --- */
         .leadership-section { padding: 100px 8%; background: var(--bg-deep); border-top: 1px solid var(--border); }
-        .lead-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 50px; align-items: center; max-width: 1000px; margin: 0 auto; }
-        .lead-img { width: 100%; border-radius: 4px; border: 1px solid var(--border); filter: grayscale(100%); transition: 0.3s; max-width: 350px; }
+        .lead-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 60px; align-items: center; max-width: 1100px; margin: 0 auto; }
+        .lead-img { width: 100%; border-radius: 2px; border: 1px solid var(--border); filter: grayscale(100%); transition: 0.3s; max-width: 300px; }
         .lead-img:hover { filter: grayscale(0%); border-color: var(--primary); }
         
-        /* CERTIFICATE BOX */
         .cert-box {
             display: flex; align-items: center; gap: 20px; 
-            background: rgba(255,255,255,0.03); padding: 20px; border-radius: 4px; 
+            background: rgba(255,255,255,0.03); padding: 25px; border-radius: 2px; 
             margin-top: 30px; border: 1px solid var(--border);
         }
-        .cert-thumb { height: 80px; border: 1px solid var(--border); transition: 0.3s; }
-        .cert-thumb:hover { transform: scale(2); z-index: 100; border-color: var(--primary); }
+        .cert-thumb { height: 70px; transition: 0.3s; border: 1px solid #333; }
+        .cert-thumb:hover { transform: scale(2.5); z-index: 100; border-color: var(--primary); box-shadow: 0 0 20px #000; }
 
-        /* --- FOOTER INSTITUCIONAL --- */
+        /* --- FOOTER (LEGAL & STRUCTURED) --- */
         footer { background: var(--bg-surface); padding: 80px 8% 40px; border-top: 1px solid var(--border); }
         .footer-cols { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
-        .footer-link { display: block; color: var(--text-muted); text-decoration: none; margin-bottom: 12px; font-size: 0.9rem; transition: 0.2s; }
-        .footer-link:hover { color: var(--primary); padding-left: 5px; }
+        .footer-link { display: block; color: var(--text-muted); text-decoration: none; margin-bottom: 12px; font-size: 0.85rem; transition: 0.2s; }
+        .footer-link:hover { color: var(--primary); }
         
         @media (max-width: 900px) {
             .nav-links { display: none; }
             .kpi-box { border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
             .case-card, .lead-grid { grid-template-columns: 1fr; }
             .footer-cols { grid-template-columns: 1fr; }
-            .hero-title { font-size: 2.2rem; }
-            .lead-img { margin-bottom: 30px; }
+            .hero-title { font-size: 2rem; }
+            .hero { padding-top: 140px; }
         }
 
         /* UI ELEMENTS */
@@ -212,27 +209,27 @@
 
     <section class="hero">
         <div class="sage-badge-hero">
-            <i class="fa-solid fa-dragon"></i>
+            <i class="fa-solid fa-shield-halved"></i>
             <div class="sage-info">
-                <div class="sage-title">HURRICANE ELECTRIC SAGE</div>
-                <div class="sage-sub" data-i18n="hero_badge">TOP 1% GLOBAL NETWORK ELITE</div>
+                <div class="sage-title">CORPORATE INFRASTRUCTURE</div>
+                <div class="sage-sub" data-i18n="hero_badge">RISK MITIGATION & CONTINUITY</div>
             </div>
         </div>
 
         <h1 class="hero-title">
-            <span data-i18n="hero_t1">ESTABILIDADE NÃO É SORTE.</span><br>
-            <span style="color: var(--primary);" data-i18n="hero_t2">É ENGENHARIA.</span>
+            <span data-i18n="hero_t1">CONTINUIDADE OPERACIONAL</span><br>
+            <span style="color: var(--primary);" data-i18n="hero_t2">RISCO ZERO.</span>
         </h1>
         
         <p class="hero-desc" data-i18n="hero_desc">
-            A KNS é uma empresa de engenharia de infraestrutura e observabilidade focada em reduzir risco operacional e garantir continuidade de negócios em ambientes de missão crítica.
+            A KNS Global é uma firma de engenharia especializada em garantir a estabilidade financeira e operacional de grandes corporações. Eliminamos riscos de infraestrutura antes que impactem o faturamento.
         </p>
 
         <div class="cta-container">
             <a href="https://calendly.com/SEU_LINK_CALENDLY" target="_blank" class="btn-executive" data-i18n="cta_main">
-                <i class="fa-regular fa-calendar-check" style="margin-right: 10px;"></i> SOLICITAR DIAGNÓSTICO DE RISCO
+                <i class="fa-regular fa-calendar-check" style="margin-right: 10px;"></i> SOLICITAR ANÁLISE DE RISCO
             </a>
-            <a href="#governance" class="btn-secondary" data-i18n="cta_sec">NOSSA METODOLOGIA</a>
+            <a href="#governance" class="btn-secondary" data-i18n="cta_sec">NOSSA GOVERNANÇA</a>
         </div>
     </section>
 
@@ -243,7 +240,7 @@
         </div>
         <div class="kpi-box">
             <span class="kpi-value">-40%</span>
-            <span class="kpi-label" data-i18n="kpi_opex">REDUÇÃO DE OPEX</span>
+            <span class="kpi-label" data-i18n="kpi_opex">CUSTO OPERACIONAL</span>
         </div>
         <div class="kpi-box">
             <span class="kpi-value" style="color: var(--primary);">SAGE</span>
@@ -256,11 +253,11 @@
     </section>
 
     <section class="industry-section">
-        <p class="mono" style="margin-bottom: 40px; color: var(--primary); letter-spacing: 2px;" data-i18n="ind_title">SETORES ATENDIDOS</p>
+        <p class="mono" style="margin-bottom: 40px; color: var(--text-muted); letter-spacing: 2px;" data-i18n="ind_title">SETORES DE ATUAÇÃO</p>
         <div class="ind-grid">
             <div class="ind-item">
                 <i class="fa-solid fa-server ind-icon"></i>
-                <span class="ind-label">SaaS & TECH</span>
+                <span class="ind-label">SaaS & ENTERPRISE</span>
             </div>
             <div class="ind-item">
                 <i class="fa-solid fa-building-columns ind-icon"></i>
@@ -281,24 +278,24 @@
         <div style="text-align: center; max-width: 800px; margin: 0 auto;">
             <span style="color: var(--primary); font-family: 'JetBrains Mono'; font-weight: 700; letter-spacing: 2px;">CORPORATE GOVERNANCE</span>
             <h2 style="font-size: 2.5rem; margin-top: 15px;" data-i18n="gov_title">SEGURANÇA JURÍDICA E OPERACIONAL</h2>
-            <p style="color: var(--text-muted); margin-top: 15px;" data-i18n="gov_desc">Nossa atuação vai além da técnica. Entregamos conformidade e mitigação de riscos alinhados com as melhores práticas de mercado.</p>
+            <p style="color: var(--text-muted); margin-top: 15px;" data-i18n="gov_desc">Mitigação de riscos alinhada com as melhores práticas de mercado e exigências legais globais.</p>
         </div>
 
         <div class="gov-grid">
             <div class="gov-card">
-                <i class="fa-solid fa-file-shield gov-icon"></i>
-                <h3 class="gov-title" data-i18n="gov_1_t">Compliance & LGPD</h3>
-                <p class="gov-text" data-i18n="gov_1_d">Toda a arquitetura é desenhada respeitando as leis de proteção de dados e diretrizes de Segurança da Informação.</p>
+                <i class="fa-solid fa-file-contract gov-icon"></i>
+                <h3 class="gov-title" data-i18n="gov_1_t">SLA & Contratos</h3>
+                <p class="gov-text" data-i18n="gov_1_d">Acordos de Nível de Serviço (SLA) definidos contratualmente. Garantia financeira sobre a disponibilidade da operação.</p>
             </div>
             <div class="gov-card">
-                <i class="fa-solid fa-list-check gov-icon"></i>
-                <h3 class="gov-title" data-i18n="gov_2_t">Padrões ITIL & ISO</h3>
-                <p class="gov-text" data-i18n="gov_2_d">Processos baseados em bibliotecas ITIL e alinhamento com a ISO 27001 para gestão de incidentes e continuidade.</p>
+                <i class="fa-solid fa-shield-halved gov-icon"></i>
+                <h3 class="gov-title" data-i18n="gov_2_t">Compliance & LGPD</h3>
+                <p class="gov-text" data-i18n="gov_2_d">Arquitetura auditável e compatível com Leis de Proteção de Dados. Segurança da Informação como pilar.</p>
             </div>
             <div class="gov-card">
-                <i class="fa-solid fa-chart-line gov-icon"></i>
-                <h3 class="gov-title" data-i18n="gov_3_t">SLA Definido</h3>
-                <p class="gov-text" data-i18n="gov_3_d">Contratos com Acordo de Nível de Serviço claros. Garantia de tempo de resposta e resolução para sua operação crítica.</p>
+                <i class="fa-solid fa-clipboard-check gov-icon"></i>
+                <h3 class="gov-title" data-i18n="gov_3_t">Padrões ITIL</h3>
+                <p class="gov-text" data-i18n="gov_3_d">Gestão de incidentes e mudanças baseada na biblioteca ITIL. Processos documentados e previsíveis.</p>
             </div>
         </div>
     </section>
@@ -307,24 +304,25 @@
         <div class="case-card">
             <div class="case-content">
                 <span style="color: var(--primary); font-family: 'JetBrains Mono'; font-weight: 700; margin-bottom: 20px;">CASE STUDY: SOFTWARE HOUSE</span>
-                <h2 style="font-size: 2.5rem; margin-bottom: 20px;" data-i18n="case_title">MITIGAÇÃO DE RISCO EM AMBIENTE CRÍTICO</h2>
+                <h2 style="font-size: 2.5rem; margin-bottom: 20px;" data-i18n="case_title">PROTEÇÃO DE RECEITA RECORRENTE</h2>
                 
                 <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 15px;" data-i18n="case_p1">
-                    <strong>Contexto:</strong> Empresa Líder de Mercado em Software (SaaS) com instabilidades recorrentes ameaçando contratos Enterprise. Risco financeiro elevado por quebra de SLA.
+                    <strong>Risco Identificado:</strong> Instabilidade na infraestrutura ameaçava contratos Enterprise de alto valor. Risco iminente de Churn e multas contratuais.
                 </p>
                 <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 15px;" data-i18n="case_p2">
-                    <strong>A Solução KNS:</strong> Implementação do Protocolo 09. Auditoria de arquitetura, refatoração de rotas e aplicação de Self-Healing (Python).
+                    <strong>Intervenção KNS:</strong> Implementação do Protocolo 09. Auditoria, reengenharia de tráfego e automação de "Self-Healing".
                 </p>
-                <p style="color: var(--text-main); line-height: 1.7; margin-bottom: 30px; border-left: 3px solid var(--primary); padding-left: 15px;" data-i18n="case_p3">
-                    <strong>Resultado:</strong> Estabilidade total em 30 dias. Redução de 100% no Churn Técnico no período.
-                </p>
-                <a href="#solucoes" style="color: var(--text-main); font-weight: 700; text-decoration: none; border-bottom: 1px solid var(--primary);">VER ARQUITETURA APLICADA</a>
+                <div style="border-left: 3px solid var(--primary); padding-left: 20px; margin: 30px 0;">
+                    <p style="color: var(--text-main); font-weight: 700; font-size: 1.1rem; margin-bottom: 5px;">RESULTADO FINANCEIRO</p>
+                    <p style="color: var(--text-muted);" data-i18n="case_p3">Estabilidade total em 30 dias. <strong>Zero perda de receita</strong> por indisponibilidade no trimestre seguinte.</p>
+                </div>
+                <a href="https://calendly.com/SEU_LINK_CALENDLY" style="color: var(--text-main); font-weight: 700; text-decoration: none; border-bottom: 1px solid var(--primary);">AGENDAR APRESENTAÇÃO DESTE CASE</a>
             </div>
             <div class="case-visual">
-                <i class="fa-solid fa-shield-virus" style="font-size: 8rem; color: var(--primary); margin-bottom: 30px;"></i>
+                <i class="fa-solid fa-chart-line" style="font-size: 8rem; color: var(--primary); margin-bottom: 30px;"></i>
                 <div style="text-align: center;">
                     <h3 style="font-size: 3rem; margin: 0;">0%</h3>
-                    <span class="mono" style="color: var(--text-muted);">RISCO RESIDUAL</span>
+                    <span class="mono" style="color: var(--text-muted);">PERDA DE RECEITA</span>
                 </div>
             </div>
         </div>
@@ -340,11 +338,10 @@
                 </div>
             </div>
             <div>
-                <span style="color: var(--primary); font-family: 'JetBrains Mono'; font-weight: 700; display: block; margin-bottom: 20px;">// NOSSA VISÃO</span>
+                <span style="color: var(--primary); font-family: 'JetBrains Mono'; font-weight: 700; display: block; margin-bottom: 20px;">// VISÃO INSTITUCIONAL</span>
                 <h2 style="font-size: 2.2rem; margin-bottom: 20px; line-height: 1.2;" data-i18n="bio_title">ENGENHARIA ALÉM DO INDIVÍDUO</h2>
                 <p style="color: var(--text-muted); line-height: 1.7; font-size: 1rem; margin-bottom: 20px;" data-i18n="bio_text">
-                    A KNS Global foi fundada com uma premissa clara: operações críticas não podem depender de heróis, elas precisam de sistemas. 
-                    Nossa metodologia foi desenvolvida para garantir que o conhecimento e a estabilidade pertençam à empresa do cliente, não a um consultor externo.
+                    A KNS Global opera sob uma premissa inegociável: operações de missão crítica exigem sistemas, processos e redundância, não apenas talento individual. Nossa metodologia transfere a inteligência para a estrutura do cliente, garantindo perpetuidade e segurança operacional.
                 </p>
                 
                 <div class="cert-box">
@@ -362,25 +359,25 @@
         <div class="footer-cols">
             <div>
                 <h3 class="brand" style="margin-bottom: 20px;">KNS<span style="font-weight: 300;">GLOBAL</span></h3>
-                <p style="color: var(--text-muted); line-height: 1.6; font-size: 0.9rem;" data-i18n="footer_about">
-                    Engenharia de Redes de Elite & Governança.<br>
+                <p style="color: var(--text-muted); line-height: 1.6; font-size: 0.85rem;" data-i18n="footer_about">
+                    Engenharia de Redes & Governança.<br>
                     Mitigação de riscos para operações de Missão Crítica.<br>
                     Balneário Camboriú, SC - Brasil.
                 </p>
             </div>
             <div>
                 <h4 style="margin-bottom: 20px; font-size: 0.9rem;">SOLUÇÕES</h4>
-                <a href="#" class="footer-link">Protocolo 09</a>
-                <a href="#" class="footer-link">IPv6 Compliance</a>
-                <a href="#" class="footer-link">Network Automation</a>
-                <a href="#" class="footer-link">Disaster Recovery</a>
+                <a href="#" class="footer-link">Protocolo 09 (Metodologia)</a>
+                <a href="#" class="footer-link">Compliance IPv6</a>
+                <a href="#" class="footer-link">Automação de Infraestrutura</a>
+                <a href="#" class="footer-link">Disaster Recovery (DR)</a>
             </div>
             <div>
                 <h4 style="margin-bottom: 20px; font-size: 0.9rem;">INSTITUCIONAL</h4>
-                <a href="#" class="footer-link">Sobre a KNS</a>
                 <a href="#" class="footer-link">Governança Corporativa</a>
-                <a href="#" class="footer-link">Política de Privacidade</a>
+                <a href="#" class="footer-link">Política de Privacidade (LGPD)</a>
                 <a href="#" class="footer-link">Termos de Serviço (SLA)</a>
+                <a href="#" class="footer-link">Trabalhe Conosco</a>
             </div>
             <div>
                 <h4 style="margin-bottom: 20px; font-size: 0.9rem;">CONTATO</h4>
@@ -407,78 +404,78 @@
         const i18n = {
             pt: {
                 nav_sol: "SOLUÇÕES", nav_gov: "GOVERNANÇA", nav_case: "RESULTADOS",
-                hero_badge: "TOP 1% GLOBAL NETWORK ELITE",
-                hero_t1: "ESTABILIDADE NÃO É SORTE.", hero_t2: "É ENGENHARIA.",
-                hero_desc: "A KNS é uma empresa de engenharia de infraestrutura e observabilidade focada em reduzir risco operacional e garantir continuidade de negócios em ambientes críticos.",
-                cta_main: "SOLICITAR DIAGNÓSTICO DE RISCO", cta_sec: "NOSSA METODOLOGIA",
+                hero_badge: "RISCO OPERACIONAL & CONTINUIDADE",
+                hero_t1: "CONTINUIDADE OPERACIONAL", hero_t2: "RISCO ZERO.",
+                hero_desc: "A KNS Global é uma firma de engenharia especializada em garantir a estabilidade financeira e operacional de grandes corporações. Eliminamos riscos de infraestrutura antes que impactem o faturamento.",
+                cta_main: "SOLICITAR ANÁLISE DE RISCO", cta_sec: "NOSSA GOVERNANÇA",
                 kpi_uptime: "SLA DE DISPONIBILIDADE", kpi_opex: "REDUÇÃO DE OPEX", kpi_cert: "CERTIFICAÇÃO GLOBAL", kpi_mon: "STANDARDS ALIGNED",
                 
                 gov_title: "SEGURANÇA JURÍDICA E OPERACIONAL",
-                gov_desc: "Nossa atuação vai além da técnica. Entregamos conformidade e mitigação de riscos para stakeholders.",
-                gov_1_t: "Compliance & LGPD", gov_1_d: "Toda a arquitetura é desenhada respeitando as leis de proteção de dados e diretrizes de Segurança da Informação.",
-                gov_2_t: "Padrões ITIL & ISO", gov_2_d: "Processos baseados em bibliotecas ITIL e alinhamento com a ISO 27001 para gestão de incidentes e continuidade.",
-                gov_3_t: "SLA Definido", gov_3_d: "Contratos com Acordo de Nível de Serviço claros. Garantia de tempo de resposta e resolução.",
+                gov_desc: "Mitigação de riscos alinhada com as melhores práticas de mercado e exigências legais globais.",
+                gov_1_t: "SLA & Contratos", gov_1_d: "Acordos de Nível de Serviço (SLA) definidos contratualmente. Garantia financeira sobre a disponibilidade da operação.",
+                gov_2_t: "Compliance & LGPD", gov_2_d: "Arquitetura auditável e compatível com Leis de Proteção de Dados. Segurança da Informação como pilar.",
+                gov_3_t: "Padrões ITIL", gov_3_d: "Gestão de incidentes e mudanças baseada na biblioteca ITIL. Processos documentados e previsíveis.",
 
-                ind_title: "SETORES ATENDIDOS",
-                case_title: "MITIGAÇÃO DE RISCO EM AMBIENTE CRÍTICO",
-                case_p1: "<strong>Contexto:</strong> Empresa Líder de Mercado em Software (SaaS) com instabilidades recorrentes ameaçando contratos Enterprise. Risco financeiro elevado por quebra de SLA.",
-                case_p2: "<strong>A Solução KNS:</strong> Implementação do Protocolo 09. Auditoria de arquitetura, refatoração de rotas e aplicação de Self-Healing (Python).",
-                case_p3: "<strong>Resultado:</strong> Estabilidade total em 30 dias. Redução de 100% no Churn Técnico no período.",
+                ind_title: "SETORES DE ATUAÇÃO",
+                case_title: "PROTEÇÃO DE RECEITA RECORRENTE",
+                case_p1: "<strong>Risco Identificado:</strong> Instabilidade na infraestrutura ameaçava contratos Enterprise de alto valor. Risco iminente de Churn e multas contratuais.",
+                case_p2: "<strong>Intervenção KNS:</strong> Implementação do Protocolo 09. Auditoria, reengenharia de tráfego e automação de 'Self-Healing'.",
+                case_p3: "Estabilidade total em 30 dias. <strong>Zero perda de receita</strong> por indisponibilidade no trimestre seguinte.",
 
                 bio_title: "ENGENHARIA ALÉM DO INDIVÍDUO",
-                bio_text: "A KNS Global foi fundada com uma premissa clara: operações críticas não podem depender de heróis, elas precisam de sistemas. Nossa metodologia foi desenvolvida para garantir que o conhecimento e a estabilidade pertençam à empresa do cliente.",
+                bio_text: "A KNS Global opera sob uma premissa inegociável: operações de missão crítica exigem sistemas, processos e redundância, não apenas talento individual. Nossa metodologia transfere a inteligência para a estrutura do cliente.",
                 
-                footer_about: "Engenharia de Redes de Elite & Governança.<br>Mitigação de riscos para operações de Missão Crítica.<br>Balneário Camboriú, SC - Brasil."
+                footer_about: "Engenharia de Redes & Governança.<br>Mitigação de riscos para operações de Missão Crítica.<br>Balneário Camboriú, SC - Brasil."
             },
             en: {
                 nav_sol: "SOLUTIONS", nav_gov: "GOVERNANCE", nav_case: "RESULTS",
-                hero_badge: "TOP 1% GLOBAL NETWORK ELITE",
-                hero_t1: "STABILITY IS NOT LUCK.", hero_t2: "IT IS ENGINEERING.",
-                hero_desc: "KNS Global is an infrastructure engineering and observability firm focused on reducing operational risk and ensuring business continuity in critical environments.",
-                cta_main: "REQUEST RISK DIAGNOSIS", cta_sec: "OUR METHODOLOGY",
+                hero_badge: "OPERATIONAL RISK & CONTINUITY",
+                hero_t1: "OPERATIONAL CONTINUITY", hero_t2: "ZERO RISK.",
+                hero_desc: "KNS Global is an engineering firm specialized in ensuring financial and operational stability for large corporations. We eliminate infrastructure risks before they impact revenue.",
+                cta_main: "REQUEST RISK ANALYSIS", cta_sec: "OUR GOVERNANCE",
                 kpi_uptime: "AVAILABILITY SLA", kpi_opex: "OPEX REDUCTION", kpi_cert: "GLOBAL CERTIFICATION", kpi_mon: "STANDARDS ALIGNED",
                 
                 gov_title: "LEGAL & OPERATIONAL SAFETY",
-                gov_desc: "Our work goes beyond technical. We deliver compliance and risk mitigation for stakeholders.",
-                gov_1_t: "Compliance & GDPR", gov_1_d: "Architecture designed respecting Data Protection Laws and Information Security guidelines.",
-                gov_2_t: "ITIL & ISO Standards", gov_2_d: "Processes based on ITIL libraries and alignment with ISO 27001 for incident management.",
-                gov_3_t: "Defined SLA", gov_3_d: "Contracts with clear Service Level Agreements. Guarantee of response and resolution time.",
+                gov_desc: "Risk mitigation aligned with best market practices and global legal requirements.",
+                gov_1_t: "SLA & Contracts", gov_1_d: "Contractually defined Service Level Agreements (SLA). Financial guarantee on operation availability.",
+                gov_2_t: "Compliance & GDPR", gov_2_d: "Auditable architecture compatible with Data Protection Laws. Information Security as a pillar.",
+                gov_3_t: "ITIL Standards", gov_3_d: "Incident and change management based on ITIL library. Documented and predictable processes.",
 
-                ind_title: "SERVED INDUSTRIES",
-                case_title: "RISK MITIGATION IN CRITICAL ENVIRONMENT",
-                case_p1: "<strong>Context:</strong> Market Leader in Software (SaaS) with recurring instabilities threatening Enterprise contracts. High financial risk due to SLA breach.",
-                case_p2: "<strong>The KNS Solution:</strong> Protocol 09 Implementation. Architecture audit, route refactoring, and Self-Healing application (Python).",
-                case_p3: "<strong>Result:</strong> Total stability in 30 days. 100% reduction in Technical Churn during the period.",
+                ind_title: "INDUSTRIES SERVED",
+                case_title: "RECURRING REVENUE PROTECTION",
+                case_p1: "<strong>Identified Risk:</strong> Infrastructure instability threatened high-value Enterprise contracts. Imminent risk of Churn and contractual fines.",
+                case_p2: "<strong>KNS Intervention:</strong> Implementation of Protocol 09. Audit, traffic re-engineering, and 'Self-Healing' automation.",
+                case_p3: "Total stability in 30 days. <strong>Zero revenue loss</strong> due to downtime in the following quarter.",
 
                 bio_title: "ENGINEERING BEYOND THE INDIVIDUAL",
-                bio_text: "KNS Global was founded on a clear premise: critical operations cannot depend on heroes, they need systems. Our methodology is designed to ensure knowledge and stability belong to the client company.",
+                bio_text: "KNS Global operates under a non-negotiable premise: mission-critical operations require systems, processes, and redundancy, not just individual talent. Our methodology transfers intelligence to the client's structure.",
                 
-                footer_about: "Elite Network Engineering & Governance.<br>Risk mitigation for Mission Critical operations.<br>Balneário Camboriú, SC - Brazil."
+                footer_about: "Network Engineering & Governance.<br>Risk mitigation for Mission Critical operations.<br>Balneário Camboriú, SC - Brazil."
             },
             es: {
                 nav_sol: "SOLUCIONES", nav_gov: "GOBERNANZA", nav_case: "RESULTADOS",
-                hero_badge: "TOP 1% GLOBAL NETWORK ELITE",
-                hero_t1: "ESTABILIDAD NO ES SUERTE.", hero_t2: "ES INGENIERÍA.",
-                hero_desc: "KNS Global es una empresa de ingeniería de infraestructura y observabilidad enfocada en reducir el riesgo operativo y garantizar la continuidad del negocio en entornos críticos.",
-                cta_main: "SOLICITAR DIAGNÓSTICO DE RIESGO", cta_sec: "NUESTRA METODOLOGÍA",
+                hero_badge: "RIESGO OPERATIVO Y CONTINUIDAD",
+                hero_t1: "CONTINUIDAD OPERATIVA", hero_t2: "CERO RIESGO.",
+                hero_desc: "KNS Global es una firma de ingeniería especializada en garantizar la estabilidad financiera y operativa de grandes corporaciones. Eliminamos riesgos de infraestructura antes de que afecten la facturación.",
+                cta_main: "SOLICITAR ANÁLISIS DE RIESGO", cta_sec: "NUESTRA GOBERNANZA",
                 kpi_uptime: "SLA DE DISPONIBILIDAD", kpi_opex: "REDUCCIÓN DE OPEX", kpi_cert: "CERTIFICACIÓN GLOBAL", kpi_mon: "STANDARDS ALIGNED",
                 
                 gov_title: "SEGURIDAD JURÍDICA Y OPERATIVA",
-                gov_desc: "Nuestro trabajo va más allá de lo técnico. Entregamos cumplimiento y mitigación de riesgos para stakeholders.",
-                gov_1_t: "Cumplimiento y GDPR", gov_1_d: "Toda la arquitectura está diseñada respetando las leyes de protección de datos y directrices de Seguridad de la Información.",
-                gov_2_t: "Estándares ITIL e ISO", gov_2_d: "Procesos basados en bibliotecas ITIL y alineación con ISO 27001 para la gestión de incidentes.",
-                gov_3_t: "SLA Definido", gov_3_d: "Contratos con Acuerdos de Nivel de Servicio claros. Garantía de tiempo de respuesta y resolución.",
+                gov_desc: "Mitigación de riesgos alineada con las mejores prácticas del mercado y requisitos legales globales.",
+                gov_1_t: "SLA y Contratos", gov_1_d: "Acuerdos de Nivel de Servicio (SLA) definidos contractualmente. Garantía financiera sobre la disponibilidad.",
+                gov_2_t: "Cumplimiento y GDPR", gov_2_d: "Arquitectura auditable y compatible con Leyes de Protección de Datos. Seguridad de la Información como pilar.",
+                gov_3_t: "Estándares ITIL", gov_3_d: "Gestión de incidentes y cambios basada en la biblioteca ITIL. Procesos documentados y predecibles.",
 
                 ind_title: "SECTORES ATENDIDOS",
-                case_title: "MITIGACIÓN DE RIESGOS EN ENTORNO CRÍTICO",
-                case_p1: "<strong>Contexto:</strong> Líder del mercado de software (SaaS) con inestabilidades recurrentes que amenazaban contratos Enterprise. Alto riesgo financiero por incumplimiento de SLA.",
-                case_p2: "<strong>La Solución KNS:</strong> Implementación del Protocolo 09. Auditoría de arquitectura, refactorización de rutas y aplicación de Self-Healing (Python).",
-                case_p3: "<strong>Resultado:</strong> Estabilidad total en 30 días. Reducción del 100% en la deserción técnica durante el período.",
+                case_title: "PROTECCIÓN DE INGRESOS RECURRENTES",
+                case_p1: "<strong>Riesgo Identificado:</strong> La inestabilidad amenazaba contratos Enterprise de alto valor. Riesgo inminente de Churn y multas contractuales.",
+                case_p2: "<strong>Intervención KNS:</strong> Implementación del Protocolo 09. Auditoría, reingeniería y automatización de 'Self-Healing'.",
+                case_p3: "Estabilidad total en 30 días. <strong>Cero pérdida de ingresos</strong> por indisponibilidad en el trimestre siguiente.",
 
                 bio_title: "INGENIERÍA MÁS ALLÁ DEL INDIVIDUO",
-                bio_text: "KNS Global se fundó con una premisa clara: las operaciones críticas no pueden depender de héroes, necesitan sistemas. Nuestra metodología está diseñada para asegurar que el conocimiento y la estabilidad pertenezcan a la empresa cliente.",
+                bio_text: "KNS Global opera bajo una premisa innegociable: las operaciones de misión crítica requieren sistemas, procesos y redundancia. Nuestra metodología transfiere la inteligencia a la estructura del cliente.",
                 
-                footer_about: "Ingeniería de Redes de Élite y Gobernanza.<br>Mitigación de riesgos para operaciones de Misión Crítica.<br>Balneário Camboriú, SC - Brasil."
+                footer_about: "Ingeniería de Redes y Gobernanza.<br>Mitigación de riesgos para operaciones de Misión Crítica.<br>Balneário Camboriú, SC - Brasil."
             }
         };
 
