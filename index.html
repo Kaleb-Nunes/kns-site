@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="KNS Global - The Authority in Strategic Infrastructure.">
-    <title>KNS GLOBAL | The Monolith</title>
+    <title>KNS GLOBAL | Authority Seal</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -12,6 +12,7 @@
     <style>
         /* --- THEME ENGINE --- */
         :root {
+            /* DARK MODE (DEFAULT) */
             --bg-body: #050505;
             --bg-panel: rgba(20, 20, 20, 0.6);
             --text-main: #ffffff;
@@ -23,23 +24,28 @@
             --nav-bg: rgba(5,5,5,0.9);
             --gradient-text: linear-gradient(135deg, #ffffff 0%, #b0b0b0 100%);
             --hero-stroke: rgba(255,255,255,0.2);
+            --marquee-bg: #000;
+            --footer-bg: #000;
         }
 
         [data-theme="light"] {
-            --bg-body: #f2f2f7;
-            --bg-panel: rgba(255, 255, 255, 0.7);
-            --text-main: #1d1d1f;
-            --text-muted: #86868b;
+            /* LIGHT MODE */
+            --bg-body: #f0f2f5;
+            --bg-panel: rgba(255, 255, 255, 0.8);
+            --text-main: #1a1a1a;
+            --text-muted: #555555;
             --neon: #009c53;
-            --neon-dim: rgba(0, 156, 83, 0.08);
-            --border: rgba(0, 0, 0, 0.1);
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            --nav-bg: rgba(242, 242, 247, 0.85);
-            --gradient-text: linear-gradient(135deg, #1d1d1f 0%, #424245 100%);
+            --neon-dim: rgba(0, 156, 83, 0.1);
+            --border: rgba(0, 0, 0, 0.15);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --nav-bg: rgba(240, 242, 245, 0.9);
+            --gradient-text: linear-gradient(135deg, #1a1a1a 0%, #444444 100%);
             --hero-stroke: rgba(0,0,0,0.8);
+            --marquee-bg: #e0e0e0;
+            --footer-bg: #e0e0e0;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease; }
 
         body {
             background-color: var(--bg-body);
@@ -63,16 +69,16 @@
         }
         .brand { font-family: 'Orbitron'; font-weight: 800; font-size: 1.4rem; letter-spacing: 1px; display: flex; align-items: center; gap: 10px; color: var(--text-main); }
         .nav-links { display: flex; gap: 30px; }
-        .nav-link { text-decoration: none; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
+        .nav-link { text-decoration: none; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; transition: 0.3s; }
         .nav-link:hover { color: var(--neon); }
-        .theme-switch { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 1.1rem; }
+        .theme-switch { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 1.1rem; transition: 0.3s; }
         .theme-switch:hover { color: var(--text-main); transform: rotate(20deg); }
         .btn-action {
             padding: 12px 30px; background: var(--text-main); color: var(--bg-body); 
             font-family: 'Orbitron'; font-weight: 700; text-decoration: none; border-radius: 4px;
             font-size: 0.75rem; letter-spacing: 1px; transition: 0.3s;
         }
-        .btn-action:hover { box-shadow: 0 0 20px var(--neon-dim); transform: scale(1.02); }
+        .btn-action:hover { box-shadow: 0 0 20px var(--neon-dim); transform: scale(1.02); color: var(--bg-body); }
 
         /* --- HERO --- */
         .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 5% 0; }
@@ -122,13 +128,14 @@
 
         /* --- TECH MARQUEE --- */
         .marquee-section {
-            background: #000; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+            background: var(--marquee-bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
             padding: 30px 0; overflow: hidden; white-space: nowrap; margin-top: 80px;
+            transition: background-color 0.5s ease;
         }
         .marquee-track { display: inline-block; animation: scroll 40s linear infinite; }
         .tech-logo-item {
             display: inline-flex; align-items: center; gap: 15px; margin: 0 60px;
-            color: #666; font-family: 'Orbitron'; font-weight: 700; font-size: 1.2rem;
+            color: var(--text-muted); font-family: 'Orbitron'; font-weight: 700; font-size: 1.2rem;
             transition: 0.3s; opacity: 0.7;
         }
         .tech-logo-item i { font-size: 1.8rem; }
@@ -139,21 +146,21 @@
         .section-pad { padding: 120px 8%; }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
 
-        /* --- MANIFESTO SECTION --- */
+        /* --- MANIFESTO --- */
         .manifesto-box { max-width: 800px; margin: 0 auto; text-align: center; }
         
         /* --- GOVERNANCE CARDS --- */
         .glass-card {
             padding: 50px 40px; border: 1px solid var(--border); border-radius: 8px;
-            background: linear-gradient(180deg, var(--bg-panel) 0%, transparent 100%); transition: 0.3s;
+            background: var(--bg-panel); transition: 0.3s;
         }
-        .glass-card:hover { border-color: var(--neon); transform: translateY(-5px); }
+        .glass-card:hover { border-color: var(--neon); transform: translateY(-5px); box-shadow: var(--shadow); }
         .card-title { font-family: 'Orbitron'; font-size: 1.4rem; margin-bottom: 15px; color: var(--text-main); }
 
-        /* --- PROTOCOLO 09 (BOOST) --- */
+        /* --- PROTOCOLO 09 --- */
+        .p9-hero-section { padding: 120px 8%; position: relative; background: var(--bg-body); }
         .p9-container-box {
-            background: linear-gradient(180deg, rgba(0,255,136,0.02) 0%, transparent 100%);
-            border: 1px solid var(--neon-dim); border-radius: 20px; padding: 80px 40px;
+            background: var(--bg-panel); border: 1px solid var(--neon-dim); border-radius: 20px; padding: 80px 40px;
             text-align: center; position: relative; overflow: hidden;
         }
         .p9-card-boost {
@@ -168,43 +175,65 @@
             background: var(--bg-panel); transition: 0.3s; border-radius: 8px;
         }
         .tier-card:hover { border-color: var(--text-main); }
-        .tier-card.featured { border-color: var(--neon); background: radial-gradient(circle at top, var(--neon-dim), var(--bg-panel)); }
+        .tier-card.featured { border-color: var(--neon); background: var(--bg-panel); box-shadow: var(--shadow); }
 
-        /* --- FOUNDER --- */
+        /* --- FOUNDER (NEW LAYOUT) --- */
         .founder-box {
-            display: grid; grid-template-columns: 350px 1fr; gap: 60px; align-items: center; padding: 80px;
-            background: var(--bg-panel); border: 1px solid var(--border); border-radius: 12px; margin: 100px auto; max-width: 1300px;
+            /* GRID DE 3 COLUNAS: FOTO | TEXTO | CERTIFICADO */
+            display: grid; grid-template-columns: 350px 1fr auto; gap: 50px; 
+            align-items: center; padding: 60px; position: relative;
+            background: var(--bg-panel); border: 1px solid var(--border); 
+            border-radius: 12px; margin: 100px auto; max-width: 1400px;
         }
-        .cert-zoom-container { position: relative; width: 100%; aspect-ratio: 1/1; cursor: crosshair; }
+        
         .founder-photo { 
-            width: 100%; height: 100%; object-fit: cover; border-radius: 12px; 
-            border: 1px solid var(--border); box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            width: 100%; height: 350px; object-fit: cover; border-radius: 12px; 
+            border: 1px solid var(--border); box-shadow: var(--shadow);
         }
-        .cert-badge-overlay {
-            position: absolute; bottom: -20px; right: -20px; width: 100px; height: 100px;
-            background: #fff; border-radius: 50%; border: 2px solid var(--neon);
-            padding: 10px; display: flex; align-items: center; justify-content: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3); z-index: 10;
+
+        /* CERTIFICADO "ALI" (LADO DIREITO) */
+        .cert-badge-wrapper {
+            position: relative; width: 140px; height: 140px; display: flex; 
+            align-items: center; justify-content: center;
         }
-        .cert-badge-overlay:hover { transform: scale(3) translate(-20%, -20%); z-index: 100; border-radius: 8px; }
+        .cert-badge-img {
+            width: 100%; height: auto; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            filter: drop-shadow(0 0 10px rgba(0,0,0,0.5)); cursor: pointer;
+        }
+        /* EFEITO ZOOM NO MOUSE */
+        .cert-badge-wrapper:hover .cert-badge-img {
+            transform: scale(1.8) translateX(-10px); /* Zoom Grande */
+            z-index: 999;
+        }
+        .cert-label {
+            position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%);
+            white-space: nowrap; font-size: 0.7rem; color: var(--neon); font-family: 'JetBrains Mono';
+            opacity: 0.7; letter-spacing: 1px;
+        }
 
         /* --- FAQ --- */
         .faq-item { border-bottom: 1px solid var(--border); padding: 20px 0; }
-        .faq-q { font-family: 'Orbitron'; font-size: 1.1rem; cursor: pointer; display: flex; justify-content: space-between; }
+        .faq-q { font-family: 'Orbitron'; font-size: 1.1rem; cursor: pointer; display: flex; justify-content: space-between; color: var(--text-main); }
         .faq-a { display: none; margin-top: 15px; color: var(--text-muted); line-height: 1.6; }
         .faq-item.active .faq-a { display: block; }
 
         /* --- FOOTER --- */
-        footer { border-top: 1px solid var(--border); padding: 80px 5% 40px; background: #000; color: #888; }
-        .contact-item { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-size: 0.9rem; color: #aaa; text-decoration: none; transition: 0.3s; }
+        footer { 
+            border-top: 1px solid var(--border); padding: 80px 5% 40px; 
+            background: var(--footer-bg); color: var(--text-muted);
+            transition: background-color 0.5s ease;
+        }
+        .footer-col h3, .footer-col h4 { color: var(--text-main); margin-bottom: 20px; font-family: 'Orbitron'; }
+        .contact-item { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-size: 0.9rem; color: var(--text-muted); text-decoration: none; transition: 0.3s; }
         .contact-item:hover { color: var(--neon); }
+        .social-btn { color: var(--text-main); font-size: 1.2rem; transition: 0.3s; }
+        .social-btn:hover { color: var(--neon); }
 
-        @media (max-width: 900px) {
-            .nav-links { display: none; }
-            .founder-box { grid-template-columns: 1fr; padding: 40px; text-align: center; }
+        @media (max-width: 1100px) {
+            .founder-box { grid-template-columns: 1fr; padding: 40px; text-align: center; justify-items: center; }
             .hero-word-2 { font-size: 3rem; }
-            .cert-zoom-container { max-width: 300px; margin: 0 auto; }
+            .founder-photo { height: 300px; width: 300px; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
@@ -226,7 +255,7 @@
 
     <section class="hero">
         <div class="status-pill">
-            <span style="width: 6px; height: 6px; background: var(--neon); border-radius: 50%; box-shadow: 0 0 10px var(--neon);"></span>
+            <span style="width: 6px; height: 6px; background: var(--neon); border-radius: 50%;"></span>
             SYSTEM ONLINE
         </div>
 
@@ -295,7 +324,7 @@
         </div>
     </section>
 
-    <section id="p9" class="section-pad" style="background: linear-gradient(180deg, var(--bg-body), var(--bg-panel));">
+    <section id="p9" class="p9-hero-section">
         <div class="p9-container-box">
             <span class="mono" style="color: var(--neon); letter-spacing: 2px;">TECNOLOGIA PROPRIETÁRIA</span>
             <h2 style="font-family: 'Orbitron'; font-size: 3rem; margin: 20px 0; color: var(--text-main);">PROTOCOLO 09</h2>
@@ -306,17 +335,17 @@
             <div class="p9-grid">
                 <div class="p9-card-boost">
                     <i class="fa-solid fa-eye" style="font-size: 2.5rem; color: var(--neon); margin-bottom: 20px;"></i>
-                    <h3 style="font-family: 'Orbitron'; font-size: 1.4rem; margin-bottom: 15px;">Observabilidade</h3>
+                    <h3 style="font-family: 'Orbitron'; font-size: 1.4rem; margin-bottom: 15px; color: var(--text-main);">Observabilidade</h3>
                     <p style="color: var(--text-muted);">Vemos o que ferramentas padrões ignoram. Correlação de eventos de rede com impacto no faturamento.</p>
                 </div>
                 <div class="p9-card-boost">
                     <i class="fa-solid fa-robot" style="font-size: 2.5rem; color: var(--neon); margin-bottom: 20px;"></i>
-                    <h3 style="font-family: 'Orbitron'; font-size: 1.4rem; margin-bottom: 15px;">Auto-Cura</h3>
+                    <h3 style="font-family: 'Orbitron'; font-size: 1.4rem; margin-bottom: 15px; color: var(--text-main);">Auto-Cura</h3>
                     <p style="color: var(--text-muted);">Scripts de remediação imediata. O servidor cai, o código levanta. Sem downtime perceptível.</p>
                 </div>
                 <div class="p9-card-boost">
                     <i class="fa-solid fa-shield-halved" style="font-size: 2.5rem; color: var(--neon); margin-bottom: 20px;"></i>
-                    <h3 style="font-family: 'Orbitron'; font-size: 1.4rem; margin-bottom: 15px;">Blindagem</h3>
+                    <h3 style="font-family: 'Orbitron'; font-size: 1.4rem; margin-bottom: 15px; color: var(--text-main);">Blindagem</h3>
                     <p style="color: var(--text-muted);">Hardening de servidores e redes. Proteção contra falhas lógicas e ataques básicos.</p>
                 </div>
             </div>
@@ -324,11 +353,11 @@
     </section>
 
     <section id="models" class="section-pad">
-        <h2 style="text-align: center; font-family: 'Orbitron'; margin-bottom: 60px;">MODELOS DE ATUAÇÃO</h2>
+        <h2 style="text-align: center; font-family: 'Orbitron'; margin-bottom: 60px; color: var(--text-main);">MODELOS DE ATUAÇÃO</h2>
         <div class="grid-3">
             <div class="tier-card">
                 <span class="mono" style="color: var(--text-muted);">ADVISORY</span>
-                <h3 style="font-family: 'Orbitron'; margin: 20px 0;">DIAGNÓSTICO</h3>
+                <h3 style="font-family: 'Orbitron'; margin: 20px 0; color: var(--text-main);">DIAGNÓSTICO</h3>
                 <ul style="list-style: none; color: var(--text-muted); line-height: 2;">
                     <li><i class="fa-solid fa-check"></i> Auditoria de Rede</li>
                     <li><i class="fa-solid fa-check"></i> Roadmap de Segurança</li>
@@ -336,7 +365,7 @@
             </div>
             <div class="tier-card featured">
                 <span class="mono" style="color: var(--neon);">IMPLEMENTATION</span>
-                <h3 style="font-family: 'Orbitron'; margin: 20px 0;">FULL STACK</h3>
+                <h3 style="font-family: 'Orbitron'; margin: 20px 0; color: var(--text-main);">FULL STACK</h3>
                 <ul style="list-style: none; color: var(--text-muted); line-height: 2;">
                     <li><i class="fa-solid fa-check" style="color: var(--neon);"></i> Protocolo 09 Completo</li>
                     <li><i class="fa-solid fa-check" style="color: var(--neon);"></i> Automação Python</li>
@@ -345,7 +374,7 @@
             </div>
             <div class="tier-card">
                 <span class="mono" style="color: var(--text-muted);">PARTNER</span>
-                <h3 style="font-family: 'Orbitron'; margin: 20px 0;">FRACTIONAL CTO</h3>
+                <h3 style="font-family: 'Orbitron'; margin: 20px 0; color: var(--text-main);">FRACTIONAL CTO</h3>
                 <ul style="list-style: none; color: var(--text-muted); line-height: 2;">
                     <li><i class="fa-solid fa-check"></i> Gestão de Crise</li>
                     <li><i class="fa-solid fa-check"></i> Board Member</li>
@@ -356,36 +385,38 @@
 
     <section id="about" class="section-pad" style="padding-top: 0;">
         <div class="founder-box">
-            <div class="cert-zoom-container">
+            <div>
                 <img src="./assets/foto.jpg" alt="Kaleb Nunes" class="founder-photo">
-                <div class="cert-badge-overlay">
-                    <img src="./assets/sage_full.png" alt="SAGE Badge" style="width: 100%; height: auto;">
-                </div>
             </div>
             
-            <div>
+            <div style="text-align: left;">
                 <span class="mono" style="color: var(--neon); letter-spacing: 1px;">FOUNDER & HEAD OF ENGINEERING</span>
-                <h3 style="font-family: 'Orbitron'; font-size: 2.5rem; margin: 15px 0;">KALEB NUNES</h3>
+                <h3 style="font-family: 'Orbitron'; font-size: 2.5rem; margin: 15px 0; color: var(--text-main);">KALEB NUNES</h3>
                 <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 30px; font-size: 1.05rem;">
                     "Minha missão é simples: garantir que a tecnologia seja um ativo invisível, não um problema visível. Com o Protocolo 09, entregamos a paz de espírito que apenas a engenharia de precisão pode oferecer."
                 </p>
                 
                 <div style="display: flex; gap: 30px; border-top: 1px solid var(--border); padding-top: 20px;">
                     <div>
-                        <span style="display: block; font-size: 1.5rem; font-weight: 700; color: #fff;">+10</span>
+                        <span style="display: block; font-size: 1.5rem; font-weight: 700; color: var(--text-main);">+10</span>
                         <span style="font-size: 0.75rem; color: var(--text-muted);">ANOS DE EXPERIÊNCIA</span>
                     </div>
                     <div>
-                        <span style="display: block; font-size: 1.5rem; font-weight: 700; color: #fff;">TOP 1%</span>
+                        <span style="display: block; font-size: 1.5rem; font-weight: 700; color: var(--text-main);">TOP 1%</span>
                         <span style="font-size: 0.75rem; color: var(--text-muted);">SAGE CERTIFIED GLOBAL</span>
                     </div>
                 </div>
+            </div>
+
+            <div class="cert-badge-wrapper">
+                <img src="./assets/sage_full.png" alt="SAGE Badge" class="cert-badge-img">
+                <span class="cert-label">VERIFIED</span>
             </div>
         </div>
     </section>
 
     <section class="section-pad">
-        <h2 style="text-align: center; font-family: 'Orbitron'; margin-bottom: 40px;">EXECUTIVE FAQ</h2>
+        <h2 style="text-align: center; font-family: 'Orbitron'; margin-bottom: 40px; color: var(--text-main);">EXECUTIVE FAQ</h2>
         <div style="max-width: 800px; margin: 0 auto;">
             <div class="faq-item" onclick="this.classList.toggle('active')">
                 <div class="faq-q">A KNS substitui minha equipe? <i class="fa-solid fa-chevron-down"></i></div>
@@ -405,7 +436,7 @@
     <footer id="contact">
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 50px;">
             <div class="footer-col">
-                <h3 style="font-family: 'Orbitron'; margin-bottom: 15px; color: #fff;">KNS GLOBAL</h3>
+                <h3>KNS GLOBAL</h3>
                 <p style="font-size: 0.85rem; line-height: 1.6;">
                     Engenharia de Continuidade.<br>
                     Balneário Camboriú, SC - Brasil.
@@ -413,7 +444,7 @@
             </div>
             
             <div class="footer-col">
-                <h4 style="color: #fff; margin-bottom: 20px;">CONTATO DIRETO</h4>
+                <h4>CONTATO DIRETO</h4>
                 <a href="https://wa.me/5547988901616" class="contact-item">
                     <i class="fa-brands fa-whatsapp"></i> +55 (47) 98890-1616
                 </a>
@@ -423,16 +454,16 @@
             </div>
 
             <div class="footer-col">
-                <h4 style="color: #fff; margin-bottom: 20px;">REDES</h4>
+                <h4>REDES</h4>
                 <div style="display: flex; gap: 15px;">
-                    <a href="https://linkedin.com/in/kalebnunes" style="color: #fff; font-size: 1.2rem;"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="https://github.com/kalebnunes" style="color: #fff; font-size: 1.2rem;"><i class="fa-brands fa-github"></i></a>
-                    <a href="#" style="color: #fff; font-size: 1.2rem;"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://linkedin.com/in/kalebnunes" class="social-btn"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://github.com/kalebnunes" class="social-btn"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
                 </div>
             </div>
         </div>
         
-        <div style="text-align: center; font-size: 0.75rem; border-top: 1px solid #222; padding-top: 20px; color: #555;">
+        <div style="text-align: center; font-size: 0.75rem; border-top: 1px solid #222; padding-top: 20px;">
             &copy; 2026 KNS GLOBAL SOLUTIONS. ALL RIGHTS RESERVED.
         </div>
     </footer>
