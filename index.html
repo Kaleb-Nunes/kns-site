@@ -3,721 +3,428 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="KNS Global - Autoridade em Infraestrutura Estratégica.">
-    <title>KNS GLOBAL | Executive</title>
+    <title>KNS Global | Consultoria & Sistemas</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- ENGINE VISUAL (CORRIGIDO E SÓBRIO) --- */
+        /* --- GLOBAL CORE --- */
         :root {
             --bg-body: #050505;
-            --bg-panel: rgba(20, 20, 20, 0.7);
+            --bg-panel: rgba(20, 20, 20, 0.8);
             --text-main: #ffffff;
             --text-muted: #8f9ba8;
             --neon: #00ff88;
             --neon-dim: rgba(0, 255, 136, 0.1);
-            --border: rgba(255, 255, 255, 0.08);
-            --shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            --border: rgba(255, 255, 255, 0.1);
             --nav-bg: rgba(5,5,5,0.95);
             --gradient-text: linear-gradient(135deg, #ffffff 0%, #b0b0b0 100%);
             --hero-stroke: rgba(255,255,255,0.2);
-            --marquee-bg: #000;
-            --footer-bg: #000;
-            --error: #ff3333;
+            --sys-bg: #0a0a0a; /* Fundo do Sistema KNS Activo */
+            --sys-sidebar: #0f0f0f;
         }
 
-        [data-theme="light"] {
-            --bg-body: #f0f2f5;
-            --bg-panel: rgba(255, 255, 255, 0.9);
-            --text-main: #1a1a1a;
-            --text-muted: #555555;
-            --neon: #009c53;
-            --neon-dim: rgba(0, 156, 83, 0.1);
-            --border: rgba(0, 0, 0, 0.15);
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            --nav-bg: rgba(240, 242, 245, 0.95);
-            --gradient-text: linear-gradient(135deg, #1a1a1a 0%, #444444 100%);
-            --hero-stroke: rgba(0,0,0,0.8);
-            --marquee-bg: #e0e0e0;
-            --footer-bg: #e0e0e0;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease; }
-
-        body {
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            overflow-x: hidden;
-        }
-
-        /* --- CLASSES UTILITÁRIAS --- */
-        .glass-panel { background: var(--bg-panel); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow); }
-        .mono { font-family: 'JetBrains Mono'; }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { background-color: var(--bg-body); color: var(--text-main); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
         
-        /* --- NAVEGAÇÃO --- */
-        nav {
+        /* Utilitários */
+        .glass { background: var(--bg-panel); backdrop-filter: blur(12px); border: 1px solid var(--border); }
+        .mono { font-family: 'JetBrains Mono'; }
+        .hidden { display: none !important; }
+        .fade-in { animation: fadeIn 0.5s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* =========================================
+           PART 1: KNS CONSULTORIA (SITE INSTITUCIONAL)
+           ========================================= */
+        
+        /* Nav do Site */
+        .site-nav {
             position: fixed; top: 0; width: 100%; height: 80px; padding: 0 5%;
             display: flex; justify-content: space-between; align-items: center;
             z-index: 1000; background: var(--nav-bg); border-bottom: 1px solid var(--border);
         }
-        .brand { font-family: 'Orbitron'; font-weight: 800; font-size: 1.4rem; letter-spacing: 1px; display: flex; align-items: center; gap: 10px; color: var(--text-main); }
-        .nav-links { display: flex; gap: 30px; }
-        .nav-link { text-decoration: none; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; transition: 0.3s; cursor: pointer; }
-        .nav-link:hover { color: var(--neon); }
-        .theme-switch { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 1.1rem; transition: 0.3s; }
-        .theme-switch:hover { color: var(--text-main); transform: rotate(20deg); }
-        
-        .btn-action {
-            padding: 12px 30px; background: var(--text-main); color: var(--bg-body); 
-            font-family: 'Orbitron'; font-weight: 700; text-decoration: none; border-radius: 4px;
-            font-size: 0.75rem; letter-spacing: 1px; transition: 0.3s; cursor: pointer; border: none;
-        }
-        .btn-action:hover { box-shadow: 0 0 20px var(--neon-dim); transform: scale(1.02); color: var(--bg-body); }
-
-        .btn-login {
+        .brand { font-family: 'Orbitron'; font-weight: 800; font-size: 1.4rem; letter-spacing: 1px; color: #fff; display: flex; align-items: center; gap: 10px; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.75rem; text-transform: uppercase; font-weight: 700; margin-left: 30px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--neon); }
+        .btn-login-site {
             background: transparent; border: 1px solid var(--neon); color: var(--neon);
-            padding: 10px 25px; border-radius: 4px; font-family: 'Orbitron'; font-size: 0.7rem;
-            cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 8px;
+            padding: 8px 20px; border-radius: 4px; font-family: 'Orbitron'; font-size: 0.7rem;
+            cursor: pointer; transition: 0.3s; margin-left: 20px;
         }
-        .btn-login:hover { background: var(--neon); color: var(--bg-body); }
+        .btn-login-site:hover { background: var(--neon); color: #000; box-shadow: 0 0 15px var(--neon-dim); }
 
-        /* --- LOGIN MODAL --- */
-        #login-modal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9); backdrop-filter: blur(15px); z-index: 2000;
-            display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.5s;
+        /* Hero do Site */
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 5% 50px; }
+        .hero-title span { display: block; }
+        .hero-t1 { font-family: 'Orbitron'; font-weight: 800; font-size: clamp(2rem, 5vw, 4rem); color: var(--text-muted); letter-spacing: 2px; }
+        .hero-t2 { 
+            font-family: 'Orbitron'; font-weight: 900; font-size: clamp(3rem, 7vw, 6rem); 
+            color: transparent; -webkit-text-stroke: 2px rgba(255,255,255,0.3); text-transform: uppercase;
+            position: relative; 
         }
-        #login-modal.active { display: flex; opacity: 1; }
-        
-        .login-box {
-            width: 400px; padding: 40px; background: var(--bg-body); border: 1px solid var(--border);
-            border-radius: 12px; box-shadow: 0 0 50px rgba(0,255,136,0.1); position: relative;
-            transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        .hero-t2::before {
+            content: 'ABSOLUTA.'; position: absolute; top: 0; left: 0; width: 0%; height: 100%;
+            color: var(--neon); overflow: hidden; white-space: nowrap; border-right: 4px solid var(--neon);
+            -webkit-text-stroke: 0px; animation: typeFill 4s ease-in-out infinite alternate;
         }
-        #login-modal.active .login-box { transform: scale(1); }
-        
-        .login-header { text-align: center; margin-bottom: 30px; }
-        .login-title { font-family: 'Orbitron'; font-size: 1.5rem; color: var(--text-main); margin-bottom: 5px; }
-        .login-sub { font-size: 0.8rem; color: var(--text-muted); }
-        
-        .input-group { margin-bottom: 20px; text-align: left; }
-        .input-label { display: block; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--text-muted); margin-bottom: 8px; }
-        .input-field { 
-            width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); 
-            color: var(--text-main); font-family: 'Plus Jakarta Sans'; border-radius: 4px; outline: none; transition: 0.3s;
-        }
-        .input-field:focus { border-color: var(--neon); box-shadow: 0 0 10px var(--neon-dim); }
-        
-        .btn-submit { 
-            width: 100%; padding: 15px; background: var(--neon); color: #000; border: none; 
-            font-family: 'Orbitron'; font-weight: 700; cursor: pointer; border-radius: 4px; margin-top: 10px;
-        }
-        .close-modal { position: absolute; top: 15px; right: 20px; color: var(--text-muted); cursor: pointer; font-size: 1.2rem; }
+        @keyframes typeFill { 0%, 20% { width: 0%; } 80%, 100% { width: 100%; } }
 
-        /* --- PAINEL DE COMANDO (DASHBOARD) --- */
-        #dashboard-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg-body); z-index: 2500; display: none;
+        /* Monitor Apple XDR */
+        .monitor-wrapper { margin-top: 60px; max-width: 900px; width: 100%; position: relative; }
+        .monitor-frame {
+            border: 1px solid #333; background: #000; border-radius: 12px; overflow: hidden;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5); aspect-ratio: 16/9; position: relative;
         }
-        .dash-container { display: flex; height: 100%; }
-        
-        .dash-sidebar {
-            width: 260px; background: var(--bg-panel); border-right: 1px solid var(--border);
-            padding: 30px 20px; display: flex; flex-direction: column;
-        }
-        .dash-logo { font-family: 'Orbitron'; font-size: 1.2rem; color: var(--text-main); margin-bottom: 40px; display: flex; align-items: center; gap: 10px; }
-        .dash-menu { list-style: none; }
-        .dash-menu li { margin-bottom: 10px; }
-        .dash-btn {
-            width: 100%; padding: 12px 15px; background: transparent; border: none; 
-            color: var(--text-muted); text-align: left; font-family: 'JetBrains Mono'; font-size: 0.8rem;
-            cursor: pointer; border-radius: 4px; display: flex; align-items: center; gap: 10px; transition: 0.3s;
-        }
-        .dash-btn:hover, .dash-btn.active { background: var(--neon-dim); color: var(--neon); }
-        .dash-logout { margin-top: auto; border-top: 1px solid var(--border); padding-top: 20px; }
+        .monitor-stand { width: 140px; height: 60px; background: linear-gradient(#333, #111); margin: 0 auto; border-radius: 0 0 10px 10px; }
 
-        .dash-main { flex: 1; padding: 40px; overflow-y: auto; position: relative; }
-        .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
-        
-        .header-profile { display: flex; gap: 20px; align-items: center; }
-        .header-avatar {
-            width: 45px; height: 45px; border-radius: 50%; object-fit: cover;
-            border: 2px solid var(--neon); padding: 2px; background: var(--bg-body);
-        }
-        
-        .live-clock {
-            font-family: 'JetBrains Mono'; color: var(--text-muted); font-size: 0.9rem;
-            border-right: 1px solid var(--border); padding-right: 20px;
-        }
-
-        .dash-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .dash-card { background: var(--bg-panel); border: 1px solid var(--border); padding: 25px; border-radius: 8px; }
-        .dash-val { font-family: 'Orbitron'; font-size: 2rem; color: var(--text-main); margin: 10px 0; }
-        .dash-lbl { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--text-muted); }
-
-        /* --- VISUAL DE TOPOLOGIA --- */
-        #view-topology { display: none; height: 100%; }
-        .topology-map {
-            width: 100%; height: 500px; background: rgba(0,0,0,0.3); border: 1px solid var(--border);
-            border-radius: 8px; position: relative; overflow: hidden; margin-top: 20px;
-            background-image: radial-gradient(var(--border) 1px, transparent 1px); background-size: 20px 20px;
-        }
-        
-        .node {
-            position: absolute; width: 60px; height: 60px; background: var(--bg-panel);
-            border: 1px solid var(--neon); border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            color: var(--neon); font-size: 1.5rem; box-shadow: 0 0 20px var(--neon-dim); z-index: 10;
-            transition: 0.3s; cursor: pointer;
-        }
-        .node:hover { transform: scale(1.1); background: var(--neon); color: #000; }
-        .node-label {
-            position: absolute; bottom: -25px; width: 150px; text-align: center; left: 50%; transform: translateX(-50%);
-            font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--text-muted);
-        }
-        
-        .node.core { top: 50%; left: 50%; transform: translate(-50%, -50%); border-color: #fff; color: #fff; width: 80px; height: 80px; }
-        .node.fw { top: 20%; left: 50%; transform: translateX(-50%); }
-        .node.cloud { top: 20%; left: 20%; }
-        .node.zabbix { bottom: 20%; right: 20%; }
-        .node.office { bottom: 20%; left: 20%; }
-        .node.isp { top: 20%; right: 20%; }
-
-        .link-line { position: absolute; background: var(--border); height: 2px; transform-origin: left center; z-index: 1; }
-        .packet {
-            position: absolute; width: 6px; height: 6px; background: var(--neon); border-radius: 50%;
-            top: -2px; left: 0; box-shadow: 0 0 10px var(--neon);
-            animation: flow 2s infinite linear;
-        }
-        @keyframes flow { 0% { left: 0; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
-
-        /* --- HERO --- */
-        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 5% 0; }
-        .status-pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 50px; border: 1px solid var(--neon); background: var(--neon-dim); color: var(--neon); font-size: 0.65rem; font-family: 'JetBrains Mono'; margin-bottom: 30px; }
-        .hero-title-wrapper { font-family: 'Orbitron'; font-weight: 900; line-height: 0.9; margin-bottom: 30px; text-align: center; display: flex; flex-direction: column; gap: 5px; align-items: center; }
-        .hero-word-1 { font-size: clamp(2rem, 5vw, 4rem); letter-spacing: 2px; color: var(--text-muted); font-weight: 600; display: block; }
-        .hero-word-2 { font-size: clamp(3rem, 8vw, 6rem); color: transparent; -webkit-text-stroke: 2px var(--hero-stroke); position: relative; display: block; text-transform: uppercase; letter-spacing: -2px; }
-        .hero-word-2::before { content: 'ABSOLUTA.'; position: absolute; top: 0; left: 0; width: 0%; height: 100%; color: var(--neon); overflow: hidden; white-space: nowrap; border-right: 4px solid var(--neon); -webkit-text-stroke: 0px; animation: typeFill 4s ease-in-out infinite alternate; }
-        .hero-sub { font-size: 1rem; color: var(--text-muted); max-width: 600px; line-height: 1.6; margin-bottom: 50px; }
-
-        /* --- MONITOR --- */
-        .xdr-wrapper { margin-top: 60px; perspective: 1000px; width: 100%; max-width: 900px; display: flex; flex-direction: column; align-items: center; }
-        .xdr-frame { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 12px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.4); border: 1px solid #333; padding: 12px; overflow: hidden; }
-        .xdr-screen { width: 100%; height: 100%; background: #000; border-radius: 4px; overflow: hidden; position: relative; }
-        .xdr-stand-neck { width: 120px; height: 60px; background: linear-gradient(90deg, #2a2a2a, #444, #2a2a2a); margin-top: -5px; z-index: -1; }
-        .xdr-stand-base { width: 240px; height: 15px; background: linear-gradient(90deg, #888, #ccc, #888); border-radius: 4px 4px 0 0; }
-
-        /* --- MARQUEE --- */
-        .marquee-section { background: var(--marquee-bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 30px 0; overflow: hidden; white-space: nowrap; margin-top: 80px; transition: background-color 0.5s ease; }
-        .marquee-track { display: inline-block; animation: scroll 40s linear infinite; }
-        .tech-logo-item { display: inline-flex; align-items: center; gap: 15px; margin: 0 60px; color: var(--text-muted); font-family: 'Orbitron'; font-weight: 700; font-size: 1.2rem; transition: 0.3s; opacity: 0.7; }
-        .tech-logo-item:hover { color: var(--neon); opacity: 1; transform: scale(1.05); text-shadow: 0 0 15px var(--neon-dim); }
+        /* Tech Marquee */
+        .marquee { background: #000; border-y: 1px solid var(--border); padding: 25px 0; overflow: hidden; white-space: nowrap; }
+        .marquee-content { display: inline-block; animation: scroll 30s linear infinite; }
+        .tech-item { display: inline-flex; align-items: center; gap: 10px; margin: 0 40px; color: #666; font-family: 'Orbitron'; font-weight: 700; font-size: 1.1rem; }
+        .tech-item i { font-size: 1.5rem; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* --- SECTIONS --- */
-        .section-pad { padding: 120px 8%; }
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
-        .glass-card { padding: 50px 40px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-panel); transition: 0.3s; }
-        .glass-card:hover { border-color: var(--neon); transform: translateY(-5px); box-shadow: var(--shadow); }
-        .card-title { font-family: 'Orbitron'; font-size: 1.4rem; margin-bottom: 15px; color: var(--text-main); }
+        /* Seções do Site */
+        .section { padding: 100px 5%; max-width: 1400px; margin: 0 auto; }
+        .section-title { font-family: 'Orbitron'; font-size: 2.5rem; text-align: center; margin-bottom: 60px; color: #fff; }
         
-        .p9-hero-section { padding: 120px 8%; position: relative; background: var(--bg-body); }
-        .p9-container-box { background: var(--bg-panel); border: 1px solid var(--neon-dim); border-radius: 20px; padding: 80px 40px; text-align: center; position: relative; overflow: hidden; }
-        .p9-card-boost { background: var(--bg-panel); padding: 40px; border-radius: 12px; border: 1px solid var(--border); text-align: left; transition: 0.3s; }
-        .p9-card-boost:hover { border-color: var(--neon); box-shadow: 0 0 20px var(--neon-dim); }
-        
-        .tier-card { border: 1px solid var(--border); padding: 50px 30px; text-align: center; background: var(--bg-panel); transition: 0.3s; border-radius: 8px; }
-        .tier-card:hover { border-color: var(--text-main); }
-        .tier-card.featured { border-color: var(--neon); background: var(--bg-panel); box-shadow: var(--shadow); }
-
-        /* --- FOUNDER --- */
-        .founder-box { display: grid; grid-template-columns: 350px 1fr auto; gap: 50px; align-items: center; padding: 60px; position: relative; background: var(--bg-panel); border: 1px solid var(--border); border-radius: 12px; margin: 100px auto; max-width: 1400px; }
-        .founder-photo { width: 100%; height: 350px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
-        .cert-badge-wrapper { position: relative; width: 140px; height: 140px; display: flex; align-items: center; justify-content: center; }
-        .cert-badge-img { width: 100%; height: auto; transition: transform 0.4s; filter: drop-shadow(0 0 10px rgba(0,0,0,0.5)); cursor: pointer; }
-        .cert-badge-wrapper:hover .cert-badge-img { transform: scale(1.8) translateX(-10px); z-index: 999; }
-        .cert-label { position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 0.7rem; color: var(--neon); font-family: 'JetBrains Mono'; opacity: 0.7; letter-spacing: 1px; }
-
-        .faq-item { border-bottom: 1px solid var(--border); padding: 20px 0; }
-        .faq-q { font-family: 'Orbitron'; font-size: 1.1rem; cursor: pointer; display: flex; justify-content: space-between; color: var(--text-main); }
-        .faq-a { display: none; margin-top: 15px; color: var(--text-muted); line-height: 1.6; }
-        .faq-item.active .faq-a { display: block; }
-
-        footer { border-top: 1px solid var(--border); padding: 80px 5% 40px; background: var(--footer-bg); color: var(--text-muted); transition: background-color 0.5s ease; }
-        .contact-item { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-size: 0.9rem; color: var(--text-muted); text-decoration: none; transition: 0.3s; }
-        .contact-item:hover { color: var(--neon); }
-
-        @media (max-width: 1100px) {
-            .founder-box { grid-template-columns: 1fr; padding: 40px; text-align: center; justify-items: center; }
-            .hero-word-2 { font-size: 3rem; }
-            .founder-photo { height: 300px; width: 300px; }
-            .nav-links { display: none; }
-            .cert-badge-wrapper { margin-top: 30px; }
+        .p9-box {
+            background: linear-gradient(180deg, rgba(0,255,136,0.02) 0%, transparent);
+            border: 1px solid var(--neon-dim); border-radius: 20px; padding: 60px;
         }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .card { padding: 40px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; transition: 0.3s; }
+        .card:hover { border-color: var(--neon); transform: translateY(-5px); }
+        .card i { font-size: 2rem; color: var(--neon); margin-bottom: 20px; }
+        .card h3 { font-family: 'Orbitron'; margin-bottom: 15px; }
+
+        /* Founder */
+        .founder-grid { display: grid; grid-template-columns: 350px 1fr auto; gap: 50px; align-items: center; }
+        .founder-img { width: 100%; border-radius: 12px; border: 1px solid var(--border); }
+        .cert-badge { width: 120px; transition: 0.3s; cursor: crosshair; }
+        .cert-badge:hover { transform: scale(2.5) translateX(-20px); z-index: 100; background: #000; border-radius: 8px; padding: 5px; border: 1px solid var(--neon); }
+
+        /* Footer Site */
+        .site-footer { border-top: 1px solid var(--border); padding: 60px 5%; background: #000; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
+
+        /* =========================================
+           PART 2: KNS ACTIVO (SISTEMA / PLATAFORMA)
+           ========================================= */
+        
+        #system-app { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--sys-bg); z-index: 2000; display: flex; }
+        
+        /* Sidebar Sistema */
+        .sys-sidebar {
+            width: 260px; background: var(--sys-sidebar); border-right: 1px solid var(--border);
+            display: flex; flex-direction: column; padding: 30px 20px;
+        }
+        .sys-logo { font-family: 'Orbitron'; font-size: 1.1rem; color: var(--neon); margin-bottom: 40px; }
+        .sys-menu-btn {
+            width: 100%; padding: 12px 15px; background: transparent; border: none; color: var(--text-muted);
+            text-align: left; font-family: 'JetBrains Mono'; font-size: 0.8rem; cursor: pointer;
+            display: flex; align-items: center; gap: 10px; border-radius: 6px; margin-bottom: 5px; transition: 0.2s;
+        }
+        .sys-menu-btn:hover, .sys-menu-btn.active { background: rgba(0,255,136,0.1); color: var(--neon); }
+        
+        /* Main Area Sistema */
+        .sys-main { flex: 1; padding: 40px; overflow-y: auto; background: var(--sys-bg); }
+        .sys-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
+        
+        /* Topology Map */
+        .topology-container {
+            width: 100%; height: 600px; background: rgba(0,0,0,0.5); border: 1px solid var(--border);
+            border-radius: 12px; position: relative; overflow: hidden;
+            background-image: radial-gradient(#222 1px, transparent 1px); background-size: 30px 30px;
+        }
+        .node {
+            position: absolute; width: 60px; height: 60px; background: #111; border: 1px solid var(--neon);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--neon);
+            box-shadow: 0 0 20px rgba(0,255,136,0.2); z-index: 10; cursor: grab;
+        }
+        .node-label { position: absolute; bottom: -20px; width: 100px; text-align: center; left: -20px; font-size: 0.6rem; color: #888; font-family: 'JetBrains Mono'; }
+        
+        /* Terminal SSH */
+        .terminal-window {
+            background: #000; border: 1px solid #333; padding: 20px; font-family: 'JetBrains Mono', monospace;
+            color: #0f0; height: 100%; overflow-y: auto; font-size: 0.9rem;
+        }
+        
+        /* Login Modal (Gateway) */
+        #gateway-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(10px); z-index: 5000; display: flex; align-items: center; justify-content: center;
+        }
+        .gateway-box { width: 400px; padding: 40px; background: #050505; border: 1px solid var(--border); border-radius: 12px; }
+        .gateway-input { width: 100%; padding: 12px; background: #111; border: 1px solid #333; color: #fff; margin-bottom: 15px; border-radius: 4px; }
+        
     </style>
 </head>
 <body>
 
-    <div id="login-modal">
-        <div class="login-box">
-            <span class="close-modal" onclick="toggleLogin()">&times;</span>
-            
-            <div id="step-login">
-                <div class="login-header">
-                    <div class="login-title">ACESSO AO SISTEMA</div>
-                    <span class="login-sub mono">SECURE GATEWAY v4.0</span>
-                </div>
-                <div class="input-group">
-                    <label class="input-label">USUÁRIO</label>
-                    <input type="text" id="email" class="input-field" placeholder="ex: kaleb.nunes">
-                </div>
-                <div class="input-group">
-                    <label class="input-label">SENHA</label>
-                    <input type="password" id="password" class="input-field" placeholder="••••••••">
-                </div>
-                <button class="btn-submit" onclick="processLogin()">AUTENTICAR</button>
-                <div id="login-error" style="color: var(--error); font-size: 0.7rem; margin-top: 10px; text-align: center; display: none;">ACESSO NEGADO. CREDENCIAIS INVÁLIDAS.</div>
+    <div id="public-site">
+        
+        <nav class="site-nav">
+            <div class="brand"><i class="fa-solid fa-layer-group" style="color: var(--neon);"></i> KNS GLOBAL</div>
+            <div class="nav-links">
+                <a href="#p9">Protocolo 09</a>
+                <a href="#about">Founder</a>
+                <button class="btn-login-site" onclick="openGateway()"><i class="fa-solid fa-lock"></i> KNS ACTIVO</button>
             </div>
-        </div>
-    </div>
+        </nav>
 
-    <div id="dashboard-overlay">
-        <div class="dash-container">
-            <div class="dash-sidebar">
-                <div class="dash-logo"><i class="fa-solid fa-layer-group" style="color: var(--neon);"></i> KNS<span style="font-weight:300;">CORE</span></div>
-                <ul class="dash-menu">
-                    <li><button class="dash-btn active" onclick="switchTab('home')"><i class="fa-solid fa-chart-line"></i> PAINEL GERAL</button></li>
-                    <li><button class="dash-btn" onclick="switchTab('topology')"><i class="fa-solid fa-network-wired"></i> TOPOLOGIA</button></li>
-                    <li><button class="dash-btn" onclick="switchTab('settings')"><i class="fa-solid fa-user-shield"></i> SEGURANÇA</button></li>
-                </ul>
-                <div class="dash-logout">
-                    <button class="dash-btn" onclick="logout()" style="color: var(--error);"><i class="fa-solid fa-power-off"></i> SAIR</button>
-                </div>
+        <section class="hero">
+            <div class="hero-title">
+                <span class="hero-t1">CONTINUIDADE</span>
+                <span class="hero-t2">ABSOLUTA.</span>
             </div>
-
-            <div class="dash-main">
-                <div class="dash-header">
-                    <h2 style="font-family: 'Orbitron'; color: var(--text-main);">CENTRO DE COMANDO</h2>
-                    <div class="header-profile">
-                        <div id="live-clock" class="live-clock mono">00:00:00</div>
-                        <span class="mono" style="font-size: 0.7rem; color: var(--neon);">● ONLINE</span>
-                        <img src="./assets/foto.jpg" class="header-avatar" alt="User" onerror="this.src='https://via.placeholder.com/40'">
-                    </div>
-                </div>
-
-                <div id="view-home">
-                    <div style="margin-bottom: 40px;">
-                        <h3 id="user-welcome" style="color: var(--text-main); margin-bottom: 5px;">BEM-VINDO, COMANDANTE</h3>
-                        <p style="color: var(--text-muted);" class="mono">CARGO: <span id="user-role" style="color: var(--neon);">ADMINISTRADOR DO SISTEMA</span> | SESSÃO: ATIVA</p>
-                    </div>
-
-                    <div class="dash-grid">
-                        <div class="dash-card">
-                            <span class="dash-lbl">SAÚDE DA INFRAESTRUTURA</span>
-                            <div class="dash-val" style="color: var(--neon);">100%</div>
-                            <div style="height: 4px; width: 100%; background: #333; border-radius: 2px;"><div style="height: 100%; width: 100%; background: var(--neon);"></div></div>
-                        </div>
-                        <div class="dash-card">
-                            <span class="dash-lbl">INCIDENTES ATIVOS</span>
-                            <div class="dash-val">0</div>
-                            <span style="font-size: 0.7rem; color: var(--text-muted);">ÚLTIMAS 24 HORAS</span>
-                        </div>
-                        <div class="dash-card">
-                            <span class="dash-lbl">PRÓXIMA AUDITORIA</span>
-                            <div class="dash-val" id="next-audit-date" style="font-size: 1.5rem;">--</div>
-                            <span style="font-size: 0.7rem; color: var(--text-muted);">AGENDAMENTO AUTOMÁTICO</span>
-                        </div>
-                        <div class="dash-card">
-                            <span class="dash-lbl">ECONOMIA (ANUAL)</span>
-                            <div class="dash-val">R$ 420k</div>
-                            <span style="font-size: 0.7rem; color: var(--neon);">+12% vs META</span>
-                        </div>
-                    </div>
-
-                    <div style="margin-top: 40px; background: rgba(255,255,255,0.03); padding: 30px; border-radius: 8px; border: 1px solid var(--border);">
-                        <h4 class="mono" style="color: var(--text-muted); margin-bottom: 20px;">// LOGS DO SISTEMA</h4>
-                        <ul id="activity-log" style="list-style: none; line-height: 2; color: var(--text-muted); font-size: 0.9rem;" class="mono">
-                            </ul>
-                    </div>
-                </div>
-
-                <div id="view-topology">
-                    <div style="margin-bottom: 30px; display: flex; justify-content: space-between; align-items: end;">
-                        <div>
-                            <h3 style="color: var(--text-main);">TOPOLOGIA DE REDE</h3>
-                            <p style="color: var(--text-muted); font-size: 0.9rem;">Visualização em tempo real dos ativos críticos.</p>
-                        </div>
-                        <div class="mono" style="font-size: 0.8rem; color: var(--neon);">TRÁFEGO: 4.2 GBps</div>
-                    </div>
-
-                    <div class="topology-map">
-                        <div class="node fw" title="Firewall Edge"><i class="fa-solid fa-shield-halved"></i><span class="node-label">EDGE FIREWALL</span></div>
-                        <div class="node core" title="Core Switch"><i class="fa-solid fa-network-wired"></i><span class="node-label">CORE SWITCH</span></div>
-                        <div class="node cloud" title="AWS Gateway"><i class="fa-brands fa-aws"></i><span class="node-label">AWS CLOUD</span></div>
-                        <div class="node zabbix" title="Monitoring"><i class="fa-solid fa-eye"></i><span class="node-label">ZABBIX PROXY</span></div>
-                        <div class="node office" title="HQ Link"><i class="fa-solid fa-building"></i><span class="node-label">MATRIZ</span></div>
-                        <div class="node isp" title="ISP Link"><i class="fa-solid fa-globe"></i><span class="node-label">ISP LINK</span></div>
-
-                        <div class="link-line" style="top: 35%; left: 50%; height: 15%; width: 2px; transform: translateX(-50%);"><div class="packet" style="animation-delay: 0.5s;"></div></div>
-                        <div class="link-line" style="top: 35%; left: 35%; width: 15%; height: 2px; transform: rotate(145deg);"><div class="packet" style="animation-delay: 1s;"></div></div>
-                        <div class="link-line" style="top: 65%; left: 65%; width: 15%; height: 2px; transform: rotate(45deg);"><div class="packet" style="animation-delay: 0.2s;"></div></div>
-                    </div>
-                </div>
-
-                <div id="view-settings" style="display: none;">
-                    <div style="margin-bottom: 30px;">
-                        <h3 style="color: var(--text-main);">CONFIGURAÇÃO DE SEGURANÇA</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem;">Gerencie credenciais de acesso e segurança da sessão.</p>
-                    </div>
-
-                    <div style="max-width: 600px;">
-                        <div class="glass-panel" style="padding: 30px; margin-bottom: 30px;">
-                            <h4 style="color: var(--neon); margin-bottom: 20px; font-family: 'Orbitron';">CREDENCIAIS</h4>
-                            <div style="margin-bottom: 20px;">
-                                <label class="input-label">SENHA ATUAL</label>
-                                <input type="password" class="input-field" value="••••••••" disabled>
-                            </div>
-                            <div style="margin-bottom: 20px;">
-                                <label class="input-label">NOVA SENHA</label>
-                                <input type="password" class="input-field" placeholder="Digite uma senha forte">
-                            </div>
-                            <div style="margin-bottom: 20px;">
-                                <label class="input-label">CONFIRMAR SENHA</label>
-                                <input type="password" class="input-field" placeholder="Confirme a nova senha">
-                            </div>
-                            <button class="btn-action" onclick="alert('Senha atualizada com sucesso.')">ATUALIZAR SENHA</button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <nav>
-        <div class="brand"><i class="fa-solid fa-layer-group" style="color: var(--neon);"></i> KNS</div>
-        <div class="nav-links">
-            <a href="#manifesto" class="nav-link">Visão</a>
-            <a href="#p9" class="nav-link">Soluções</a>
-            <a href="#models" class="nav-link">Modelos</a>
-            <a href="#about" class="nav-link">Founder</a>
-        </div>
-        <div style="display: flex; gap: 15px; align-items: center;">
-            <button class="theme-switch" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i></button>
-            <button class="btn-login" onclick="toggleLogin()"><i class="fa-solid fa-lock"></i> PORTAL DO CLIENTE</button>
-            <a href="https://calendly.com/kalebdossantos1206/30min" target="_blank" class="btn-action">FALE COM O BOARD</a>
-        </div>
-    </nav>
-
-    <section class="hero">
-        <div class="status-pill">
-            <span style="width: 6px; height: 6px; background: var(--neon); border-radius: 50%;"></span>
-            SISTEMA ONLINE
-        </div>
-
-        <div class="hero-title-wrapper">
-            <span class="hero-word-1">CONTINUIDADE</span>
-            <span class="hero-word-2">ABSOLUTA.</span>
-        </div>
-
-        <p class="hero-sub">
-            Engenharia de Continuidade e Proteção de Ativos Digitais para operações que não aceitam falhas.
-        </p>
-
-        <div class="xdr-wrapper">
-            <div class="xdr-frame">
-                <div class="xdr-screen">
-                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/T9wvW0EYfE0?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=0" frameborder="0" allowfullscreen style="border: none;"></iframe>
-                </div>
-            </div>
-            <div class="xdr-stand-neck"></div>
-            <div class="xdr-stand-base"></div>
-        </div>
-    </section>
-
-    <div class="marquee-section">
-        <div class="marquee-track">
-            <div class="tech-logo-item"><i class="fa-brands fa-python"></i> PYTHON</div>
-            <div class="tech-logo-item"><i class="fa-solid fa-server"></i> ZABBIX</div>
-            <div class="tech-logo-item"><i class="fa-solid fa-chart-line"></i> GRAFANA</div>
-            <div class="tech-logo-item"><i class="fa-brands fa-aws"></i> AWS CLOUD</div>
-            <div class="tech-logo-item"><i class="fa-solid fa-network-wired"></i> CISCO</div>
-            <div class="tech-logo-item"><i class="fa-solid fa-globe"></i> IPV6 NATIVE</div>
-            <div class="tech-logo-item"><i class="fa-solid fa-microchip"></i> LIBRENMS</div>
-            <div class="tech-logo-item"><i class="fa-brands fa-linux"></i> LINUX HARDENED</div>
-            <div class="tech-logo-item"><i class="fa-solid fa-terminal"></i> POWERSHELL</div>
-            <div class="tech-logo-item"><i class="fa-brands fa-python"></i> PYTHON</div>
-            <div class="tech-logo-item"><i class="fa-solid fa-server"></i> ZABBIX</div>
-            <div class="tech-logo-item"><i class="fa-solid fa-chart-line"></i> GRAFANA</div>
-        </div>
-    </div>
-
-    <section id="manifesto" class="section-pad">
-        <div class="manifesto-box">
-            <span class="mono" style="color: var(--neon); letter-spacing: 2px;">NOSSA DOUTRINA</span>
-            <h2 style="font-family: 'Orbitron'; font-size: 2.5rem; margin: 20px 0; color: var(--text-main);">O CUSTO DO "FUNCIONA"</h2>
-            <p style="color: var(--text-muted); line-height: 1.8;">
-                O mercado aceita o medíocre. Se "está no ar", está bom. Nós discordamos. Um sistema que funciona mas não é preditivo é uma bomba-relógio. A KNS não faz manutenção; nós arquitetamos o ambiente onde o erro não sobrevive.
+            <p style="color: var(--text-muted); margin-top: 20px; max-width: 600px;">
+                Engenharia de Infraestrutura Crítica e Proteção de Ativos Digitais.
             </p>
-        </div>
-
-        <div class="grid-3" style="margin-top: 60px;">
-            <div class="glass-card">
-                <i class="fa-solid fa-file-contract" style="color: var(--neon); font-size: 2rem; margin-bottom: 20px;"></i>
-                <h3 class="card-title">SLA Contratual</h3>
-                <p style="color: var(--text-muted);">Garantia financeira de uptime. Se paramos, pagamos. Risco compartilhado.</p>
-            </div>
-            <div class="glass-card">
-                <i class="fa-solid fa-scale-balanced" style="color: var(--neon); font-size: 2rem; margin-bottom: 20px;"></i>
-                <h3 class="card-title">Compliance</h3>
-                <p style="color: var(--text-muted);">Auditoria contínua, LGPD-Ready e processos documentados em tempo real.</p>
-            </div>
-            <div class="glass-card">
-                <i class="fa-solid fa-chart-pie" style="color: var(--neon); font-size: 2rem; margin-bottom: 20px;"></i>
-                <h3 class="card-title">ROI Auditável</h3>
-                <p style="color: var(--text-muted);">Dashboards que traduzem latência em perda de receita. Visão executiva.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="p9" class="p9-hero-section">
-        <div class="p9-container-box">
-            <span class="mono" style="color: var(--neon); letter-spacing: 2px;">TECNOLOGIA PROPRIETÁRIA</span>
-            <h2 style="font-family: 'Orbitron'; font-size: 3rem; margin: 20px 0; color: var(--text-main);">PROTOCOLO 09</h2>
-            <p style="max-width: 700px; margin: 0 auto; color: var(--text-muted);">
-                Não é apenas um serviço. É um <strong>Sistema Imunológico Digital</strong>. Nossa arquitetura detecta anomalias financeiras na infraestrutura e executa contra-medidas autônomas.
-            </p>
-
-            <div class="p9-grid">
-                <div class="p9-card-boost">
-                    <i class="fa-solid fa-eye" style="font-size: 2.5rem; color: var(--neon); margin-bottom: 20px;"></i>
-                    <h3 style="font-family: 'Orbitron'; font-size: 1.4rem; margin-bottom: 15px; color: var(--text-main);">Observabilidade</h3>
-                    <p style="color: var(--text-muted);">Vemos o que ferramentas padrões ignoram. Correlação de eventos de rede com impacto no faturamento.</p>
-                </div>
-                <div class="p9-card-boost">
-                    <i class="fa-solid fa-robot" style="font-size: 2.5rem; color: var(--neon); margin-bottom: 20px;"></i>
-                    <h3 style="font-family: 'Orbitron'; font-size: 1.4rem; margin-bottom: 15px; color: var(--text-main);">Auto-Cura</h3>
-                    <p style="color: var(--text-muted);">Scripts de remediação imediata. O servidor cai, o código levanta. Sem downtime perceptível.</p>
-                </div>
-                <div class="p9-card-boost">
-                    <i class="fa-solid fa-shield-halved" style="font-size: 2.5rem; color: var(--neon); margin-bottom: 20px;"></i>
-                    <h3 style="font-family: 'Orbitron'; font-size: 1.4rem; margin-bottom: 15px; color: var(--text-main);">Blindagem</h3>
-                    <p style="color: var(--text-muted);">Hardening de servidores e redes. Proteção contra falhas lógicas e ataques básicos.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="models" class="section-pad">
-        <h2 style="text-align: center; font-family: 'Orbitron'; margin-bottom: 60px; color: var(--text-main);">MODELOS DE ATUAÇÃO</h2>
-        <div class="grid-3">
-            <div class="tier-card">
-                <span class="mono" style="color: var(--text-muted);">ADVISORY</span>
-                <h3 style="font-family: 'Orbitron'; margin: 20px 0; color: var(--text-main);">DIAGNÓSTICO</h3>
-                <ul style="list-style: none; color: var(--text-muted); line-height: 2;">
-                    <li><i class="fa-solid fa-check"></i> Auditoria de Rede</li>
-                    <li><i class="fa-solid fa-check"></i> Roadmap de Segurança</li>
-                </ul>
-            </div>
-            <div class="tier-card featured">
-                <span class="mono" style="color: var(--neon);">IMPLEMENTATION</span>
-                <h3 style="font-family: 'Orbitron'; margin: 20px 0; color: var(--text-main);">FULL STACK</h3>
-                <ul style="list-style: none; color: var(--text-muted); line-height: 2;">
-                    <li><i class="fa-solid fa-check" style="color: var(--neon);"></i> Protocolo 09 Completo</li>
-                    <li><i class="fa-solid fa-check" style="color: var(--neon);"></i> Automação Python</li>
-                    <li><i class="fa-solid fa-check" style="color: var(--neon);"></i> Dashboards Executivos</li>
-                </ul>
-            </div>
-            <div class="tier-card">
-                <span class="mono" style="color: var(--text-muted);">PARTNER</span>
-                <h3 style="font-family: 'Orbitron'; margin: 20px 0; color: var(--text-main);">FRACTIONAL CTO</h3>
-                <ul style="list-style: none; color: var(--text-muted); line-height: 2;">
-                    <li><i class="fa-solid fa-check"></i> Gestão de Crise</li>
-                    <li><i class="fa-solid fa-check"></i> Board Member</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="section-pad" style="padding-top: 0;">
-        <div class="founder-box">
-            <div>
-                <img src="./assets/foto.jpg" alt="Kaleb Nunes" class="founder-photo">
-            </div>
             
-            <div style="text-align: left;">
-                <span class="mono" style="color: var(--neon); letter-spacing: 1px;">FOUNDER & HEAD OF ENGINEERING</span>
-                <h3 style="font-family: 'Orbitron'; font-size: 2.5rem; margin: 15px 0; color: var(--text-main);">KALEB NUNES</h3>
-                <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 30px; font-size: 1.05rem;">
-                    "Minha missão é simples: garantir que a tecnologia seja um ativo invisível, não um problema visível. Com o Protocolo 09, entregamos a paz de espírito que apenas a engenharia de precisão pode oferecer."
+            <div class="monitor-wrapper">
+                <div class="monitor-frame">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/T9wvW0EYfE0?rel=0&controls=0&showinfo=0&autoplay=1&mute=1&loop=1&playlist=T9wvW0EYfE0" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="monitor-stand"></div>
+            </div>
+        </section>
+
+        <div class="marquee">
+            <div class="marquee-content">
+                <span class="tech-item"><i class="fa-brands fa-python"></i> PYTHON AUTOMATION</span>
+                <span class="tech-item"><i class="fa-solid fa-server"></i> ZABBIX ENTERPRISE</span>
+                <span class="tech-item"><i class="fa-solid fa-chart-line"></i> GRAFANA</span>
+                <span class="tech-item"><i class="fa-brands fa-aws"></i> AWS CLOUD</span>
+                <span class="tech-item"><i class="fa-solid fa-network-wired"></i> CISCO</span>
+                <span class="tech-item"><i class="fa-brands fa-python"></i> PYTHON AUTOMATION</span>
+                <span class="tech-item"><i class="fa-solid fa-server"></i> ZABBIX ENTERPRISE</span>
+            </div>
+        </div>
+
+        <section id="p9" class="section">
+            <div class="p9-box">
+                <span class="mono" style="color: var(--neon); letter-spacing: 2px;">METODOLOGIA PROPRIETÁRIA</span>
+                <h2 style="font-family: 'Orbitron'; font-size: 2.5rem; margin: 20px 0; color: #fff;">PROTOCOLO 09</h2>
+                <p style="color: var(--text-muted); max-width: 800px;">
+                    Um sistema imunológico digital para sua empresa. Detectamos anomalias financeiras na infraestrutura e executamos contra-medidas autônomas via código.
                 </p>
-                
-                <div style="display: flex; gap: 30px; border-top: 1px solid var(--border); padding-top: 20px;">
+                <div class="grid-3">
+                    <div class="card">
+                        <i class="fa-solid fa-eye"></i>
+                        <h3>Observabilidade</h3>
+                        <p style="color: #888; font-size: 0.9rem;">Monitoramento de processos de negócio, não apenas servidores.</p>
+                    </div>
+                    <div class="card">
+                        <i class="fa-solid fa-robot"></i>
+                        <h3>Auto-Cura</h3>
+                        <p style="color: #888; font-size: 0.9rem;">Scripts Python que corrigem falhas antes do impacto humano.</p>
+                    </div>
+                    <div class="card">
+                        <i class="fa-solid fa-file-contract"></i>
+                        <h3>Governança</h3>
+                        <p style="color: #888; font-size: 0.9rem;">SLA agressivo, Compliance e documentação viva.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="card" style="border: 1px solid var(--border);">
+                <div class="founder-grid">
                     <div>
-                        <span style="display: block; font-size: 1.5rem; font-weight: 700; color: var(--text-main);">+10</span>
-                        <span style="font-size: 0.75rem; color: var(--text-muted);">ANOS DE EXPERIÊNCIA</span>
+                        <img src="./assets/foto.jpg" alt="Kaleb Nunes" class="founder-img">
                     </div>
                     <div>
-                        <span style="display: block; font-size: 1.5rem; font-weight: 700; color: var(--text-main);">TOP 1%</span>
-                        <span style="font-size: 0.75rem; color: var(--text-muted);">SAGE CERTIFIED GLOBAL</span>
+                        <span class="mono" style="color: var(--neon);">FOUNDER & HEAD OF ENGINEERING</span>
+                        <h2 style="font-family: 'Orbitron'; font-size: 2.5rem; margin: 15px 0;">KALEB NUNES</h2>
+                        <p style="color: var(--text-muted); line-height: 1.8;">
+                            "Não vendo horas, vendo continuidade. Minha missão é garantir que a tecnologia seja um ativo invisível e lucrativo, não um problema visível."
+                        </p>
+                    </div>
+                    <div>
+                        <img src="./assets/sage_full.png" alt="SAGE Certified" class="cert-badge" title="Zoom Certificado">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="site-footer">
+            <div>
+                <h3 style="font-family: 'Orbitron'; color: #fff;">KNS GLOBAL</h3>
+                <p style="color: #666; font-size: 0.9rem;">Balneário Camboriú, SC - Brasil</p>
+            </div>
+            <div>
+                <h4 style="color: #fff; margin-bottom: 10px;">CONTATO</h4>
+                <p style="color: #666; font-size: 0.9rem;">+55 (47) 98890-1616</p>
+                <p style="color: #666; font-size: 0.9rem;">comercial@knsconsultoria.com.br</p>
+            </div>
+            <div>
+                <a href="https://calendly.com/kalebdossantos1206/30min" target="_blank" style="background: #fff; color: #000; padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 4px;">FALE COM O BOARD</a>
+            </div>
+        </footer>
+    </div>
+
+    <div id="gateway-modal" class="hidden">
+        <div class="gateway-box">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <i class="fa-solid fa-shield-halved" style="font-size: 3rem; color: var(--neon);"></i>
+                <h3 style="font-family: 'Orbitron'; margin-top: 15px; color: #fff;">KNS ACTIVO</h3>
+                <span class="mono" style="color: #666; font-size: 0.7rem;">SECURE ACCESS GATEWAY</span>
+            </div>
+            
+            <div id="login-form">
+                <input type="text" id="user-in" class="gateway-input" placeholder="Usuário (kaleb.nunes)">
+                <input type="password" id="pass-in" class="gateway-input" placeholder="Senha">
+                <button onclick="authSystem()" style="width: 100%; padding: 12px; background: var(--neon); border: none; font-weight: bold; cursor: pointer;">ACESSAR SISTEMA</button>
+                <button onclick="closeGateway()" style="width: 100%; padding: 12px; background: transparent; border: 1px solid #333; color: #888; margin-top: 10px; cursor: pointer;">CANCELAR</button>
+                <p id="auth-error" style="color: #ff3333; font-size: 0.7rem; text-align: center; margin-top: 10px; display: none;">ACESSO NEGADO</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="system-app" class="hidden">
+        <div class="sys-sidebar">
+            <div class="sys-logo"><i class="fa-solid fa-cube"></i> KNS<span style="font-weight: 300;">ACTIVO</span></div>
+            
+            <button class="sys-menu-btn active" onclick="sysNav('dashboard')"><i class="fa-solid fa-chart-pie"></i> DASHBOARD</button>
+            <button class="sys-menu-btn" onclick="sysNav('topology')"><i class="fa-solid fa-network-wired"></i> TOPOLOGIA VIVA</button>
+            <button class="sys-menu-btn" onclick="sysNav('terminal')"><i class="fa-solid fa-terminal"></i> TERMINAL SSH</button>
+            <button class="sys-menu-btn" onclick="sysNav('security')"><i class="fa-solid fa-user-shield"></i> SEGURANÇA</button>
+            
+            <div style="margin-top: auto; border-top: 1px solid #333; padding-top: 20px;">
+                <button class="sys-menu-btn" onclick="sysLogout()" style="color: #ff3333;"><i class="fa-solid fa-power-off"></i> LOGOUT</button>
+            </div>
+        </div>
+
+        <div class="sys-main">
+            <div class="sys-header">
+                <div>
+                    <h2 style="font-family: 'Orbitron'; color: #fff;">PAINEL DE CONTROLE</h2>
+                    <span class="mono" style="color: var(--neon); font-size: 0.8rem;">● SISTEMA ONLINE</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <span class="mono" style="color: #888;">KALEB.NUNES (ADMIN)</span>
+                    <img src="./assets/foto.jpg" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--neon);">
+                </div>
+            </div>
+
+            <div id="view-dashboard" class="fade-in">
+                <div class="grid-3">
+                    <div class="card" style="background: #111;">
+                        <span class="mono" style="color: #888; font-size: 0.7rem;">STATUS INFRAESTRUTURA</span>
+                        <div style="font-size: 2rem; font-family: 'Orbitron'; color: var(--neon); margin: 10px 0;">100%</div>
+                        <div style="height: 4px; background: #333; width: 100%;"><div style="height: 100%; width: 100%; background: var(--neon);"></div></div>
+                    </div>
+                    <div class="card" style="background: #111;">
+                        <span class="mono" style="color: #888; font-size: 0.7rem;">CLIENTES ATIVOS</span>
+                        <div style="font-size: 2rem; font-family: 'Orbitron'; color: #fff; margin: 10px 0;">12</div>
+                    </div>
+                    <div class="card" style="background: #111;">
+                        <span class="mono" style="color: #888; font-size: 0.7rem;">ALERTA DE SEGURANÇA</span>
+                        <div style="font-size: 2rem; font-family: 'Orbitron'; color: #888; margin: 10px 0;">NENHUM</div>
                     </div>
                 </div>
             </div>
 
-            <div class="cert-badge-wrapper">
-                <img src="./assets/sage_full.png" alt="SAGE Badge" class="cert-badge-img">
-                <span class="cert-label">VERIFIED</span>
-            </div>
-        </div>
-    </section>
-
-    <section class="section-pad">
-        <h2 style="text-align: center; font-family: 'Orbitron'; margin-bottom: 40px; color: var(--text-main);">FAQ EXECUTIVO</h2>
-        <div style="max-width: 800px; margin: 0 auto;">
-            <div class="faq-item" onclick="this.classList.toggle('active')">
-                <div class="faq-q">A KNS substitui minha equipe? <i class="fa-solid fa-chevron-down"></i></div>
-                <div class="faq-a">Não. Nós equipamos sua equipe com ferramentas de elite ou assumimos apenas a camada crítica.</div>
-            </div>
-            <div class="faq-item" onclick="this.classList.toggle('active')">
-                <div class="faq-q">Qual o ROI esperado? <i class="fa-solid fa-chevron-down"></i></div>
-                <div class="faq-a">Redução drástica de downtime (custo de oportunidade) e eliminação de tarefas manuais repetitivas via automação.</div>
-            </div>
-            <div class="faq-item" onclick="this.classList.toggle('active')">
-                <div class="faq-q">Atendem internacionalmente? <i class="fa-solid fa-chevron-down"></i></div>
-                <div class="faq-a">Sim. Arquitetura global, padrões IPv6 e ferramentas cloud-native nos permitem operar em qualquer geografia.</div>
-            </div>
-        </div>
-    </section>
-
-    <footer id="contact">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 50px;">
-            <div class="footer-col">
-                <h3>KNS GLOBAL</h3>
-                <p style="font-size: 0.85rem; line-height: 1.6;">Engenharia de Continuidade.<br>Balneário Camboriú, SC - Brasil.</p>
-            </div>
-            <div class="footer-col">
-                <h4>CONTATO DIRETO</h4>
-                <a href="https://wa.me/5547988901616" class="contact-item"><i class="fa-brands fa-whatsapp"></i> +55 (47) 98890-1616</a>
-                <a href="mailto:comercial@knsconsultoria.com.br" class="contact-item"><i class="fa-solid fa-envelope"></i> comercial@knsconsultoria.com.br</a>
-            </div>
-            <div class="footer-col">
-                <h4>REDES</h4>
-                <div style="display: flex; gap: 15px;">
-                    <a href="https://linkedin.com/in/kalebnunes" class="social-btn"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="https://github.com/kalebnunes" class="social-btn"><i class="fa-brands fa-github"></i></a>
-                    <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+            <div id="view-topology" class="hidden fade-in">
+                <h3 style="font-family: 'Orbitron'; margin-bottom: 20px; color: #fff;">TOPOLOGIA DE REDE</h3>
+                <div class="topology-container">
+                    <div class="node" style="top: 50%; left: 50%; transform: translate(-50%, -50%); border-color: #fff;"><i class="fa-solid fa-server"></i><span class="node-label">CORE</span></div>
+                    <div class="node" style="top: 20%; left: 50%; transform: translateX(-50%);"><i class="fa-solid fa-shield-halved"></i><span class="node-label">FIREWALL</span></div>
+                    <div class="node" style="top: 20%; left: 20%;"><i class="fa-brands fa-aws"></i><span class="node-label">AWS</span></div>
+                    <div class="node" style="bottom: 20%; right: 20%;"><i class="fa-solid fa-eye"></i><span class="node-label">ZABBIX</span></div>
+                    
+                    <div style="position:absolute; top: 35%; left: 50%; height: 15%; width: 1px; background: #444;"></div>
+                    <div style="position:absolute; top: 35%; left: 35%; width: 15%; height: 1px; background: #444; transform: rotate(145deg);"></div>
                 </div>
             </div>
+
+            <div id="view-terminal" class="hidden fade-in" style="height: 500px;">
+                <h3 style="font-family: 'Orbitron'; margin-bottom: 20px; color: #fff;">SECURE SHELL (ROOT)</h3>
+                <div class="terminal-window">
+                    <div>root@kns-activo:~# connection established</div>
+                    <div>root@kns-activo:~# last_login: today 14:02 from 192.168.1.10</div>
+                    <div>root@kns-activo:~# systemctl status protocol-09</div>
+                    <div style="color: var(--neon);">● protocol-09.service - KNS Auto-Healing Engine</div>
+                    <div>   Loaded: loaded (/etc/systemd/system/p9.service; enabled)</div>
+                    <div>   Active: active (running) since Mon 2026-01-24</div>
+                    <br>
+                    <div style="display: flex;">
+                        <span>root@kns-activo:~#</span><span class="cursor" style="animation: blink 1s infinite;">_</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="view-security" class="hidden fade-in">
+                <h3 style="font-family: 'Orbitron'; margin-bottom: 20px; color: #fff;">CONFIGURAÇÃO DE SEGURANÇA</h3>
+                <div style="max-width: 600px; background: #111; padding: 30px; border: 1px solid #333; border-radius: 8px;">
+                    <h4 style="color: var(--neon); margin-bottom: 20px;">MFA & ACESSO</h4>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 20px;">
+                        <div>
+                            <div style="color: #fff; font-weight: bold;">Autenticação de 2 Fatores</div>
+                            <div style="font-size: 0.8rem; color: #666;">Obrigatório para admins.</div>
+                        </div>
+                        <div style="color: var(--neon);">ATIVADO</div>
+                    </div>
+                    <button style="padding: 10px 20px; background: transparent; border: 1px solid #ff3333; color: #ff3333; cursor: pointer;">ALTERAR SENHA ROOT</button>
+                </div>
+            </div>
+
         </div>
-        <div style="text-align: center; font-size: 0.75rem; border-top: 1px solid var(--border); padding-top: 20px;">
-            &copy; 2026 KNS GLOBAL SOLUTIONS. TODOS OS DIREITOS RESERVADOS.
-        </div>
-    </footer>
+    </div>
 
     <script>
-        function toggleTheme() {
-            const html = document.documentElement;
-            const current = html.getAttribute('data-theme');
-            html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+        // --- GATEWAY LOGIC ---
+        function openGateway() {
+            document.getElementById('gateway-modal').classList.remove('hidden');
+        }
+        function closeGateway() {
+            document.getElementById('gateway-modal').classList.add('hidden');
+            document.getElementById('auth-error').style.display = 'none';
         }
 
-        function toggleLogin() {
-            const modal = document.getElementById('login-modal');
-            modal.classList.toggle('active');
-            document.getElementById('step-login').style.display = 'block';
-            document.getElementById('login-error').style.display = 'none';
-        }
+        function authSystem() {
+            const u = document.getElementById('user-in').value;
+            const p = document.getElementById('pass-in').value;
 
-        let currentUserRole = '';
-
-        function processLogin() {
-            const email = document.getElementById('email').value;
-            const pass = document.getElementById('password').value;
-            const errorMsg = document.getElementById('login-error');
-
-            if ((email === 'kaleb.nunes' && pass === '13091993') || (email === 'ceo@cliente.com' && pass === '123')) {
-                currentUserRole = email === 'kaleb.nunes' ? 'ADMIN' : 'CLIENT';
-                errorMsg.style.display = 'none';
-                finalizeLogin();
+            // CREDENCIAIS DE ACESSO
+            if (u === 'kaleb.nunes' && p === '13091993') {
+                // SUCESSO
+                closeGateway();
+                document.getElementById('public-site').classList.add('hidden');
+                document.getElementById('system-app').classList.remove('hidden');
             } else {
-                errorMsg.style.display = 'block';
+                // ERRO
+                document.getElementById('auth-error').style.display = 'block';
             }
         }
 
-        function finalizeLogin() {
-            toggleLogin();
-            document.getElementById('dashboard-overlay').style.display = 'block';
-            document.getElementById('user-welcome').innerText = currentUserRole === 'ADMIN' ? 'BEM-VINDO, COMANDANTE' : 'BEM-VINDO, MEMBRO DO CONSELHO';
-            document.getElementById('user-role').innerText = currentUserRole === 'ADMIN' ? 'ADMINISTRADOR DO SISTEMA' : 'VISUALIZADOR CLIENTE';
-            document.body.style.overflow = 'hidden';
-            
-            // Start Real-Time features
-            updateClock();
-            setInterval(updateClock, 1000);
-            populateDynamicLogs();
-            
-            // Dynamic Date
-            const now = new Date();
-            const tomorrow = new Date(now);
-            tomorrow.setDate(tomorrow.getDate() + 1);
-            document.getElementById('next-audit-date').innerText = tomorrow.getDate() + " FEV";
+        function sysLogout() {
+            document.getElementById('system-app').classList.add('hidden');
+            document.getElementById('public-site').classList.remove('hidden');
+            // Limpa campos
+            document.getElementById('user-in').value = '';
+            document.getElementById('pass-in').value = '';
+            sysNav('dashboard'); // Reseta view
         }
 
-        function logout() {
-            document.getElementById('dashboard-overlay').style.display = 'none';
-            document.body.style.overflow = 'auto';
-            document.getElementById('email').value = '';
-            document.getElementById('password').value = '';
-            switchTab('home');
-        }
-
-        function switchTab(tabName) {
-            document.getElementById('view-home').style.display = 'none';
-            document.getElementById('view-settings').style.display = 'none';
-            document.getElementById('view-topology').style.display = 'none';
+        // --- SYSTEM NAVIGATION ---
+        function sysNav(viewId) {
+            // Esconde todas as views
+            const views = ['dashboard', 'topology', 'terminal', 'security'];
+            views.forEach(v => document.getElementById('view-' + v).classList.add('hidden'));
             
-            document.querySelectorAll('.dash-btn').forEach(btn => btn.classList.remove('active'));
-            
-            if(tabName === 'home') {
-                document.getElementById('view-home').style.display = 'block';
-                document.querySelectorAll('.dash-btn')[0].classList.add('active');
-            } else if(tabName === 'topology') {
-                document.getElementById('view-topology').style.display = 'block';
-                document.querySelectorAll('.dash-btn')[1].classList.add('active');
-            } else if(tabName === 'settings') {
-                document.getElementById('view-settings').style.display = 'block';
-                document.querySelectorAll('.dash-btn')[2].classList.add('active');
-            }
-        }
+            // Mostra a view selecionada
+            document.getElementById('view-' + viewId).classList.remove('hidden');
 
-        function updateClock() {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString('pt-BR');
-            document.getElementById('live-clock').innerText = timeString;
-        }
-
-        function populateDynamicLogs() {
-            const list = document.getElementById('activity-log');
-            list.innerHTML = '';
-            const now = new Date();
-            const minsAgo = (m) => {
-                const d = new Date(now.getTime() - m*60000);
-                return d.toLocaleTimeString('pt-BR');
-            };
-            const logs = [
-                `[${minsAgo(2)}] SYSTEM: SCRIPT DE AUTO-CURA EXECUTADO NO NODE-04`,
-                `[${minsAgo(5)}] SECURITY: TENTATIVA DE LOGIN FALHA BLOQUEADA (IP: 192.168.X.X)`,
-                `[${minsAgo(120)}] BACKUP: BACKUP INCREMENTAL CONCLUÍDO (2.4TB)`,
-                `[${minsAgo(300)}] CRON: RELATÓRIO DIÁRIO GERADO`
-            ];
-            logs.forEach(log => {
-                const li = document.createElement('li');
-                li.innerText = log;
-                list.appendChild(li);
-            });
+            // Atualiza botões do menu
+            const btns = document.querySelectorAll('.sys-menu-btn');
+            btns.forEach(b => b.classList.remove('active'));
+            event.currentTarget.classList.add('active');
         }
     </script>
+
 </body>
 </html>
