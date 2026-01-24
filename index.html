@@ -4,163 +4,182 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="KNS Global - The Authority in Strategic Infrastructure.">
-    <title>KNS GLOBAL | Magnum Opus</title>
+    <title>KNS GLOBAL | Day & Night</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- CORE VISUAL ENGINE --- */
+        /* --- THEME ENGINE --- */
         :root {
-            --neon: #00ff88;
-            --neon-glow: rgba(0, 255, 136, 0.4);
-            --void: #030303;
-            --glass: rgba(20, 20, 20, 0.6);
-            --glass-border: rgba(255, 255, 255, 0.08);
+            /* DARK MODE (DEFAULT) */
+            --bg-body: #030303;
+            --bg-panel: rgba(20, 20, 20, 0.6);
             --text-main: #ffffff;
             --text-muted: #8f9ba8;
+            --neon: #00ff88;
+            --neon-dim: rgba(0, 255, 136, 0.1);
+            --border: rgba(255, 255, 255, 0.08);
+            --grid-line: rgba(0, 255, 136, 0.03);
+            --shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
             --gradient-text: linear-gradient(135deg, #ffffff 0%, #a5a5a5 100%);
+            --nav-bg: rgba(3,3,3,0.9);
+            --scroll-track: #000;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; cursor: default; }
+        [data-theme="light"] {
+            /* LIGHT MODE (STARK LAB STYLE) */
+            --bg-body: #f0f2f5;
+            --bg-panel: rgba(255, 255, 255, 0.65);
+            --text-main: #0a0a0a;
+            --text-muted: #555555;
+            --neon: #009c53; /* Verde mais escuro para contraste */
+            --neon-dim: rgba(0, 156, 83, 0.08);
+            --border: rgba(0, 0, 0, 0.08);
+            --grid-line: rgba(0, 0, 0, 0.03);
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            --gradient-text: linear-gradient(135deg, #0a0a0a 0%, #444444 100%);
+            --nav-bg: rgba(240, 242, 245, 0.9);
+            --scroll-track: #e0e0e0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; cursor: default; transition: background-color 0.5s ease, border-color 0.5s ease, color 0.5s ease; }
 
         body {
-            background-color: var(--void);
+            background-color: var(--bg-body);
             color: var(--text-main);
             font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
         }
 
-        /* --- CINEMATIC NOISE OVERLAY (Textura de Cinema) --- */
+        /* --- CINEMATIC NOISE (Textura) --- */
         .noise {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 9999; opacity: 0.03;
+            pointer-events: none; z-index: 9999; opacity: 0.04;
             background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyNTAnIGhlaWdodD0nMjUwJz48ZmlsdGVyIGlkPSdub2lzZSc+PGZlVHVyYnVsZW5jZSB0eXBlPSdmcmFjdGFsTm9pc2UnIGJhc2VGcmVxdWVuY3k9JzAuNjUnIG51bU9jdGF2ZXM9JzMnIHN0aXRjaFRpbGVzPSdzdGl0Y2gnLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0nMTAwJScgaGVpZ2h0PScxMDAlJyBmaWx0ZXI9J3VybCgjbm9pc2UpJyBvcGFjaXR5PScxJy8+PC9zdmc+');
         }
 
-        /* --- CYBER-GRID BACKGROUND (Movimento Profundo) --- */
+        /* --- CYBER-GRID BACKGROUND --- */
         .cyber-grid {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
             background: 
-                linear-gradient(transparent 0%, rgba(0,255,136,0.02) 2%, transparent 3%),
-                linear-gradient(90deg, transparent 0%, rgba(0,255,136,0.02) 2%, transparent 3%);
+                linear-gradient(transparent 0%, var(--grid-line) 2%, transparent 3%),
+                linear-gradient(90deg, transparent 0%, var(--grid-line) 2%, transparent 3%);
             background-size: 50px 50px;
             transform: perspective(500px) rotateX(20deg) scale(1.5);
             animation: gridMove 20s linear infinite;
             z-index: -1;
-            opacity: 0.5;
         }
         @keyframes gridMove { 0% { background-position: 0 0; } 100% { background-position: 0 50px; } }
 
-        /* --- SYSTEM BOOT LOADER (A Primeira Impressão) --- */
+        /* --- BOOT LOADER --- */
         #boot-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; z-index: 10000; display: flex; align-items: center; justify-content: center;
-            font-family: 'JetBrains Mono'; color: var(--neon); flex-direction: column;
+            background: #030303; z-index: 10000; display: flex; align-items: center; justify-content: center;
+            font-family: 'JetBrains Mono'; color: #00ff88; flex-direction: column;
         }
-        .boot-text { font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 20px; }
         .boot-bar { width: 200px; height: 2px; background: #333; position: relative; overflow: hidden; }
-        .boot-progress { position: absolute; left: 0; top: 0; height: 100%; width: 0%; background: var(--neon); animation: bootLoad 2.5s cubic-bezier(0.1, 0.7, 1.0, 0.1) forwards; box-shadow: 0 0 10px var(--neon); }
-        @keyframes bootLoad { 0% { width: 0%; } 40% { width: 70%; } 100% { width: 100%; } }
+        .boot-progress { position: absolute; left: 0; top: 0; height: 100%; width: 0%; background: #00ff88; animation: bootLoad 2.2s cubic-bezier(0.1, 0.7, 1.0, 0.1) forwards; box-shadow: 0 0 10px #00ff88; }
+        @keyframes bootLoad { 0% { width: 0%; } 100% { width: 100%; } }
 
-        /* --- UTILS --- */
-        .glass-panel {
-            background: var(--glass); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border); border-radius: 4px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        }
-        .text-gradient { background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .mono { font-family: 'JetBrains Mono'; }
-        .glow-text { text-shadow: 0 0 20px rgba(255, 255, 255, 0.2); }
-        
-        /* --- NAV --- */
+        /* --- NAV & THEME SWITCHER --- */
         nav {
             position: fixed; top: 0; width: 100%; height: 90px; padding: 0 5%;
             display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000; background: linear-gradient(to bottom, rgba(3,3,3,0.9), transparent);
+            z-index: 1000; background: var(--nav-bg);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
         }
-        .brand { font-family: 'Orbitron'; font-weight: 800; font-size: 1.5rem; letter-spacing: 2px; display: flex; align-items: center; gap: 10px; }
-        .nav-links { display: flex; gap: 40px; background: rgba(255,255,255,0.03); padding: 10px 30px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(10px); }
-        .nav-link { text-decoration: none; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; transition: 0.3s; position: relative; }
-        .nav-link:hover { color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        .brand { font-family: 'Orbitron'; font-weight: 800; font-size: 1.5rem; letter-spacing: 2px; display: flex; align-items: center; gap: 10px; color: var(--text-main); }
+        .nav-links { display: flex; gap: 40px; background: var(--bg-panel); padding: 10px 30px; border-radius: 50px; border: 1px solid var(--border); }
+        .nav-link { text-decoration: none; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; transition: 0.3s; }
+        .nav-link:hover { color: var(--neon); }
+        
+        /* Theme Toggle Button */
+        .theme-switch {
+            background: transparent; border: 1px solid var(--border); color: var(--text-muted);
+            width: 40px; height: 40px; border-radius: 50%; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; transition: 0.3s;
+        }
+        .theme-switch:hover { border-color: var(--neon); color: var(--neon); transform: rotate(15deg); }
+
+        /* --- GLASS PANELS --- */
+        .glass-panel {
+            background: var(--bg-panel); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border); border-radius: 4px;
+            box-shadow: var(--shadow);
+        }
+        .text-gradient { background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .mono { font-family: 'JetBrains Mono'; }
         
         /* --- HERO --- */
         .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 5%; position: relative; }
-        .hero::after { content: ''; position: absolute; width: 600px; height: 600px; background: var(--neon); filter: blur(250px); opacity: 0.08; z-index: -1; top: 20%; }
+        .hero::after { content: ''; position: absolute; width: 600px; height: 600px; background: var(--neon); filter: blur(250px); opacity: 0.08; z-index: -1; top: 20%; transition: 0.5s; }
         
         .status-pill {
             display: inline-flex; align-items: center; gap: 10px;
-            padding: 8px 20px; border-radius: 50px; border: 1px solid rgba(0,255,136,0.2);
-            background: rgba(0,255,136,0.05); color: var(--neon); font-size: 0.7rem; 
-            font-family: 'JetBrains Mono'; margin-bottom: 40px; box-shadow: 0 0 20px rgba(0,255,136,0.1);
+            padding: 8px 20px; border-radius: 50px; border: 1px solid var(--neon);
+            background: var(--neon-dim); color: var(--neon); font-size: 0.7rem; 
+            font-family: 'JetBrains Mono'; margin-bottom: 40px;
         }
         
         .hero-title {
             font-size: clamp(3rem, 7vw, 6rem); line-height: 1; font-family: 'Orbitron'; font-weight: 900;
-            margin-bottom: 30px; letter-spacing: -2px; position: relative;
+            margin-bottom: 30px; letter-spacing: -2px;
         }
         
         .hero-sub { font-size: 1.2rem; color: var(--text-muted); max-width: 700px; line-height: 1.7; margin-bottom: 60px; font-weight: 300; }
         
         .btn-glow {
-            padding: 20px 50px; background: var(--text-main); color: #000; font-family: 'Orbitron'; font-weight: 700;
+            padding: 20px 50px; background: var(--text-main); color: var(--bg-body); font-family: 'Orbitron'; font-weight: 700;
             text-decoration: none; text-transform: uppercase; letter-spacing: 1px; border-radius: 2px;
-            transition: 0.3s; box-shadow: 0 0 30px rgba(255,255,255,0.2); position: relative; overflow: hidden;
-            border: none; cursor: pointer;
+            transition: 0.3s; box-shadow: 0 0 30px var(--neon-dim); border: none; cursor: pointer;
         }
-        .btn-glow:hover { box-shadow: 0 0 60px rgba(255,255,255,0.4); transform: scale(1.02); }
+        .btn-glow:hover { box-shadow: 0 0 60px var(--neon-dim); transform: scale(1.02); }
 
-        /* --- TECH MARQUEE (INFINITE) --- */
+        /* --- TECH MARQUEE --- */
         .marquee-container {
-            width: 100%; border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border);
-            background: rgba(0,0,0,0.5); padding: 25px 0; overflow: hidden; white-space: nowrap; position: relative;
+            width: 100%; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+            background: var(--bg-panel); padding: 25px 0; overflow: hidden; white-space: nowrap;
         }
         .marquee-track { display: inline-block; animation: scroll 30s linear infinite; }
-        .tech-item { display: inline-flex; align-items: center; gap: 10px; margin: 0 50px; color: #555; font-family: 'JetBrains Mono'; font-weight: 700; transition: 0.3s; }
-        .tech-item:hover { color: var(--neon); text-shadow: 0 0 10px var(--neon); }
+        .tech-item { display: inline-flex; align-items: center; gap: 10px; margin: 0 50px; color: var(--text-muted); font-family: 'JetBrains Mono'; font-weight: 700; transition: 0.3s; }
+        .tech-item:hover { color: var(--neon); }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* --- CARDS (GLASSMORPHISM) --- */
+        /* --- SECTIONS --- */
         .section-pad { padding: 120px 8%; }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
         
         .glass-card {
-            padding: 50px 40px; position: relative; overflow: hidden; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%);
+            padding: 50px 40px; position: relative; overflow: hidden; transition: 0.4s;
+            background: linear-gradient(180deg, var(--bg-panel) 0%, transparent 100%);
+            border: 1px solid var(--border);
         }
-        .glass-card:hover { transform: translateY(-10px); border-color: var(--neon); box-shadow: 0 10px 40px -10px rgba(0,255,136,0.1); }
-        .card-icon { font-size: 2.5rem; color: var(--neon); margin-bottom: 25px; filter: drop-shadow(0 0 10px var(--neon-glow)); }
-        .card-title { font-family: 'Orbitron'; font-size: 1.4rem; margin-bottom: 15px; color: #fff; }
+        .glass-card:hover { transform: translateY(-10px); border-color: var(--neon); }
+        .card-icon { font-size: 2.5rem; color: var(--neon); margin-bottom: 25px; }
+        .card-title { font-family: 'Orbitron'; font-size: 1.4rem; margin-bottom: 15px; color: var(--text-main); }
         
-        /* --- FOUNDER SECTION (MAGAZINE STYLE) --- */
+        /* --- FOUNDER --- */
         .founder-wrapper {
             display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-            border: 1px solid var(--glass-border); padding: 60px; border-radius: 4px;
-            background: radial-gradient(circle at right, rgba(255,255,255,0.02), transparent 70%);
+            border: 1px solid var(--border); padding: 60px; border-radius: 4px;
+            background: radial-gradient(circle at right, var(--neon-dim), transparent 70%);
         }
-        .founder-img-box { position: relative; }
-        .founder-img { width: 100%; border-radius: 4px; filter: contrast(1.1); border: 1px solid var(--glass-border); }
+        .founder-img { width: 100%; border-radius: 4px; border: 1px solid var(--border); }
         .verified-seal {
-            position: absolute; bottom: -20px; right: -20px; background: #000; border: 1px solid var(--neon);
-            padding: 15px 25px; display: flex; align-items: center; gap: 15px; box-shadow: 0 10px 30px #000;
+            position: absolute; bottom: -20px; right: -20px; background: var(--bg-body); border: 1px solid var(--neon);
+            padding: 15px 25px; display: flex; align-items: center; gap: 15px; box-shadow: var(--shadow);
         }
         
         /* --- VIDEO FRAME --- */
         .video-frame {
-            border: 1px solid var(--glass-border); padding: 10px; background: rgba(255,255,255,0.02);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5); margin: 80px auto; max-width: 1000px;
+            border: 1px solid var(--border); padding: 10px; background: var(--bg-panel);
+            box-shadow: var(--shadow); margin: 80px auto; max-width: 1000px;
         }
 
-        /* --- TIERS (PRICING STYLE) --- */
-        .tier-card {
-            border: 1px solid var(--glass-border); padding: 50px 30px; text-align: center;
-            background: rgba(20,20,20,0.4); transition: 0.3s;
-        }
-        .tier-card:hover { background: rgba(20,20,20,0.8); border-color: #fff; }
-        .tier-card.pro { border: 1px solid var(--neon); background: radial-gradient(circle at top, rgba(0,255,136,0.05), transparent); }
-        
         /* --- FOOTER --- */
-        footer { border-top: 1px solid var(--glass-border); padding: 80px 5%; margin-top: 100px; background: #010101; }
+        footer { border-top: 1px solid var(--border); padding: 80px 5%; margin-top: 100px; background: var(--bg-body); }
         
         @media (max-width: 900px) {
             .nav-links { display: none; }
@@ -175,24 +194,29 @@
     <div class="cyber-grid"></div>
     
     <div id="boot-screen">
-        <div class="boot-text mono">INITIALIZING KNS CORE PROTOCOLS...</div>
+        <div class="mono" style="margin-bottom: 20px; letter-spacing: 2px;">KNS PROTOCOL LOADING...</div>
         <div class="boot-bar"><div class="boot-progress"></div></div>
     </div>
 
     <nav>
-        <div class="brand glow-text"><i class="fa-solid fa-cube" style="color: var(--neon);"></i> KNS</div>
+        <div class="brand"><i class="fa-solid fa-cube" style="color: var(--neon);"></i> KNS</div>
         <div class="nav-links">
             <a href="#manifesto" class="nav-link">Visão</a>
-            <a href="#p9" class="nav-link">O Protocolo</a>
+            <a href="#p9" class="nav-link">Protocolo</a>
             <a href="#models" class="nav-link">Modelos</a>
             <a href="#authority" class="nav-link">Liderança</a>
         </div>
-        <a href="https://calendly.com/SEU_LINK" style="color: #fff; text-decoration: none; font-size: 1.2rem;"><i class="fa-solid fa-arrow-right-long"></i></a>
+        <div style="display: flex; gap: 15px; align-items: center;">
+            <button class="theme-switch" onclick="toggleTheme()" title="Mudar Tema">
+                <i class="fa-solid fa-circle-half-stroke"></i>
+            </button>
+            <a href="https://calendly.com/SEU_LINK" class="btn-glow" style="padding: 10px 20px; font-size: 0.7rem;">FALE COM O BOARD</a>
+        </div>
     </nav>
 
     <section class="hero">
         <div class="status-pill reveal">
-            <span style="width: 8px; height: 8px; background: var(--neon); border-radius: 50%; box-shadow: 0 0 10px var(--neon);"></span>
+            <span style="width: 8px; height: 8px; background: var(--neon); border-radius: 50%;"></span>
             SYSTEM STATUS: OPERATIONAL
         </div>
         
@@ -206,7 +230,7 @@
         </p>
         
         <div class="reveal">
-            <a href="https://calendly.com/SEU_LINK" class="btn-glow">INICIAR DIAGNÓSTICO</a>
+            <a href="#models" class="btn-glow">INICIAR DIAGNÓSTICO</a>
         </div>
 
         <div class="video-frame reveal">
@@ -229,14 +253,13 @@
             <span class="tech-item"><i class="fa-solid fa-microchip"></i> LIBRENMS</span>
             <span class="tech-item"><i class="fa-brands fa-python"></i> PYTHON AUTOMATION</span>
             <span class="tech-item"><i class="fa-solid fa-shield-halved"></i> ZABBIX ENTERPRISE</span>
-            <span class="tech-item"><i class="fa-solid fa-chart-line"></i> GRAFANA INTEL</span>
         </div>
     </div>
 
     <section id="manifesto" class="section-pad">
         <div style="max-width: 800px; margin: 0 auto; text-align: center; margin-bottom: 80px;">
             <span class="mono" style="color: var(--neon); letter-spacing: 3px; font-size: 0.8rem;">// NOSSA DOUTRINA</span>
-            <h2 style="font-family: 'Orbitron'; font-size: 3rem; margin-top: 10px;">O CUSTO DO "FUNCIONA"</h2>
+            <h2 style="font-family: 'Orbitron'; font-size: 3rem; margin-top: 10px; color: var(--text-main);">O CUSTO DO "FUNCIONA"</h2>
             <p style="color: var(--text-muted); line-height: 1.8; margin-top: 20px;">
                 O mercado aceita o medíocre. Se "está no ar", está bom. Nós discordamos. Um sistema que funciona mas não é preditivo é uma bomba-relógio. A KNS não faz manutenção; nós arquitetamos o ambiente onde o erro não sobrevive.
             </p>
@@ -261,15 +284,15 @@
         </div>
     </section>
 
-    <section id="p9" class="section-pad" style="background: linear-gradient(to bottom, transparent, rgba(0,255,136,0.03));">
+    <section id="p9" class="section-pad" style="background: linear-gradient(to bottom, transparent, var(--neon-dim));">
         <div class="founder-wrapper reveal">
             <div>
                 <span class="mono" style="color: var(--neon);">PROPRIETARY TECH</span>
-                <h2 style="font-family: 'Orbitron'; font-size: 3rem; margin-bottom: 30px;">PROTOCOLO 09</h2>
+                <h2 style="font-family: 'Orbitron'; font-size: 3rem; margin-bottom: 30px; color: var(--text-main);">PROTOCOLO 09</h2>
                 <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 30px;">
                     Mais do que consultoria, entregamos um <strong>Sistema Autônomo</strong>. O Protocolo 09 utiliza scripts Python para "Auto-Cura" (Self-Healing). Incidentes são corrigidos em milissegundos, antes do fator humano intervir.
                 </p>
-                <ul class="mono" style="color: #fff; line-height: 2;">
+                <ul class="mono" style="color: var(--text-main); line-height: 2;">
                     <li>> REMEDIAÇÃO ALGORÍTMICA</li>
                     <li>> OBSERVABILIDADE PREDITIVA</li>
                     <li>> DOCUMENTAÇÃO VIVA</li>
@@ -282,40 +305,40 @@
     </section>
 
     <section id="models" class="section-pad">
-        <h2 style="text-align: center; font-family: 'Orbitron'; font-size: 2.5rem; margin-bottom: 60px;">ENGAGEMENT TIERS</h2>
+        <h2 style="text-align: center; font-family: 'Orbitron'; font-size: 2.5rem; margin-bottom: 60px; color: var(--text-main);">ENGAGEMENT TIERS</h2>
         <div class="grid-3">
-            <div class="tier-card glass-panel">
-                <span class="mono" style="font-size: 0.8rem; color: #888;">ADVISORY</span>
-                <h3 style="font-family: 'Orbitron'; margin: 20px 0;">DIAGNÓSTICO</h3>
-                <p style="color: #666; font-size: 0.9rem;">Auditoria e Roadmap.</p>
+            <div class="glass-card glass-panel">
+                <span class="mono" style="font-size: 0.8rem; color: var(--text-muted);">ADVISORY</span>
+                <h3 class="card-title" style="margin: 20px 0;">DIAGNÓSTICO</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Auditoria e Roadmap.</p>
             </div>
-            <div class="tier-card pro glass-panel">
+            <div class="glass-card glass-panel" style="border-color: var(--neon);">
                 <span class="mono" style="font-size: 0.8rem; color: var(--neon);">MOST REQUESTED</span>
-                <h3 style="font-family: 'Orbitron'; margin: 20px 0;">IMPLEMENTATION</h3>
-                <p style="color: #ccc; font-size: 0.9rem;">Protocolo 09 Full Stack.</p>
+                <h3 class="card-title" style="margin: 20px 0;">IMPLEMENTATION</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Protocolo 09 Full Stack.</p>
             </div>
-            <div class="tier-card glass-panel">
-                <span class="mono" style="font-size: 0.8rem; color: #888;">PARTNER</span>
-                <h3 style="font-family: 'Orbitron'; margin: 20px 0;">FRACTIONAL CTO</h3>
-                <p style="color: #666; font-size: 0.9rem;">Gestão de Crise & Board.</p>
+            <div class="glass-card glass-panel">
+                <span class="mono" style="font-size: 0.8rem; color: var(--text-muted);">PARTNER</span>
+                <h3 class="card-title" style="margin: 20px 0;">FRACTIONAL CTO</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Gestão de Crise & Board.</p>
             </div>
         </div>
     </section>
 
     <section id="authority" class="section-pad">
         <div class="founder-wrapper glass-panel reveal">
-            <div class="founder-img-box">
+            <div style="position: relative;">
                 <img src="./assets/foto.jpg" alt="Kaleb Nunes" class="founder-img" onerror="this.style.display='none'">
                 <div class="verified-seal glass-panel">
                     <img src="./assets/sage_full.png" style="height: 40px;" alt="SAGE Badge">
                     <div style="text-align: left;">
-                        <div style="font-family: 'Orbitron'; font-weight: 700; color: #fff;">SAGE CERTIFIED</div>
+                        <div style="font-family: 'Orbitron'; font-weight: 700; color: var(--text-main);">SAGE CERTIFIED</div>
                         <div class="mono" style="font-size: 0.6rem; color: var(--neon);">TOP 1% GLOBAL</div>
                     </div>
                 </div>
             </div>
             <div>
-                <h3 style="font-family: 'Orbitron'; font-size: 2.5rem;">KALEB NUNES</h3>
+                <h3 style="font-family: 'Orbitron'; font-size: 2.5rem; color: var(--text-main);">KALEB NUNES</h3>
                 <span class="mono" style="color: var(--neon);">FOUNDER & HEAD OF STRATEGY</span>
                 <p style="color: var(--text-muted); line-height: 1.8; margin-top: 30px;">
                     "Não sou apenas engenheiro; sou estrategista de continuidade. Minha carreira foi construída resolvendo o impossível. A KNS existe para transformar o caos técnico em previsibilidade executiva."
@@ -327,21 +350,28 @@
     <footer>
         <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px;">
             <div>
-                <h3 style="font-family: 'Orbitron'; margin-bottom: 20px;">KNS GLOBAL</h3>
-                <p style="color: #555; font-size: 0.9rem;">Balneário Camboriú, SC<br>Brasil</p>
+                <h3 style="font-family: 'Orbitron'; margin-bottom: 20px; color: var(--text-main);">KNS GLOBAL</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Balneário Camboriú, SC<br>Brasil</p>
             </div>
             <div style="display: flex; gap: 40px;">
-                <a href="#" style="color: #555; text-decoration: none;">Legal</a>
-                <a href="#" style="color: #555; text-decoration: none;">SLA</a>
-                <a href="#" style="color: #555; text-decoration: none;">Privacy</a>
+                <a href="#" style="color: var(--text-muted); text-decoration: none;">Legal</a>
+                <a href="#" style="color: var(--text-muted); text-decoration: none;">SLA</a>
+                <a href="#" style="color: var(--text-muted); text-decoration: none;">Privacy</a>
             </div>
         </div>
-        <div style="border-top: 1px solid #222; margin-top: 40px; padding-top: 20px; color: #333; font-size: 0.8rem;" class="mono">
+        <div style="border-top: 1px solid var(--border); margin-top: 40px; padding-top: 20px; color: var(--text-muted); font-size: 0.8rem;" class="mono">
             &copy; 2026 KNS GLOBAL SOLUTIONS. POWERED BY PROTOCOL 09.
         </div>
     </footer>
 
     <script>
+        // THEME ENGINE
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+        }
+
         // REMOVE BOOT SCREEN
         setTimeout(() => {
             document.getElementById('boot-screen').style.opacity = '0';
