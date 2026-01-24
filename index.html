@@ -7,6 +7,9 @@
     <meta name="author" content="KNS Global Solutions">
     <meta property="og:title" content="KNS Global | Mission Critical Engineering">
     <meta property="og:url" content="https://knsconsultoria.com.br">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+    
     <title>KNS GLOBAL | Risco Operacional Zero</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -121,11 +124,6 @@
         .kpi-value { font-family: 'Orbitron'; font-size: 2.5rem; font-weight: 800; color: var(--text-main); display: block; margin-bottom: 5px; }
         .kpi-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
 
-        /* --- INSTITUTIONAL / ABOUT --- */
-        .about-section { padding: 100px 8%; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .about-text h2 { font-size: 2.5rem; margin-bottom: 20px; }
-        .about-text p { font-size: 1rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
-        
         /* --- GOVERNANCE SECTION --- */
         .gov-section { padding: 100px 8%; background: var(--bg-surface); border-top: 1px solid var(--border); }
         .gov-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 60px; }
@@ -156,11 +154,20 @@
         .ind-item:hover .ind-icon { color: var(--primary); transform: scale(1.1); }
         .ind-label { font-family: 'JetBrains Mono'; font-size: 0.9rem; color: var(--text-main); text-transform: uppercase; font-weight: 700; }
 
-        /* --- LEADERSHIP (NÃO MAIS "SOBRE MIM") --- */
+        /* --- LEADERSHIP & AUTHORITY --- */
         .leadership-section { padding: 100px 8%; background: var(--bg-deep); border-top: 1px solid var(--border); }
         .lead-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 50px; align-items: center; max-width: 1000px; margin: 0 auto; }
-        .lead-img { width: 100%; border-radius: 4px; border: 1px solid var(--border); filter: grayscale(100%); transition: 0.3s; }
+        .lead-img { width: 100%; border-radius: 4px; border: 1px solid var(--border); filter: grayscale(100%); transition: 0.3s; max-width: 350px; }
         .lead-img:hover { filter: grayscale(0%); border-color: var(--primary); }
+        
+        /* CERTIFICATE BOX */
+        .cert-box {
+            display: flex; align-items: center; gap: 20px; 
+            background: rgba(255,255,255,0.03); padding: 20px; border-radius: 4px; 
+            margin-top: 30px; border: 1px solid var(--border);
+        }
+        .cert-thumb { height: 80px; border: 1px solid var(--border); transition: 0.3s; }
+        .cert-thumb:hover { transform: scale(2); z-index: 100; border-color: var(--primary); }
 
         /* --- FOOTER INSTITUCIONAL --- */
         footer { background: var(--bg-surface); padding: 80px 8% 40px; border-top: 1px solid var(--border); }
@@ -171,9 +178,10 @@
         @media (max-width: 900px) {
             .nav-links { display: none; }
             .kpi-box { border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
-            .case-card, .about-section, .lead-grid { grid-template-columns: 1fr; }
+            .case-card, .lead-grid { grid-template-columns: 1fr; }
             .footer-cols { grid-template-columns: 1fr; }
             .hero-title { font-size: 2.2rem; }
+            .lead-img { margin-bottom: 30px; }
         }
 
         /* UI ELEMENTS */
@@ -221,7 +229,7 @@
         </p>
 
         <div class="cta-container">
-            <a href="https://calendly.com/SEU_LINK_AQUI" target="_blank" class="btn-executive" data-i18n="cta_main">
+            <a href="https://calendly.com/SEU_LINK_CALENDLY" target="_blank" class="btn-executive" data-i18n="cta_main">
                 <i class="fa-regular fa-calendar-check" style="margin-right: 10px;"></i> SOLICITAR DIAGNÓSTICO DE RISCO
             </a>
             <a href="#governance" class="btn-secondary" data-i18n="cta_sec">NOSSA METODOLOGIA</a>
@@ -310,7 +318,7 @@
                 <p style="color: var(--text-main); line-height: 1.7; margin-bottom: 30px; border-left: 3px solid var(--primary); padding-left: 15px;" data-i18n="case_p3">
                     <strong>Resultado:</strong> Estabilidade total em 30 dias. Redução de 100% no Churn Técnico no período.
                 </p>
-                <a href="https://calendly.com/SEU_LINK_AQUI" style="color: var(--text-main); font-weight: 700; text-decoration: none; border-bottom: 1px solid var(--primary);">AGENDAR APRESENTAÇÃO DO CASE</a>
+                <a href="#solucoes" style="color: var(--text-main); font-weight: 700; text-decoration: none; border-bottom: 1px solid var(--primary);">VER ARQUITETURA APLICADA</a>
             </div>
             <div class="case-visual">
                 <i class="fa-solid fa-shield-virus" style="font-size: 8rem; color: var(--primary); margin-bottom: 30px;"></i>
@@ -324,9 +332,9 @@
 
     <section class="leadership-section">
         <div class="lead-grid">
-            <div>
+            <div style="text-align: center;">
                 <img src="./assets/foto.jpg" alt="Kaleb Nunes - Head of Engineering" class="lead-img" onerror="this.style.display='none'">
-                <div style="margin-top: 15px; text-align: center;">
+                <div style="margin-top: 15px;">
                     <h4 style="margin: 0;">KALEB NUNES</h4>
                     <span class="mono" style="font-size: 0.8rem; color: var(--primary);">HEAD OF ENGINEERING & FOUNDER</span>
                 </div>
@@ -339,11 +347,11 @@
                     Nossa metodologia foi desenvolvida para garantir que o conhecimento e a estabilidade pertençam à empresa do cliente, não a um consultor externo.
                 </p>
                 
-                <div style="display: flex; align-items: center; gap: 20px; background: rgba(255,255,255,0.03); padding: 15px; border-radius: 4px;">
-                    <img src="./assets/sage_full.png" style="height: 60px;" alt="SAGE Certified">
+                <div class="cert-box">
+                    <img src="./assets/sage_full.png" class="cert-thumb" alt="SAGE Certified" onerror="this.style.display='none'">
                     <div>
-                        <h5 style="margin: 0; font-size: 0.9rem;">VALIDAÇÃO TÉCNICA GLOBAL</h5>
-                        <span style="font-size: 0.75rem; color: var(--text-muted);">Hurricane Electric IPv6 SAGE Certified</span>
+                        <h5 style="margin: 0; font-size: 1rem;">VALIDAÇÃO TÉCNICA GLOBAL</h5>
+                        <span style="font-size: 0.75rem; color: var(--text-muted);">Hurricane Electric IPv6 SAGE Certified | Top 1% World</span>
                     </div>
                 </div>
             </div>
@@ -408,7 +416,7 @@
                 gov_title: "SEGURANÇA JURÍDICA E OPERACIONAL",
                 gov_desc: "Nossa atuação vai além da técnica. Entregamos conformidade e mitigação de riscos para stakeholders.",
                 gov_1_t: "Compliance & LGPD", gov_1_d: "Toda a arquitetura é desenhada respeitando as leis de proteção de dados e diretrizes de Segurança da Informação.",
-                gov_2_t: "Padrões ITIL & ISO", gov_2_d: "Processos baseados em bibliotecas ITIL e alinhamento com a ISO 27001 para gestão de incidentes.",
+                gov_2_t: "Padrões ITIL & ISO", gov_2_d: "Processos baseados em bibliotecas ITIL e alinhamento com a ISO 27001 para gestão de incidentes e continuidade.",
                 gov_3_t: "SLA Definido", gov_3_d: "Contratos com Acordo de Nível de Serviço claros. Garantia de tempo de resposta e resolução.",
 
                 ind_title: "SETORES ATENDIDOS",
