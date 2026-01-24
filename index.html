@@ -3,40 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="KNS Global - Engenharia de Continuidade, Governança de TI e Mitigação de Risco Financeiro.">
+    <meta name="description" content="KNS Global - Autoridade em Engenharia de Continuidade e Proteção de Ativos Digitais.">
     <meta name="author" content="KNS Global Solutions">
-    <meta property="og:title" content="KNS Global | Capital Protection & Infrastructure">
+    <meta property="og:title" content="KNS Global | Strategic Infrastructure Authority">
     
-    <title>KNS GLOBAL | Enterprise Continuity</title>
+    <title>KNS GLOBAL | The Authority</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- CORE ENGINE --- */
+        /* --- CORE ENGINE (THEME: COMMAND CENTER) --- */
         :root {
-            --primary: #00ff88; /* Verde Neon "Lucro/Sinal Verde" */
+            --primary: #00ff88;
             --primary-dim: rgba(0, 255, 136, 0.05);
-            --primary-glow: rgba(0, 255, 136, 0.3);
+            --primary-glow: rgba(0, 255, 136, 0.2);
             --bg-deep: #050505;
-            --bg-surface: #0f0f0f;
+            --bg-surface: #0e0e0e;
+            --card-bg: #141414;
             --text-main: #ffffff;
-            --text-muted: #888888;
+            --text-muted: #909090;
             --border: rgba(255, 255, 255, 0.08);
-            --nav-bg: rgba(5, 5, 5, 0.95);
-            --danger: #ff3333;
-        }
-
-        [data-theme="light"] {
-            --primary: #005c3a;
-            --primary-dim: rgba(0, 92, 58, 0.05);
-            --primary-glow: rgba(0, 92, 58, 0.1);
-            --bg-deep: #f0f2f5;
-            --bg-surface: #ffffff;
-            --text-main: #0a0a0a;
-            --text-muted: #555555;
-            --border: rgba(0, 0, 0, 0.1);
-            --nav-bg: rgba(255, 255, 255, 0.95);
+            --gold: #FFD700; /* Toque de Premium/Authority */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
@@ -46,148 +34,147 @@
             color: var(--text-main); 
             font-family: 'Plus Jakarta Sans', sans-serif; 
             overflow-x: hidden;
-            transition: 0.5s;
         }
 
-        /* --- SYSTEM STATUS BAR --- */
+        /* --- UTILS & ANIMATIONS --- */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .highlight { color: var(--primary); }
+        
+        /* --- SYSTEM BAR (STATUS) --- */
         .system-bar {
             background: #000; border-bottom: 1px solid var(--border);
             padding: 8px 5%; font-family: 'JetBrains Mono'; font-size: 0.65rem;
             display: flex; justify-content: space-between; align-items: center;
             color: var(--text-muted); letter-spacing: 1px;
+            position: relative; z-index: 1002;
         }
-        .status-dot { width: 8px; height: 8px; background: var(--primary); border-radius: 50%; display: inline-block; box-shadow: 0 0 10px var(--primary); animation: pulse 2s infinite; }
+        .status-dot { width: 6px; height: 6px; background: var(--primary); border-radius: 50%; display: inline-block; margin-right: 5px; box-shadow: 0 0 8px var(--primary); animation: pulse 2s infinite; }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
 
-        /* --- ANIMATION ENGINE --- */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        .delay-1 { transition-delay: 0.1s; }
-        .delay-2 { transition-delay: 0.2s; }
-        .delay-3 { transition-delay: 0.3s; }
-
-        /* --- NAV --- */
+        /* --- NAV (GLASS) --- */
         nav {
-            position: sticky; top: 0; width: 100%; padding: 0 5%; height: 80px;
+            position: sticky; top: 0; width: 100%; padding: 0 5%; height: 85px;
             display: flex; justify-content: space-between; align-items: center;
-            background: var(--nav-bg); border-bottom: 1px solid var(--border); 
-            backdrop-filter: blur(10px); z-index: 1000;
+            background: rgba(5, 5, 5, 0.9); border-bottom: 1px solid var(--border); 
+            backdrop-filter: blur(12px); z-index: 1000;
         }
-        .brand { font-size: 1.3rem; font-weight: 800; letter-spacing: 1px; display: flex; align-items: center; gap: 10px; }
+        .brand { font-size: 1.4rem; font-weight: 800; letter-spacing: 1px; display: flex; align-items: center; gap: 10px; font-family: 'Orbitron'; }
         .nav-links { display: flex; gap: 30px; }
         .nav-link { color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
-        .nav-link:hover { color: var(--primary); }
+        .nav-link:hover { color: var(--text-main); }
+        .nav-cta { border: 1px solid var(--primary); color: var(--primary); padding: 8px 16px; border-radius: 2px; transition: 0.3s; }
+        .nav-cta:hover { background: var(--primary); color: #000; }
 
-        /* --- HERO --- */
-        .hero { padding: 120px 5% 80px; text-align: center; max-width: 1400px; margin: 0 auto; }
-        
-        .trust-label {
+        /* --- HERO (AUTHORITY) --- */
+        .hero { padding: 140px 5% 100px; text-align: center; max-width: 1400px; margin: 0 auto; position: relative; }
+        .hero::before {
+            content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            width: 80%; height: 500px; background: radial-gradient(circle, var(--primary-glow) 0%, transparent 60%);
+            z-index: -1; pointer-events: none; opacity: 0.5;
+        }
+
+        .authority-badge {
             display: inline-flex; align-items: center; gap: 10px;
-            border: 1px solid var(--border); padding: 8px 20px; border-radius: 50px;
-            font-size: 0.7rem; color: var(--primary); font-family: 'JetBrains Mono';
-            margin-bottom: 30px; background: var(--primary-dim); text-transform: uppercase;
+            background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+            padding: 6px 16px; border-radius: 50px; margin-bottom: 30px;
+            font-size: 0.7rem; color: var(--gold); letter-spacing: 1px; font-weight: 600;
         }
 
         .hero-title { 
-            font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.1; font-weight: 800; 
-            margin-bottom: 25px; letter-spacing: -0.03em;
-            background: linear-gradient(180deg, var(--text-main) 0%, rgba(255,255,255,0.7) 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-size: clamp(2.5rem, 5vw, 4.8rem); line-height: 1.05; font-weight: 800; 
+            margin-bottom: 25px; letter-spacing: -0.03em; font-family: 'Orbitron';
+            background: linear-gradient(180deg, #fff 0%, #aaa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
         
         .hero-sub { 
-            font-size: 1.1rem; color: var(--text-muted); max-width: 750px; margin: 0 auto 50px; 
+            font-size: 1.15rem; color: var(--text-muted); max-width: 800px; margin: 0 auto 50px; 
             line-height: 1.6; font-weight: 400;
         }
 
-        .hero-btns { display: flex; gap: 15px; justify-content: center; margin-bottom: 80px; flex-wrap: wrap; }
-        
-        .btn-primary {
-            background: var(--text-main); color: var(--bg-deep); padding: 16px 40px;
-            font-weight: 700; text-decoration: none; font-size: 0.85rem; letter-spacing: 0.5px;
-            border-radius: 2px; transition: 0.3s; font-family: 'Orbitron';
-        }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,255,255,0.1); }
-        
-        .btn-outline {
-            background: transparent; border: 1px solid var(--border); color: var(--text-muted);
-            padding: 16px 40px; font-weight: 600; text-decoration: none; font-size: 0.85rem;
-            border-radius: 2px; transition: 0.3s;
-        }
-        .btn-outline:hover { border-color: var(--primary); color: var(--text-main); }
+        .hero-actions { display: flex; gap: 20px; justify-content: center; margin-bottom: 80px; }
+        .btn { padding: 18px 45px; font-weight: 700; text-decoration: none; font-size: 0.85rem; letter-spacing: 1px; border-radius: 2px; transition: 0.3s; text-transform: uppercase; font-family: 'Orbitron'; cursor: pointer; display: inline-block; }
+        .btn-main { background: var(--text-main); color: #000; border: 1px solid var(--text-main); }
+        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 10px 40px rgba(255,255,255,0.15); }
+        .btn-sec { background: transparent; color: var(--text-muted); border: 1px solid var(--border); }
+        .btn-sec:hover { border-color: var(--primary); color: var(--text-main); }
 
-        /* --- METRICS GRID --- */
-        .metrics-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-        }
-        .metric-item { padding: 40px 20px; text-align: center; border-right: 1px solid var(--border); }
-        .metric-item:last-child { border-right: none; }
-        .metric-num { display: block; font-size: 2.5rem; font-weight: 800; font-family: 'Orbitron'; margin-bottom: 5px; color: var(--text-main); }
-        .metric-lbl { font-size: 0.7rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; font-weight: 600; }
+        /* --- THE MANIFESTO (NARRATIVA) --- */
+        .manifesto-section { padding: 100px 5%; background: var(--bg-surface); border-top: 1px solid var(--border); }
+        .manifesto-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; max-width: 1200px; margin: 0 auto; }
+        .manifesto-text h2 { font-size: 2.5rem; margin-bottom: 30px; font-family: 'Orbitron'; }
+        .manifesto-text p { font-size: 1rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 20px; }
+        .quote-box { border-left: 3px solid var(--primary); padding-left: 25px; margin-top: 30px; }
+        .quote-text { font-size: 1.2rem; font-style: italic; color: var(--text-main); font-family: 'Orbitron'; line-height: 1.4; }
 
-        /* --- CORPORATE GOVERNANCE --- */
-        .section-header { text-align: center; max-width: 800px; margin: 0 auto 60px; }
-        .section-tag { color: var(--primary); font-family: 'JetBrains Mono'; font-size: 0.8rem; letter-spacing: 2px; font-weight: 700; display: block; margin-bottom: 15px; }
-        .section-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 15px; letter-spacing: -1px; }
+        /* --- PROTOCOL 09 (ASSET CLASS) --- */
+        .p9-section { padding: 100px 5%; }
+        .p9-header { text-align: center; max-width: 800px; margin: 0 auto 60px; }
+        .p9-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .p9-card { 
+            background: var(--card-bg); border: 1px solid var(--border); padding: 40px; 
+            transition: 0.3s; position: relative; overflow: hidden;
+        }
+        .p9-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .p9-icon { font-size: 2rem; color: var(--primary); margin-bottom: 25px; }
+        .p9-title { font-size: 1.2rem; margin-bottom: 15px; font-family: 'Orbitron'; }
+        .p9-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
 
-        .gov-section { padding: 100px 5%; background: var(--bg-surface); }
-        .gov-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .gov-card { 
-            background: var(--bg-deep); border: 1px solid var(--border); padding: 35px; 
-            border-radius: 2px; position: relative; overflow: hidden; transition: 0.3s;
+        /* --- ENGAGEMENT MODELS (TIERS - NOVO) --- */
+        .tiers-section { padding: 100px 5%; background: var(--bg-surface); border-top: 1px solid var(--border); }
+        .tier-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 50px; }
+        .tier-card { 
+            background: var(--bg-deep); border: 1px solid var(--border); padding: 40px 30px; 
+            display: flex; flex-direction: column; height: 100%; transition: 0.3s;
         }
-        .gov-card:hover { border-color: var(--primary); }
-        .gov-card::before { content: ''; position: absolute; top: 0; left: 0; width: 2px; height: 100%; background: var(--primary); opacity: 0; transition: 0.3s; }
-        .gov-card:hover::before { opacity: 1; }
-        
-        /* --- PROTOCOL 09 --- */
-        .p9-section { padding: 100px 5%; border-top: 1px solid var(--border); }
-        .p9-container { 
-            display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; 
-            background: radial-gradient(circle at right, rgba(0,255,136,0.03), transparent 70%);
-        }
-        .check-list { list-style: none; margin-top: 30px; }
-        .check-list li { margin-bottom: 15px; display: flex; align-items: center; gap: 15px; color: var(--text-muted); font-size: 0.95rem; }
-        .check-list i { color: var(--primary); }
+        .tier-card:hover { border-color: var(--text-muted); }
+        .tier-card.featured { border: 1px solid var(--primary); background: linear-gradient(180deg, rgba(0,255,136,0.03) 0%, var(--bg-deep) 100%); }
+        .tier-name { font-size: 0.8rem; font-family: 'JetBrains Mono'; color: var(--primary); margin-bottom: 10px; letter-spacing: 2px; }
+        .tier-head { font-size: 1.8rem; font-family: 'Orbitron'; margin-bottom: 20px; font-weight: 700; }
+        .tier-list { list-style: none; margin-bottom: 30px; flex-grow: 1; }
+        .tier-list li { margin-bottom: 15px; font-size: 0.9rem; color: var(--text-muted); display: flex; gap: 10px; }
+        .tier-btn { margin-top: auto; width: 100%; text-align: center; padding: 12px; border: 1px solid var(--border); color: #fff; text-decoration: none; font-size: 0.8rem; text-transform: uppercase; transition: 0.3s; }
+        .tier-card.featured .tier-btn { background: var(--primary); border-color: var(--primary); color: #000; font-weight: 700; }
 
-        /* --- TECH ARSENAL (COMPACT) --- */
-        .tech-strip { 
-            padding: 40px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-            background: var(--bg-surface); overflow: hidden; white-space: nowrap;
-        }
-        .tech-track { display: inline-block; animation: slide 20s linear infinite; }
-        .tech-item { display: inline-block; padding: 0 40px; font-family: 'JetBrains Mono'; color: var(--text-muted); font-size: 0.9rem; font-weight: 700; }
+        /* --- TECH ARSENAL (REFINED) --- */
+        .tech-strip { padding: 30px 0; background: #000; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; white-space: nowrap; }
+        .tech-item { display: inline-flex; align-items: center; gap: 10px; margin: 0 40px; color: var(--text-muted); font-family: 'JetBrains Mono'; font-size: 0.8rem; font-weight: 700; opacity: 0.7; }
+        .tech-track { display: inline-block; animation: slide 30s linear infinite; }
         @keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-        /* --- FOUNDER & VISION --- */
-        .vision-section { padding: 100px 5%; background: var(--bg-deep); }
-        .founder-box { 
-            display: flex; gap: 50px; align-items: center; max-width: 1100px; margin: 0 auto; 
-            border: 1px solid var(--border); padding: 50px; position: relative;
-            background: linear-gradient(45deg, var(--bg-surface), var(--bg-deep));
+        /* --- FOUNDER (AUTHORITY) --- */
+        .founder-section { padding: 100px 5%; }
+        .founder-layout { 
+            display: grid; grid-template-columns: 300px 1fr; gap: 60px; max-width: 1100px; margin: 0 auto; 
+            align-items: center; border: 1px solid var(--border); padding: 50px; background: radial-gradient(circle at top right, rgba(255,255,255,0.02), transparent);
         }
-        /* ALTERAÇÃO AQUI: REMOVIDO O FILTER: GRAYSCALE */
-        .founder-img { 
-            width: 180px; height: 180px; object-fit: cover; 
-            border-radius: 50%; border: 2px solid var(--border); 
-        }
-        .quote-icon { font-size: 4rem; color: var(--border); position: absolute; top: 30px; right: 40px; }
+        .founder-img-col { text-align: center; }
+        .founder-photo { width: 220px; height: 220px; border-radius: 50%; object-fit: cover; border: 3px solid var(--border); margin-bottom: 20px; }
+        .cert-badge { display: flex; align-items: center; gap: 10px; justify-content: center; background: rgba(0,0,0,0.5); padding: 10px; border-radius: 4px; border: 1px solid var(--border); }
+        .cert-badge img { height: 30px; }
+        .founder-bio h3 { font-size: 2rem; margin-bottom: 5px; font-family: 'Orbitron'; }
+        .founder-role { color: var(--primary); font-family: 'JetBrains Mono'; font-size: 0.9rem; margin-bottom: 25px; display: block; }
+        .founder-text { color: var(--text-muted); line-height: 1.7; margin-bottom: 30px; font-size: 1rem; }
+
+        /* --- FAQ (EXECUTIVE LEVEL) --- */
+        .faq-section { padding: 80px 5%; background: var(--bg-surface); }
+        .faq-grid { max-width: 900px; margin: 0 auto; display: grid; gap: 20px; }
+        .faq-item { background: var(--bg-deep); border: 1px solid var(--border); padding: 25px; border-radius: 2px; }
+        .faq-q { font-family: 'Orbitron'; font-size: 1.1rem; margin-bottom: 10px; color: var(--text-main); display: flex; justify-content: space-between; cursor: pointer; }
+        .faq-a { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; display: none; margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px; }
+        .faq-item.active .faq-a { display: block; }
 
         /* --- FOOTER --- */
-        footer { background: #000; padding: 80px 5% 30px; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--text-muted); }
+        footer { padding: 80px 5% 30px; background: #000; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--text-muted); }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
-        .legal-links a { color: var(--text-muted); margin-right: 20px; text-decoration: none; font-size: 0.75rem; transition: 0.3s; }
-        .legal-links a:hover { color: var(--primary); text-decoration: underline; }
+        .legal-link { display: block; margin-bottom: 10px; color: var(--text-muted); text-decoration: none; transition: 0.3s; }
+        .legal-link:hover { color: var(--primary); }
 
-        /* UI UTILS */
-        .badge { background: rgba(255,255,255,0.1); padding: 4px 8px; border-radius: 4px; font-size: 0.6rem; margin-left: 10px; border: 1px solid rgba(255,255,255,0.1); }
-        
         @media(max-width: 900px) {
             .hero-title { font-size: 2.5rem; }
-            .p9-container, .founder-box { grid-template-columns: 1fr; text-align: left; }
-            .founder-box { flex-direction: column; text-align: center; }
-            .metric-item { border-right: none; border-bottom: 1px solid var(--border); }
+            .manifesto-grid, .founder-layout, .footer-grid { grid-template-columns: 1fr; }
+            .founder-layout { text-align: center; }
             .nav-links { display: none; }
         }
     </style>
@@ -195,161 +182,195 @@
 <body>
 
     <div class="system-bar">
-        <div>
-            <span class="status-dot"></span>
-            SYSTEM STATUS: OPERATIONAL
-        </div>
-        <div style="display: flex; gap: 20px;">
-            <span>SOC: ACTIVE</span>
-            <span>DATA CENTER: BR-SC1</span>
-            <span>IPv6: ENABLED</span>
-        </div>
+        <div><span class="status-dot"></span> KNS CORE: ONLINE</div>
+        <div class="mono" style="opacity: 0.7;">BC/SC | GLOBAL OPS</div>
     </div>
 
     <nav>
-        <div class="brand">
-            <i class="fa-solid fa-shield-halved" style="color: var(--primary);"></i>
-            KNS<span style="font-weight: 300;">GLOBAL</span>
-        </div>
+        <div class="brand"><i class="fa-solid fa-layer-group highlight"></i> KNS<span style="font-weight: 300;">GLOBAL</span></div>
         <div class="nav-links">
-            <a href="#governance" class="nav-link">Governança</a>
-            <a href="#protocolo" class="nav-link">Soluções</a>
-            <a href="#about" class="nav-link">Institucional</a>
-            <a href="https://calendly.com/SEU_LINK" class="nav-link" style="color: var(--primary);">Area do Investidor</a>
+            <a href="#philosophy" class="nav-link">Filosofia</a>
+            <a href="#solutions" class="nav-link">Expertise</a>
+            <a href="#tiers" class="nav-link">Modelos</a>
+            <a href="#founder" class="nav-link">Liderança</a>
         </div>
+        <a href="https://calendly.com/SEU_LINK" class="nav-cta btn-font">FALE COM O BOARD</a>
     </nav>
 
     <section class="hero reveal">
-        <div class="trust-label">
-            <i class="fa-solid fa-check-circle"></i> Enterprise Risk Management
+        <div class="authority-badge">
+            <i class="fa-solid fa-star"></i> STRATEGIC INFRASTRUCTURE PARTNER
         </div>
         
         <h1 class="hero-title">
-            PROTEÇÃO DE CAPITAL &<br>
-            CONTINUIDADE DE NEGÓCIOS.
+            VOCÊ NÃO PRECISA DE SUPORTE.<br>
+            VOCÊ PRECISA DE <span class="highlight">GOVERNANÇA.</span>
         </h1>
         
         <p class="hero-sub">
-            Somos uma firma de engenharia focada em mitigar riscos operacionais que impactam o faturamento. Transformamos infraestrutura de TI em um ativo auditável, previsível e blindado contra falhas.
+            A KNS Global transforma infraestrutura crítica em um ativo financeiro blindado. Deixamos de lado a "manutenção de TI" para entregar Engenharia de Continuidade e Proteção de Capital.
         </p>
 
-        <div class="hero-btns">
-            <a href="https://calendly.com/SEU_LINK_CALENDLY" class="btn-primary">
-                AGENDAR BRIEFING EXECUTIVO
-            </a>
-            <a href="#case-study" class="btn-outline">
-                VER DADOS DE ROI & ECONOMIA
-            </a>
+        <div class="hero-actions">
+            <a href="#tiers" class="btn btn-main">CONTRATAR A KNS</a>
+            <a href="#philosophy" class="btn btn-sec">NOSSA VISÃO</a>
         </div>
 
-        <div style="max-width: 900px; margin: 0 auto; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; position: relative;">
-            <div style="background: rgba(0,0,0,0.8); padding: 10px; position: absolute; top: 0; left: 0; width: 100%; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #fff; z-index: 2;">
-                <i class="fa-solid fa-video"></i> FOUNDER'S VISION // KALEB NUNES
+        <div style="max-width: 800px; margin: 0 auto; border: 1px solid var(--border); position: relative; border-radius: 4px; overflow: hidden;">
+            <div style="position: absolute; top: 0; left: 0; background: rgba(0,0,0,0.7); color: #fff; padding: 8px 15px; font-size: 0.7rem; font-family: 'JetBrains Mono'; z-index: 2;">
+                // EXECUTIVE BRIEFING
             </div>
-            <iframe width="100%" height="500" src="https://www.youtube.com/embed/T9wvW0EYfE0?rel=0" frameborder="0" allowfullscreen style="display: block;"></iframe>
-        </div>
-    </section>
-
-    <section class="metrics-grid reveal">
-        <div class="metric-item">
-            <span class="metric-num">99.9%</span>
-            <span class="metric-lbl">SLA DE DISPONIBILIDADE (UPTIME)</span>
-        </div>
-        <div class="metric-item">
-            <span class="metric-num">Zero</span>
-            <span class="metric-lbl">RISCO DE CHURN TÉCNICO</span>
-        </div>
-        <div class="metric-item">
-            <span class="metric-num">+40%</span>
-            <span class="metric-lbl">OTIMIZAÇÃO DE OPEX (CUSTOS)</span>
-        </div>
-        <div class="metric-item">
-            <span class="metric-num">24/7</span>
-            <span class="metric-lbl">MONITORAMENTO ATIVO (NOC)</span>
-        </div>
-    </section>
-
-    <section id="governance" class="gov-section">
-        <div class="section-header reveal">
-            <span class="section-tag">CORPORATE GOVERNANCE</span>
-            <h2 class="section-title">PREVISIBILIDADE E COMPLIANCE.</h2>
-            <p style="color: var(--text-muted);">Grandes operações não dependem de sorte. Dependem de contratos, auditoria e processos definidos.</p>
-        </div>
-
-        <div class="gov-grid reveal delay-1">
-            <div class="gov-card">
-                <i class="fa-solid fa-file-signature" style="font-size: 2rem; color: var(--text-main); margin-bottom: 20px;"></i>
-                <h3 style="font-family: 'Orbitron'; font-size: 1.1rem; margin-bottom: 10px;">Garantia via SLA</h3>
-                <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
-                    Nossos contratos possuem Service Level Agreements (SLA) claros. Se a operação para, nós somos penalizados. Seu risco financeiro é compartilhado conosco.
-                </p>
-            </div>
-            <div class="gov-card">
-                <i class="fa-solid fa-scale-balanced" style="font-size: 2rem; color: var(--text-main); margin-bottom: 20px;"></i>
-                <h3 style="font-family: 'Orbitron'; font-size: 1.1rem; margin-bottom: 10px;">Compliance & LGPD</h3>
-                <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
-                    Arquitetura desenhada sob os princípios de "Privacy by Design". Auditoria completa de tráfego e logs para conformidade com a Lei Geral de Proteção de Dados.
-                </p>
-            </div>
-            <div class="gov-card">
-                <i class="fa-solid fa-network-wired" style="font-size: 2rem; color: var(--text-main); margin-bottom: 20px;"></i>
-                <h3 style="font-family: 'Orbitron'; font-size: 1.1rem; margin-bottom: 10px;">Escalabilidade Global</h3>
-                <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
-                    Metodologia compatível com padrões internacionais (IPv6 Native, SAGE Certified). Preparado para expansão de filiais sem refatoração de rede.
-                </p>
-            </div>
+            <iframe width="100%" height="450" src="https://www.youtube.com/embed/T9wvW0EYfE0?rel=0" frameborder="0" allowfullscreen style="display: block;"></iframe>
         </div>
     </section>
 
     <div class="tech-strip">
         <div class="tech-track">
-            <span class="tech-item">PYTHON AUTOMATION</span>
-            <span class="tech-item">ZABBIX ENTERPRISE</span>
-            <span class="tech-item">GRAFANA DASHBOARDS</span>
-            <span class="tech-item">POWERSHELL SCRIPTING</span>
-            <span class="tech-item">CISCO / MIKROTIK / JUNIPER</span>
-            <span class="tech-item">LIBRENMS MAPPING</span>
-            <span class="tech-item">IPV6 CERTIFIED</span>
-            <span class="tech-item">PYTHON AUTOMATION</span>
-            <span class="tech-item">ZABBIX ENTERPRISE</span>
-            <span class="tech-item">GRAFANA DASHBOARDS</span>
-            <span class="tech-item">POWERSHELL SCRIPTING</span>
+            <span class="tech-item"><i class="fa-brands fa-python"></i> ALGORITHMIC REMEDIATION</span>
+            <span class="tech-item"><i class="fa-solid fa-server"></i> ZABBIX ENTERPRISE</span>
+            <span class="tech-item"><i class="fa-solid fa-chart-pie"></i> GRAFANA BI</span>
+            <span class="tech-item"><i class="fa-solid fa-terminal"></i> POWERSHELL AUTOMATION</span>
+            <span class="tech-item"><i class="fa-solid fa-globe"></i> IPV6 NATIVE</span>
+            <span class="tech-item"><i class="fa-solid fa-network-wired"></i> LIBRENMS TOPOLOGY</span>
+            <span class="tech-item"><i class="fa-brands fa-python"></i> ALGORITHMIC REMEDIATION</span>
+            <span class="tech-item"><i class="fa-solid fa-server"></i> ZABBIX ENTERPRISE</span>
+            <span class="tech-item"><i class="fa-solid fa-chart-pie"></i> GRAFANA BI</span>
         </div>
     </div>
 
-    <section id="protocolo" class="p9-section reveal">
-        <div class="p9-container">
-            <div>
-                <span class="section-tag">PROPRIETARY METHODOLOGY</span>
-                <h2 class="section-title">PROTOCOLO 09: IMUNIDADE DIGITAL.</h2>
-                <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 20px;">
-                    Mais do que consultoria, entregamos um <strong>Sistema Autônomo de Recuperação</strong>. O Protocolo 09 é uma suíte de automação e processos que elimina a dependência humana na correção de falhas críticas.
-                </p>
-                <ul class="check-list">
-                    <li><i class="fa-solid fa-check"></i> <strong>Self-Healing:</strong> Scripts Python que corrigem falhas em milissegundos.</li>
-                    <li><i class="fa-solid fa-check"></i> <strong>Business View:</strong> Dashboards que mostram impacto financeiro, não apenas técnico.</li>
-                    <li><i class="fa-solid fa-check"></i> <strong>Documentação Viva:</strong> Sua infraestrutura mapeada e auditável 24/7.</li>
-                </ul>
+    <section id="philosophy" class="manifesto-section">
+        <div class="manifesto-grid reveal">
+            <div class="manifesto-text">
+                <span class="mono highlight" style="font-size: 0.8rem; letter-spacing: 2px;">// NOSSA FILOSOFIA</span>
+                <h2>O CUSTO OCULTO DO "FUNCIONA".</h2>
+                <p>O mercado de TI se acostumou com o medíocre. Se o sistema está no ar, dizem que "está tudo bem". Nós discordamos. Um sistema que funciona mas não é auditável, escalável e preditivo é uma bomba-relógio financeira.</p>
+                <p>A KNS Global não foi criada para consertar computadores. Foi criada para implementar uma doutrina de <strong>Imunidade Digital</strong>. Nós não reagimos ao problema; nós arquitetamos o ambiente onde o problema não consegue sobreviver.</p>
+                <div class="quote-box">
+                    <p class="quote-text">"Não vendemos horas de esforço. Vendemos a garantia matemática de continuidade."</p>
+                </div>
             </div>
             <div style="text-align: center;">
-                <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); padding: 40px; border-radius: 50%; width: 300px; height: 300px; display: inline-flex; align-items: center; justify-content: center; position: relative;">
-                    <i class="fa-solid fa-fingerprint" style="font-size: 8rem; color: var(--primary); opacity: 0.8;"></i>
-                    <div style="position: absolute; bottom: 20px; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--primary);">PROTOCOL 09 ACTIVE</div>
+                <i class="fa-solid fa-chess-king" style="font-size: 10rem; color: var(--bg-deep); text-shadow: 0 0 5px rgba(255,255,255,0.1);"></i>
+            </div>
+        </div>
+    </section>
+
+    <section id="solutions" class="p9-section reveal">
+        <div class="p9-header">
+            <h2 style="font-size: 2.5rem; font-family: 'Orbitron'; margin-bottom: 15px;">PROTOCOLO 09</h2>
+            <p style="color: var(--text-muted);">Nossa metodologia proprietária dividida em três pilares de defesa corporativa.</p>
+        </div>
+        <div class="p9-cards">
+            <div class="p9-card">
+                <i class="fa-solid fa-eye p9-icon"></i>
+                <h3 class="p9-title">Observabilidade Radical</h3>
+                <p class="p9-desc">Não monitoramos apenas servidores. Monitoramos processos de negócio. Dashboards executivos que traduzem latência em impacto financeiro.</p>
+            </div>
+            <div class="p9-card">
+                <i class="fa-solid fa-robot p9-icon"></i>
+                <h3 class="p9-title">Remediação Autônoma</h3>
+                <p class="p9-desc">Automação Python "Self-Healing". O incidente é identificado e corrigido pelo nosso código antes que sua equipe humana perceba.</p>
+            </div>
+            <div class="p9-card">
+                <i class="fa-solid fa-file-contract p9-icon"></i>
+                <h3 class="p9-title">Governança & SLA</h3>
+                <p class="p9-desc">Blindagem jurídica e operacional. Compliance com LGPD, documentação viva da topologia e garantia contratual de uptime.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="tiers" class="tiers-section reveal">
+        <div style="text-align: center; margin-bottom: 50px;">
+            <h2 style="font-family: 'Orbitron'; font-size: 2.2rem;">MODELOS DE ATUAÇÃO</h2>
+            <p class="mono" style="color: var(--text-muted); margin-top: 10px;">COMO SUA EMPRESA PODE ACESSAR A INTELIGÊNCIA KNS</p>
+        </div>
+
+        <div class="tier-grid">
+            <div class="tier-card">
+                <span class="tier-name">ADVISORY</span>
+                <div class="tier-head">DIAGNÓSTICO</div>
+                <ul class="tier-list">
+                    <li><i class="fa-solid fa-check highlight"></i> Auditoria de Infraestrutura</li>
+                    <li><i class="fa-solid fa-check highlight"></i> Análise de Risco Financeiro</li>
+                    <li><i class="fa-solid fa-check highlight"></i> Plano de Ação (Roadmap)</li>
+                    <li><i class="fa-solid fa-xmark" style="color: #333;"></i> Execução Técnica</li>
+                </ul>
+                <a href="#" class="tier-btn">CONSULTAR BOARD</a>
+            </div>
+
+            <div class="tier-card featured">
+                <span class="tier-name">IMPLEMENTATION</span>
+                <div class="tier-head">PROTOCOLO 09</div>
+                <ul class="tier-list">
+                    <li><i class="fa-solid fa-check"></i> <strong>Implantação Full Stack</strong></li>
+                    <li><i class="fa-solid fa-check"></i> Automação "Self-Healing"</li>
+                    <li><i class="fa-solid fa-check"></i> Dashboards Executivos</li>
+                    <li><i class="fa-solid fa-check"></i> Treinamento de Equipe In-House</li>
+                </ul>
+                <a href="#" class="tier-btn">SOLICITAR PROPOSTA</a>
+            </div>
+
+            <div class="tier-card">
+                <span class="tier-name">PARTNER</span>
+                <div class="tier-head">FRACTIONAL CTO</div>
+                <ul class="tier-list">
+                    <li><i class="fa-solid fa-check highlight"></i> Gestão Contínua de Crise</li>
+                    <li><i class="fa-solid fa-check highlight"></i> NOC as a Service 24/7</li>
+                    <li><i class="fa-solid fa-check highlight"></i> Cadeira no Comitê de TI</li>
+                    <li><i class="fa-solid fa-check highlight"></i> SLA Agressivo</li>
+                </ul>
+                <a href="#" class="tier-btn">LISTA DE ESPERA</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="founder" class="founder-section reveal">
+        <div class="founder-layout">
+            <div class="founder-img-col">
+                <img src="./assets/foto.jpg" alt="Kaleb Nunes" class="founder-photo"> <div class="cert-badge">
+                    <img src="./assets/sage_full.png" alt="SAGE Badge">
+                    <div style="text-align: left;">
+                        <div style="font-size: 0.6rem; color: #fff; font-weight: bold;">SAGE CERTIFIED</div>
+                        <div style="font-size: 0.5rem; color: var(--primary);">TOP 1% GLOBAL</div>
+                    </div>
+                </div>
+            </div>
+            <div class="founder-bio">
+                <h3>KALEB NUNES</h3>
+                <span class="founder-role">FOUNDER & HEAD OF ENGINEERING STRATEGY</span>
+                <p class="founder-text">
+                    "Eu não sou apenas um engenheiro; sou um estrategista de continuidade. Minha carreira foi construída resolvendo o que outros diziam ser impossível ou caro demais. Hoje, lidero a KNS com uma única diretriz: transformar o caos técnico em previsibilidade executiva."
+                </p>
+                <div style="display: flex; gap: 20px;">
+                    <div class="mono" style="font-size: 0.8rem; border-left: 2px solid var(--primary); padding-left: 10px;">
+                        <span style="display:block; font-weight: 700; color: #fff;">+10 ANOS</span>
+                        Experiência Crítica
+                    </div>
+                    <div class="mono" style="font-size: 0.8rem; border-left: 2px solid var(--primary); padding-left: 10px;">
+                        <span style="display:block; font-weight: 700; color: #fff;">ESPECIALISTA</span>
+                        IPv6 & Automação
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="vision-section reveal">
-        <div class="founder-box">
-            <i class="fa-solid fa-quote-right quote-icon"></i>
-            <img src="./assets/foto.jpg" alt="Kaleb Nunes" class="founder-img" onerror="this.style.display='none'"> <div>
-                <h3 style="font-family: 'Orbitron'; font-size: 1.4rem; margin-bottom: 5px;">KALEB NUNES <span class="badge">FOUNDER & HEAD OF ENGINEERING</span></h3>
-                <p style="color: var(--primary); font-family: 'JetBrains Mono'; font-size: 0.8rem; margin-bottom: 20px;">SAGE CERTIFIED ENGINEER (GLOBAL TOP 1%)</p>
-                
-                <p style="color: var(--text-muted); line-height: 1.7; font-style: italic;">
-                    "A KNS Global nasceu de uma inconformidade. No mercado corporativo, vi empresas reféns de processos manuais e suporte reativo. Criei o Protocolo 09 para que operações de missão crítica não dependam de 'heróis', mas de sistemas. A minha missão não é apenas configurar redes, é garantir que seu negócio nunca pare."
-                </p>
+    <section class="faq-section reveal">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <h2 style="font-family: 'Orbitron';">EXECUTIVE FAQ</h2>
+        </div>
+        <div class="faq-grid">
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+                <div class="faq-q">A KNS substitui minha equipe de TI atual? <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-a">Não necessariamente. No modelo "Implementation", nós equipamos seu time com ferramentas de elite (super-soldados). No modelo "Partner", nós assumimos a responsabilidade pela camada crítica, permitindo que seu time foque em regra de negócio.</div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+                <div class="faq-q">Como medimos o ROI do Protocolo 09? <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-a">Através da redução de Downtime (custo de oportunidade) e redução de OPEX (automação de tarefas repetitivas). Nossos dashboards entregam essa métrica em tempo real.</div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+                <div class="faq-q">Vocês atendem fora do Brasil? <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-a">Sim. Nossa arquitetura é baseada em padrões globais (IPv6, ITIL) e nossas ferramentas são agnósticas a localização física. Atuamos remotamente com eficiência total.</div>
             </div>
         </div>
     </section>
@@ -357,60 +378,47 @@
     <footer>
         <div class="footer-grid">
             <div>
-                <h3 class="brand" style="margin-bottom: 20px; font-size: 1.1rem;">KNS<span style="font-weight: 300;">GLOBAL</span></h3>
-                <p style="line-height: 1.6; margin-bottom: 20px;">
-                    Sede Operacional:<br>
-                    Balneário Camboriú, SC - Brasil.<br>
-                    CNPJ: 49.712.297/0001-07
+                <h3 class="brand" style="margin-bottom: 20px;">KNS<span style="font-weight: 300;">GLOBAL</span></h3>
+                <p style="margin-bottom: 20px;">
+                    Engenharia de Continuidade &<br>
+                    Governança Corporativa de TI.
                 </p>
-                <div style="display: flex; gap: 15px; font-size: 1.2rem;">
-                    <a href="#" style="color: #fff;"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#" style="color: #fff;"><i class="fa-brands fa-github"></i></a>
+                <div style="font-family: 'JetBrains Mono'; font-size: 0.75rem; color: var(--primary);">
+                    BALNEÁRIO CAMBORIÚ - SC<br>
+                    BRASIL
                 </div>
             </div>
-            
             <div>
-                <h4 style="color: #fff; margin-bottom: 20px; font-size: 0.9rem;">SOLUÇÕES</h4>
-                <div style="display: flex; flex-direction: column; gap: 10px;">
-                    <a href="#" style="color: var(--text-muted); text-decoration: none;">Protocolo 09</a>
-                    <a href="#" style="color: var(--text-muted); text-decoration: none;">Consultoria de Risco</a>
-                    <a href="#" style="color: var(--text-muted); text-decoration: none;">NOC as a Service</a>
-                </div>
+                <h4 style="color: #fff; margin-bottom: 20px;">SOLUÇÕES</h4>
+                <a href="#" class="legal-link">Protocolo 09</a>
+                <a href="#" class="legal-link">NOC & Observabilidade</a>
+                <a href="#" class="legal-link">Automação de Infra</a>
             </div>
-
             <div>
-                <h4 style="color: #fff; margin-bottom: 20px; font-size: 0.9rem;">LEGAL & COMPLIANCE</h4>
-                <div style="display: flex; flex-direction: column; gap: 10px;" class="legal-links">
-                    <a href="#">Política de Privacidade</a>
-                    <a href="#">Termos de Uso (SLA)</a>
-                    <a href="#">Compliance LGPD</a>
-                </div>
+                <h4 style="color: #fff; margin-bottom: 20px;">INSTITUCIONAL</h4>
+                <a href="#" class="legal-link">Sobre a KNS</a>
+                <a href="#" class="legal-link">Carreiras</a>
+                <a href="#" class="legal-link">Imprensa</a>
             </div>
-
             <div>
-                <a href="https://calendly.com/SEU_LINK_CALENDLY" class="btn-outline" style="font-size: 0.75rem; padding: 10px 20px; text-align: center; display: block;">
-                    ÁREA DO INVESTIDOR
-                </a>
+                <h4 style="color: #fff; margin-bottom: 20px;">COMPLIANCE</h4>
+                <a href="#" class="legal-link">Política de Privacidade</a>
+                <a href="#" class="legal-link">Termos de Serviço (SLA)</a>
+                <a href="#" class="legal-link">CNPJ: 49.712.297/0001-07</a>
             </div>
         </div>
-        
-        <div style="border-top: 1px solid var(--border); padding-top: 20px; display: flex; justify-content: space-between; flex-wrap: wrap; font-family: 'JetBrains Mono'; font-size: 0.7rem;">
-            <span>&copy; 2026 KNS GLOBAL SOLUTIONS. TODOS OS DIREITOS RESERVADOS.</span>
-            <span>SYSTEM VERSION: 21.0-STABLE</span>
+        <div style="border-top: 1px solid var(--border); padding-top: 20px; display: flex; justify-content: space-between; font-family: 'JetBrains Mono'; font-size: 0.7rem;">
+            <span>&copy; 2026 KNS GLOBAL SOLUTIONS.</span>
+            <span>POWERED BY PROTOCOL 09</span>
         </div>
     </footer>
 
     <script>
-        // Reveal on Scroll
-        const observerOptions = { threshold: 0.15 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
+                if(entry.isIntersecting) entry.target.classList.add('active');
             });
-        }, observerOptions);
-
+        }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
