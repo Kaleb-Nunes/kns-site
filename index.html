@@ -3,29 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="KNS Global - Sentient Infrastructure System.">
-    <title>KNS GLOBAL | Project Sentient</title>
+    <meta name="description" content="KNS Global - The Authority in Strategic Infrastructure.">
+    <title>KNS GLOBAL | The Architect</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- SENTIENT ENGINE VISUALS --- */
+        /* --- ENGINE VISUAL --- */
         :root {
             --bg-body: #020202;
             --bg-panel: rgba(15, 15, 15, 0.85);
             --text-main: #ffffff;
             --text-muted: #8f9ba8;
-            --neon: #00ff88; /* A Cor da Vida do Sistema */
+            --neon: #00ff88;
             --neon-dim: rgba(0, 255, 136, 0.1);
             --border: rgba(255, 255, 255, 0.08);
-            --shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
             --nav-bg: rgba(2,2,2,0.95);
             --gradient-text: linear-gradient(135deg, #ffffff 0%, #b0b0b0 100%);
             --hero-stroke: rgba(255,255,255,0.2);
-            --marquee-bg: #000;
-            --footer-bg: #000;
-            --alert: #ff3333;
+            --terminal-bg: #0a0a0a;
+            --terminal-text: #00ff00;
         }
 
         [data-theme="light"] {
@@ -36,15 +34,12 @@
             --neon: #009c53;
             --neon-dim: rgba(0, 156, 83, 0.1);
             --border: rgba(0, 0, 0, 0.15);
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             --nav-bg: rgba(240, 242, 245, 0.95);
             --gradient-text: linear-gradient(135deg, #1a1a1a 0%, #444444 100%);
             --hero-stroke: rgba(0,0,0,0.8);
-            --marquee-bg: #e0e0e0;
-            --footer-bg: #e0e0e0;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; transition: all 0.3s ease; }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
 
         body {
             background-color: var(--bg-body);
@@ -53,33 +48,35 @@
             overflow-x: hidden;
         }
 
-        /* --- THE "BREATHING" EFFECT (SISTEMA VIVO) --- */
-        @keyframes breathe {
-            0% { box-shadow: 0 0 20px var(--neon-dim); border-color: rgba(0, 255, 136, 0.1); }
-            50% { box-shadow: 0 0 40px rgba(0, 255, 136, 0.2); border-color: rgba(0, 255, 136, 0.3); }
-            100% { box-shadow: 0 0 20px var(--neon-dim); border-color: rgba(0, 255, 136, 0.1); }
+        /* --- CLASSES DE EDICÃO (CMS) --- */
+        .editable-active {
+            border: 1px dashed var(--neon);
+            background: rgba(0, 255, 136, 0.05);
+            cursor: text;
+        }
+        .editable-active:focus {
+            outline: none;
+            background: rgba(0, 255, 136, 0.1);
+            border-style: solid;
         }
 
-        .system-alive {
-            animation: breathe 4s infinite ease-in-out; /* Ritmo respiratório */
+        /* --- TERMINAL/SSH OVERLAY --- */
+        #terminal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--terminal-bg); z-index: 9999; display: none;
+            font-family: 'JetBrains Mono', monospace; padding: 40px;
+            color: var(--terminal-text); overflow-y: auto;
         }
-
-        /* --- SMART SCANNER --- */
-        #smart-scanner {
-            position: fixed; bottom: 20px; left: 20px; z-index: 5000;
-            background: var(--bg-panel); border: 1px solid var(--neon); padding: 15px;
-            border-radius: 8px; font-family: 'JetBrains Mono'; font-size: 0.7rem;
-            display: none; box-shadow: 0 0 30px var(--neon-dim);
-            backdrop-filter: blur(10px); width: 300px;
+        .terminal-line { margin-bottom: 5px; }
+        .terminal-input-line { display: flex; gap: 10px; margin-top: 10px; }
+        .cmd-input { 
+            background: transparent; border: none; color: var(--terminal-text); 
+            font-family: 'JetBrains Mono'; width: 100%; outline: none; font-size: 1rem;
         }
-        .scan-line { height: 2px; width: 100%; background: var(--neon); animation: scan 2s infinite; margin-bottom: 10px; }
-        @keyframes scan { 0% { width: 0; } 100% { width: 100%; } }
+        .cursor { animation: blink 1s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        /* --- UTILS --- */
-        .glass-panel { background: var(--bg-panel); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow); }
-        .mono { font-family: 'JetBrains Mono'; }
-        
-        /* --- NAV --- */
+        /* --- NAV & LAYOUT --- */
         nav {
             position: fixed; top: 0; width: 100%; height: 80px; padding: 0 5%;
             display: flex; justify-content: space-between; align-items: center;
@@ -89,22 +86,10 @@
         .nav-links { display: flex; gap: 30px; }
         .nav-link { text-decoration: none; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; transition: 0.3s; cursor: pointer; }
         .nav-link:hover { color: var(--neon); }
-        .theme-switch { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 1.1rem; transition: 0.3s; }
-        .theme-switch:hover { color: var(--text-main); transform: rotate(20deg); }
         
-        /* --- BUTTONS --- */
-        .btn-action {
-            padding: 12px 30px; background: var(--text-main); color: var(--bg-body); 
-            font-family: 'Orbitron'; font-weight: 700; text-decoration: none; border-radius: 4px;
-            font-size: 0.75rem; letter-spacing: 1px; transition: 0.3s; cursor: pointer; border: none;
-        }
-        .btn-action:hover { box-shadow: 0 0 20px var(--neon-dim); transform: scale(1.02); }
-
-        .btn-login {
-            background: transparent; border: 1px solid var(--neon); color: var(--neon);
-            padding: 10px 25px; border-radius: 4px; font-family: 'Orbitron'; font-size: 0.7rem;
-            cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 8px;
-        }
+        .theme-switch { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 1.1rem; transition: 0.3s; }
+        .btn-action { padding: 12px 30px; background: var(--text-main); color: var(--bg-body); font-family: 'Orbitron'; font-weight: 700; text-decoration: none; border-radius: 4px; font-size: 0.75rem; cursor: pointer; border: none; }
+        .btn-login { background: transparent; border: 1px solid var(--neon); color: var(--neon); padding: 10px 25px; border-radius: 4px; font-family: 'Orbitron'; font-size: 0.7rem; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
         .btn-login:hover { background: var(--neon); color: var(--bg-body); }
 
         /* --- LOGIN MODAL --- */
@@ -114,163 +99,64 @@
             display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.5s;
         }
         #login-modal.active { display: flex; opacity: 1; }
-        
-        .login-box {
-            width: 420px; padding: 50px; background: var(--bg-body); border: 1px solid var(--border);
-            border-radius: 12px; box-shadow: 0 0 100px rgba(0,255,136,0.05); position: relative;
-            transform: scale(0.95); transition: transform 0.3s;
-        }
+        .login-box { width: 420px; padding: 50px; background: var(--bg-body); border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 0 100px rgba(0,255,136,0.05); transform: scale(0.95); transition: transform 0.3s; }
         #login-modal.active .login-box { transform: scale(1); }
+        .input-field { width: 100%; padding: 15px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); color: var(--text-main); border-radius: 4px; outline: none; margin-bottom: 20px; font-family: 'Plus Jakarta Sans'; }
+        .btn-submit { width: 100%; padding: 18px; background: var(--neon); color: #000; border: none; font-family: 'Orbitron'; font-weight: 700; cursor: pointer; border-radius: 4px; }
         
-        .input-group { margin-bottom: 25px; text-align: left; }
-        .input-label { display: block; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--text-muted); margin-bottom: 10px; letter-spacing: 1px; }
-        .input-field { 
-            width: 100%; padding: 15px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); 
-            color: var(--text-main); font-family: 'Plus Jakarta Sans'; border-radius: 4px; outline: none; transition: 0.3s; font-size: 1rem;
-        }
-        .input-field:focus { border-color: var(--neon); box-shadow: 0 0 15px var(--neon-dim); background: rgba(255,255,255,0.05); }
-        
-        .btn-submit { 
-            width: 100%; padding: 18px; background: var(--neon); color: #000; border: none; 
-            font-family: 'Orbitron'; font-weight: 700; cursor: pointer; border-radius: 4px; margin-top: 10px; font-size: 0.9rem; letter-spacing: 1px;
-        }
-        .close-modal { position: absolute; top: 20px; right: 25px; color: var(--text-muted); cursor: pointer; font-size: 1.5rem; transition: 0.3s; }
-        .close-modal:hover { color: var(--alert); }
-
-        #mfa-section { display: none; text-align: center; }
-        .mfa-dots { display: flex; justify-content: center; gap: 15px; margin: 30px 0; }
-        .mfa-input { width: 50px; height: 60px; text-align: center; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--text-main); font-size: 1.5rem; border-radius: 4px; font-family: 'Orbitron'; }
-        .mfa-input:focus { border-color: var(--neon); }
-
-        /* --- DASHBOARD LAYOUT (SISTEMA MAE) --- */
-        #dashboard-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg-body); z-index: 2500; display: none;
-        }
+        /* --- DASHBOARD --- */
+        #dashboard-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-body); z-index: 2500; display: none; }
         .dash-container { display: flex; height: 100%; }
+        .dash-sidebar { width: 280px; background: var(--bg-panel); border-right: 1px solid var(--border); padding: 40px 25px; display: flex; flex-direction: column; }
+        .dash-btn { width: 100%; padding: 15px 20px; background: transparent; border: none; color: var(--text-muted); text-align: left; font-family: 'JetBrains Mono'; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 15px; margin-bottom: 10px; border-radius: 6px; }
+        .dash-btn:hover, .dash-btn.active { background: var(--neon-dim); color: var(--neon); }
+        .dash-main { flex: 1; padding: 50px; overflow-y: auto; }
+        .dash-card { background: var(--bg-panel); border: 1px solid var(--border); padding: 30px; border-radius: 12px; }
         
-        .dash-sidebar {
-            width: 280px; background: var(--bg-panel); border-right: 1px solid var(--border);
-            padding: 40px 25px; display: flex; flex-direction: column;
-        }
-        .dash-logo { font-family: 'Orbitron'; font-size: 1.4rem; color: var(--text-main); margin-bottom: 50px; display: flex; align-items: center; gap: 10px; }
-        .dash-menu { list-style: none; }
-        .dash-menu li { margin-bottom: 15px; }
-        .dash-btn {
-            width: 100%; padding: 15px 20px; background: transparent; border: none; 
-            color: var(--text-muted); text-align: left; font-family: 'JetBrains Mono'; font-size: 0.85rem; font-weight: 600;
-            cursor: pointer; border-radius: 6px; display: flex; align-items: center; gap: 15px; transition: 0.3s;
-        }
-        .dash-btn:hover, .dash-btn.active { background: var(--neon-dim); color: var(--neon); border-left: 3px solid var(--neon); }
-        .dash-logout { margin-top: auto; border-top: 1px solid var(--border); padding-top: 30px; }
+        /* Settings Switches */
+        .setting-row { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid var(--border); }
+        .switch { position: relative; display: inline-block; width: 50px; height: 26px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #333; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--neon); }
+        input:checked + .slider:before { transform: translateX(24px); }
 
-        .dash-main { flex: 1; padding: 50px; overflow-y: auto; position: relative; }
-        .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 50px; }
-        
-        .header-profile { display: flex; gap: 20px; align-items: center; }
-        .header-avatar {
-            width: 50px; height: 50px; border-radius: 50%; object-fit: cover;
-            border: 2px solid var(--neon); padding: 3px; background: var(--bg-body);
-        }
-        
-        .dash-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .dash-card { background: var(--bg-panel); border: 1px solid var(--border); padding: 30px; border-radius: 12px; position: relative; overflow: hidden; }
-        .dash-card::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, var(--neon), transparent); opacity: 0.5; }
-        .dash-val { font-family: 'Orbitron'; font-size: 2.2rem; color: var(--text-main); margin: 15px 0; }
-        .dash-lbl { font-family: 'JetBrains Mono'; font-size: 0.75rem; color: var(--text-muted); letter-spacing: 1px; }
-
-        /* --- DATABASE SIMULATION UI --- */
-        #view-database { display: none; }
-        .db-table { width: 100%; border-collapse: collapse; font-family: 'JetBrains Mono'; font-size: 0.8rem; }
-        .db-table th { text-align: left; color: var(--neon); padding: 15px; border-bottom: 1px solid var(--border); }
-        .db-table td { padding: 15px; color: var(--text-muted); border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .status-ok { color: var(--neon); }
-        .status-warn { color: var(--warning); }
-
-        /* --- TOPOLOGIA VIVA --- */
-        #view-topology { display: none; height: 100%; }
-        .topology-map {
-            width: 100%; height: 600px; background: rgba(0,0,0,0.4); border: 1px solid var(--border);
-            border-radius: 12px; position: relative; overflow: hidden; margin-top: 20px;
-            background-image: radial-gradient(var(--border) 1px, transparent 1px); background-size: 30px 30px;
-        }
-        .node {
-            position: absolute; width: 70px; height: 70px; background: var(--bg-panel);
-            border: 1px solid var(--neon); border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            color: var(--neon); font-size: 1.8rem; box-shadow: 0 0 30px var(--neon-dim); z-index: 10;
-            transition: 0.3s; cursor: pointer;
-        }
-        .node:hover { transform: scale(1.15); background: var(--neon); color: #000; box-shadow: 0 0 50px var(--neon); }
-        .link-line { position: absolute; background: var(--border); height: 2px; transform-origin: left center; z-index: 1; }
-        .packet { position: absolute; width: 8px; height: 8px; background: var(--neon); border-radius: 50%; top: -3px; left: 0; box-shadow: 0 0 10px var(--neon); animation: flow 2s infinite linear; }
-        @keyframes flow { 0% { left: 0; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
-
-        /* --- HERO & SITE --- */
+        /* --- CONTENT SECTIONS (Simplified CSS for brevity, matches previous) --- */
         .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 5% 0; }
-        .status-pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 50px; border: 1px solid var(--neon); background: var(--neon-dim); color: var(--neon); font-size: 0.65rem; font-family: 'JetBrains Mono'; margin-bottom: 30px; }
-        .hero-title-wrapper { font-family: 'Orbitron'; font-weight: 900; line-height: 0.9; margin-bottom: 30px; text-align: center; display: flex; flex-direction: column; gap: 5px; align-items: center; }
+        .hero-title-wrapper { font-family: 'Orbitron'; font-weight: 900; line-height: 0.9; margin-bottom: 30px; text-align: center; }
         .hero-word-1 { font-size: clamp(2rem, 5vw, 4rem); letter-spacing: 2px; color: var(--text-muted); font-weight: 600; display: block; }
         .hero-word-2 { font-size: clamp(3rem, 8vw, 6rem); color: transparent; -webkit-text-stroke: 2px var(--hero-stroke); position: relative; display: block; text-transform: uppercase; letter-spacing: -2px; }
         .hero-word-2::before { content: 'ABSOLUTA.'; position: absolute; top: 0; left: 0; width: 0%; height: 100%; color: var(--neon); overflow: hidden; white-space: nowrap; border-right: 4px solid var(--neon); -webkit-text-stroke: 0px; animation: typeFill 4s ease-in-out infinite alternate; }
         @keyframes typeFill { 0%, 20% { width: 0%; } 80%, 100% { width: 100%; } }
-        .hero-sub { font-size: 1rem; color: var(--text-muted); max-width: 600px; line-height: 1.6; margin-bottom: 50px; }
-        .xdr-wrapper { margin-top: 60px; perspective: 1000px; width: 100%; max-width: 900px; display: flex; flex-direction: column; align-items: center; }
-        .xdr-frame { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 12px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.4); border: 1px solid #333; padding: 12px; overflow: hidden; }
-        .xdr-screen { width: 100%; height: 100%; background: #000; border-radius: 4px; overflow: hidden; position: relative; }
-        .xdr-stand-neck { width: 120px; height: 60px; background: linear-gradient(90deg, #2a2a2a, #444, #2a2a2a); margin-top: -5px; z-index: -1; }
-        .xdr-stand-base { width: 240px; height: 15px; background: linear-gradient(90deg, #888, #ccc, #888); border-radius: 4px 4px 0 0; }
-        .marquee-section { background: var(--marquee-bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 30px 0; overflow: hidden; white-space: nowrap; margin-top: 80px; transition: background-color 0.5s ease; }
-        .marquee-track { display: inline-block; animation: scroll 40s linear infinite; }
-        .tech-logo-item { display: inline-flex; align-items: center; gap: 15px; margin: 0 60px; color: var(--text-muted); font-family: 'Orbitron'; font-weight: 700; font-size: 1.2rem; transition: 0.3s; opacity: 0.7; }
-        .tech-logo-item:hover { color: var(--neon); opacity: 1; transform: scale(1.05); text-shadow: 0 0 15px var(--neon-dim); }
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .section-pad { padding: 120px 8%; }
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
-        .glass-card { padding: 50px 40px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-panel); transition: 0.3s; }
-        .glass-card:hover { border-color: var(--neon); transform: translateY(-5px); box-shadow: var(--shadow); }
-        .card-title { font-family: 'Orbitron'; font-size: 1.4rem; margin-bottom: 15px; color: var(--text-main); }
-        .p9-hero-section { padding: 120px 8%; position: relative; background: var(--bg-body); }
-        .p9-container-box { background: var(--bg-panel); border: 1px solid var(--neon-dim); border-radius: 20px; padding: 80px 40px; text-align: center; position: relative; overflow: hidden; }
-        .p9-card-boost { background: var(--bg-panel); padding: 40px; border-radius: 12px; border: 1px solid var(--border); text-align: left; transition: 0.3s; }
-        .p9-card-boost:hover { border-color: var(--neon); box-shadow: 0 0 20px var(--neon-dim); }
-        .tier-card { border: 1px solid var(--border); padding: 50px 30px; text-align: center; background: var(--bg-panel); transition: 0.3s; border-radius: 8px; }
-        .tier-card:hover { border-color: var(--text-main); }
-        .tier-card.featured { border-color: var(--neon); background: var(--bg-panel); box-shadow: var(--shadow); }
-        .founder-box { display: grid; grid-template-columns: 350px 1fr auto; gap: 50px; align-items: center; padding: 60px; position: relative; background: var(--bg-panel); border: 1px solid var(--border); border-radius: 12px; margin: 100px auto; max-width: 1400px; }
-        .founder-photo { width: 100%; height: 350px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
-        .cert-badge-wrapper { position: relative; width: 140px; height: 140px; display: flex; align-items: center; justify-content: center; }
-        .cert-badge-img { width: 100%; height: auto; transition: transform 0.4s; filter: drop-shadow(0 0 10px rgba(0,0,0,0.5)); cursor: pointer; }
+        
+        /* Founder Box */
+        .founder-box { display: grid; grid-template-columns: 350px 1fr auto; gap: 50px; align-items: center; padding: 60px; background: var(--bg-panel); border: 1px solid var(--border); border-radius: 12px; margin: 100px auto; max-width: 1400px; }
+        .founder-photo { width: 100%; height: 350px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border); }
+        .cert-badge-wrapper { position: relative; width: 140px; height: 140px; }
+        .cert-badge-img { width: 100%; transition: transform 0.4s; cursor: pointer; }
         .cert-badge-wrapper:hover .cert-badge-img { transform: scale(1.8) translateX(-10px); z-index: 999; }
-        .faq-item { border-bottom: 1px solid var(--border); padding: 20px 0; }
-        .faq-q { font-family: 'Orbitron'; font-size: 1.1rem; cursor: pointer; display: flex; justify-content: space-between; color: var(--text-main); }
-        .faq-a { display: none; margin-top: 15px; color: var(--text-muted); line-height: 1.6; }
-        .faq-item.active .faq-a { display: block; }
-        footer { border-top: 1px solid var(--border); padding: 80px 5% 40px; background: var(--footer-bg); color: var(--text-muted); transition: background-color 0.5s ease; }
-        .contact-item { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-size: 0.9rem; color: var(--text-muted); text-decoration: none; transition: 0.3s; }
-        .contact-item:hover { color: var(--neon); }
 
-        @media (max-width: 1100px) {
-            .founder-box { grid-template-columns: 1fr; padding: 40px; text-align: center; justify-items: center; }
-            .hero-word-2 { font-size: 3rem; }
-            .founder-photo { height: 300px; width: 300px; }
-            .nav-links { display: none; }
-            .cert-badge-wrapper { margin-top: 30px; }
-        }
+        @media(max-width: 900px) { .nav-links {display:none;} .founder-box { grid-template-columns: 1fr; text-align: center; } }
     </style>
 </head>
 <body>
 
-    <div id="smart-scanner">
-        <div class="scan-line"></div>
-        <div style="color: var(--neon); margin-bottom: 5px;">KNS INTELLIGENCE:</div>
-        <div style="color: #fff;">ANALISANDO PERFIL DO VISITANTE...</div>
-        <div style="color: var(--text-muted); margin-top: 5px;" id="scan-result">DETECTADO: INTERESSE CORPORATIVO</div>
+    <div id="terminal-overlay">
+        <div id="terminal-output">
+            <div class="terminal-line">KNS SECURE SHELL (SSH) v41.0</div>
+            <div class="terminal-line">CONNECTION ESTABLISHED. ACCESS LEVEL: ROOT</div>
+            <div class="terminal-line">Type 'help' for available commands.</div>
+            <br>
+        </div>
+        <div class="terminal-input-line">
+            <span>root@kns-core:~#</span>
+            <input type="text" id="cmd-input" class="cmd-input" autofocus autocomplete="off">
+        </div>
     </div>
 
-    <div id="toast" style="position: fixed; bottom: 20px; right: 20px; background: var(--neon); color: #000; padding: 15px 30px; border-radius: 4px; font-family: 'JetBrains Mono'; font-weight: 700; transform: translateY(100px); transition: 0.3s; z-index: 5000;">DADOS SALVOS NO BANCO LOCAL</div>
-
     <div id="login-modal">
-        <div class="login-box system-alive">
+        <div class="login-box">
             <span class="close-modal" onclick="toggleLogin()">&times;</span>
             
             <div id="step-login">
@@ -278,31 +164,22 @@
                     <div class="login-title">ACESSO AO SISTEMA</div>
                     <span class="login-sub mono">SECURE GATEWAY v4.0</span>
                 </div>
-                <div class="input-group">
-                    <label class="input-label">ID DE ACESSO</label>
-                    <input type="text" id="email" class="input-field" placeholder="ex: kaleb.nunes">
-                </div>
-                <div class="input-group">
-                    <label class="input-label">CHAVE DE ACESSO</label>
-                    <input type="password" id="password" class="input-field" placeholder="••••••••">
-                </div>
-                <button class="btn-submit" onclick="processLogin()">INICIAR SESSÃO</button>
-                <div id="login-error" style="color: var(--alert); font-size: 0.7rem; margin-top: 10px; text-align: center; display: none;">ACESSO NEGADO. CREDENCIAIS INVÁLIDAS.</div>
+                <input type="text" id="email" class="input-field" placeholder="Usuário (ex: kaleb.nunes)">
+                <input type="password" id="password" class="input-field" placeholder="Senha">
+                <button class="btn-submit" onclick="processLogin()">ENTRAR</button>
+                <div id="login-error" style="color: #ff3333; font-size: 0.7rem; margin-top: 10px; text-align: center; display: none;">ACESSO NEGADO.</div>
             </div>
 
             <div id="mfa-section">
-                <i class="fa-solid fa-fingerprint" style="font-size: 3rem; color: var(--neon); margin-bottom: 20px; animation: pulse 2s infinite;"></i>
-                <div class="login-title">VERIFICAÇÃO BIOMÉTRICA</div>
-                <p class="login-sub">Digite o token do autenticador KNS.</p>
+                <i class="fa-solid fa-fingerprint" style="font-size: 3rem; color: var(--neon); margin-bottom: 20px; display:block; text-align:center;"></i>
+                <div class="login-title" style="text-align:center;">2FA NECESSÁRIO</div>
+                <p style="text-align:center; color: #888; font-size: 0.8rem; margin-bottom: 20px;">Token enviado para seu dispositivo.</p>
                 <div class="mfa-dots">
-                    <input type="text" class="mfa-input" maxlength="1">
-                    <input type="text" class="mfa-input" maxlength="1">
-                    <input type="text" class="mfa-input" maxlength="1">
-                    <input type="text" class="mfa-input" maxlength="1">
-                    <input type="text" class="mfa-input" maxlength="1">
-                    <input type="text" class="mfa-input" maxlength="1">
+                    <input type="text" class="mfa-input" value="-" disabled>
+                    <input type="text" class="mfa-input" value="-" disabled>
+                    <input type="text" class="mfa-input" value="-" disabled>
                 </div>
-                <button class="btn-submit" onclick="finalizeLogin()">VALIDAR ACESSO</button>
+                <button class="btn-submit" onclick="finalizeLogin()">CONFIRMAR</button>
             </div>
         </div>
     </div>
@@ -310,112 +187,86 @@
     <div id="dashboard-overlay">
         <div class="dash-container">
             <div class="dash-sidebar">
-                <div class="dash-logo"><i class="fa-solid fa-cube" style="color: var(--neon);"></i> KNS<span style="font-weight:300;">CORE</span></div>
+                <div class="dash-logo"><i class="fa-solid fa-cube"></i> KNS<span style="font-weight:300;">CORE</span></div>
                 <ul class="dash-menu">
                     <li><button class="dash-btn active" onclick="switchTab('home')"><i class="fa-solid fa-chart-pie"></i> VISÃO GERAL</button></li>
-                    <li><button class="dash-btn" onclick="switchTab('topology')"><i class="fa-solid fa-network-wired"></i> TOPOLOGIA VIVA</button></li>
-                    <li><button class="dash-btn" onclick="switchTab('database')"><i class="fa-solid fa-database"></i> DADOS (DB)</button></li>
-                    <li><button class="dash-btn" onclick="switchTab('settings')"><i class="fa-solid fa-user-shield"></i> SEGURANÇA</button></li>
+                    <li><button class="dash-btn" onclick="switchTab('settings')"><i class="fa-solid fa-sliders"></i> CONTROLE TOTAL</button></li>
                 </ul>
                 <div class="dash-logout">
-                    <button class="dash-btn" onclick="logout()" style="color: var(--alert);"><i class="fa-solid fa-power-off"></i> ENCERRAR SESSÃO</button>
+                    <button class="dash-btn" onclick="logout()" style="color: #ff3333;"><i class="fa-solid fa-power-off"></i> SAIR</button>
                 </div>
             </div>
 
             <div class="dash-main">
                 <div class="dash-header">
-                    <div>
-                        <h2 style="font-family: 'Orbitron'; color: var(--text-main);">PAINEL DE COMANDO</h2>
-                        <span class="mono" style="font-size: 0.7rem; color: var(--text-muted);">SISTEMA v40.0 // CONECTADO</span>
-                    </div>
-                    <div class="header-profile">
-                        <div id="live-clock" class="mono" style="color: var(--text-muted); border-right: 1px solid var(--border); padding-right: 20px;">00:00:00</div>
-                        <img src="./assets/foto.jpg" class="header-avatar" alt="User" onerror="this.src='https://via.placeholder.com/50'">
+                    <h2 style="font-family: 'Orbitron';">PAINEL ADMINISTRATIVO</h2>
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span class="mono" style="color:var(--neon);">● KALEB.NUNES</span>
+                        <img src="./assets/foto.jpg" style="width:40px; height:40px; border-radius:50%; object-fit:cover;">
                     </div>
                 </div>
 
                 <div id="view-home">
                     <div class="dash-grid">
-                        <div class="dash-card system-alive">
-                            <span class="dash-lbl">STATUS GERAL</span>
-                            <div class="dash-val" style="color: var(--neon);">100%</div>
-                            <div style="font-size: 0.7rem; color: var(--text-muted);">NENHUMA FALHA DETECTADA</div>
+                        <div class="dash-card">
+                            <span class="mono" style="color:#888;">STATUS SISTEMA</span>
+                            <div class="dash-val" style="color:var(--neon);">100%</div>
                         </div>
                         <div class="dash-card">
-                            <span class="dash-lbl">INCIDENTES EVITADOS</span>
-                            <div class="dash-val">42</div>
-                            <span style="font-size: 0.7rem; color: var(--text-muted);">MÊS ATUAL</span>
-                        </div>
-                        <div class="dash-card">
-                            <span class="dash-lbl">PRÓXIMA AUDITORIA</span>
-                            <div class="dash-val" id="audit-date">--</div>
-                            <span style="font-size: 0.7rem; color: var(--text-muted);">AGENDAMENTO AUTOMÁTICO</span>
+                            <span class="mono" style="color:#888;">VISITANTES HOJE</span>
+                            <div class="dash-val">1,204</div>
                         </div>
                     </div>
-                    <div style="margin-top: 30px; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 8px;">
-                        <h4 class="mono" style="color: var(--neon); margin-bottom: 15px;">> TERMINAL DE LOGS</h4>
-                        <ul id="activity-log" style="list-style: none; color: var(--text-muted); font-size: 0.8rem; line-height: 1.8;"></ul>
-                    </div>
                 </div>
 
-                <div id="view-topology">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <h3 style="color: var(--text-main);">MAPA DE REDE EM TEMPO REAL</h3>
-                        <span class="mono" style="color: var(--neon);">TRÁFEGO: <span id="traffic-val">4.2</span> GBps</span>
-                    </div>
-                    <div class="topology-map system-alive">
-                        <div class="node core" style="top: 50%; left: 50%; transform: translate(-50%, -50%);"><i class="fa-solid fa-server"></i></div>
-                        <div class="node fw" style="top: 20%; left: 50%; transform: translateX(-50%);"><i class="fa-solid fa-shield-halved"></i></div>
-                        <div class="node cloud" style="top: 20%; left: 20%;"><i class="fa-brands fa-aws"></i></div>
-                        <div class="node zabbix" style="bottom: 20%; right: 20%;"><i class="fa-solid fa-eye"></i></div>
-                        
-                        <div class="packet" style="top: 35%; left: 50%; animation: flow 2s infinite;"></div>
-                        <div class="packet" style="top: 65%; left: 65%; animation: flow 3s infinite reverse;"></div>
-                    </div>
-                </div>
-
-                <div id="view-database">
-                    <div style="margin-bottom: 30px; display: flex; justify-content: space-between;">
-                        <h3 style="color: var(--text-main);">BANCO DE DADOS LOCAL</h3>
-                        <button class="btn-login" onclick="backupCloud()"><i class="fa-solid fa-cloud-arrow-up"></i> BACKUP NUVEM</button>
-                    </div>
-                    <div class="glass-panel" style="padding: 0; overflow: hidden;">
-                        <table class="db-table">
-                            <thead>
-                                <tr style="background: rgba(255,255,255,0.05);">
-                                    <th>ID</th>
-                                    <th>TIPO DADO</th>
-                                    <th>VALOR</th>
-                                    <th>STATUS</th>
-                                </tr>
-                            </thead>
-                            <tbody id="db-content">
-                                </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div id="view-settings">
-                    <h3 style="color: var(--text-main); margin-bottom: 20px;">SEGURANÇA & ACESSO</h3>
-                    <div class="glass-panel" style="padding: 30px; max-width: 600px;">
-                        <div class="input-group">
-                            <label class="input-label">ALTERAR SENHA MESTRA</label>
-                            <input type="password" class="input-field" placeholder="Nova senha...">
+                <div id="view-settings" style="display:none;">
+                    <h3 style="margin-bottom:30px;">CONFIGURAÇÕES GLOBAIS DO SISTEMA</h3>
+                    
+                    <div class="dash-card">
+                        <div class="setting-row">
+                            <div>
+                                <div style="font-weight:bold;">MOTOR DE VOZ (IA)</div>
+                                <div style="font-size:0.8rem; color:#888;">Feedback auditivo do sistema.</div>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="voice-toggle" onchange="toggleSetting('voice')">
+                                <span class="slider"></span>
+                            </label>
                         </div>
-                        <button class="btn-action" onclick="saveToDB()">ATUALIZAR CREDENCIAIS</button>
+
+                        <div class="setting-row">
+                            <div>
+                                <div style="font-weight:bold;">AUTENTICAÇÃO DE DOIS FATORES (MFA)</div>
+                                <div style="font-size:0.8rem; color:#888;">Exigir token extra no login.</div>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="mfa-toggle" onchange="toggleSetting('mfa')">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="setting-row">
+                            <div>
+                                <div style="font-weight:bold;">MODO EDIÇÃO (CMS)</div>
+                                <div style="font-size:0.8rem; color:#888;">Editar textos do site clicando neles.</div>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="edit-toggle" onchange="toggleSetting('edit')">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 
     <nav>
-        <div class="brand"><i class="fa-solid fa-cube" style="color: var(--neon);"></i> KNS</div>
+        <div class="brand"><i class="fa-solid fa-layer-group" style="color: var(--neon);"></i> KNS</div>
         <div class="nav-links">
-            <a href="#p9" class="nav-link">SOLUÇÕES</a>
-            <a href="#models" class="nav-link">MODELOS</a>
-            <a href="#about" class="nav-link">FOUNDER</a>
+            <a href="#p9" class="nav-link editable">Soluções</a>
+            <a href="#models" class="nav-link editable">Modelos</a>
+            <a href="#about" class="nav-link editable">Founder</a>
         </div>
         <div style="display: flex; gap: 15px; align-items: center;">
             <button class="theme-switch" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i></button>
@@ -425,15 +276,17 @@
     </nav>
 
     <section class="hero">
-        <div class="status-pill system-alive">
+        <div class="status-pill editable">
             <span style="width: 6px; height: 6px; background: var(--neon); border-radius: 50%;"></span>
-            SISTEMA OPERANTE
+            SYSTEM ONLINE
         </div>
         <div class="hero-title-wrapper">
-            <span class="hero-word-1">CONTINUIDADE</span>
-            <span class="hero-word-2">ABSOLUTA.</span>
+            <span class="hero-word-1 editable">CONTINUIDADE</span>
+            <span class="hero-word-2 editable">ABSOLUTA.</span>
         </div>
-        <p class="hero-sub">Engenharia de Continuidade e Proteção de Ativos Digitais.</p>
+        <p class="hero-sub editable">
+            Engenharia de Continuidade e Proteção de Ativos Digitais para operações que não aceitam falhas.
+        </p>
         
         <div class="xdr-wrapper">
             <div class="xdr-frame">
@@ -446,227 +299,204 @@
         </div>
     </section>
 
-    <div class="marquee-section">
-        <div class="marquee-track">
-            <div class="tech-logo-item"><i class="fa-brands fa-python"></i> PYTHON</div>
-            <div class="tech-logo-item"><i class="fa-solid fa-server"></i> ZABBIX</div>
-            <div class="tech-logo-item"><i class="fa-solid fa-chart-line"></i> GRAFANA</div>
-            <div class="tech-logo-item"><i class="fa-brands fa-aws"></i> AWS CLOUD</div>
-            <div class="tech-logo-item"><i class="fa-solid fa-network-wired"></i> CISCO</div>
-            <div class="tech-logo-item"><i class="fa-solid fa-globe"></i> IPV6 NATIVE</div>
-            <div class="tech-logo-item"><i class="fa-brands fa-python"></i> PYTHON</div>
-            <div class="tech-logo-item"><i class="fa-solid fa-server"></i> ZABBIX</div>
-        </div>
-    </div>
-
-    <section id="p9" class="p9-hero-section">
-        <div class="p9-container-box system-alive">
-            <span class="mono" style="color: var(--neon); letter-spacing: 2px;">TECNOLOGIA PROPRIETÁRIA</span>
-            <h2 style="font-family: 'Orbitron'; font-size: 3rem; margin: 20px 0; color: var(--text-main);">PROTOCOLO 09</h2>
-            <p style="max-width: 700px; margin: 0 auto; color: var(--text-muted);">
-                Não é apenas um serviço. É um <strong>Sistema Imunológico Digital</strong>. Nossa arquitetura detecta anomalias financeiras na infraestrutura e executa contra-medidas autônomas.
-            </p>
-            <div class="p9-grid">
-                <div class="p9-card-boost">
-                    <i class="fa-solid fa-eye" style="font-size: 2.5rem; color: var(--neon); margin-bottom: 20px;"></i>
-                    <h3 style="font-family: 'Orbitron'; font-size: 1.4rem; margin-bottom: 15px; color: var(--text-main);">Observabilidade</h3>
-                    <p style="color: var(--text-muted);">Vemos o que ferramentas padrões ignoram.</p>
-                </div>
-                <div class="p9-card-boost">
-                    <i class="fa-solid fa-robot" style="font-size: 2.5rem; color: var(--neon); margin-bottom: 20px;"></i>
-                    <h3 style="font-family: 'Orbitron'; font-size: 1.4rem; margin-bottom: 15px; color: var(--text-main);">Auto-Cura</h3>
-                    <p style="color: var(--text-muted);">O código corrige falhas antes do impacto humano.</p>
-                </div>
-                <div class="p9-card-boost">
-                    <i class="fa-solid fa-shield-halved" style="font-size: 2.5rem; color: var(--neon); margin-bottom: 20px;"></i>
-                    <h3 style="font-family: 'Orbitron'; font-size: 1.4rem; margin-bottom: 15px; color: var(--text-main);">Blindagem</h3>
-                    <p style="color: var(--text-muted);">Hardening de servidores e proteção contra ataques.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="models" class="section-pad">
-        <h2 style="text-align: center; font-family: 'Orbitron'; margin-bottom: 60px; color: var(--text-main);">MODELOS DE ATUAÇÃO</h2>
-        <div class="grid-3">
-            <div class="tier-card"><h3 style="font-family: 'Orbitron'; color: var(--text-main);">ADVISORY</h3><p style="color: var(--text-muted);">Diagnóstico e Roadmap.</p></div>
-            <div class="tier-card featured system-alive"><h3 style="font-family: 'Orbitron'; color: var(--neon);">IMPLEMENTATION</h3><p style="color: var(--text-muted);">Full Stack Protocol 09.</p></div>
-            <div class="tier-card"><h3 style="font-family: 'Orbitron'; color: var(--text-main);">PARTNER</h3><p style="color: var(--text-muted);">Fractional CTO.</p></div>
-        </div>
-    </section>
-
     <section id="about" class="section-pad">
         <div class="founder-box">
             <div><img src="./assets/foto.jpg" alt="Kaleb Nunes" class="founder-photo"></div>
             <div style="text-align: left;">
-                <span class="mono" style="color: var(--neon);">FOUNDER & HEAD OF ENGINEERING</span>
-                <h3 style="font-family: 'Orbitron'; font-size: 2.5rem; margin: 15px 0; color: var(--text-main);">KALEB NUNES</h3>
-                <p style="color: var(--text-muted); line-height: 1.8;">"Minha missão é garantir que a tecnologia seja um ativo invisível, não um problema visível."</p>
+                <span class="mono" style="color: var(--neon); letter-spacing: 1px;">FOUNDER & HEAD OF ENGINEERING</span>
+                <h3 class="editable" style="font-family: 'Orbitron'; font-size: 2.5rem; margin: 15px 0; color: var(--text-main);">KALEB NUNES</h3>
+                <p class="editable" style="color: var(--text-muted); line-height: 1.8;">
+                    "Minha missão é simples: garantir que a tecnologia seja um ativo invisível, não um problema visível. Com o Protocolo 09, entregamos a paz de espírito que apenas a engenharia de precisão pode oferecer."
+                </p>
             </div>
-            <div class="cert-badge-wrapper"><img src="./assets/sage_full.png" alt="SAGE" class="cert-badge-img"><span class="cert-label">VERIFIED</span></div>
+            <div class="cert-badge-wrapper">
+                <img src="./assets/sage_full.png" alt="SAGE Badge" class="cert-badge-img">
+            </div>
         </div>
     </section>
 
-    <footer id="contact">
+    <footer id="contact" style="padding: 80px 5%; border-top: 1px solid var(--border); background: var(--footer-bg);">
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;">
-            <div class="footer-col"><h3>KNS GLOBAL</h3><p style="font-size: 0.85rem; color: var(--text-muted);">Balneário Camboriú, SC</p></div>
-            <div class="footer-col">
+            <div>
+                <h3 style="font-family: 'Orbitron'; color:var(--text-main);">KNS GLOBAL</h3>
+                <p class="editable" style="color: var(--text-muted);">Engenharia de Continuidade.</p>
+            </div>
+            <div>
                 <h4 style="color: var(--text-main);">CONTATO</h4>
-                <a href="https://wa.me/5547988901616" class="contact-item"><i class="fa-brands fa-whatsapp"></i> +55 (47) 98890-1616</a>
-                <a href="mailto:comercial@knsconsultoria.com.br" class="contact-item"><i class="fa-solid fa-envelope"></i> comercial@knsconsultoria.com.br</a>
+                <div class="editable" style="color: var(--text-muted);">+55 (47) 98890-1616</div>
             </div>
         </div>
     </footer>
 
     <script>
-        // --- VOICE ENGINE ---
+        // CONFIGURAÇÕES GLOBAIS (PERSISTENTES)
+        let config = {
+            voice: localStorage.getItem('kns_voice') !== 'false', // Default true
+            mfa: localStorage.getItem('kns_mfa') !== 'false', // Default true
+            editMode: false
+        };
+
+        // INICIALIZAÇÃO
+        window.onload = function() {
+            // Load Switches State
+            document.getElementById('voice-toggle').checked = config.voice;
+            document.getElementById('mfa-toggle').checked = config.mfa;
+            document.getElementById('edit-toggle').checked = config.editMode;
+        };
+
+        // VOICE ENGINE
         function speak(text) {
-            if ('speechSynthesis' in window) {
+            if (config.voice && 'speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
                 const utterance = new SpeechSynthesisUtterance(text);
                 utterance.lang = 'pt-BR';
-                utterance.rate = 1.1; // Slightly robotic/fast
                 window.speechSynthesis.speak(utterance);
             }
         }
 
-        // --- THEME ---
-        function toggleTheme() {
-            const html = document.documentElement;
-            const current = html.getAttribute('data-theme');
-            const next = current === 'dark' ? 'light' : 'dark';
-            html.setAttribute('data-theme', next);
-            localStorage.setItem('kns_theme', next); // PERSISTÊNCIA
-            speak("Tema alterado para modo " + (next === 'dark' ? 'escuro' : 'claro'));
-        }
-
-        // --- SMART SCANNER ---
-        window.onload = function() {
-            setTimeout(() => {
-                const scanner = document.getElementById('smart-scanner');
-                scanner.style.display = 'block';
-                speak("Sistema KNS online. Analisando ambiente.");
-                setTimeout(() => { scanner.style.display = 'none'; }, 4000);
-            }, 1000);
-            
-            // Load saved theme
-            const savedTheme = localStorage.getItem('kns_theme');
-            if(savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
-            
-            // Dynamic Date
-            const date = new Date();
-            date.setDate(date.getDate() + 15);
-            document.getElementById('audit-date').innerText = date.toLocaleDateString('pt-BR');
-        };
-
-        // --- CLOCK ---
-        setInterval(() => {
-            document.getElementById('live-clock').innerText = new Date().toLocaleTimeString('pt-BR');
-            // Simulate traffic fluctuation
-            document.getElementById('traffic-val').innerText = (4.0 + Math.random()).toFixed(2);
-        }, 1000);
-
-        // --- LOGIN LOGIC ---
+        // LOGIN LOGIC
         function toggleLogin() {
-            const modal = document.getElementById('login-modal');
-            modal.classList.toggle('active');
+            document.getElementById('login-modal').classList.toggle('active');
             document.getElementById('step-login').style.display = 'block';
             document.getElementById('mfa-section').style.display = 'none';
+            document.getElementById('login-error').style.display = 'none';
         }
 
         function processLogin() {
             const u = document.getElementById('email').value;
             const p = document.getElementById('password').value;
-            if(u === 'kaleb.nunes' && p === '13091993') {
-                speak("Credenciais aceitas. Solicitando autenticação de dois fatores.");
-                document.getElementById('step-login').style.display = 'none';
-                document.getElementById('mfa-section').style.display = 'block';
+
+            if (u === 'root' && p === 'kns_master') {
+                // ROOT ACCESS -> TERMINAL
+                document.getElementById('login-modal').classList.remove('active');
+                document.getElementById('terminal-overlay').style.display = 'block';
+                document.getElementById('cmd-input').focus();
+                speak("Acesso Root concedido. Bem-vindo ao Shell do Arquiteto.");
+                return;
+            }
+
+            if (u === 'kaleb.nunes' && p === '13091993') {
+                // ADMIN ACCESS
+                if (config.mfa) {
+                    speak("Credenciais aceitas. Autenticação de dois fatores necessária.");
+                    document.getElementById('step-login').style.display = 'none';
+                    document.getElementById('mfa-section').style.display = 'block';
+                } else {
+                    finalizeLogin(); // Pula MFA se desligado
+                }
             } else {
-                speak("Acesso negado. Verifique suas credenciais.");
+                speak("Acesso negado.");
                 document.getElementById('login-error').style.display = 'block';
             }
         }
 
         function finalizeLogin() {
-            speak("Acesso autorizado. Bem-vindo, Comandante Kaleb.");
-            toggleLogin();
+            speak("Acesso Administrativo concedido.");
+            document.getElementById('login-modal').classList.remove('active');
             document.getElementById('dashboard-overlay').style.display = 'block';
-            populateDB(); // Fill fake database
-            generateLogs(); // Generate logs
         }
 
         function logout() {
-            speak("Sessão encerrada. Até logo.");
             document.getElementById('dashboard-overlay').style.display = 'none';
+            document.getElementById('terminal-overlay').style.display = 'none';
             document.getElementById('email').value = '';
             document.getElementById('password').value = '';
-            switchTab('home');
+            speak("Sessão finalizada.");
         }
 
-        // --- DATABASE SIMULATOR ---
-        function populateDB() {
-            const tbody = document.getElementById('db-content');
-            tbody.innerHTML = `
-                <tr><td>#001</td><td>USER_PREF</td><td>THEME: DARK</td><td class="status-ok">SYNCED</td></tr>
-                <tr><td>#002</td><td>SEC_TOKEN</td><td>SHA-256 HASH</td><td class="status-ok">SECURE</td></tr>
-                <tr><td>#003</td><td>LAST_LOGIN</td><td>${new Date().toLocaleString()}</td><td class="status-ok">LOGGED</td></tr>
-                <tr><td>#004</td><td>GEO_IP</td><td>BRAZIL (SC)</td><td class="status-warn">TRACKED</td></tr>
-            `;
+        // SETTINGS LOGIC
+        function toggleSetting(key) {
+            if (key === 'voice') {
+                config.voice = !config.voice;
+                localStorage.setItem('kns_voice', config.voice);
+                if(config.voice) speak("Voz do sistema ativada.");
+            }
+            if (key === 'mfa') {
+                config.mfa = !config.mfa;
+                localStorage.setItem('kns_mfa', config.mfa);
+                speak(config.mfa ? "MFA ativado." : "MFA desativado. Cuidado.");
+            }
+            if (key === 'edit') {
+                config.editMode = !config.editMode;
+                toggleEditModeOnPage();
+                speak(config.editMode ? "Modo de edição habilitado." : "Modo de edição desabilitado.");
+            }
         }
 
-        function saveToDB() {
-            const toast = document.getElementById('toast');
-            toast.style.transform = 'translateY(0)';
-            speak("Alterações salvas no banco de dados local.");
-            setTimeout(() => { toast.style.transform = 'translateY(100px)'; }, 3000);
-        }
-
-        function backupCloud() {
-            speak("Iniciando backup criptografado para a nuvem AWS.");
-            const btn = document.querySelector('#view-database .btn-login');
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> ENVIANDO...';
-            setTimeout(() => {
-                btn.innerHTML = '<i class="fa-solid fa-check"></i> SUCESSO';
-                speak("Backup concluído com sucesso.");
-            }, 3000);
-        }
-
-        function generateLogs() {
-            const list = document.getElementById('activity-log');
-            const now = new Date();
-            list.innerHTML = `
-                <li>[${now.toLocaleTimeString()}] AUTH: LOGIN SUCCESS (USER: KALEB.NUNES)</li>
-                <li>[${new Date(now - 600000).toLocaleTimeString()}] SYSTEM: HEALTH CHECK OK (ALL NODES)</li>
-                <li>[${new Date(now - 3600000).toLocaleTimeString()}] BOT: CRAWLER BLOCKED IP 45.22.11.00</li>
-            `;
-        }
-
-        // --- NAVIGATION ---
-        function switchTab(id) {
-            ['home', 'topology', 'database', 'settings'].forEach(tab => {
-                document.getElementById('view-' + tab).style.display = 'none';
-            });
-            document.getElementById('view-' + id).style.display = 'block';
-            
-            // Button states
-            document.querySelectorAll('.dash-btn').forEach(b => b.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-            
-            if(id === 'topology') speak("Carregando mapa de topologia em tempo real.");
-        }
-
-        // --- SCROLL REVEAL ---
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = 'translateY(0)';
+        // CMS / EDIT MODE LOGIC
+        function toggleEditModeOnPage() {
+            const elements = document.querySelectorAll('.editable');
+            elements.forEach(el => {
+                el.contentEditable = config.editMode;
+                if (config.editMode) {
+                    el.classList.add('editable-active');
+                } else {
+                    el.classList.remove('editable-active');
                 }
             });
+        }
+
+        // TERMINAL LOGIC
+        const terminalInput = document.getElementById('cmd-input');
+        const terminalOutput = document.getElementById('terminal-output');
+
+        terminalInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                const cmd = this.value.toLowerCase().trim();
+                printLine(`root@kns-core:~# ${cmd}`);
+                this.value = '';
+                
+                // COMMANDS
+                if (cmd === 'help') {
+                    printLine("AVAILABLE COMMANDS:");
+                    printLine("  disable mfa    - Force disable MFA globally");
+                    printLine("  enable voice   - Force enable voice engine");
+                    printLine("  edit site      - Toggle site edit mode");
+                    printLine("  exit           - Logout from shell");
+                } else if (cmd === 'disable mfa') {
+                    config.mfa = false;
+                    localStorage.setItem('kns_mfa', false);
+                    printLine("SUCCESS: Multi-Factor Authentication DISABLED.");
+                } else if (cmd === 'enable voice') {
+                    config.voice = true;
+                    printLine("SUCCESS: Voice Engine ENABLED.");
+                    speak("Voice Engine online.");
+                } else if (cmd === 'edit site') {
+                    config.editMode = true;
+                    toggleEditModeOnPage();
+                    printLine("SUCCESS: CMS Edit Mode ACTIVE.");
+                } else if (cmd === 'exit') {
+                    logout();
+                } else {
+                    printLine(`Command not found: ${cmd}`);
+                }
+            }
         });
-        document.querySelectorAll('.hero, .p9-container-box, .founder-box').forEach(el => {
-            el.style.opacity = 0; el.style.transform = 'translateY(30px)'; el.style.transition = '1s';
-            observer.observe(el);
-        });
+
+        function printLine(text) {
+            const div = document.createElement('div');
+            div.className = 'terminal-line';
+            div.innerText = text;
+            terminalOutput.appendChild(div);
+            // Scroll to bottom
+            document.getElementById('terminal-overlay').scrollTop = document.getElementById('terminal-overlay').scrollHeight;
+        }
+
+        // NAVIGATION TABS
+        function switchTab(id) {
+            document.getElementById('view-home').style.display = 'none';
+            document.getElementById('view-settings').style.display = 'none';
+            document.getElementById('view-' + id).style.display = 'block';
+            
+            document.querySelectorAll('.dash-btn').forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+        }
     </script>
 </body>
 </html>
