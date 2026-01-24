@@ -51,7 +51,7 @@
             transition: background 0.5s ease, color 0.5s ease;
         }
 
-        /* --- MESH GRADIENT BACKGROUND (SUBTLE & EXPENSIVE) --- */
+        /* --- MESH GRADIENT BACKGROUND --- */
         .mesh-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -2;
             background: radial-gradient(at 0% 0%, rgba(0,255,136,0.03) 0px, transparent 50%),
@@ -76,10 +76,9 @@
         .nav-link:hover { color: var(--primary); }
         .nav-actions { display: flex; gap: 15px; align-items: center; }
 
-        /* --- HERO SECTION (THE AUTHORITY BUILDER) --- */
+        /* --- HERO SECTION --- */
         .hero { padding: 180px 5% 100px; text-align: center; display: flex; flex-direction: column; align-items: center; }
 
-        /* O SELO SAGE AGORA É O DESTAQUE */
         .sage-badge-hero {
             display: flex; align-items: center; gap: 15px;
             background: var(--primary-dim); border: 1px solid var(--primary);
@@ -95,7 +94,7 @@
         .hero-title { font-size: clamp(3rem, 6vw, 5.5rem); line-height: 1.05; font-weight: 900; margin-bottom: 30px; }
         .hero-desc { font-size: 1.3rem; color: var(--text-muted); max-width: 800px; margin-bottom: 50px; line-height: 1.6; }
 
-        /* --- CTA BUTTONS (NO MORE WHATSAPP PRIORITY) --- */
+        /* --- CTA BUTTONS --- */
         .cta-container { display: flex; gap: 20px; align-items: center; justify-content: center; flex-wrap: wrap; }
         
         .btn-executive {
@@ -122,7 +121,7 @@
             box-shadow: 0 30px 100px -20px rgba(0,0,0,0.6);
         }
 
-        /* --- KPI BAR (NUMBERS) --- */
+        /* --- KPI BAR --- */
         .kpi-section {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px; max-width: 1200px; margin: 0 auto 100px; border: 1px solid var(--border); border-radius: 20px;
@@ -134,7 +133,7 @@
         .kpi-value { font-family: 'Orbitron'; font-size: 3rem; font-weight: 800; color: var(--text-main); display: block; margin-bottom: 5px; }
         .kpi-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
 
-        /* --- CASE STUDY (PROOF) --- */
+        /* --- CASE STUDY --- */
         .case-section { padding: 100px 8%; background: var(--bg-surface); border-top: 1px solid var(--border); }
         .case-card {
             background: var(--bg-deep); border: 1px solid var(--border);
@@ -307,6 +306,40 @@
         </div>
     </section>
 
+    <section id="autoridade" style="padding: 100px 8%; background: var(--bg-deep); border-top: 1px solid var(--border);">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 60px; align-items: center; max-width: 1200px; margin: 0 auto;">
+            
+            <div>
+                <span style="color: var(--primary); font-family: 'JetBrains Mono'; font-weight: 700; display: block; margin-bottom: 20px;">// CEO & LEAD ARCHITECT</span>
+                <h2 style="font-size: 2.5rem; margin-bottom: 30px; line-height: 1.1;">KALEB NUNES</h2>
+                
+                <div style="display: flex; gap: 30px; margin-bottom: 30px;">
+                    <img src="./assets/foto.jpg" alt="Kaleb Nunes" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); box-shadow: 0 0 20px var(--primary-glow);" onerror="this.style.display='none'">
+                    <p style="color: var(--text-muted); line-height: 1.6; font-size: 1rem;" data-i18n="bio_text">
+                        A KNS nasceu de uma inconformidade. Trabalhando em grandes operações, vi empresas reféns de suporte lento e "abertura de chamados". Decidi criar uma consultoria onde <strong>não vendemos horas, vendemos a solução definitiva.</strong> Minha missão é garantir que sua operação nunca pare.
+                    </p>
+                </div>
+                
+                <div style="border-left: 4px solid var(--primary); padding-left: 20px;">
+                    <p style="font-style: italic; color: var(--text-main); font-size: 1.1rem;" data-i18n="bio_quote">
+                        "Onde outros veem risco, nós vemos lógica. Estabilidade é uma escolha de engenharia."
+                    </p>
+                </div>
+            </div>
+
+            <div style="text-align: center; background: var(--bg-surface); padding: 40px; border-radius: 20px; border: 1px solid var(--border);">
+                <h3 style="margin-bottom: 20px; font-size: 1.2rem;" data-i18n="cert_title_box">AUTORIDADE MÁXIMA IPV6</h3>
+                
+                <img src="./assets/sage_full.png" alt="Hurricane Electric SAGE Certified" style="width: 100%; max-width: 350px; border: 1px solid #333; box-shadow: 0 0 30px rgba(0,0,0,0.5); margin-bottom: 20px;" onerror="this.style.display='none'">
+                
+                <p class="mono" style="font-size: 0.8rem; color: var(--primary);" data-i18n="cert_status">
+                    <i class="fa-solid fa-check-circle"></i> VERIFIED & CERTIFIED
+                </p>
+            </div>
+
+        </div>
+    </section>
+
     <footer>
         <div class="footer-grid">
             <div>
@@ -351,14 +384,20 @@
                 hero_t1: "ESTABILIDADE NÃO É SORTE.", hero_t2: "É ENGENHARIA.",
                 hero_desc: "Consultoria especializada em infraestrutura de missão crítica. Eliminamos riscos operacionais, reduzimos custos e garantimos a continuidade do seu negócio através do Protocolo 09.",
                 hero_cta: "AGENDAR DIAGNÓSTICO TÉCNICO",
-                kpi_uptime: "UPTIME GARANTIDO", kpi_opex: "REDUÇÃO DE OPEX", kpi_cert: "NÍVEL DE CERTIFICAÇÃO", kpi_mon: "CHURN TÉCNICO",
+                kpi_uptime: "UPTIME GARANTIDO", kpi_opex: "REDUÇÃO DE OPEX", kpi_cert: "NÍVEL DE CERTIFICACIÓN", kpi_mon: "CHURN TÉCNICO",
                 case_title: "RECUPERAÇÃO DE INFRAESTRUTURA CRÍTICA",
                 case_text: "<strong>O Cenário:</strong> Uma empresa Líder de Mercado em Software (SaaS) enfrentava instabilidades que ameaçavam contratos milionários. O diagnóstico apontava falhas na arquitetura legada.<br><br><strong>A Solução KNS:</strong> Implementação do Protocolo 09 com reengenharia de tráfego e automação em Python. <br><br><strong>O Resultado:</strong> Estabilidade total restabelecida em <strong>30 dias</strong>.",
                 sol_header: "SOLUÇÕES EMPRESARIAIS", sol_sub: "Tecnologia aplicada diretamente no resultado financeiro (Bottom Line).",
                 sol_1_t: "Compliance & Infraestrutura (IPv6)", sol_1_d: "Adequação aos padrões globais de conectividade. Certificação SAGE que garante que sua rede está pronta para o tráfego da próxima década.",
                 sol_2_t: "Automação & Redução de Custos", sol_2_d: "Substituímos processos manuais caros por scripts em Python (Self-Healing). Seus servidores corrigem problemas sozinhos.",
                 sol_3_t: "Inteligência de Negócio (BI)", sol_3_d: "Transformamos logs técnicos (Zabbix/Grafana) em painéis executivos. Tenha visão clara do ROI da sua infraestrutura.",
-                footer_about: "Engenharia de Redes de Elite.<br>Especialistas em ambientes de missão crítica.<br>Balneário Camboriú, SC - Brasil."
+                footer_about: "Engenharia de Redes de Elite.<br>Especialistas em ambientes de missão crítica.<br>Balneário Camboriú, SC - Brasil.",
+                
+                // NOVOS TEXTOS DA BIO E CERTIFICADO
+                bio_text: "A KNS nasceu de uma inconformidade. Trabalhando em grandes operações, vi empresas reféns de suporte lento. Decidi criar uma consultoria onde <strong>não vendemos horas, vendemos a solução definitiva.</strong> Minha missão é garantir que sua operação nunca pare.",
+                bio_quote: "\"Onde outros veem risco, nós vemos lógica. Estabilidade é uma escolha de engenharia.\"",
+                cert_title_box: "AUTORIDADE MÁXIMA IPV6",
+                cert_status: "<i class='fa-solid fa-check-circle'></i> VERIFICADO & CERTIFICADO"
             },
             en: {
                 nav_sol: "SOLUTIONS", nav_case: "RESULTS", nav_meth: "METHODOLOGY", nav_cta: "TALK TO EXPERT",
@@ -373,7 +412,13 @@
                 sol_1_t: "Compliance & Infrastructure (IPv6)", sol_1_d: "Global connectivity compliance. SAGE certification ensuring your network is ready for the next decade.",
                 sol_2_t: "Automation & Cost Reduction", sol_2_d: "We replace expensive manual processes with Python (Self-Healing) scripts. Your servers fix problems by themselves.",
                 sol_3_t: "Business Intelligence (BI)", sol_3_d: "We turn technical logs (Zabbix/Grafana) into executive dashboards. Get a clear view of your infrastructure ROI.",
-                footer_about: "Elite Network Engineering.<br>Specialists in mission-critical environments.<br>Balneário Camboriú, SC - Brazil."
+                footer_about: "Elite Network Engineering.<br>Specialists in mission-critical environments.<br>Balneário Camboriú, SC - Brazil.",
+
+                // NOVOS TEXTOS DA BIO E CERTIFICADO (EN)
+                bio_text: "KNS was born from nonconformity. Working in major operations, I saw companies held hostage by slow support. I decided to build a firm where <strong>we don't sell hours, we sell the definitive solution.</strong> My mission is to ensure your operation never stops.",
+                bio_quote: "\"Where others see risk, we see logic. Stability is an engineering choice.\"",
+                cert_title_box: "MAXIMUM IPv6 AUTHORITY",
+                cert_status: "<i class='fa-solid fa-check-circle'></i> VERIFIED & CERTIFIED"
             },
             es: {
                 nav_sol: "SOLUCIONES", nav_case: "RESULTADOS", nav_meth: "METODOLOGÍA", nav_cta: "HABLAR CON EXPERTO",
@@ -382,23 +427,29 @@
                 hero_desc: "Consultoría especializada en infraestructura de misión crítica. Eliminamos riesgos operativos, reducimos costos y garantizamos la continuidad del negocio.",
                 hero_cta: "AGENDAR DIAGNÓSTICO",
                 kpi_uptime: "TIEMPO DE ACTIVIDAD", kpi_opex: "REDUCCIÓN DE OPEX", kpi_cert: "NIVEL DE CERTIFICACIÓN", kpi_mon: "MONITOREO ACTIVO",
-                case_tag: "CASE STUDY: SOFTWARE HOUSE", case_title: "RECUPERACIÓN DE ESTABILIDAD CRÍTICA",
-                case_res_title: "DESAFÍO vs RESULTADO",
+                case_title: "RECUPERACIÓN DE ESTABILIDAD CRÍTICA",
                 case_text: "Una gran Casa de Software enfrentaba inestabilidad recurrente. La Metodología KNS: Usando ingeniería inversa y automatización, identificamos el problema. En solo 30 días, reestructuramos el núcleo de la red, eliminando el churn técnico.",
-                sol_tag: "NUESTRAS SOLUCIONES", sol_title: "TECNOLOGÍA AL SERVICIO DEL LUCRO",
+                sol_header: "SOLUCIONES EMPRESARIAIS", sol_sub: "TECNOLOGÍA AL SERVICIO DEL LUCRO",
                 sol_1_t: "Infraestructura y Cumplimiento (IPv6)", sol_1_d: "Garantía de conectividad y cumplimiento global con certificación SAGE.",
                 sol_2_t: "Eficiencia Operativa (Automatización)", sol_2_d: "Reduzca el error humano y los costos. Scripts de Auto-Curación corrigen fallas automáticamente.",
                 sol_3_t: "Inteligencia de Negocios (BI)", sol_3_d: "Transformamos registros técnicos en paneles de decisión estratégica.",
                 meth_tag: "NUESTRA METODOLOGÍA", meth_title: "PROTOCOLO 09",
                 meth_desc: "Un marco propietario de mitigación de riesgos. A diferencia del soporte tradicional que reacciona al problema, el Protocolo 09 actúa en la capa predictiva.",
-                cert_title: "CERTIFICACIÓN GLOBAL SAGE IPv6", cert_desc: "Solo el 1% de los ingenieros de redes del mundo poseen este nivel de validación técnica."
+                cert_title: "CERTIFICACIÓN GLOBAL SAGE IPv6", cert_desc: "Solo el 1% de los ingenieros de redes del mundo poseen este nivel de validación técnica.",
+                footer_about: "Ingeniería de Redes de Élite.<br>Especialistas en ambientes de misión crítica.<br>Balneário Camboriú, SC - Brasil.",
+
+                // NOVOS TEXTOS DA BIO E CERTIFICADO (ES)
+                bio_text: "KNS nació de la inconformidad. Trabajando en grandes operaciones, vi empresas rehenes de un soporte lento. Decidí crear una consultora donde <strong>no vendemos horas, vendemos la solución definitiva.</strong> Mi misión es asegurar que su operación nunca se detenga.",
+                bio_quote: "\"Donde otros ven riesgo, nosotros vemos lógica. La estabilidad es una elección de ingeniería.\"",
+                cert_title_box: "AUTORIDAD MÁXIMA IPv6",
+                cert_status: "<i class='fa-solid fa-check-circle'></i> VERIFICADO Y CERTIFICADO"
             }
         };
 
         function setLang(lang) {
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if(i18n[lang][key]) el.innerHTML = i18n[lang][key]; // Use innerHTML to allow tags like <br> and <strong>
+                if(i18n[lang][key]) el.innerHTML = i18n[lang][key];
             });
             document.querySelectorAll('.ctrl-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
