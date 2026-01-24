@@ -3,36 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="KNS Consultoria - Engenharia de Redes de Missão Crítica. IPv6 SAGE Certified.">
-    <meta name="author" content="Kaleb Nunes">
-    <meta property="og:title" content="KNS Consultoria | Enterprise Network Engineering">
+    <meta name="description" content="KNS Global - Mission Critical Network Engineering & Governance.">
+    <meta name="author" content="KNS Global">
+    <meta property="og:title" content="KNS Global | Enterprise Network Engineering">
     <meta property="og:url" content="https://knsconsultoria.com.br">
-    <title>KNS CONSULTORIA | Enterprise Network Engineering</title>
+    <title>KNS GLOBAL | Enterprise Network Solutions</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- CORE ENGINE (LUXURY SETTINGS) --- */
+        /* --- CORE ENGINE --- */
         :root {
             --primary: #00ff88;
             --primary-dim: rgba(0, 255, 136, 0.1);
-            --primary-glow: rgba(0, 255, 136, 0.5);
-            --bg-deep: #030303;
+            --primary-glow: rgba(0, 255, 136, 0.4);
+            --bg-deep: #050505;
             --bg-surface: #0b0b0b;
             --text-main: #ffffff;
             --text-muted: #94a3b8;
             --border: rgba(255, 255, 255, 0.12);
-            --glass: rgba(11, 11, 11, 0.85);
-            --glass-blur: blur(25px);
-            --nav-bg: rgba(3, 3, 3, 0.95);
+            --glass: rgba(11, 11, 11, 0.9);
+            --glass-blur: blur(20px);
+            --nav-bg: rgba(5, 5, 5, 0.95);
         }
 
         [data-theme="light"] {
-            --primary: #007a4d; /* Verde Corporativo Sóbrio */
+            --primary: #007a4d;
             --primary-dim: rgba(0, 122, 77, 0.08);
             --primary-glow: rgba(0, 122, 77, 0.2);
-            --bg-deep: #f0f4f8;
+            --bg-deep: #f2f5f9;
             --bg-surface: #ffffff;
             --text-main: #0f172a;
             --text-muted: #475569;
@@ -51,7 +51,7 @@
             transition: background 0.5s ease, color 0.5s ease;
         }
 
-        /* --- MESH GRADIENT BACKGROUND --- */
+        /* --- MESH BG --- */
         .mesh-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -2;
             background: radial-gradient(at 0% 0%, rgba(0,255,136,0.03) 0px, transparent 50%),
@@ -60,7 +60,7 @@
         }
 
         /* --- TYPOGRAPHY --- */
-        h1, h2, h3 { font-family: 'Orbitron', sans-serif; letter-spacing: -0.03em; }
+        h1, h2, h3, h4 { font-family: 'Orbitron', sans-serif; letter-spacing: -0.02em; }
         .mono { font-family: 'JetBrains Mono', monospace; }
 
         /* --- NAV --- */
@@ -70,109 +70,103 @@
             background: var(--nav-bg); backdrop-filter: var(--glass-blur);
             border-bottom: 1px solid var(--border); z-index: 1000;
         }
-        .brand { font-size: 1.6rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 12px; }
-        .nav-links { display: flex; gap: 40px; }
-        .nav-link { color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+        .brand { font-size: 1.5rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 12px; letter-spacing: 1px; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-link { color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
         .nav-link:hover { color: var(--primary); }
-        .nav-actions { display: flex; gap: 15px; align-items: center; }
+        .nav-actions { display: flex; gap: 10px; align-items: center; }
 
-        /* --- HERO SECTION --- */
+        /* --- HERO --- */
         .hero { padding: 180px 5% 100px; text-align: center; display: flex; flex-direction: column; align-items: center; }
 
+        /* SELO SAGE DESTAQUE */
         .sage-badge-hero {
             display: flex; align-items: center; gap: 15px;
             background: var(--primary-dim); border: 1px solid var(--primary);
-            padding: 10px 25px; border-radius: 100px; margin-bottom: 40px;
-            box-shadow: 0 0 30px var(--primary-dim); cursor: default; transition: 0.3s;
+            padding: 10px 30px; border-radius: 4px; margin-bottom: 40px;
+            box-shadow: 0 0 40px var(--primary-dim); cursor: default;
         }
-        .sage-badge-hero:hover { transform: scale(1.05); box-shadow: 0 0 50px var(--primary-glow); }
         .sage-badge-hero i { font-size: 1.5rem; color: var(--primary); }
-        .sage-info { text-align: left; }
-        .sage-title { font-family: 'Orbitron'; font-weight: 900; color: var(--text-main); font-size: 1rem; line-height: 1; }
-        .sage-sub { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--primary); font-weight: 700; text-transform: uppercase; }
+        .sage-title { font-family: 'Orbitron'; font-weight: 900; color: var(--text-main); font-size: 1rem; }
+        .sage-sub { font-family: 'JetBrains Mono'; font-size: 0.75rem; color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 
-        .hero-title { font-size: clamp(3rem, 6vw, 5.5rem); line-height: 1.05; font-weight: 900; margin-bottom: 30px; }
-        .hero-desc { font-size: 1.3rem; color: var(--text-muted); max-width: 800px; margin-bottom: 50px; line-height: 1.6; }
+        .hero-title { font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.1; font-weight: 900; margin-bottom: 30px; text-transform: uppercase; }
+        .hero-desc { font-size: 1.2rem; color: var(--text-muted); max-width: 800px; margin-bottom: 50px; line-height: 1.7; }
 
-        /* --- CTA BUTTONS --- */
+        /* --- CTA --- */
         .cta-container { display: flex; gap: 20px; align-items: center; justify-content: center; flex-wrap: wrap; }
         
         .btn-executive {
-            background: var(--primary); color: #fff; padding: 20px 50px;
-            border-radius: 8px; text-decoration: none; font-weight: 800;
+            background: var(--primary); color: #fff; padding: 18px 45px;
+            border-radius: 4px; text-decoration: none; font-weight: 700;
             transition: 0.3s; box-shadow: 0 10px 40px var(--primary-glow);
-            text-transform: uppercase; font-size: 1rem; letter-spacing: 1px;
-            display: flex; align-items: center; gap: 10px; font-family: 'Orbitron';
+            text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; font-family: 'Orbitron';
         }
-        .btn-executive:hover { transform: translateY(-4px); box-shadow: 0 20px 60px var(--primary-glow); filter: brightness(1.1); }
+        .btn-executive:hover { transform: translateY(-3px); box-shadow: 0 20px 60px var(--primary-glow); filter: brightness(1.1); }
         
         .btn-secondary {
             background: transparent; border: 1px solid var(--border); color: var(--text-muted);
-            padding: 18px 30px; border-radius: 8px; text-decoration: none; font-weight: 600;
-            transition: 0.3s; font-size: 0.9rem; display: flex; align-items: center; gap: 10px;
+            padding: 16px 30px; border-radius: 4px; text-decoration: none; font-weight: 600;
+            transition: 0.3s; font-size: 0.9rem; text-transform: uppercase;
         }
         .btn-secondary:hover { border-color: var(--primary); color: var(--text-main); }
 
-        /* --- MONITOR VIDEO --- */
-        .monitor-wrapper { width: 100%; max-width: 1000px; margin: 100px auto; position: relative; }
-        .monitor-frame {
-            border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
-            background: #000; aspect-ratio: 16/9; position: relative;
-            box-shadow: 0 30px 100px -20px rgba(0,0,0,0.6);
-        }
-
         /* --- KPI BAR --- */
         .kpi-section {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px; max-width: 1200px; margin: 0 auto 100px; border: 1px solid var(--border); border-radius: 20px;
-            background: var(--bg-surface); padding: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px; max-width: 1200px; margin: 80px auto 100px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+            padding: 40px 0;
         }
-        .kpi-box { text-align: center; position: relative; }
-        .kpi-box::after { content: ''; position: absolute; right: 0; top: 20%; height: 60%; width: 1px; background: var(--border); }
-        .kpi-box:last-child::after { display: none; }
-        .kpi-value { font-family: 'Orbitron'; font-size: 3rem; font-weight: 800; color: var(--text-main); display: block; margin-bottom: 5px; }
-        .kpi-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
+        .kpi-box { text-align: center; border-right: 1px solid var(--border); }
+        .kpi-box:last-child { border-right: none; }
+        .kpi-value { font-family: 'Orbitron'; font-size: 2.5rem; font-weight: 800; color: var(--text-main); display: block; margin-bottom: 5px; }
+        .kpi-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
 
-        /* --- CASE STUDY --- */
-        .case-section { padding: 100px 8%; background: var(--bg-surface); border-top: 1px solid var(--border); }
+        /* --- GOVERNANCE SECTION (NOVA) --- */
+        .gov-section { padding: 100px 8%; background: var(--bg-surface); }
+        .gov-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 60px; }
+        .gov-card { padding: 30px; border: 1px solid var(--border); border-radius: 4px; background: var(--bg-deep); transition: 0.3s; }
+        .gov-card:hover { border-color: var(--primary); }
+        .gov-icon { font-size: 2rem; color: var(--primary); margin-bottom: 20px; }
+        .gov-title { font-size: 1.2rem; margin-bottom: 10px; font-family: 'Orbitron'; }
+        .gov-text { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+
+        /* --- CASE STUDY (INSTITUCIONAL) --- */
+        .case-section { padding: 100px 8%; background: var(--bg-deep); border-top: 1px solid var(--border); }
         .case-card {
-            background: var(--bg-deep); border: 1px solid var(--border);
-            border-radius: 24px; overflow: hidden; display: grid; grid-template-columns: 1.2fr 0.8fr;
+            background: var(--bg-surface); border: 1px solid var(--border);
+            border-radius: 4px; overflow: hidden; display: grid; grid-template-columns: 1.2fr 0.8fr;
         }
         .case-content { padding: 80px; display: flex; flex-direction: column; justify-content: center; }
         .case-visual { 
-            background: radial-gradient(circle at center, var(--primary-dim), var(--bg-deep));
+            background: radial-gradient(circle at center, var(--primary-dim), var(--bg-surface));
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             border-left: 1px solid var(--border); position: relative;
         }
-        
-        /* --- SOLUTIONS --- */
-        .solutions-section { padding: 120px 8%; }
-        .sol-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
-        .sol-card {
-            background: var(--bg-surface); border: 1px solid var(--border);
-            padding: 50px; border-radius: 16px; transition: 0.3s;
-        }
-        .sol-card:hover { border-color: var(--primary); transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
-        .sol-icon { width: 60px; height: 60px; background: var(--primary-dim); color: var(--primary); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 30px; }
 
-        /* --- FOOTER --- */
-        footer { background: var(--bg-surface); padding: 100px 8% 40px; border-top: 1px solid var(--border); }
-        .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+        /* --- INDUSTRIES SERVED (PROVA SOCIAL "SEM NOMES") --- */
+        .industry-section { padding: 80px 8%; text-align: center; border-top: 1px solid var(--border); }
+        .ind-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin-top: 40px; opacity: 0.7; }
+        .ind-item { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .ind-icon { font-size: 2.5rem; color: var(--text-muted); }
+        .ind-label { font-family: 'JetBrains Mono'; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; }
+
+        /* --- FOOTER INSTITUCIONAL --- */
+        footer { background: var(--bg-surface); padding: 80px 8% 40px; border-top: 1px solid var(--border); }
+        .footer-cols { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+        .footer-link { display: block; color: var(--text-muted); text-decoration: none; margin-bottom: 10px; font-size: 0.9rem; transition: 0.2s; }
+        .footer-link:hover { color: var(--primary); }
         
         @media (max-width: 900px) {
             .nav-links { display: none; }
+            .kpi-box { border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
             .case-card { grid-template-columns: 1fr; }
-            .kpi-box::after { display: none; }
-            .hero-title { font-size: 3rem; }
-            footer { text-align: center; }
-            .footer-grid { grid-template-columns: 1fr; }
-            .cta-container { flex-direction: column; width: 100%; }
-            .btn-executive, .btn-secondary { width: 100%; justify-content: center; }
+            .footer-cols { grid-template-columns: 1fr; }
+            .hero-title { font-size: 2.5rem; }
         }
 
-        /* Language & Theme Btns */
-        .ctrl-btn { background: none; border: 1px solid var(--border); color: var(--text-muted); padding: 6px 12px; cursor: pointer; border-radius: 6px; font-size: 0.8rem; font-family: 'JetBrains Mono'; transition: 0.3s; }
+        /* UI ELEMENTS */
+        .ctrl-btn { background: none; border: 1px solid var(--border); color: var(--text-muted); padding: 6px 12px; cursor: pointer; border-radius: 4px; font-size: 0.75rem; font-family: 'JetBrains Mono'; transition: 0.3s; }
         .ctrl-btn:hover, .ctrl-btn.active { border-color: var(--primary); color: var(--primary); }
     </style>
 </head>
@@ -181,12 +175,12 @@
     <div class="mesh-bg"></div>
 
     <nav>
-        <div class="brand"><i class="fa-solid fa-layer-group" style="color: var(--primary);"></i> KNS</div>
+        <div class="brand"><i class="fa-solid fa-layer-group" style="color: var(--primary);"></i> KNS<span style="font-weight: 300;">GLOBAL</span></div>
         
         <div class="nav-links">
-            <a href="#solucoes" class="nav-link" data-i18n="nav_sol">SOLUÇÕES</a>
-            <a href="#case" class="nav-link" data-i18n="nav_case">RESULTADOS</a>
-            <a href="#metodologia" class="nav-link" data-i18n="nav_meth">METODOLOGIA</a>
+            <a href="#solucoes" class="nav-link" data-i18n="nav_sol">SOLUTIONS</a>
+            <a href="#governance" class="nav-link" data-i18n="nav_gov">GOVERNANCE</a>
+            <a href="#case" class="nav-link" data-i18n="nav_case">RESULTS</a>
         </div>
 
         <div class="nav-actions">
@@ -212,48 +206,88 @@
         </h1>
         
         <p class="hero-desc" data-i18n="hero_desc">
-            KNS Consultoria. Engenharia de Redes de Missão Crítica. Eliminamos riscos operacionais e garantimos a continuidade do seu negócio através do Protocolo 09.
+            KNS Global. Engenharia de Redes de Missão Crítica & Consultoria de Governança. Eliminamos riscos operacionais e garantimos a continuidade do seu negócio através do Protocolo 09.
         </p>
 
         <div class="cta-container">
-            <a href="https://calendly.com/" target="_blank" class="btn-executive" data-i18n="cta_main">
-                <i class="fa-regular fa-calendar-check"></i> AGENDAR REUNIÃO EXECUTIVA
+            <a href="https://calendly.com/SEU_LINK_AQUI" target="_blank" class="btn-executive" data-i18n="cta_main">
+                <i class="fa-regular fa-calendar-check" style="margin-right: 10px;"></i> AGENDAR REUNIÃO EXECUTIVA
             </a>
-            <a href="https://wa.me/5547988901616" target="_blank" class="btn-secondary" data-i18n="cta_sec">
-                <i class="fa-brands fa-whatsapp"></i> WhatsApp Rápido
-            </a>
-        </div>
-
-        <div class="monitor-wrapper">
-            <div class="monitor-frame">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/T9wvW0EYfE0?rel=0" frameborder="0" allowfullscreen></iframe>
-            </div>
+            <a href="#governance" class="btn-secondary" data-i18n="cta_sec">CONHECER METODOLOGIA</a>
         </div>
     </section>
 
     <section class="kpi-section">
         <div class="kpi-box">
-            <span class="kpi-value">99.9%</span>
-            <span class="kpi-label" data-i18n="kpi_uptime">UPTIME GARANTIDO</span>
+            <span class="kpi-value">99.99%</span>
+            <span class="kpi-label" data-i18n="kpi_uptime">SLA DE DISPONIBILIDADE</span>
         </div>
         <div class="kpi-box">
             <span class="kpi-value">-40%</span>
-            <span class="kpi-label" data-i18n="kpi_opex">CUSTO OPERACIONAL</span>
+            <span class="kpi-label" data-i18n="kpi_opex">REDUÇÃO DE OPEX</span>
         </div>
         <div class="kpi-box">
             <span class="kpi-value" style="color: var(--primary);">SAGE</span>
-            <span class="kpi-label" data-i18n="kpi_cert">NÍVEL DE CERTIFICAÇÃO</span>
+            <span class="kpi-label" data-i18n="kpi_cert">CERTIFICAÇÃO GLOBAL</span>
         </div>
         <div class="kpi-box">
-            <span class="kpi-value">ZERO</span>
-            <span class="kpi-label" data-i18n="kpi_mon">CHURN TÉCNICO</span>
+            <span class="kpi-value">24/7</span>
+            <span class="kpi-label" data-i18n="kpi_mon">NOC & RESPONSE</span>
+        </div>
+    </section>
+
+    <section id="governance" class="gov-section">
+        <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+            <span style="color: var(--primary); font-family: 'JetBrains Mono'; font-weight: 700; letter-spacing: 2px;">CORPORATE GOVERNANCE</span>
+            <h2 style="font-size: 2.5rem; margin-top: 15px;" data-i18n="gov_title">SEGURANÇA JURÍDICA E OPERACIONAL</h2>
+            <p style="color: var(--text-muted); margin-top: 15px;" data-i18n="gov_desc">Nossa atuação vai além da técnica. Entregamos conformidade e mitigação de riscos para stakeholders.</p>
+        </div>
+
+        <div class="gov-grid">
+            <div class="gov-card">
+                <i class="fa-solid fa-file-contract gov-icon"></i>
+                <h3 class="gov-title" data-i18n="gov_1_t">SLA Garantido</h3>
+                <p class="gov-text" data-i18n="gov_1_d">Contratos com Acordo de Nível de Serviço definidos. Penalidades claras e garantia de uptime para sua operação crítica.</p>
+            </div>
+            <div class="gov-card">
+                <i class="fa-solid fa-shield-halved gov-icon"></i>
+                <h3 class="gov-title" data-i18n="gov_2_t">Compliance & LGPD</h3>
+                <p class="gov-text" data-i18n="gov_2_d">Arquitetura de rede desenhada para conformidade com Leis de Proteção de Dados e normas ISO 27001.</p>
+            </div>
+            <div class="gov-card">
+                <i class="fa-solid fa-business-time gov-icon"></i>
+                <h3 class="gov-title" data-i18n="gov_3_t">Continuidade de Negócio</h3>
+                <p class="gov-text" data-i18n="gov_3_d">Planos de Disaster Recovery (DR) e BCP. Sua empresa preparada para sobreviver a falhas catastróficas.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="industry-section">
+        <p class="mono" style="margin-bottom: 30px; color: var(--text-muted);" data-i18n="ind_title">SETORES DE ATUAÇÃO & EXPERTISE</p>
+        <div class="ind-grid">
+            <div class="ind-item">
+                <i class="fa-solid fa-server ind-icon"></i>
+                <span class="ind-label" data-i18n="ind_1">SAAS & TECH</span>
+            </div>
+            <div class="ind-item">
+                <i class="fa-solid fa-wifi ind-icon"></i>
+                <span class="ind-label" data-i18n="ind_2">ISP / TELECOM</span>
+            </div>
+            <div class="ind-item">
+                <i class="fa-solid fa-building-columns ind-icon"></i>
+                <span class="ind-label" data-i18n="ind_3">FINANCE</span>
+            </div>
+            <div class="ind-item">
+                <i class="fa-solid fa-cart-shopping ind-icon"></i>
+                <span class="ind-label" data-i18n="ind_4">RETAIL</span>
+            </div>
         </div>
     </section>
 
     <section id="case" class="case-section">
         <div class="case-card">
             <div class="case-content">
-                <span style="color: var(--primary); font-family: 'JetBrains Mono'; font-weight: 700; margin-bottom: 20px;">CASE STUDY: TECH INDUSTRY</span>
+                <span style="color: var(--primary); font-family: 'JetBrains Mono'; font-weight: 700; margin-bottom: 20px;">CASE STUDY: SOFTWARE HOUSE</span>
                 <h2 style="font-size: 2.5rem; margin-bottom: 20px;" data-i18n="case_title">RECUPERAÇÃO DE INFRAESTRUTURA CRÍTICA</h2>
                 
                 <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 30px;" data-i18n="case_text">
@@ -261,7 +295,7 @@
                     <strong>A Solução KNS:</strong> Implementação do Protocolo 09 com reengenharia de tráfego e automação em Python. <br><br>
                     <strong>O Resultado:</strong> Estabilidade total restabelecida em <strong>30 dias</strong>. O cliente cancelou contratos com terceiros e centralizou a inteligência na KNS.
                 </p>
-                <a href="#solucoes" style="color: var(--text-main); font-weight: 700; text-decoration: none; border-bottom: 1px solid var(--primary);">VER SOLUÇÕES APLICADAS</a>
+                <a href="https://calendly.com/SEU_LINK_AQUI" style="color: var(--text-main); font-weight: 700; text-decoration: none; border-bottom: 1px solid var(--primary);">LER ESTUDO COMPLETO (PDF)</a>
             </div>
             <div class="case-visual">
                 <i class="fa-solid fa-network-wired" style="font-size: 8rem; color: var(--primary); margin-bottom: 30px;"></i>
@@ -273,100 +307,42 @@
         </div>
     </section>
 
-    <section id="solucoes" class="solutions-section">
-        <div style="text-align: center; margin-bottom: 80px;">
-            <h2 style="font-size: 2.5rem;" data-i18n="sol_header">SOLUÇÕES EMPRESARIAIS</h2>
-            <p style="color: var(--text-muted);" data-i18n="sol_sub">Tecnologia aplicada diretamente no resultado financeiro (Bottom Line).</p>
-        </div>
-
-        <div class="sol-grid">
-            <div class="sol-card">
-                <div class="sol-icon"><i class="fa-solid fa-globe"></i></div>
-                <h3 data-i18n="sol_1_t">Compliance & Infraestrutura (IPv6)</h3>
-                <p style="color: var(--text-muted); margin-top: 15px; line-height: 1.6;" data-i18n="sol_1_d">
-                    Adequação aos padrões globais de conectividade. Certificação SAGE que garante que sua rede está pronta para o tráfego da próxima década.
-                </p>
-            </div>
-
-            <div class="sol-card">
-                <div class="sol-icon"><i class="fa-solid fa-robot"></i></div>
-                <h3 data-i18n="sol_2_t">Automação & Redução de Custos</h3>
-                <p style="color: var(--text-muted); margin-top: 15px; line-height: 1.6;" data-i18n="sol_2_d">
-                    Substituímos processos manuais caros por scripts em Python (Self-Healing). Seus servidores corrigem problemas sozinhos, reduzindo a necessidade de suporte N1.
-                </p>
-            </div>
-
-            <div class="sol-card">
-                <div class="sol-icon"><i class="fa-solid fa-chart-pie"></i></div>
-                <h3 data-i18n="sol_3_t">Inteligência de Negócio (BI)</h3>
-                <p style="color: var(--text-muted); margin-top: 15px; line-height: 1.6;" data-i18n="sol_3_d">
-                    Transformamos logs técnicos (Zabbix/Grafana) em painéis executivos. Tenha visão clara do ROI da sua infraestrutura.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <section id="autoridade" style="padding: 100px 8%; background: var(--bg-deep); border-top: 1px solid var(--border);">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 60px; align-items: center; max-width: 1200px; margin: 0 auto;">
-            
-            <div>
-                <span style="color: var(--primary); font-family: 'JetBrains Mono'; font-weight: 700; display: block; margin-bottom: 20px;">// CEO & LEAD ARCHITECT</span>
-                <h2 style="font-size: 2.5rem; margin-bottom: 30px; line-height: 1.1;">KALEB NUNES</h2>
-                
-                <div style="display: flex; gap: 30px; margin-bottom: 30px;">
-                    <img src="./assets/foto.jpg" alt="Kaleb Nunes" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); box-shadow: 0 0 20px var(--primary-glow);" onerror="this.style.display='none'">
-                    <p style="color: var(--text-muted); line-height: 1.6; font-size: 1rem;" data-i18n="bio_text">
-                        A KNS nasceu de uma inconformidade. Trabalhando em grandes operações, vi empresas reféns de suporte lento e "abertura de chamados". Decidi criar uma consultoria onde <strong>não vendemos horas, vendemos a solução definitiva.</strong> Minha missão é garantir que sua operação nunca pare.
-                    </p>
-                </div>
-                
-                <div style="border-left: 4px solid var(--primary); padding-left: 20px;">
-                    <p style="font-style: italic; color: var(--text-main); font-size: 1.1rem;" data-i18n="bio_quote">
-                        "Onde outros veem risco, nós vemos lógica. Estabilidade é uma escolha de engenharia."
-                    </p>
-                </div>
-            </div>
-
-            <div style="text-align: center; background: var(--bg-surface); padding: 40px; border-radius: 20px; border: 1px solid var(--border);">
-                <h3 style="margin-bottom: 20px; font-size: 1.2rem;" data-i18n="cert_title_box">AUTORIDADE MÁXIMA IPV6</h3>
-                
-                <img src="./assets/sage_full.png" alt="Hurricane Electric SAGE Certified" style="width: 100%; max-width: 350px; border: 1px solid #333; box-shadow: 0 0 30px rgba(0,0,0,0.5); margin-bottom: 20px;" onerror="this.style.display='none'">
-                
-                <p class="mono" style="font-size: 0.8rem; color: var(--primary);" data-i18n="cert_status">
-                    <i class="fa-solid fa-check-circle"></i> VERIFIED & CERTIFIED
-                </p>
-            </div>
-
-        </div>
-    </section>
-
     <footer>
-        <div class="footer-grid">
+        <div class="footer-cols">
             <div>
-                <h3 class="brand" style="margin-bottom: 20px;">KNS<span>.CONSULTORIA</span></h3>
-                <p style="color: var(--text-muted); line-height: 1.6;" data-i18n="footer_about">
-                    Engenharia de Redes de Elite.<br>
-                    Especialistas em ambientes de missão crítica.<br>
+                <h3 class="brand" style="margin-bottom: 20px;">KNS<span style="font-weight: 300;">GLOBAL</span></h3>
+                <p style="color: var(--text-muted); line-height: 1.6; font-size: 0.9rem;" data-i18n="footer_about">
+                    Engenharia de Redes de Elite & Governança.<br>
+                    Mitigação de riscos para operações de Missão Crítica.<br>
                     Balneário Camboriú, SC - Brasil.
                 </p>
             </div>
             <div>
-                <h4 style="margin-bottom: 20px;">CONTATO</h4>
-                <p style="color: var(--text-muted); margin-bottom: 10px;">comercial@knsconsultoria.com.br</p>
-                <p style="color: var(--text-muted);">+55 47 98890-1616</p>
+                <h4 style="margin-bottom: 20px; font-size: 0.9rem;">SOLUÇÕES</h4>
+                <a href="#" class="footer-link">Protocolo 09</a>
+                <a href="#" class="footer-link">IPv6 Compliance</a>
+                <a href="#" class="footer-link">Network Automation</a>
+                <a href="#" class="footer-link">Disaster Recovery</a>
             </div>
             <div>
-                <h4 style="margin-bottom: 20px;">SOCIAL</h4>
-                <div style="display: flex; gap: 20px; font-size: 1.5rem;">
+                <h4 style="margin-bottom: 20px; font-size: 0.9rem;">INSTITUCIONAL</h4>
+                <a href="#" class="footer-link">Sobre a KNS</a>
+                <a href="#" class="footer-link">Carreiras</a>
+                <a href="#" class="footer-link">Política de Privacidade</a>
+                <a href="#" class="footer-link">Termos de Serviço (SLA)</a>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 20px; font-size: 0.9rem;">CONTATO</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 10px;">comercial@knsconsultoria.com.br</p>
+                <div style="display: flex; gap: 15px; font-size: 1.2rem; margin-top: 15px;">
                     <a href="https://linkedin.com/in/kalebnunes" style="color: var(--text-muted);"><i class="fa-brands fa-linkedin"></i></a>
                     <a href="https://github.com/kalebnunes" style="color: var(--text-muted);"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://instagram.com/kaleb_nunesdossantos" style="color: var(--text-muted);"><i class="fa-brands fa-instagram"></i></a>
                 </div>
             </div>
         </div>
         <div style="border-top: 1px solid var(--border); padding-top: 30px; display: flex; justify-content: space-between; flex-wrap: wrap;">
-            <p class="mono" style="font-size: 0.8rem; color: var(--text-muted);">&copy; 2026 KNS CONSULTORIA</p>
-            <p class="mono" style="font-size: 0.8rem; color: var(--text-muted);">CNPJ: 49.712.297/0001-07</p>
+            <p class="mono" style="font-size: 0.75rem; color: var(--text-muted);">&copy; 2026 KNS GLOBAL SOLUTIONS. ALL RIGHTS RESERVED.</p>
+            <p class="mono" style="font-size: 0.75rem; color: var(--text-muted);">CNPJ: 49.712.297/0001-07</p>
         </div>
     </footer>
 
@@ -379,70 +355,70 @@
 
         const i18n = {
             pt: {
-                nav_sol: "SOLUÇÕES", nav_case: "RESULTADOS", nav_meth: "METODOLOGIA", nav_cta: "FALE COM ESPECIALISTA",
+                nav_sol: "SOLUÇÕES", nav_gov: "GOVERNANÇA", nav_case: "RESULTADOS",
                 hero_badge: "TOP 1% GLOBAL NETWORK ELITE",
                 hero_t1: "ESTABILIDADE NÃO É SORTE.", hero_t2: "É ENGENHARIA.",
-                hero_desc: "Consultoria especializada em infraestrutura de missão crítica. Eliminamos riscos operacionais, reduzimos custos e garantimos a continuidade do seu negócio através do Protocolo 09.",
-                hero_cta: "AGENDAR DIAGNÓSTICO TÉCNICO",
-                kpi_uptime: "UPTIME GARANTIDO", kpi_opex: "REDUÇÃO DE OPEX", kpi_cert: "NÍVEL DE CERTIFICACIÓN", kpi_mon: "CHURN TÉCNICO",
+                hero_desc: "KNS Global. Engenharia de Redes de Missão Crítica & Consultoria de Governança. Eliminamos riscos operacionais e garantimos a continuidade do seu negócio através do Protocolo 09.",
+                cta_main: "AGENDAR REUNIÃO EXECUTIVA", cta_sec: "CONHECER METODOLOGIA",
+                kpi_uptime: "SLA DE DISPONIBILIDADE", kpi_opex: "REDUÇÃO DE OPEX", kpi_cert: "CERTIFICAÇÃO GLOBAL", kpi_mon: "NOC & RESPONSE",
+                
+                gov_title: "SEGURANÇA JURÍDICA E OPERACIONAL",
+                gov_desc: "Nossa atuação vai além da técnica. Entregamos conformidade e mitigação de riscos para stakeholders.",
+                gov_1_t: "SLA Garantido", gov_1_d: "Contratos com Acordo de Nível de Serviço definidos. Penalidades claras e garantia de uptime.",
+                gov_2_t: "Compliance & LGPD", gov_2_d: "Arquitetura desenhada para conformidade com Leis de Proteção de Dados e normas ISO 27001.",
+                gov_3_t: "Continuidade de Negócio", gov_3_d: "Planos de Disaster Recovery (DR) e BCP. Sua empresa preparada para falhas catastróficas.",
+
+                ind_title: "SETORES DE ATUAÇÃO & EXPERTISE",
+                ind_1: "SAAS & TECH", ind_2: "ISP / TELECOM", ind_3: "FINANCEIRO", ind_4: "VAREJO",
+
                 case_title: "RECUPERAÇÃO DE INFRAESTRUTURA CRÍTICA",
                 case_text: "<strong>O Cenário:</strong> Uma empresa Líder de Mercado em Software (SaaS) enfrentava instabilidades que ameaçavam contratos milionários. O diagnóstico apontava falhas na arquitetura legada.<br><br><strong>A Solução KNS:</strong> Implementação do Protocolo 09 com reengenharia de tráfego e automação em Python. <br><br><strong>O Resultado:</strong> Estabilidade total restabelecida em <strong>30 dias</strong>.",
-                sol_header: "SOLUÇÕES EMPRESARIAIS", sol_sub: "Tecnologia aplicada diretamente no resultado financeiro (Bottom Line).",
-                sol_1_t: "Compliance & Infraestrutura (IPv6)", sol_1_d: "Adequação aos padrões globais de conectividade. Certificação SAGE que garante que sua rede está pronta para o tráfego da próxima década.",
-                sol_2_t: "Automação & Redução de Custos", sol_2_d: "Substituímos processos manuais caros por scripts em Python (Self-Healing). Seus servidores corrigem problemas sozinhos.",
-                sol_3_t: "Inteligência de Negócio (BI)", sol_3_d: "Transformamos logs técnicos (Zabbix/Grafana) em painéis executivos. Tenha visão clara do ROI da sua infraestrutura.",
-                footer_about: "Engenharia de Redes de Elite.<br>Especialistas em ambientes de missão crítica.<br>Balneário Camboriú, SC - Brasil.",
                 
-                // NOVOS TEXTOS DA BIO E CERTIFICADO
-                bio_text: "A KNS nasceu de uma inconformidade. Trabalhando em grandes operações, vi empresas reféns de suporte lento. Decidi criar uma consultoria onde <strong>não vendemos horas, vendemos a solução definitiva.</strong> Minha missão é garantir que sua operação nunca pare.",
-                bio_quote: "\"Onde outros veem risco, nós vemos lógica. Estabilidade é uma escolha de engenharia.\"",
-                cert_title_box: "AUTORIDADE MÁXIMA IPV6",
-                cert_status: "<i class='fa-solid fa-check-circle'></i> VERIFICADO & CERTIFICADO"
+                footer_about: "Engenharia de Redes de Elite & Governança.<br>Mitigação de riscos para operações de Missão Crítica.<br>Balneário Camboriú, SC - Brasil."
             },
             en: {
-                nav_sol: "SOLUTIONS", nav_case: "RESULTS", nav_meth: "METHODOLOGY", nav_cta: "TALK TO EXPERT",
+                nav_sol: "SOLUTIONS", nav_gov: "GOVERNANCE", nav_case: "RESULTS",
                 hero_badge: "TOP 1% GLOBAL NETWORK ELITE",
                 hero_t1: "STABILITY IS NOT LUCK.", hero_t2: "IT IS ENGINEERING.",
-                hero_desc: "KNS Consulting. Mission-Critical Network Engineering. We eliminate operational risks and guarantee business continuity via Protocol 09.",
-                cta_main: "SCHEDULE EXECUTIVE MEETING", cta_sec: "Quick WhatsApp",
-                kpi_uptime: "GUARANTEED UPTIME", kpi_opex: "OPEX REDUCTION", kpi_cert: "CERTIFICATION LEVEL", kpi_mon: "TECHNICAL CHURN",
+                hero_desc: "KNS Global. Mission Critical Network Engineering & Governance Consulting. We eliminate operational risks and guarantee business continuity via Protocol 09.",
+                cta_main: "SCHEDULE EXECUTIVE MEETING", cta_sec: "VIEW METHODOLOGY",
+                kpi_uptime: "AVAILABILITY SLA", kpi_opex: "OPEX REDUCTION", kpi_cert: "GLOBAL CERTIFICATION", kpi_mon: "NOC & RESPONSE",
+                
+                gov_title: "LEGAL & OPERATIONAL SAFETY",
+                gov_desc: "Our work goes beyond technical. We deliver compliance and risk mitigation for stakeholders.",
+                gov_1_t: "Guaranteed SLA", gov_1_d: "Contracts with defined Service Level Agreements. Clear penalties and uptime guarantee.",
+                gov_2_t: "Compliance & GDPR", gov_2_d: "Architecture designed for Data Protection Laws and ISO 27001 standards compliance.",
+                gov_3_t: "Business Continuity", gov_3_d: "Disaster Recovery (DR) and BCP plans. Your company prepared for catastrophic failures.",
+
+                ind_title: "INDUSTRIES SERVED & EXPERTISE",
+                ind_1: "SAAS & TECH", ind_2: "ISP / TELECOM", ind_3: "FINANCE", ind_4: "RETAIL",
+
                 case_title: "CRITICAL INFRASTRUCTURE RECOVERY",
                 case_text: "<strong>The Scenario:</strong> A Market Leader in Software (SaaS) faced instabilities threatening million-dollar contracts. Diagnosis pointed to legacy architecture failures.<br><br><strong>The KNS Solution:</strong> Implementation of Protocol 09 with traffic re-engineering and Python automation. <br><br><strong>The Result:</strong> Total stability restored in <strong>30 days</strong>.",
-                sol_header: "ENTERPRISE SOLUTIONS", sol_sub: "Technology applied directly to the Bottom Line.",
-                sol_1_t: "Compliance & Infrastructure (IPv6)", sol_1_d: "Global connectivity compliance. SAGE certification ensuring your network is ready for the next decade.",
-                sol_2_t: "Automation & Cost Reduction", sol_2_d: "We replace expensive manual processes with Python (Self-Healing) scripts. Your servers fix problems by themselves.",
-                sol_3_t: "Business Intelligence (BI)", sol_3_d: "We turn technical logs (Zabbix/Grafana) into executive dashboards. Get a clear view of your infrastructure ROI.",
-                footer_about: "Elite Network Engineering.<br>Specialists in mission-critical environments.<br>Balneário Camboriú, SC - Brazil.",
-
-                // NOVOS TEXTOS DA BIO E CERTIFICADO (EN)
-                bio_text: "KNS was born from nonconformity. Working in major operations, I saw companies held hostage by slow support. I decided to build a firm where <strong>we don't sell hours, we sell the definitive solution.</strong> My mission is to ensure your operation never stops.",
-                bio_quote: "\"Where others see risk, we see logic. Stability is an engineering choice.\"",
-                cert_title_box: "MAXIMUM IPv6 AUTHORITY",
-                cert_status: "<i class='fa-solid fa-check-circle'></i> VERIFIED & CERTIFIED"
+                
+                footer_about: "Elite Network Engineering & Governance.<br>Risk mitigation for Mission Critical operations.<br>Balneário Camboriú, SC - Brazil."
             },
             es: {
-                nav_sol: "SOLUCIONES", nav_case: "RESULTADOS", nav_meth: "METODOLOGÍA", nav_cta: "HABLAR CON EXPERTO",
+                nav_sol: "SOLUCIONES", nav_gov: "GOBERNANZA", nav_case: "RESULTADOS",
                 hero_badge: "TOP 1% GLOBAL NETWORK ELITE",
                 hero_t1: "ESTABILIDAD NO ES SUERTE.", hero_t2: "ES INGENIERÍA.",
-                hero_desc: "Consultoría especializada en infraestructura de misión crítica. Eliminamos riesgos operativos, reducimos costos y garantizamos la continuidad del negocio.",
-                hero_cta: "AGENDAR DIAGNÓSTICO",
-                kpi_uptime: "TIEMPO DE ACTIVIDAD", kpi_opex: "REDUCCIÓN DE OPEX", kpi_cert: "NIVEL DE CERTIFICACIÓN", kpi_mon: "MONITOREO ACTIVO",
-                case_title: "RECUPERACIÓN DE ESTABILIDAD CRÍTICA",
-                case_text: "Una gran Casa de Software enfrentaba inestabilidad recurrente. La Metodología KNS: Usando ingeniería inversa y automatización, identificamos el problema. En solo 30 días, reestructuramos el núcleo de la red, eliminando el churn técnico.",
-                sol_header: "SOLUCIONES EMPRESARIAIS", sol_sub: "TECNOLOGÍA AL SERVICIO DEL LUCRO",
-                sol_1_t: "Infraestructura y Cumplimiento (IPv6)", sol_1_d: "Garantía de conectividad y cumplimiento global con certificación SAGE.",
-                sol_2_t: "Eficiencia Operativa (Automatización)", sol_2_d: "Reduzca el error humano y los costos. Scripts de Auto-Curación corrigen fallas automáticamente.",
-                sol_3_t: "Inteligencia de Negocios (BI)", sol_3_d: "Transformamos registros técnicos en paneles de decisión estratégica.",
-                meth_tag: "NUESTRA METODOLOGÍA", meth_title: "PROTOCOLO 09",
-                meth_desc: "Un marco propietario de mitigación de riesgos. A diferencia del soporte tradicional que reacciona al problema, el Protocolo 09 actúa en la capa predictiva.",
-                cert_title: "CERTIFICACIÓN GLOBAL SAGE IPv6", cert_desc: "Solo el 1% de los ingenieros de redes del mundo poseen este nivel de validación técnica.",
-                footer_about: "Ingeniería de Redes de Élite.<br>Especialistas en ambientes de misión crítica.<br>Balneário Camboriú, SC - Brasil.",
+                hero_desc: "KNS Global. Ingeniería de Redes de Misión Crítica y Consultoría de Gobernanza. Eliminamos riesgos operativos y garantizamos la continuidad del negocio.",
+                cta_main: "AGENDAR REUNIÓN EJECUTIVA", cta_sec: "VER METODOLOGÍA",
+                kpi_uptime: "SLA DE DISPONIBILIDAD", kpi_opex: "REDUCCIÓN DE OPEX", kpi_cert: "CERTIFICACIÓN GLOBAL", kpi_mon: "NOC Y RESPUESTA",
+                
+                gov_title: "SEGURIDAD JURÍDICA Y OPERATIVA",
+                gov_desc: "Nuestro trabajo va más allá de lo técnico. Entregamos cumplimiento y mitigación de riesgos para stakeholders.",
+                gov_1_t: "SLA Garantizado", gov_1_d: "Contratos con Acuerdos de Nivel de Servicio definidos. Garantía de tiempo de actividad.",
+                gov_2_t: "Cumplimiento y GDPR", gov_2_d: "Arquitectura diseñada para el cumplimiento de las Leyes de Protección de Datos e ISO 27001.",
+                gov_3_t: "Continuidad del Negocio", gov_3_d: "Planes de Recuperación ante Desastres (DR) y BCP. Su empresa preparada para fallos catastróficos.",
 
-                // NOVOS TEXTOS DA BIO E CERTIFICADO (ES)
-                bio_text: "KNS nació de la inconformidad. Trabajando en grandes operaciones, vi empresas rehenes de un soporte lento. Decidí crear una consultora donde <strong>no vendemos horas, vendemos la solución definitiva.</strong> Mi misión es asegurar que su operación nunca se detenga.",
-                bio_quote: "\"Donde otros ven riesgo, nosotros vemos lógica. La estabilidad es una elección de ingeniería.\"",
-                cert_title_box: "AUTORIDAD MÁXIMA IPv6",
-                cert_status: "<i class='fa-solid fa-check-circle'></i> VERIFICADO Y CERTIFICADO"
+                ind_title: "SECTORES Y EXPERIENCIA",
+                ind_1: "SAAS Y TECH", ind_2: "ISP / TELECOM", ind_3: "FINANZAS", ind_4: "MINORISTA",
+
+                case_title: "RECUPERACIÓN DE INFRAESTRUTURA CRÍTICA",
+                case_text: "<strong>El Escenario:</strong> Una empresa líder en Software (SaaS) enfrentaba inestabilidad recurrente. <br><br><strong>La Solución KNS:</strong> Implementación del Protocolo 09. <br><br><strong>El Resultado:</strong> Estabilidad total restaurada en <strong>30 días</strong>.",
+                
+                footer_about: "Ingeniería de Redes de Élite y Gobernanza.<br>Mitigación de riesgos para operaciones de Misión Crítica.<br>Balneário Camboriú, SC - Brasil."
             }
         };
 
