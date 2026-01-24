@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="KNS Global - Mitigação de Risco Operacional e Engenharia de Continuidade via Protocolo 09.">
+    <meta name="description" content="KNS Global - Engenharia de Continuidade, Governança de TI e Mitigação de Risco Financeiro.">
     <meta name="author" content="KNS Global Solutions">
-    <meta property="og:title" content="KNS Global | Operational Risk Mitigation">
+    <meta property="og:title" content="KNS Global | Capital Protection & Infrastructure">
     
-    <title>KNS GLOBAL | Risco Operacional Zero</title>
+    <title>KNS GLOBAL | Enterprise Continuity</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -15,27 +15,27 @@
     <style>
         /* --- CORE ENGINE --- */
         :root {
-            --primary: #00ff88;
-            --primary-dim: rgba(0, 255, 136, 0.1);
-            --primary-glow: rgba(0, 255, 136, 0.4);
-            --bg-deep: #020202;
-            --bg-surface: #0a0a0a;
+            --primary: #00ff88; /* Verde Neon "Lucro/Sinal Verde" */
+            --primary-dim: rgba(0, 255, 136, 0.05);
+            --primary-glow: rgba(0, 255, 136, 0.3);
+            --bg-deep: #050505;
+            --bg-surface: #0f0f0f;
             --text-main: #ffffff;
-            --text-muted: #a0a0a0;
-            --border: rgba(255, 255, 255, 0.1);
-            --nav-bg: rgba(2, 2, 2, 0.95);
-            --glass: rgba(10, 10, 10, 0.8);
+            --text-muted: #888888;
+            --border: rgba(255, 255, 255, 0.08);
+            --nav-bg: rgba(5, 5, 5, 0.95);
+            --danger: #ff3333;
         }
 
         [data-theme="light"] {
-            --primary: #006640;
-            --primary-dim: rgba(0, 102, 64, 0.08);
-            --primary-glow: rgba(0, 102, 64, 0.15);
-            --bg-deep: #f4f4f4;
+            --primary: #005c3a;
+            --primary-dim: rgba(0, 92, 58, 0.05);
+            --primary-glow: rgba(0, 92, 58, 0.1);
+            --bg-deep: #f0f2f5;
             --bg-surface: #ffffff;
             --text-main: #0a0a0a;
             --text-muted: #555555;
-            --border: rgba(0, 0, 0, 0.15);
+            --border: rgba(0, 0, 0, 0.1);
             --nav-bg: rgba(255, 255, 255, 0.95);
         }
 
@@ -46,470 +46,360 @@
             color: var(--text-main); 
             font-family: 'Plus Jakarta Sans', sans-serif; 
             overflow-x: hidden;
-            transition: background 0.5s ease, color 0.5s ease;
+            transition: 0.5s;
         }
 
-        /* --- ANIMATION ENGINE (NOVO) --- */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* --- SYSTEM STATUS BAR (NOVO: CREDIBILIDADE IMEDIATA) --- */
+        .system-bar {
+            background: #000; border-bottom: 1px solid var(--border);
+            padding: 8px 5%; font-family: 'JetBrains Mono'; font-size: 0.65rem;
+            display: flex; justify-content: space-between; align-items: center;
+            color: var(--text-muted); letter-spacing: 1px;
         }
+        .status-dot { width: 8px; height: 8px; background: var(--primary); border-radius: 50%; display: inline-block; box-shadow: 0 0 10px var(--primary); animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
 
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        /* Classes de Animação de Entrada (Hero) */
-        .animate-hero { opacity: 0; animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.3s; }
-        .delay-3 { animation-delay: 0.5s; }
-        .delay-4 { animation-delay: 0.7s; }
-        .delay-5 { animation-delay: 0.9s; }
-
-        /* Classes de Scroll Reveal (Javascript ativa isso) */
-        .reveal { 
-            opacity: 0; 
-            transform: translateY(50px); 
-            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
+        /* --- ANIMATION ENGINE --- */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        
-        /* Staggered Delay para Grids */
-        .stagger-1 { transition-delay: 0.1s; }
-        .stagger-2 { transition-delay: 0.2s; }
-        .stagger-3 { transition-delay: 0.3s; }
-
-
-        /* --- BACKGROUND --- */
-        .mesh-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -2;
-            background: radial-gradient(at 50% 0%, rgba(0,255,136,0.05) 0px, transparent 60%);
-            opacity: 0.6;
-        }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
 
         /* --- NAV --- */
         nav {
-            position: fixed; top: 0; width: 100%; padding: 0 5%; height: 85px;
+            position: sticky; top: 0; width: 100%; padding: 0 5%; height: 80px;
             display: flex; justify-content: space-between; align-items: center;
             background: var(--nav-bg); border-bottom: 1px solid var(--border); 
             backdrop-filter: blur(10px); z-index: 1000;
-            opacity: 0; animation: fadeInScale 0.8s ease forwards; /* Nav animada também */
         }
-        .brand { font-size: 1.4rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 12px; letter-spacing: 1px; }
+        .brand { font-size: 1.3rem; font-weight: 800; letter-spacing: 1px; display: flex; align-items: center; gap: 10px; }
         .nav-links { display: flex; gap: 30px; }
-        .nav-link { color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 0.8rem; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-link { color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
         .nav-link:hover { color: var(--primary); }
-        .nav-actions { display: flex; gap: 10px; align-items: center; }
 
-        /* --- HERO --- */
-        .hero { padding: 160px 5% 100px; text-align: center; display: flex; flex-direction: column; align-items: center; }
-
-        .sage-badge-hero {
-            display: flex; align-items: center; gap: 15px;
-            background: var(--primary-dim); border: 1px solid var(--primary);
-            padding: 8px 25px; border-radius: 4px; margin-bottom: 40px;
-            box-shadow: 0 0 40px var(--primary-dim); cursor: default;
-        }
-        .sage-title { font-family: 'Orbitron'; font-weight: 800; color: var(--text-main); font-size: 0.9rem; }
-        .sage-sub { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
-
-        .hero-title { font-size: clamp(2.5rem, 5vw, 4.2rem); line-height: 1.1; font-weight: 900; margin-bottom: 30px; text-transform: uppercase; }
-        .hero-desc { font-size: 1.15rem; color: var(--text-muted); max-width: 850px; margin-bottom: 50px; line-height: 1.8; font-weight: 400; }
-
-        .cta-container { display: flex; gap: 20px; align-items: center; justify-content: center; flex-wrap: wrap; margin-bottom: 80px; }
+        /* --- HERO: FINANCIAL FOCUS --- */
+        .hero { padding: 120px 5% 80px; text-align: center; max-width: 1400px; margin: 0 auto; }
         
-        .btn-executive {
-            background: var(--primary); color: #fff; padding: 18px 45px;
-            border-radius: 2px; text-decoration: none; font-weight: 700;
-            transition: 0.3s; box-shadow: 0 10px 40px var(--primary-glow);
-            text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; font-family: 'Orbitron';
+        .trust-label {
+            display: inline-flex; align-items: center; gap: 10px;
+            border: 1px solid var(--border); padding: 8px 20px; border-radius: 50px;
+            font-size: 0.7rem; color: var(--primary); font-family: 'JetBrains Mono';
+            margin-bottom: 30px; background: var(--primary-dim); text-transform: uppercase;
         }
-        .btn-executive:hover { transform: translateY(-2px); box-shadow: 0 20px 60px var(--primary-glow); }
+
+        .hero-title { 
+            font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.1; font-weight: 800; 
+            margin-bottom: 25px; letter-spacing: -0.03em;
+            background: linear-gradient(180deg, var(--text-main) 0%, rgba(255,255,255,0.7) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
         
-        .btn-secondary {
+        .hero-sub { 
+            font-size: 1.1rem; color: var(--text-muted); max-width: 750px; margin: 0 auto 50px; 
+            line-height: 1.6; font-weight: 400;
+        }
+
+        .hero-btns { display: flex; gap: 15px; justify-content: center; margin-bottom: 80px; flex-wrap: wrap; }
+        
+        .btn-primary {
+            background: var(--text-main); color: var(--bg-deep); padding: 16px 40px;
+            font-weight: 700; text-decoration: none; font-size: 0.85rem; letter-spacing: 0.5px;
+            border-radius: 2px; transition: 0.3s; font-family: 'Orbitron';
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,255,255,0.1); }
+        
+        .btn-outline {
             background: transparent; border: 1px solid var(--border); color: var(--text-muted);
-            padding: 16px 30px; border-radius: 2px; text-decoration: none; font-weight: 600;
-            transition: 0.3s; font-size: 0.85rem; text-transform: uppercase;
+            padding: 16px 40px; font-weight: 600; text-decoration: none; font-size: 0.85rem;
+            border-radius: 2px; transition: 0.3s;
         }
-        .btn-secondary:hover { border-color: var(--primary); color: var(--text-main); }
+        .btn-outline:hover { border-color: var(--primary); color: var(--text-main); }
 
-        /* --- MONITOR --- */
-        .monitor-wrapper { width: 100%; max-width: 900px; margin: 0 auto; position: relative; }
-        .monitor-frame {
-            border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
-            background: #000; aspect-ratio: 16/9; position: relative;
-            box-shadow: 0 30px 100px -20px rgba(0,0,0,0.6);
-        }
-        .rec-tag {
-            position: absolute; top: -30px; left: 0;
-            color: #ff3333; font-family: 'JetBrains Mono'; font-size: 0.7rem; font-weight: 800;
-            display: flex; align-items: center; gap: 8px; letter-spacing: 1px;
-            animation: blinkRed 2s infinite;
-        }
-        @keyframes blinkRed { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-
-        /* --- KPI BAR --- */
-        .kpi-section {
+        /* --- METRICS GRID (The "Proof" Bar) --- */
+        .metrics-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px; max-width: 1200px; margin: 100px auto; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-            padding: 40px 0;
+            border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
         }
-        .kpi-box { text-align: center; border-right: 1px solid var(--border); }
-        .kpi-box:last-child { border-right: none; }
-        .kpi-value { font-family: 'Orbitron'; font-size: 2.2rem; font-weight: 800; color: var(--text-main); display: block; margin-bottom: 5px; }
-        .kpi-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
+        .metric-item { padding: 40px 20px; text-align: center; border-right: 1px solid var(--border); }
+        .metric-item:last-child { border-right: none; }
+        .metric-num { display: block; font-size: 2.5rem; font-weight: 800; font-family: 'Orbitron'; margin-bottom: 5px; color: var(--text-main); }
+        .metric-lbl { font-size: 0.7rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; font-weight: 600; }
 
-        /* --- PROTOCOLO 09 --- */
-        .p9-section { padding: 100px 8%; background: var(--bg-surface); border-top: 1px solid var(--border); }
-        .p9-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-        .p9-visual { 
-            border: 1px solid var(--primary); padding: 40px; border-radius: 4px; text-align: center;
-            background: radial-gradient(circle, var(--primary-dim) 0%, transparent 70%);
-        }
+        /* --- CORPORATE GOVERNANCE (THE "BORING" BUT VITAL PART) --- */
+        .section-header { text-align: center; max-width: 800px; margin: 0 auto 60px; }
+        .section-tag { color: var(--primary); font-family: 'JetBrains Mono'; font-size: 0.8rem; letter-spacing: 2px; font-weight: 700; display: block; margin-bottom: 15px; }
+        .section-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 15px; letter-spacing: -1px; }
 
-        /* --- TECH STACK --- */
-        .tech-section { padding: 80px 8%; background: var(--bg-deep); border-top: 1px solid var(--border); }
-        .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
-        .tech-card {
-            background: rgba(255,255,255,0.02); border: 1px solid var(--border);
-            padding: 30px; border-radius: 2px; transition: 0.3s;
+        .gov-section { padding: 100px 5%; background: var(--bg-surface); }
+        .gov-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .gov-card { 
+            background: var(--bg-deep); border: 1px solid var(--border); padding: 35px; 
+            border-radius: 2px; position: relative; overflow: hidden; transition: 0.3s;
         }
-        .tech-card:hover { border-color: var(--primary); background: var(--bg-surface); transform: translateY(-5px); }
-        .tech-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
-        .tech-icon { font-size: 1.5rem; color: var(--primary); }
-        .tech-title { font-family: 'Orbitron'; font-size: 1rem; color: var(--text-main); }
-        .tech-list { list-style: none; }
-        .tech-list li { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; font-family: 'JetBrains Mono'; }
-        .tech-tag { background: rgba(255,255,255,0.1); padding: 2px 8px; font-size: 0.7rem; border-radius: 2px; }
-
-        /* --- GOVERNANCE --- */
-        .gov-section { padding: 100px 8%; background: var(--bg-surface); border-top: 1px solid var(--border); }
-        .gov-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 60px; }
-        .gov-card { padding: 40px; border: 1px solid var(--border); background: var(--bg-deep); transition: 0.3s; position: relative; }
-        .gov-card:hover { border-color: var(--primary); transform: translateY(-5px); }
-        .gov-icon { font-size: 2rem; color: var(--primary); margin-bottom: 25px; }
-        .gov-title { font-size: 1.1rem; margin-bottom: 15px; font-family: 'Orbitron'; }
-        .gov-text { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
-
-        /* --- CASE STUDY --- */
-        .case-section { padding: 100px 8%; background: var(--bg-deep); border-top: 1px solid var(--border); }
-        .case-card {
-            background: var(--bg-surface); border: 1px solid var(--border);
-            border-radius: 4px; overflow: hidden; display: grid; grid-template-columns: 1.2fr 0.8fr;
-        }
-        .case-content { padding: 80px; display: flex; flex-direction: column; justify-content: center; }
-        .case-visual { 
-            background: radial-gradient(circle at center, var(--primary-dim), var(--bg-surface));
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            border-left: 1px solid var(--border); position: relative;
-        }
+        .gov-card:hover { border-color: var(--primary); }
+        .gov-card::before { content: ''; position: absolute; top: 0; left: 0; width: 2px; height: 100%; background: var(--primary); opacity: 0; transition: 0.3s; }
+        .gov-card:hover::before { opacity: 1; }
         
-        /* --- LEADERSHIP --- */
-        .leadership-section { padding: 100px 8%; background: var(--bg-deep); border-top: 1px solid var(--border); }
-        .lead-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 60px; align-items: center; max-width: 1100px; margin: 0 auto; }
-        .lead-img { width: 100%; border-radius: 2px; border: 1px solid var(--border); filter: grayscale(100%); transition: 0.3s; max-width: 300px; }
-        .lead-img:hover { filter: grayscale(0%); border-color: var(--primary); }
-        .cert-box { display: flex; align-items: center; gap: 20px; background: rgba(255,255,255,0.03); padding: 25px; border-radius: 2px; margin-top: 30px; border: 1px solid var(--border); }
-        .cert-thumb { height: 70px; transition: 0.3s; border: 1px solid #333; }
-        .cert-thumb:hover { transform: scale(2.5); z-index: 100; border-color: var(--primary); box-shadow: 0 0 20px #000; }
-
-        /* --- FOOTER --- */
-        footer { background: var(--bg-surface); padding: 80px 8% 40px; border-top: 1px solid var(--border); }
-        .footer-cols { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
-        .footer-link { display: block; color: var(--text-muted); text-decoration: none; margin-bottom: 12px; font-size: 0.85rem; transition: 0.2s; }
-        .footer-link:hover { color: var(--primary); }
-
-        @media (max-width: 900px) {
-            .nav-links { display: none; }
-            .kpi-box { border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
-            .case-card, .lead-grid, .p9-grid { grid-template-columns: 1fr; }
-            .footer-cols { grid-template-columns: 1fr; }
-            .hero-title { font-size: 2rem; }
-            .lead-img { margin-bottom: 30px; }
+        /* --- PROTOCOL 09 (THE PRODUCT) --- */
+        .p9-section { padding: 100px 5%; border-top: 1px solid var(--border); }
+        .p9-container { 
+            display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; 
+            background: radial-gradient(circle at right, rgba(0,255,136,0.03), transparent 70%);
         }
+        .check-list { list-style: none; margin-top: 30px; }
+        .check-list li { margin-bottom: 15px; display: flex; align-items: center; gap: 15px; color: var(--text-muted); font-size: 0.95rem; }
+        .check-list i { color: var(--primary); }
 
-        /* UI ELEMENTS */
-        .ctrl-btn { background: none; border: 1px solid var(--border); color: var(--text-muted); padding: 6px 12px; cursor: pointer; border-radius: 4px; font-size: 0.75rem; font-family: 'JetBrains Mono'; transition: 0.3s; }
-        .ctrl-btn:hover, .ctrl-btn.active { border-color: var(--primary); color: var(--primary); }
+        /* --- TECH ARSENAL (COMPACT) --- */
+        .tech-strip { 
+            padding: 40px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+            background: var(--bg-surface); overflow: hidden; white-space: nowrap;
+        }
+        .tech-track { display: inline-block; animation: slide 20s linear infinite; }
+        .tech-item { display: inline-block; padding: 0 40px; font-family: 'JetBrains Mono'; color: var(--text-muted); font-size: 0.9rem; font-weight: 700; }
+        @keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        /* --- FOUNDER & VISION (AUTHENTICITY) --- */
+        .vision-section { padding: 100px 5%; background: var(--bg-deep); }
+        .founder-box { 
+            display: flex; gap: 50px; align-items: center; max-width: 1100px; margin: 0 auto; 
+            border: 1px solid var(--border); padding: 50px; position: relative;
+            background: linear-gradient(45deg, var(--bg-surface), var(--bg-deep));
+        }
+        .founder-img { width: 180px; height: 180px; object-fit: cover; border-radius: 50%; border: 2px solid var(--border); filter: grayscale(100%); }
+        .quote-icon { font-size: 4rem; color: var(--border); position: absolute; top: 30px; right: 40px; }
+
+        /* --- FOOTER (LEGAL & COMPLIANCE) --- */
+        footer { background: #000; padding: 80px 5% 30px; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--text-muted); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+        .legal-links a { color: var(--text-muted); margin-right: 20px; text-decoration: none; font-size: 0.75rem; transition: 0.3s; }
+        .legal-links a:hover { color: var(--primary); text-decoration: underline; }
+
+        /* UI UTILS */
+        .badge { background: rgba(255,255,255,0.1); padding: 4px 8px; border-radius: 4px; font-size: 0.6rem; margin-left: 10px; border: 1px solid rgba(255,255,255,0.1); }
+        
+        @media(max-width: 900px) {
+            .hero-title { font-size: 2.5rem; }
+            .p9-container, .founder-box { grid-template-columns: 1fr; text-align: left; }
+            .founder-box { flex-direction: column; text-align: center; }
+            .metric-item { border-right: none; border-bottom: 1px solid var(--border); }
+            .nav-links { display: none; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="mesh-bg"></div>
+    <div class="system-bar">
+        <div>
+            <span class="status-dot"></span>
+            SYSTEM STATUS: OPERATIONAL
+        </div>
+        <div style="display: flex; gap: 20px;">
+            <span>SOC: ACTIVE</span>
+            <span>DATA CENTER: BR-SC1</span>
+            <span>IPv6: ENABLED</span>
+        </div>
+    </div>
 
     <nav>
-        <div class="brand"><i class="fa-solid fa-layer-group" style="color: var(--primary);"></i> KNS<span style="font-weight: 300;">GLOBAL</span></div>
-        <div class="nav-links">
-            <a href="#protocolo" class="nav-link" data-i18n="nav_sol">PROTOCOLO 09</a>
-            <a href="#tech" class="nav-link" data-i18n="nav_tech">ARSENAL</a>
-            <a href="#governance" class="nav-link" data-i18n="nav_gov">GOVERNANCE</a>
-            <a href="#case" class="nav-link" data-i18n="nav_case">RESULTS</a>
+        <div class="brand">
+            <i class="fa-solid fa-shield-halved" style="color: var(--primary);"></i>
+            KNS<span style="font-weight: 300;">GLOBAL</span>
         </div>
-        <div class="nav-actions">
-            <button class="ctrl-btn active" onclick="setLang('pt')">PT</button>
-            <button class="ctrl-btn" onclick="setLang('en')">EN</button>
-            <button class="ctrl-btn" onclick="setLang('es')">ES</button>
-            <button class="ctrl-btn" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i></button>
+        <div class="nav-links">
+            <a href="#governance" class="nav-link">Governança</a>
+            <a href="#protocolo" class="nav-link">Soluções</a>
+            <a href="#about" class="nav-link">Institucional</a>
+            <a href="https://calendly.com/SEU_LINK" class="nav-link" style="color: var(--primary);">Area do Investidor</a>
         </div>
     </nav>
 
-    <section class="hero">
-        <div class="sage-badge-hero animate-hero delay-1">
-            <i class="fa-solid fa-shield-halved"></i>
-            <div class="sage-info">
-                <div class="sage-title">CORPORATE INFRASTRUCTURE</div>
-                <div class="sage-sub" data-i18n="hero_badge">RISK MITIGATION & CONTINUITY</div>
-            </div>
+    <section class="hero reveal">
+        <div class="trust-label">
+            <i class="fa-solid fa-check-circle"></i> Enterprise Risk Management
         </div>
-
+        
         <h1 class="hero-title">
-            <span class="animate-hero delay-2" style="display:inline-block" data-i18n="hero_t1">CONTINUIDADE OPERACIONAL</span><br>
-            <span class="animate-hero delay-3" style="color: var(--primary); display:inline-block" data-i18n="hero_t2">RISCO ZERO.</span>
+            PROTEÇÃO DE CAPITAL &<br>
+            CONTINUIDADE DE NEGÓCIOS.
         </h1>
         
-        <p class="hero-desc animate-hero delay-4" data-i18n="hero_desc">
-            A KNS Global é uma firma de engenharia especializada em garantir a estabilidade financeira e operacional de grandes corporações. Eliminamos riscos de infraestrutura antes que impactem o faturamento.
+        <p class="hero-sub">
+            Somos uma firma de engenharia focada em mitigar riscos operacionais que impactam o faturamento. Transformamos infraestrutura de TI em um ativo auditável, previsível e blindado contra falhas.
         </p>
 
-        <div class="cta-container animate-hero delay-5">
-            <a href="https://calendly.com/SEU_LINK_CALENDLY" target="_blank" class="btn-executive" data-i18n="cta_main">
-                <i class="fa-regular fa-calendar-check" style="margin-right: 10px;"></i> SOLICITAR ANÁLISE DE RISCO
+        <div class="hero-btns">
+            <a href="https://calendly.com/SEU_LINK_CALENDLY" class="btn-primary">
+                AGENDAR BRIEFING EXECUTIVO
             </a>
-            <a href="#protocolo" class="btn-secondary" data-i18n="cta_sec">NOSSA METODOLOGIA</a>
+            <a href="#case-study" class="btn-outline">
+                VER DADOS DE ROI & ECONOMIA
+            </a>
         </div>
 
-        <div class="monitor-wrapper animate-hero" style="animation-delay: 1.1s;">
-            <div class="rec-tag"><i class="fa-solid fa-circle"></i> NOC VIEW // LIVE</div>
-            <div class="monitor-frame">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/T9wvW0EYfE0?rel=0" frameborder="0" allowfullscreen></iframe>
+        <div style="max-width: 900px; margin: 0 auto; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; position: relative;">
+            <div style="background: rgba(0,0,0,0.8); padding: 10px; position: absolute; top: 0; left: 0; width: 100%; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #fff; z-index: 2;">
+                <i class="fa-solid fa-video"></i> FOUNDER'S VISION // KALEB NUNES
             </div>
+            <iframe width="100%" height="500" src="https://www.youtube.com/embed/T9wvW0EYfE0?rel=0" frameborder="0" allowfullscreen style="display: block;"></iframe>
         </div>
     </section>
 
-    <section class="kpi-section reveal">
-        <div class="kpi-box">
-            <span class="kpi-value">99.99%</span>
-            <span class="kpi-label" data-i18n="kpi_uptime">SLA DE DISPONIBILIDADE</span>
+    <section class="metrics-grid reveal">
+        <div class="metric-item">
+            <span class="metric-num">99.9%</span>
+            <span class="metric-lbl">SLA DE DISPONIBILIDADE (UPTIME)</span>
         </div>
-        <div class="kpi-box">
-            <span class="kpi-value">-40%</span>
-            <span class="kpi-label" data-i18n="kpi_opex">REDUÇÃO DE OPEX</span>
+        <div class="metric-item">
+            <span class="metric-num">Zero</span>
+            <span class="metric-lbl">RISCO DE CHURN TÉCNICO</span>
         </div>
-        <div class="kpi-box">
-            <span class="kpi-value" style="color: var(--primary);">SAGE</span>
-            <span class="kpi-label" data-i18n="kpi_cert">CERTIFICAÇÃO GLOBAL</span>
+        <div class="metric-item">
+            <span class="metric-num">+40%</span>
+            <span class="metric-lbl">OTIMIZAÇÃO DE OPEX (CUSTOS)</span>
         </div>
-        <div class="kpi-box">
-            <span class="kpi-value">ISO</span>
-            <span class="kpi-label" data-i18n="kpi_mon">STANDARDS ALIGNED</span>
-        </div>
-    </section>
-
-    <section id="protocolo" class="p9-section">
-        <div class="p9-grid reveal">
-            <div class="p9-visual">
-                <i class="fa-solid fa-microchip" style="font-size: 6rem; color: var(--primary); filter: drop-shadow(0 0 20px var(--primary));"></i>
-                <h3 class="mono" style="margin-top: 30px; font-size: 1.5rem;" data-i18n="p9_badge">PROTOCOLO 09</h3>
-            </div>
-            <div>
-                <span style="color: var(--primary); font-family: 'JetBrains Mono'; font-weight: 700; letter-spacing: 2px;">PROPRIETARY METHODOLOGY</span>
-                <h2 style="font-size: 2.5rem; margin-top: 15px; margin-bottom: 20px;" data-i18n="p9_title">IMUNIDADE DIGITAL ATIVA</h2>
-                <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 20px;" data-i18n="p9_text">
-                    Diferente do suporte tradicional que reage a falhas, o Protocolo 09 atua na camada preditiva. Utilizamos uma arquitetura proprietária de automação e observabilidade avançada para mitigar riscos antes do impacto.
-                </p>
-                <ul style="color: var(--text-muted); line-height: 2;">
-                    <li><i class="fa-solid fa-check" style="color: var(--primary); margin-right: 10px;"></i> Correção automática de incidentes (0-touch)</li>
-                    <li><i class="fa-solid fa-check" style="color: var(--primary); margin-right: 10px;"></i> Auditoria contínua de segurança e rotas</li>
-                    <li><i class="fa-solid fa-check" style="color: var(--primary); margin-right: 10px;"></i> Dashboards executivos de ROI em tempo real</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section id="tech" class="tech-section">
-        <div class="reveal" style="text-align: center; max-width: 800px; margin: 0 auto;">
-            <span style="color: var(--primary); font-family: 'JetBrains Mono'; font-weight: 700; letter-spacing: 2px;">ENGINEERING CORE</span>
-            <h2 style="font-size: 2.5rem; margin-top: 15px;" data-i18n="tech_title">ARSENAL TECNOLÓGICO</h2>
-            <p style="color: var(--text-muted); margin-top: 15px;" data-i18n="tech_desc">
-                Não utilizamos apenas ferramentas; orquestramos um ecossistema. O Protocolo 09 é construído sobre as tecnologias mais robustas do mercado.
-            </p>
-        </div>
-
-        <div class="tech-grid">
-            <div class="tech-card reveal stagger-1">
-                <div class="tech-header">
-                    <i class="fa-solid fa-terminal tech-icon"></i>
-                    <span class="tech-title" data-i18n="tech_c1_t">AUTOMAÇÃO & SCRIPTING</span>
-                </div>
-                <ul class="tech-list">
-                    <li>Python <span class="tech-tag">SELF-HEALING</span></li>
-                    <li>PowerShell <span class="tech-tag">ADMIN</span></li>
-                    <li>Bash / Shell <span class="tech-tag">CORE</span></li>
-                </ul>
-            </div>
-            <div class="tech-card reveal stagger-2">
-                <div class="tech-header">
-                    <i class="fa-solid fa-eye tech-icon"></i>
-                    <span class="tech-title" data-i18n="tech_c2_t">OBSERVABILIDADE</span>
-                </div>
-                <ul class="tech-list">
-                    <li>Zabbix <span class="tech-tag">ENTERPRISE</span></li>
-                    <li>Grafana <span class="tech-tag">VISUALIZATION</span></li>
-                    <li>PRTG Monitor <span class="tech-tag">SENSORS</span></li>
-                </ul>
-            </div>
-            <div class="tech-card reveal stagger-3">
-                <div class="tech-header">
-                    <i class="fa-solid fa-network-wired tech-icon"></i>
-                    <span class="tech-title" data-i18n="tech_c3_t">TOPOLOGIA & REDES</span>
-                </div>
-                <ul class="tech-list">
-                    <li>LibreNMS <span class="tech-tag">AUTO-DISCOVERY</span></li>
-                    <li>The Dude <span class="tech-tag">MAPPING</span></li>
-                    <li>IPv6 Native <span class="tech-tag">PROTOCOL</span></li>
-                </ul>
-            </div>
+        <div class="metric-item">
+            <span class="metric-num">24/7</span>
+            <span class="metric-lbl">MONITORAMENTO ATIVO (NOC)</span>
         </div>
     </section>
 
     <section id="governance" class="gov-section">
-        <div class="reveal" style="text-align: center; max-width: 800px; margin: 0 auto;">
-            <span style="color: var(--primary); font-family: 'JetBrains Mono'; font-weight: 700; letter-spacing: 2px;">CORPORATE GOVERNANCE</span>
-            <h2 style="font-size: 2.5rem; margin-top: 15px;" data-i18n="gov_title">SEGURANÇA JURÍDICA E OPERACIONAL</h2>
-            <p style="color: var(--text-muted); margin-top: 15px;" data-i18n="gov_desc">Mitigação de riscos alinhada com as melhores práticas de mercado e exigências legais globais.</p>
+        <div class="section-header reveal">
+            <span class="section-tag">CORPORATE GOVERNANCE</span>
+            <h2 class="section-title">PREVISIBILIDADE E COMPLIANCE.</h2>
+            <p style="color: var(--text-muted);">Grandes operações não dependem de sorte. Dependem de contratos, auditoria e processos definidos.</p>
         </div>
 
-        <div class="gov-grid">
-            <div class="gov-card reveal stagger-1">
-                <i class="fa-solid fa-file-contract gov-icon"></i>
-                <h3 class="gov-title" data-i18n="gov_1_t">SLA & Contratos</h3>
-                <p class="gov-text" data-i18n="gov_1_d">Acordos de Nível de Serviço (SLA) definidos contratualmente. Garantia financeira sobre a disponibilidade da operação.</p>
+        <div class="gov-grid reveal delay-1">
+            <div class="gov-card">
+                <i class="fa-solid fa-file-signature" style="font-size: 2rem; color: var(--text-main); margin-bottom: 20px;"></i>
+                <h3 style="font-family: 'Orbitron'; font-size: 1.1rem; margin-bottom: 10px;">Garantia via SLA</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
+                    Nossos contratos possuem Service Level Agreements (SLA) claros. Se a operação para, nós somos penalizados. Seu risco financeiro é compartilhado conosco.
+                </p>
             </div>
-            <div class="gov-card reveal stagger-2">
-                <i class="fa-solid fa-shield-halved gov-icon"></i>
-                <h3 class="gov-title" data-i18n="gov_2_t">Compliance & LGPD</h3>
-                <p class="gov-text" data-i18n="gov_2_d">Arquitetura auditável e compatível com Leis de Proteção de Dados. Segurança da Informação como pilar.</p>
+            <div class="gov-card">
+                <i class="fa-solid fa-scale-balanced" style="font-size: 2rem; color: var(--text-main); margin-bottom: 20px;"></i>
+                <h3 style="font-family: 'Orbitron'; font-size: 1.1rem; margin-bottom: 10px;">Compliance & LGPD</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
+                    Arquitetura desenhada sob os princípios de "Privacy by Design". Auditoria completa de tráfego e logs para conformidade com a Lei Geral de Proteção de Dados.
+                </p>
             </div>
-            <div class="gov-card reveal stagger-3">
-                <i class="fa-solid fa-clipboard-check gov-icon"></i>
-                <h3 class="gov-title" data-i18n="gov_3_t">Padrões ITIL</h3>
-                <p class="gov-text" data-i18n="gov_3_d">Gestão de incidentes e mudanças baseada na biblioteca ITIL. Processos documentados e previsíveis.</p>
+            <div class="gov-card">
+                <i class="fa-solid fa-network-wired" style="font-size: 2rem; color: var(--text-main); margin-bottom: 20px;"></i>
+                <h3 style="font-family: 'Orbitron'; font-size: 1.1rem; margin-bottom: 10px;">Escalabilidade Global</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
+                    Metodologia compatível com padrões internacionais (IPv6 Native, SAGE Certified). Preparado para expansão de filiais sem refatoração de rede.
+                </p>
             </div>
         </div>
     </section>
 
-    <section id="case" class="case-section">
-        <div class="case-card reveal">
-            <div class="case-content">
-                <span style="color: var(--primary); font-family: 'JetBrains Mono'; font-weight: 700; margin-bottom: 20px;">CASE STUDY: SOFTWARE HOUSE</span>
-                <h2 style="font-size: 2.5rem; margin-bottom: 20px;" data-i18n="case_title">PROTEÇÃO DE RECEITA RECORRENTE</h2>
-                
-                <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 15px;" data-i18n="case_p1">
-                    <strong>Risco Identificado:</strong> Instabilidade na infraestrutura ameaçava contratos Enterprise de alto valor. Risco iminente de Churn e multas contratuais.
-                </p>
-                <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 15px;" data-i18n="case_p2">
-                    <strong>Intervenção KNS:</strong> Implementação do Protocolo 09. Auditoria, reengenharia de tráfego e automação de "Self-Healing".
-                </p>
-                <div style="border-left: 3px solid var(--primary); padding-left: 20px; margin: 30px 0;">
-                    <p style="color: var(--text-main); font-weight: 700; font-size: 1.1rem; margin-bottom: 5px;">RESULTADO FINANCEIRO</p>
-                    <p style="color: var(--text-muted);" data-i18n="case_p3">Estabilidade total em 30 dias. <strong>Zero perda de receita</strong> por indisponibilidade no trimestre seguinte.</p>
-                </div>
-                <a href="https://calendly.com/SEU_LINK_CALENDLY" style="color: var(--text-main); font-weight: 700; text-decoration: none; border-bottom: 1px solid var(--primary);">AGENDAR APRESENTAÇÃO DESTE CASE</a>
-            </div>
-            <div class="case-visual">
-                <i class="fa-solid fa-chart-line" style="font-size: 8rem; color: var(--primary); margin-bottom: 30px;"></i>
-                <div style="text-align: center;">
-                    <h3 style="font-size: 3rem; margin: 0;">0%</h3>
-                    <span class="mono" style="color: var(--text-muted);">PERDA DE RECEITA</span>
-                </div>
-            </div>
+    <div class="tech-strip">
+        <div class="tech-track">
+            <span class="tech-item">PYTHON AUTOMATION</span>
+            <span class="tech-item">ZABBIX ENTERPRISE</span>
+            <span class="tech-item">GRAFANA DASHBOARDS</span>
+            <span class="tech-item">POWERSHELL SCRIPTING</span>
+            <span class="tech-item">CISCO / MIKROTIK / JUNIPER</span>
+            <span class="tech-item">LIBRENMS MAPPING</span>
+            <span class="tech-item">IPV6 CERTIFIED</span>
+            <span class="tech-item">PYTHON AUTOMATION</span>
+            <span class="tech-item">ZABBIX ENTERPRISE</span>
+            <span class="tech-item">GRAFANA DASHBOARDS</span>
+            <span class="tech-item">POWERSHELL SCRIPTING</span>
         </div>
-    </section>
+    </div>
 
-    <section class="leadership-section">
-        <div class="lead-grid reveal">
-            <div style="text-align: center;">
-                <img src="./assets/foto.jpg" alt="Kaleb Nunes - Head of Engineering" class="lead-img" onerror="this.style.display='none'">
-                <div style="margin-top: 15px;">
-                    <h4 style="margin: 0;">KALEB NUNES</h4>
-                    <span class="mono" style="font-size: 0.8rem; color: var(--primary);">HEAD OF ENGINEERING & FOUNDER</span>
-                </div>
-            </div>
+    <section id="protocolo" class="p9-section reveal">
+        <div class="p9-container">
             <div>
-                <span style="color: var(--primary); font-family: 'JetBrains Mono'; font-weight: 700; display: block; margin-bottom: 20px;">// NOSSA ORIGEM</span>
-                <h2 style="font-size: 2.2rem; margin-bottom: 20px; line-height: 1.2;" data-i18n="bio_title">ENGENHARIA ALÉM DO INDIVÍDUO</h2>
-                <p style="color: var(--text-muted); line-height: 1.7; font-size: 1rem; margin-bottom: 20px;" data-i18n="bio_text">
-                    A KNS Global nasceu de uma inconformidade. Trabalhando em grandes operações, vi empresas reféns de suporte lento e "chamados abertos". Decidi criar uma consultoria onde não vendemos horas, vendemos a solução definitiva.<br><br>
-                    Hoje, operamos sob uma premissa inegociável: operações críticas não podem depender de heróis, elas precisam de sistemas. Nossa metodologia transfere a inteligência para a estrutura do cliente.
+                <span class="section-tag">PROPRIETARY METHODOLOGY</span>
+                <h2 class="section-title">PROTOCOLO 09: IMUNIDADE DIGITAL.</h2>
+                <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 20px;">
+                    Mais do que consultoria, entregamos um <strong>Sistema Autônomo de Recuperação</strong>. O Protocolo 09 é uma suíte de automação e processos que elimina a dependência humana na correção de falhas críticas.
                 </p>
-                
-                <div class="cert-box">
-                    <img src="./assets/sage_full.png" class="cert-thumb" alt="SAGE Certified" onerror="this.style.display='none'">
-                    <div>
-                        <h5 style="margin: 0; font-size: 1rem;">VALIDAÇÃO TÉCNICA GLOBAL</h5>
-                        <span style="font-size: 0.75rem; color: var(--text-muted);">Hurricane Electric IPv6 SAGE Certified | Top 1% World</span>
-                    </div>
+                <ul class="check-list">
+                    <li><i class="fa-solid fa-check"></i> <strong>Self-Healing:</strong> Scripts Python que corrigem falhas em milissegundos.</li>
+                    <li><i class="fa-solid fa-check"></i> <strong>Business View:</strong> Dashboards que mostram impacto financeiro, não apenas técnico.</li>
+                    <li><i class="fa-solid fa-check"></i> <strong>Documentação Viva:</strong> Sua infraestrutura mapeada e auditável 24/7.</li>
+                </ul>
+            </div>
+            <div style="text-align: center;">
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); padding: 40px; border-radius: 50%; width: 300px; height: 300px; display: inline-flex; align-items: center; justify-content: center; position: relative;">
+                    <i class="fa-solid fa-fingerprint" style="font-size: 8rem; color: var(--primary); opacity: 0.8;"></i>
+                    <div style="position: absolute; bottom: 20px; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--primary);">PROTOCOL 09 ACTIVE</div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="vision-section reveal">
+        <div class="founder-box">
+            <i class="fa-solid fa-quote-right quote-icon"></i>
+            <img src="./assets/foto.jpg" alt="Kaleb Nunes" class="founder-img" onerror="this.style.display='none'"> <div>
+                <h3 style="font-family: 'Orbitron'; font-size: 1.4rem; margin-bottom: 5px;">KALEB NUNES <span class="badge">FOUNDER & HEAD OF ENGINEERING</span></h3>
+                <p style="color: var(--primary); font-family: 'JetBrains Mono'; font-size: 0.8rem; margin-bottom: 20px;">SAGE CERTIFIED ENGINEER (GLOBAL TOP 1%)</p>
+                
+                <p style="color: var(--text-muted); line-height: 1.7; font-style: italic;">
+                    "A KNS Global nasceu de uma inconformidade. No mercado corporativo, vi empresas reféns de processos manuais e suporte reativo. Criei o Protocolo 09 para que operações de missão crítica não dependam de 'heróis', mas de sistemas. A minha missão não é apenas configurar redes, é garantir que seu negócio nunca pare."
+                </p>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="footer-cols">
+        <div class="footer-grid">
             <div>
-                <h3 class="brand" style="margin-bottom: 20px;">KNS<span style="font-weight: 300;">GLOBAL</span></h3>
-                <p style="color: var(--text-muted); line-height: 1.6; font-size: 0.85rem;" data-i18n="footer_about">
-                    Engenharia de Redes & Governança.<br>
-                    Mitigação de riscos para operações de Missão Crítica.<br>
-                    Balneário Camboriú, SC - Brasil.
+                <h3 class="brand" style="margin-bottom: 20px; font-size: 1.1rem;">KNS<span style="font-weight: 300;">GLOBAL</span></h3>
+                <p style="line-height: 1.6; margin-bottom: 20px;">
+                    Sede Operacional:<br>
+                    Balneário Camboriú, SC - Brasil.<br>
+                    CNPJ: 49.712.297/0001-07
                 </p>
-            </div>
-            <div>
-                <h4 style="margin-bottom: 20px; font-size: 0.9rem;">SOLUÇÕES</h4>
-                <a href="#protocolo" class="footer-link">Protocolo 09 (Metodologia)</a>
-                <a href="#" class="footer-link">IPv6 Compliance</a>
-                <a href="#" class="footer-link">Network Automation</a>
-                <a href="#" class="footer-link">Disaster Recovery (DR)</a>
-            </div>
-            <div>
-                <h4 style="margin-bottom: 20px; font-size: 0.9rem;">INSTITUCIONAL</h4>
-                <a href="#" class="footer-link">Sobre a KNS</a>
-                <a href="#" class="footer-link">Governança Corporativa</a>
-                <a href="#" class="footer-link">Política de Privacidade (LGPD)</a>
-                <a href="#" class="footer-link">Termos de Serviço (SLA)</a>
-            </div>
-            <div>
-                <h4 style="margin-bottom: 20px; font-size: 0.9rem;">CONTATO</h4>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 10px;">comercial@knsconsultoria.com.br</p>
-                <div style="display: flex; gap: 15px; font-size: 1.2rem; margin-top: 15px;">
-                    <a href="https://linkedin.com/in/kalebnunes" style="color: var(--text-muted);"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="https://github.com/kalebnunes" style="color: var(--text-muted);"><i class="fa-brands fa-github"></i></a>
+                <div style="display: flex; gap: 15px; font-size: 1.2rem;">
+                    <a href="#" style="color: #fff;"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#" style="color: #fff;"><i class="fa-brands fa-github"></i></a>
                 </div>
             </div>
+            
+            <div>
+                <h4 style="color: #fff; margin-bottom: 20px; font-size: 0.9rem;">SOLUÇÕES</h4>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <a href="#" style="color: var(--text-muted); text-decoration: none;">Protocolo 09</a>
+                    <a href="#" style="color: var(--text-muted); text-decoration: none;">Consultoria de Risco</a>
+                    <a href="#" style="color: var(--text-muted); text-decoration: none;">NOC as a Service</a>
+                </div>
+            </div>
+
+            <div>
+                <h4 style="color: #fff; margin-bottom: 20px; font-size: 0.9rem;">LEGAL & COMPLIANCE</h4>
+                <div style="display: flex; flex-direction: column; gap: 10px;" class="legal-links">
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Termos de Uso (SLA)</a>
+                    <a href="#">Compliance LGPD</a>
+                </div>
+            </div>
+
+            <div>
+                <a href="https://calendly.com/SEU_LINK_CALENDLY" class="btn-outline" style="font-size: 0.75rem; padding: 10px 20px; text-align: center; display: block;">
+                    ÁREA DO INVESTIDOR
+                </a>
+            </div>
         </div>
-        <div style="border-top: 1px solid var(--border); padding-top: 30px; display: flex; justify-content: space-between; flex-wrap: wrap;">
-            <p class="mono" style="font-size: 0.75rem; color: var(--text-muted);">&copy; 2026 KNS GLOBAL SOLUTIONS. ALL RIGHTS RESERVED.</p>
-            <p class="mono" style="font-size: 0.75rem; color: var(--text-muted);">CNPJ: 49.712.297/0001-07</p>
+        
+        <div style="border-top: 1px solid var(--border); padding-top: 20px; display: flex; justify-content: space-between; flex-wrap: wrap; font-family: 'JetBrains Mono'; font-size: 0.7rem;">
+            <span>&copy; 2026 KNS GLOBAL SOLUTIONS. TODOS OS DIREITOS RESERVADOS.</span>
+            <span>SYSTEM VERSION: 21.0-STABLE</span>
         </div>
     </footer>
 
     <script>
-        function toggleTheme() {
-            const html = document.documentElement;
-            const current = html.getAttribute('data-theme');
-            html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
-        }
-
-        // --- OBSERVER PARA ANIMAÇÃO DE SCROLL ---
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
+        // Reveal on Scroll
+        const observerOptions = { threshold: 0.15 };
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
@@ -517,124 +407,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.reveal').forEach(el => {
-            observer.observe(el);
-        });
-        // -------------------------------------------
-
-        const i18n = {
-            pt: {
-                nav_sol: "PROTOCOLO 09", nav_tech: "ARSENAL", nav_gov: "GOVERNANÇA", nav_case: "RESULTADOS",
-                hero_badge: "RISCO OPERACIONAL & CONTINUIDADE",
-                hero_t1: "CONTINUIDADE OPERACIONAL", hero_t2: "RISCO ZERO.",
-                hero_desc: "A KNS Global é uma firma de engenharia especializada em garantir a estabilidade financeira e operacional de grandes corporações. Eliminamos riscos de infraestrutura antes que impactem o faturamento.",
-                cta_main: "SOLICITAR ANÁLISE DE RISCO", cta_sec: "NOSSA METODOLOGIA",
-                kpi_uptime: "SLA DE DISPONIBILIDADE", kpi_opex: "REDUÇÃO DE OPEX", kpi_cert: "CERTIFICAÇÃO GLOBAL", kpi_mon: "STANDARDS ALIGNED",
-                
-                p9_badge: "PROTOCOLO 09",
-                p9_title: "IMUNIDADE DIGITAL ATIVA",
-                p9_text: "Diferente do suporte tradicional que reage a falhas, o Protocolo 09 atua na camada preditiva. Utilizamos uma arquitetura proprietária de automação e observabilidade avançada para mitigar riscos antes do impacto.",
-
-                tech_title: "ARSENAL TECNOLÓGICO",
-                tech_desc: "Não utilizamos apenas ferramentas; orquestramos um ecossistema. O Protocolo 09 é construído sobre as tecnologias mais robustas do mercado.",
-                tech_c1_t: "AUTOMAÇÃO & SCRIPTING",
-                tech_c2_t: "OBSERVABILIDADE",
-                tech_c3_t: "TOPOLOGIA & REDES",
-
-                gov_title: "SEGURANÇA JURÍDICA E OPERACIONAL",
-                gov_desc: "Mitigação de riscos alinhada com as melhores práticas de mercado e exigências legais globais.",
-                gov_1_t: "SLA & Contratos", gov_1_d: "Acordos de Nível de Serviço (SLA) definidos contratualmente. Garantia financeira sobre a disponibilidade da operação.",
-                gov_2_t: "Compliance & LGPD", gov_2_d: "Arquitetura auditável e compatível com Leis de Proteção de Dados. Segurança da Informação como pilar.",
-                gov_3_t: "Padrões ITIL", gov_3_d: "Gestão de incidentes e mudanças baseada na biblioteca ITIL. Processos documentados e previsíveis.",
-
-                case_title: "PROTEÇÃO DE RECEITA RECORRENTE",
-                case_p1: "<strong>Risco Identificado:</strong> Instabilidade na infraestrutura ameaçava contratos Enterprise de alto valor. Risco iminente de Churn e multas contratuais.",
-                case_p2: "<strong>Intervenção KNS:</strong> Implementação do Protocolo 09. Auditoria, reengenharia de tráfego e automação de 'Self-Healing'.",
-                case_p3: "Estabilidade total em 30 dias. <strong>Zero perda de receita</strong> por indisponibilidade no trimestre seguinte.",
-
-                bio_title: "ENGENHARIA ALÉM DO INDIVÍDUO",
-                bio_text: "A KNS Global nasceu de uma inconformidade. Trabalhando em grandes operações, vi empresas reféns de suporte lento e 'chamados abertos'. Decidi criar uma consultoria onde não vendemos horas, vendemos a solução definitiva.<br><br>Hoje, operamos sob uma premissa inegociável: operações críticas não podem depender de heróis, elas precisam de sistemas. Nossa metodologia transfere a inteligência para a estrutura do cliente.",
-                
-                footer_about: "Engenharia de Redes & Governança.<br>Mitigação de riscos para operações de Missão Crítica.<br>Balneário Camboriú, SC - Brasil."
-            },
-            en: {
-                nav_sol: "PROTOCOL 09", nav_tech: "STACK", nav_gov: "GOVERNANCE", nav_case: "RESULTS",
-                hero_badge: "OPERATIONAL RISK & CONTINUITY",
-                hero_t1: "OPERATIONAL CONTINUITY", hero_t2: "ZERO RISK.",
-                hero_desc: "KNS Global is an engineering firm specialized in ensuring financial and operational stability for large corporations. We eliminate infrastructure risks before they impact revenue.",
-                cta_main: "REQUEST RISK ANALYSIS", cta_sec: "OUR METHODOLOGY",
-                kpi_uptime: "AVAILABILITY SLA", kpi_opex: "OPEX REDUCTION", kpi_cert: "GLOBAL CERTIFICATION", kpi_mon: "STANDARDS ALIGNED",
-                
-                p9_badge: "PROTOCOL 09",
-                p9_title: "ACTIVE DIGITAL IMMUNITY",
-                p9_text: "Unlike traditional support that reacts to failures, Protocol 09 acts on the predictive layer. We use proprietary automation architecture and advanced observability to mitigate risks before impact.",
-
-                tech_title: "TECHNOLOGICAL ARSENAL",
-                tech_desc: "We don't just use tools; we orchestrate an ecosystem. Protocol 09 is built upon the most robust technologies in the market.",
-                tech_c1_t: "AUTOMATION & SCRIPTING",
-                tech_c2_t: "OBSERVABILITY",
-                tech_c3_t: "TOPOLOGY & NETWORK",
-
-                gov_title: "LEGAL & OPERATIONAL SAFETY",
-                gov_desc: "Risk mitigation aligned with best market practices and global legal requirements.",
-                gov_1_t: "SLA & Contracts", gov_1_d: "Contractually defined Service Level Agreements (SLA). Financial guarantee on operation availability.",
-                gov_2_t: "Compliance & GDPR", gov_2_d: "Auditable architecture compatible with Data Protection Laws. Information Security as a pillar.",
-                gov_3_t: "ITIL Standards", gov_3_d: "Incident and change management based on ITIL library. Documented and predictable processes.",
-
-                case_title: "RECURRING REVENUE PROTECTION",
-                case_p1: "<strong>Identified Risk:</strong> Infrastructure instability threatened high-value Enterprise contracts. Imminent risk of Churn and contractual fines.",
-                case_p2: "<strong>KNS Intervention:</strong> Implementation of Protocol 09. Audit, traffic re-engineering, and 'Self-Healing' automation.",
-                case_p3: "Total stability in 30 days. <strong>Zero revenue loss</strong> due to downtime in the following quarter.",
-
-                bio_title: "ENGINEERING BEYOND THE INDIVIDUAL",
-                bio_text: "KNS Global was born from nonconformity. Working in large operations, I saw companies held hostage by slow support and 'open tickets'. I decided to create a consultancy where we don't sell hours, we sell the definitive solution.<br><br>Today, we operate under a non-negotiable premise: critical operations cannot depend on heroes, they need systems. Our methodology transfers intelligence to the client's structure.",
-                
-                footer_about: "Network Engineering & Governance.<br>Risk mitigation for Mission Critical operations.<br>Balneário Camboriú, SC - Brazil."
-            },
-            es: {
-                nav_sol: "PROTOCOLO 09", nav_tech: "ARSENAL", nav_gov: "GOBERNANZA", nav_case: "RESULTADOS",
-                hero_badge: "RIESGO OPERATIVO Y CONTINUIDAD",
-                hero_t1: "CONTINUIDAD OPERATIVA", hero_t2: "CERO RIESGO.",
-                hero_desc: "KNS Global es una firma de ingeniería especializada en garantizar la estabilidad financiera y operativa de grandes corporaciones. Eliminamos riesgos de infraestructura antes de que afecten la facturación.",
-                cta_main: "SOLICITAR ANÁLISIS DE RIESGO", cta_sec: "NUESTRA METODOLOGÍA",
-                kpi_uptime: "SLA DE DISPONIBILIDAD", kpi_opex: "REDUCCIÓN DE OPEX", kpi_cert: "CERTIFICACIÓN GLOBAL", kpi_mon: "STANDARDS ALIGNED",
-                
-                p9_badge: "PROTOCOLO 09",
-                p9_title: "INMUNIDAD DIGITAL ACTIVA",
-                p9_text: "A diferencia del soporte tradicional que reacciona a fallas, el Protocolo 09 actúa en la capa predictiva. Utilizamos una arquitectura propietaria de automatización y observabilidad avanzada para mitigar riesgos.",
-
-                tech_title: "ARSENAL TECNOLÓGICO",
-                tech_desc: "No utilizamos solo herramientas; orquestamos un ecosistema. El Protocolo 09 se construye sobre las tecnologías más robustas del mercado.",
-                tech_c1_t: "AUTOMATIZACIÓN & SCRIPTING",
-                tech_c2_t: "OBSERVABILIDAD",
-                tech_c3_t: "TOPOLOGÍA Y REDES",
-
-                gov_title: "SEGURIDAD JURÍDICA Y OPERATIVA",
-                gov_desc: "Mitigación de riesgos alineada con las mejores prácticas del mercado y requisitos legales globales.",
-                gov_1_t: "SLA y Contratos", gov_1_d: "Acuerdos de Nivel de Servicio (SLA) definidos contractualmente. Garantía financiera sobre la disponibilidad.",
-                gov_2_t: "Cumplimiento y GDPR", gov_2_d: "Arquitectura auditable y compatible con Leyes de Protección de Datos. Seguridad de la Información como pilar.",
-                gov_3_t: "Estándares ITIL", gov_3_d: "Gestión de incidentes y cambios basada en la biblioteca ITIL. Procesos documentados y predecibles.",
-
-                case_title: "PROTECCIÓN DE INGRESOS RECURRENTES",
-                case_p1: "<strong>Riesgo Identificado:</strong> La inestabilidad amenazaba contratos Enterprise de alto valor. Riesgo inminente de Churn y multas contractuales.",
-                case_p2: "<strong>Intervención KNS:</strong> Implementación del Protocolo 09. Auditoría, reingeniería y automatización de 'Self-Healing'.",
-                case_p3: "Estabilidad total en 30 días. <strong>Cero pérdida de ingresos</strong> por indisponibilidad en el trimestre siguiente.",
-
-                bio_title: "INGENIERÍA MÁS ALLÁ DEL INDIVIDUO",
-                bio_text: "KNS Global nació de una inconformidad. Trabajando en grandes operaciones, vi empresas rehenes de un soporte lento. Decidí crear una consultoría donde no vendemos horas, vendemos la solución definitiva.<br><br>Hoy, operamos bajo una premisa innegociable: las operaciones críticas no pueden depender de héroes, necesitan sistemas. Nuestra metodología transfiere la inteligencia a la estructura del cliente.",
-                
-                footer_about: "Ingeniería de Redes y Gobernanza.<br>Mitigación de riesgos para operaciones de Misión Crítica.<br>Balneário Camboriú, SC - Brasil."
-            }
-        };
-
-        function setLang(lang) {
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if(i18n[lang][key]) el.innerHTML = i18n[lang][key];
-            });
-            document.querySelectorAll('.ctrl-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-        }
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
