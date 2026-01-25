@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KNS Global | Consultoria & Command Center</title>
+    <title>KNS Global | Consultoria & Operations</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- GLOBAL CORE --- */
+        /* --- ENGINE --- */
         :root {
-            /* DARK MODE (Default) */
             --bg-body: #050505;
             --bg-panel: rgba(20, 20, 20, 0.9);
             --text-main: #ffffff;
@@ -26,12 +25,11 @@
         }
 
         [data-theme="light"] {
-            /* LIGHT MODE */
             --bg-body: #f4f6f8;
             --bg-panel: #ffffff;
             --text-main: #1a1a1a;
             --text-muted: #555555;
-            --neon: #009c53; /* Verde mais escuro para contraste */
+            --neon: #009c53;
             --neon-dim: rgba(0, 156, 83, 0.1);
             --border: rgba(0, 0, 0, 0.1);
             --nav-bg: rgba(255,255,255,0.95);
@@ -40,31 +38,23 @@
             --input-bg: #f9f9f9;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; transition: background-color 0.3s, border-color 0.3s, color 0.3s; }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; transition: background-color 0.3s, color 0.3s; }
         body { background-color: var(--bg-body); color: var(--text-main); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
         .mono { font-family: 'JetBrains Mono'; }
         .hidden { display: none !important; }
         .fade-in { animation: fadeIn 0.5s ease forwards; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* --- BOTÕES --- */
-        .btn-primary { background: var(--neon); color: #000; padding: 12px 30px; border: none; font-family: 'Orbitron'; font-weight: 700; cursor: pointer; border-radius: 4px; text-decoration: none; display: inline-block; transition: 0.3s; }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 20px var(--neon-dim); }
-        
-        .btn-outline { background: transparent; border: 1px solid var(--neon); color: var(--neon); padding: 8px 20px; border-radius: 4px; font-family: 'Orbitron'; font-size: 0.7rem; cursor: pointer; transition: 0.3s; }
-        .btn-outline:hover { background: var(--neon); color: var(--bg-body); }
-
-        /* =========================================
-           PART 1: KNS GLOBAL (SITE)
-           ========================================= */
-        
+        /* --- SITE PUBLICO --- */
         .site-nav { position: fixed; top: 0; width: 100%; height: 80px; padding: 0 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: var(--nav-bg); border-bottom: 1px solid var(--border); }
         .brand { font-family: 'Orbitron'; font-weight: 800; font-size: 1.4rem; letter-spacing: 1px; color: var(--text-main); display: flex; align-items: center; gap: 10px; }
         .nav-links { display: flex; align-items: center; gap: 20px; }
         .nav-link { color: var(--text-muted); text-decoration: none; font-size: 0.75rem; text-transform: uppercase; font-weight: 700; transition: 0.3s; }
         .nav-link:hover { color: var(--neon); }
         .theme-toggle { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 1.2rem; transition: 0.3s; }
-        .theme-toggle:hover { color: var(--text-main); transform: rotate(20deg); }
+        
+        .btn-login-site { background: transparent; border: 1px solid var(--neon); color: var(--neon); padding: 8px 20px; border-radius: 4px; font-family: 'Orbitron'; font-size: 0.7rem; cursor: pointer; transition: 0.3s; }
+        .btn-login-site:hover { background: var(--neon); color: #000; box-shadow: 0 0 15px var(--neon-dim); }
 
         .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 5% 50px; }
         .hero-t1 { font-family: 'Orbitron'; font-weight: 800; font-size: clamp(2rem, 5vw, 4rem); color: var(--text-muted); letter-spacing: 2px; }
@@ -72,35 +62,26 @@
         .hero-t2::before { content: 'ABSOLUTA.'; position: absolute; top: 0; left: 0; width: 0%; height: 100%; color: var(--neon); overflow: hidden; white-space: nowrap; border-right: 4px solid var(--neon); -webkit-text-stroke: 0px; animation: typeFill 4s ease-in-out infinite alternate; }
         @keyframes typeFill { 0%, 20% { width: 0%; } 80%, 100% { width: 100%; } }
 
-        /* Monitor Apple XDR Style */
-        .monitor-wrapper { margin-top: 60px; max-width: 900px; width: 100%; position: relative; }
-        .monitor-frame { border: 1px solid #333; background: #000; border-radius: 12px; overflow: hidden; box-shadow: 0 0 50px rgba(0,0,0,0.3); aspect-ratio: 16/9; position: relative; }
-        .monitor-stand { width: 140px; height: 60px; background: linear-gradient(180deg, #333, #111); margin: 0 auto; border-radius: 0 0 10px 10px; }
-
-        /* Marquee */
+        .monitor-frame { border: 1px solid #333; background: #000; border-radius: 12px; overflow: hidden; box-shadow: 0 0 50px rgba(0,0,0,0.3); aspect-ratio: 16/9; max-width: 900px; width: 100%; margin-top: 50px; }
+        
         .marquee { background: var(--bg-panel); border-y: 1px solid var(--border); padding: 25px 0; overflow: hidden; white-space: nowrap; }
-        .marquee-content { display: inline-block; animation: scroll 30s linear infinite; }
-        .tech-item { display: inline-flex; align-items: center; gap: 10px; margin: 0 40px; color: var(--text-muted); font-family: 'Orbitron'; font-weight: 700; font-size: 1.1rem; }
+        .marquee-content { display: inline-block; animation: scroll 40s linear infinite; }
+        .tech-item { display: inline-flex; align-items: center; gap: 10px; margin: 0 40px; color: var(--text-muted); font-family: 'Orbitron'; font-weight: 700; font-size: 1rem; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         .section { padding: 100px 5%; max-width: 1400px; margin: 0 auto; }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
         .card { padding: 40px; background: var(--bg-panel); border: 1px solid var(--border); border-radius: 8px; transition: 0.3s; }
-        .card:hover { border-color: var(--neon); transform: translateY(-5px); box-shadow: 0 5px 20px var(--neon-dim); }
-        .card i { font-size: 2rem; color: var(--neon); margin-bottom: 20px; }
-        .card h3 { font-family: 'Orbitron'; margin-bottom: 15px; color: var(--text-main); }
+        .card:hover { border-color: var(--neon); transform: translateY(-5px); }
 
         .founder-grid { display: grid; grid-template-columns: 350px 1fr auto; gap: 50px; align-items: center; background: var(--bg-panel); padding: 50px; border-radius: 12px; border: 1px solid var(--border); }
-        .founder-img { width: 100%; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 0 30px rgba(0,0,0,0.3); }
+        .founder-img { width: 100%; border-radius: 12px; border: 1px solid var(--border); }
         .cert-badge { width: 140px; transition: 0.3s; cursor: crosshair; }
-        .cert-badge:hover { transform: scale(2.5) translateX(-30px); z-index: 100; background: #fff; border-radius: 8px; padding: 5px; border: 2px solid var(--neon); box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+        .cert-badge:hover { transform: scale(3.5) translateX(-40px) translateY(-40px); z-index: 1000; background: #fff; border-radius: 4px; padding: 5px; border: 2px solid var(--neon); box-shadow: 0 0 50px #000; }
 
-        .site-footer { border-top: 1px solid var(--border); padding: 60px 5%; background: var(--bg-panel); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
+        .site-footer { border-top: 1px solid var(--border); padding: 60px 5%; background: #000; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
 
-        /* =========================================
-           PART 2: KNS COMMAND CENTER (PORTAL)
-           ========================================= */
-        
+        /* ================= KNS ACTIVO (PORTAL) ================= */
         #system-app { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--sys-bg); z-index: 2000; display: flex; }
         
         .sys-sidebar { width: 260px; background: var(--sys-sidebar); border-right: 1px solid var(--border); display: flex; flex-direction: column; padding: 30px 20px; }
@@ -111,29 +92,35 @@
         .sys-main { flex: 1; padding: 40px; overflow-y: auto; background: var(--sys-bg); }
         .sys-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
         
-        /* Avatar & Dropdown */
         .profile-container { position: relative; cursor: pointer; }
         .profile-trigger { display: flex; align-items: center; gap: 10px; }
         .header-avatar { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid var(--neon); }
-        
-        /* Topology Map */
-        .topology-container {
-            width: 100%; height: 700px; background: #080808; border: 1px solid var(--border);
-            border-radius: 12px; position: relative; overflow: hidden;
-            background-image: radial-gradient(var(--border) 1px, transparent 1px); background-size: 40px 40px;
-        }
+
+        /* TOPOLOGY MAP */
+        .topology-container { width: 100%; height: 700px; background: #080808; border: 1px solid var(--border); border-radius: 12px; position: relative; overflow: hidden; background-image: radial-gradient(var(--border) 1px, transparent 1px); background-size: 40px 40px; }
         .node { position: absolute; width: 80px; height: 80px; background: #111; border: 1px solid #444; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; box-shadow: 0 0 15px rgba(0,0,0,0.5); z-index: 10; cursor: pointer; transition: 0.3s; }
-        .node i { font-size: 1.8rem; margin-bottom: 5px; }
         .node:hover { border-color: var(--neon); box-shadow: 0 0 30px var(--neon-dim); transform: scale(1.1); color: var(--neon); }
-        .node-label { font-family: 'JetBrains Mono'; font-size: 0.6rem; color: #888; text-transform: uppercase; text-align: center; }
+        .node-label { font-family: 'JetBrains Mono'; font-size: 0.6rem; color: #888; text-transform: uppercase; text-align: center; margin-top: 5px; }
+        
+        /* Topology Positions */
+        .node.cdn { top: 10%; left: 5%; border-color: #00ccff; color: #00ccff; }
+        .node.ptt { top: 10%; left: 25%; }
+        .node.op { top: 10%; left: 45%; }
+        .node.prov { top: 45%; left: 45%; width: 100px; height: 100px; border-color: var(--neon); color: var(--neon); } /* LOCAL INTERNET */
+        .node.sw { top: 45%; left: 25%; }
+        .node.olt { top: 80%; left: 25%; }
+        .node.onu { top: 80%; left: 5%; border-color: #ffcc00; color: #ffcc00; }
+
         .conn-line { position: absolute; background: #333; z-index: 1; transform-origin: top left; }
         .data-packet { position: absolute; width: 6px; height: 6px; background: var(--neon); border-radius: 50%; z-index: 2; box-shadow: 0 0 8px var(--neon); opacity: 0; }
 
-        /* Terminal */
-        .terminal-window { background: #000; border: 1px solid #333; padding: 20px; font-family: 'JetBrains Mono', monospace; color: #0f0; height: 100%; overflow-y: auto; font-size: 0.9rem; cursor: text; }
-        #term-input { background: transparent; border: none; color: #fff; width: 100%; outline: none; font-family: inherit; font-size: inherit; }
+        /* TERMINAL REAL-ISH */
+        .terminal-window { background: #000; border: 1px solid #333; padding: 20px; font-family: 'JetBrains Mono', monospace; color: #0f0; height: 100%; overflow-y: auto; font-size: 0.9rem; cursor: text; display: flex; flex-direction: column; }
+        #term-output { flex: 1; margin-bottom: 10px; }
+        .cmd-input-line { display: flex; align-items: center; }
+        #term-input { background: transparent; border: none; color: #fff; width: 100%; outline: none; font-family: inherit; font-size: inherit; margin-left: 10px; }
 
-        /* Profile Settings View */
+        /* PROFILE TABS */
         .profile-tabs { display: flex; gap: 20px; border-bottom: 1px solid var(--border); margin-bottom: 30px; }
         .tab-btn { padding: 10px 20px; background: none; border: none; color: var(--text-muted); cursor: pointer; font-family: 'Plus Jakarta Sans'; font-weight: 600; border-bottom: 2px solid transparent; }
         .tab-btn.active { color: var(--neon); border-bottom-color: var(--neon); }
@@ -142,25 +129,25 @@
         .form-group label { display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 5px; }
         .form-control { width: 100%; padding: 10px; background: var(--input-bg); border: 1px solid var(--border); color: var(--text-main); border-radius: 4px; }
 
-        /* Login Modal */
-        #gateway-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); z-index: 5000; display: flex; align-items: center; justify-content: center; }
+        /* LOGIN GATEWAY */
+        #gateway-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px); z-index: 5000; display: flex; align-items: center; justify-content: center; }
         .gateway-box { width: 400px; padding: 40px; background: var(--bg-panel); border: 1px solid var(--border); border-radius: 12px; }
         .gateway-input { width: 100%; padding: 12px; background: var(--input-bg); border: 1px solid var(--border); color: var(--text-main); margin-bottom: 15px; border-radius: 4px; }
         .gateway-input:focus { border-color: var(--neon); outline: none; }
 
+        @media (max-width: 900px) { .nav-links, .sys-sidebar { display: none; } .hero-t2 { font-size: 3rem; } .founder-grid { grid-template-columns: 1fr; text-align: center; } .cert-badge { margin: 0 auto; } }
     </style>
 </head>
 <body>
 
     <div id="public-site">
-        
         <nav class="site-nav">
             <div class="brand"><i class="fa-solid fa-layer-group" style="color: var(--neon);"></i> KNS GLOBAL</div>
             <div class="nav-links">
-                <a href="#p9" class="nav-link">Soluções</a>
-                <a href="#about" class="nav-link">Founder</a>
+                <a href="#p9">Protocolo 09</a>
+                <a href="#about">Founder</a>
                 <button class="theme-toggle" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i></button>
-                <button class="btn-outline" onclick="openGateway()"><i class="fa-solid fa-lock"></i> KNS COMMAND CENTER</button>
+                <button class="btn-login-site" onclick="openGateway()"><i class="fa-solid fa-lock"></i> KNS COMMAND CENTER</button>
             </div>
         </nav>
 
@@ -172,7 +159,6 @@
             <p style="color: var(--text-muted); margin-top: 20px; max-width: 600px;">
                 Engenharia de Infraestrutura Crítica e Proteção de Ativos Digitais.
             </p>
-            
             <div class="monitor-wrapper">
                 <div class="monitor-frame">
                     <iframe width="100%" height="100%" src="https://www.youtube.com/embed/T9wvW0EYfE0?rel=0&controls=0&showinfo=0&autoplay=1&mute=1&loop=1&playlist=T9wvW0EYfE0" frameborder="0" allowfullscreen></iframe>
@@ -186,82 +172,42 @@
                 <span class="tech-item"><i class="fa-solid fa-server"></i> ZABBIX</span>
                 <span class="tech-item"><i class="fa-solid fa-chart-line"></i> GRAFANA</span>
                 <span class="tech-item"><i class="fa-solid fa-network-wired"></i> LIBRENMS</span>
-                <span class="tech-item"><i class="fa-solid fa-eye"></i> PRTG MONITOR</span>
+                <span class="tech-item"><i class="fa-solid fa-eye"></i> PRTG</span>
                 <span class="tech-item"><i class="fa-solid fa-file-invoice"></i> GRAYLOG</span>
-                <span class="tech-item"><i class="fa-brands fa-python"></i> PYTHON AUTOMATION</span>
+                <span class="tech-item"><i class="fa-brands fa-python"></i> PYTHON</span>
+                <span class="tech-item"><i class="fa-brands fa-linux"></i> LINUX HARDENING</span>
                 <span class="tech-item"><i class="fa-solid fa-server"></i> ZABBIX</span>
-                <span class="tech-item"><i class="fa-solid fa-chart-line"></i> GRAFANA</span>
             </div>
         </div>
 
         <section id="p9" class="section">
             <div class="p9-box">
-                <span class="mono" style="color: var(--neon); letter-spacing: 2px;">SOLUÇÃO EXCLUSIVA</span>
+                <span class="mono" style="color: var(--neon); letter-spacing: 2px;">METODOLOGIA PROPRIETÁRIA</span>
                 <h2 style="font-family: 'Orbitron'; font-size: 2.5rem; margin: 20px 0; color: var(--text-main);">PROTOCOLO 09</h2>
-                <p style="color: var(--text-muted); max-width: 800px;">
-                    O Protocolo 09 é a nossa metodologia proprietária que transforma o caos em previsibilidade. Integramos monitoramento, automação e governança em uma única camada de inteligência.
-                </p>
                 <div class="grid-3">
-                    <div class="card">
-                        <i class="fa-solid fa-eye"></i>
-                        <h3>Observabilidade Total</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem;">Monitoramento consolidado (Zabbix/Grafana) com visão de negócio.</p>
-                    </div>
-                    <div class="card">
-                        <i class="fa-solid fa-robot"></i>
-                        <h3>Auto-Recuperação</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem;">Scripts Python que corrigem falhas automaticamente 24/7.</p>
-                    </div>
-                    <div class="card">
-                        <i class="fa-solid fa-file-shield"></i>
-                        <h3>Governança & SLA</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem;">Contratos com garantia de uptime e compliance rigoroso.</p>
-                    </div>
+                    <div class="card"><i class="fa-solid fa-eye"></i><h3>Observabilidade</h3><p style="color: var(--text-muted);">Monitoramento de processos de negócio, não apenas servidores.</p></div>
+                    <div class="card"><i class="fa-solid fa-robot"></i><h3>Auto-Cura</h3><p style="color: var(--text-muted);">Scripts Python que corrigem falhas antes do impacto humano.</p></div>
+                    <div class="card"><i class="fa-solid fa-file-shield"></i><h3>Governança</h3><p style="color: var(--text-muted);">SLA agressivo e Compliance. Documentação viva da rede.</p></div>
                 </div>
             </div>
         </section>
 
         <section id="about" class="section">
             <div class="founder-grid">
-                <div>
-                    <img src="./assets/foto.jpg" alt="Kaleb Nunes" class="founder-img" onerror="this.src='https://via.placeholder.com/350x400?text=Kaleb+Nunes'">
-                </div>
+                <div><img src="./assets/foto.jpg" alt="Kaleb Nunes" class="founder-img" onerror="this.src='https://via.placeholder.com/350x400'"></div>
                 <div>
                     <span class="mono" style="color: var(--neon);">FOUNDER & HEAD OF ENGINEERING</span>
                     <h2 style="font-family: 'Orbitron'; font-size: 2.5rem; margin: 15px 0; color: var(--text-main);">KALEB NUNES</h2>
-                    <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 20px;">
-                        "Com mais de 10 anos de experiência em operações de missão crítica, minha missão é simples: garantir que a tecnologia seja um ativo invisível e lucrativo. Não vendemos configuração, vendemos continuidade."
-                    </p>
-                    <div style="display: flex; gap: 30px;">
-                        <div>
-                            <strong style="color: var(--text-main); font-size: 1.5rem;">+10</strong><br>
-                            <span style="font-size: 0.8rem; color: var(--text-muted);">ANOS DE EXPERIÊNCIA</span>
-                        </div>
-                        <div>
-                            <strong style="color: var(--text-main); font-size: 1.5rem;">TOP 1%</strong><br>
-                            <span style="font-size: 0.8rem; color: var(--text-muted);">SAGE CERTIFIED GLOBAL</span>
-                        </div>
-                    </div>
+                    <p style="color: var(--text-muted); line-height: 1.8;">"Minha missão é simples: garantir que a tecnologia seja um ativo invisível, não um problema visível. Com o Protocolo 09, entregamos a paz de espírito que apenas a engenharia de precisão pode oferecer."</p>
                 </div>
-                <div>
-                    <img src="./assets/sage_full.png" alt="SAGE Certified" class="cert-badge" title="Ver Credencial">
-                </div>
+                <div><img src="./assets/sage_full.png" alt="SAGE Certified" class="cert-badge" title="Visualizar Credencial"></div>
             </div>
         </section>
 
         <footer class="site-footer">
-            <div>
-                <h3 style="font-family: 'Orbitron'; color: var(--text-main);">KNS GLOBAL</h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">Balneário Camboriú, SC - Brasil</p>
-            </div>
-            <div>
-                <h4 style="color: var(--text-main); margin-bottom: 10px;">CONTATO</h4>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">+55 (47) 98890-1616</p>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">comercial@knsconsultoria.com.br</p>
-            </div>
-            <div>
-                <a href="https://calendly.com/kalebdossantos1206/30min" target="_blank" class="btn-primary">FALE COM O BOARD</a>
-            </div>
+            <div><h3 style="font-family: 'Orbitron'; color: var(--text-main);">KNS GLOBAL</h3><p style="color: var(--text-muted); font-size: 0.9rem;">Balneário Camboriú, SC</p></div>
+            <div><h4 style="color: var(--text-main); margin-bottom: 10px;">CONTATO</h4><p style="color: var(--text-muted); font-size: 0.9rem;">+55 (47) 98890-1616</p><p style="color: var(--text-muted); font-size: 0.9rem;">comercial@knsconsultoria.com.br</p></div>
+            <div><a href="https://calendly.com/kalebdossantos1206/30min" target="_blank" class="btn-primary">FALE COM O BOARD</a></div>
         </footer>
     </div>
 
@@ -269,14 +215,12 @@
         <div class="gateway-box">
             <div style="text-align: center; margin-bottom: 30px;">
                 <i class="fa-solid fa-shield-halved" style="font-size: 3rem; color: var(--neon);"></i>
-                <h3 style="font-family: 'Orbitron'; margin-top: 15px; color: var(--text-main);">KNS COMMAND CENTER</h3>
-                <span class="mono" style="color: var(--text-muted); font-size: 0.7rem;">ACESSO RESTRITO</span>
+                <h3 style="font-family: 'Orbitron'; margin-top: 15px; color: var(--text-main);">KNS ACTIVO</h3>
             </div>
-            
             <div id="login-form">
-                <input type="text" id="user-in" class="gateway-input" placeholder="Usuário">
+                <input type="text" id="user-in" class="gateway-input" placeholder="Usuário (kaleb.nunes)">
                 <input type="password" id="pass-in" class="gateway-input" placeholder="Senha">
-                <button onclick="authSystem()" style="width: 100%; padding: 12px; background: var(--neon); border: none; font-weight: bold; cursor: pointer; color: #000;">ACESSAR SISTEMA</button>
+                <button onclick="authSystem()" style="width: 100%; padding: 12px; background: var(--neon); border: none; font-weight: bold; cursor: pointer; color: #000; font-family: 'Orbitron';">ACESSAR SISTEMA</button>
                 <button onclick="closeGateway()" style="width: 100%; padding: 12px; background: transparent; border: 1px solid var(--border); color: var(--text-muted); margin-top: 10px; cursor: pointer;">CANCELAR</button>
                 <p id="auth-error" style="color: #ff3333; font-size: 0.7rem; text-align: center; margin-top: 10px; display: none;">ACESSO NEGADO</p>
             </div>
@@ -286,11 +230,9 @@
     <div id="system-app" class="hidden">
         <div class="sys-sidebar">
             <div class="sys-logo"><i class="fa-solid fa-cube"></i> KNS<span style="font-weight: 300;">CENTER</span></div>
-            
             <button class="sys-menu-btn active" onclick="sysNav('dashboard')"><i class="fa-solid fa-chart-pie"></i> DASHBOARD</button>
             <button class="sys-menu-btn" onclick="sysNav('topology')"><i class="fa-solid fa-network-wired"></i> TOPOLOGIA</button>
             <button class="sys-menu-btn" onclick="sysNav('terminal')"><i class="fa-solid fa-terminal"></i> TERMINAL SSH</button>
-            
             <div style="margin-top: auto; border-top: 1px solid var(--border); padding-top: 20px;">
                 <button class="sys-menu-btn" onclick="sysLogout()" style="color: #ff3333;"><i class="fa-solid fa-power-off"></i> SAIR</button>
             </div>
@@ -303,7 +245,7 @@
                     <span class="mono" style="color: var(--neon); font-size: 0.8rem;">● SISTEMA ONLINE</span>
                 </div>
                 <div class="profile-container" onclick="sysNav('profile')">
-                    <div class="profile-trigger">
+                    <div style="display: flex; align-items: center; gap: 10px;">
                         <div style="text-align: right;">
                             <div style="font-weight: bold; font-size: 0.9rem; color: var(--text-main);">KALEB NUNES</div>
                             <div style="font-size: 0.7rem; color: var(--text-muted);">ADMINISTRADOR</div>
@@ -315,123 +257,76 @@
 
             <div id="view-dashboard" class="fade-in">
                 <div class="grid-3">
-                    <div class="card" style="background: rgba(0,0,0,0.3);">
+                    <div class="card" style="background: rgba(0,0,0,0.2);">
                         <span class="mono" style="color: var(--text-muted); font-size: 0.7rem;">STATUS REDE</span>
                         <div style="font-size: 2rem; font-family: 'Orbitron'; color: var(--neon); margin: 10px 0;">ONLINE</div>
-                        <div style="height: 4px; background: #333; width: 100%;"><div style="height: 100%; width: 100%; background: var(--neon);"></div></div>
                     </div>
-                    <div class="card" style="background: rgba(0,0,0,0.3);">
+                    <div class="card" style="background: rgba(0,0,0,0.2);">
                         <span class="mono" style="color: var(--text-muted); font-size: 0.7rem;">LATÊNCIA MÉDIA</span>
                         <div style="font-size: 2rem; font-family: 'Orbitron'; color: var(--text-main); margin: 10px 0;">4ms</div>
                     </div>
-                    <div class="card" style="background: rgba(0,0,0,0.3);">
+                    <div class="card" style="background: rgba(0,0,0,0.2);">
                         <span class="mono" style="color: var(--text-muted); font-size: 0.7rem;">ALERTAS CRÍTICOS</span>
                         <div style="font-size: 2rem; font-family: 'Orbitron'; color: var(--text-muted); margin: 10px 0;">0</div>
                     </div>
                 </div>
-                <div style="margin-top: 30px; background: rgba(0,0,0,0.3); padding: 20px; border: 1px solid var(--border); border-radius: 8px;">
-                    <h4 class="mono" style="color: var(--neon); margin-bottom: 10px;">// LOGS DE ATIVIDADE</h4>
-                    <div id="sys-logs" style="font-family: 'JetBrains Mono'; font-size: 0.8rem; color: var(--text-muted); line-height: 1.6;">
-                        </div>
-                </div>
             </div>
 
             <div id="view-topology" class="hidden fade-in">
-                <h3 style="font-family: 'Orbitron'; margin-bottom: 20px; color: var(--text-main);">TOPOLOGIA: FLUXO COMPLETO</h3>
+                <h3 style="font-family: 'Orbitron'; margin-bottom: 20px; color: var(--text-main);">TOPOLOGIA REAL (ISP)</h3>
                 <div class="topology-container">
-                    <div class="node cdn" style="top:10%; left:10%; border-color: #00ccff; color: #00ccff;">
-                        <i class="fa-solid fa-cloud"></i><span class="node-label">CDN GLOBAL</span>
-                    </div>
-                    <div class="node ptt" style="top:10%; left:35%;"><i class="fa-solid fa-network-wired"></i><span class="node-label">PTT-SP</span></div>
-                    <div class="node op" style="top:10%; left:60%;"><i class="fa-solid fa-building"></i><span class="node-label">OPERADORA</span></div>
-                    <div class="node prov" style="top:45%; left:60%; width: 90px; height: 90px; border-color: var(--neon); color: var(--neon);">
-                        <i class="fa-solid fa-server"></i><span class="node-label" style="color: var(--neon);">LOCAL ISP (CORE)</span>
-                    </div>
-                    <div class="node sw" style="top:45%; left:35%;"><i class="fa-solid fa-sitemap"></i><span class="node-label">MPLS/SWITCH</span></div>
-                    <div class="node olt" style="top:75%; left:35%;"><i class="fa-solid fa-broadcast-tower"></i><span class="node-label">OLT FIBRA</span></div>
-                    <div class="node onu" style="top:75%; left:10%; border-color: #ffcc00; color: #ffcc00;">
-                        <i class="fa-solid fa-house-signal"></i><span class="node-label">ONU CLIENTE</span>
-                    </div>
+                    <div class="node cdn" style="top:10%; left:5%; border-color:#00ccff; color:#00ccff;"><i class="fa-solid fa-cloud"></i><span class="node-label">CDN</span></div>
+                    <div class="node ptt" style="top:10%; left:25%;"><i class="fa-solid fa-network-wired"></i><span class="node-label">PTT-SP</span></div>
+                    <div class="node op" style="top:10%; left:45%;"><i class="fa-solid fa-building"></i><span class="node-label">OPERADORA</span></div>
+                    <div class="node prov" style="top:45%; left:45%; width:100px; height:100px; border-color:var(--neon); color:var(--neon);"><i class="fa-solid fa-server"></i><span class="node-label" style="color:var(--neon);">LOCAL ISP (CORE)</span></div>
+                    <div class="node sw" style="top:45%; left:25%;"><i class="fa-solid fa-sitemap"></i><span class="node-label">MPLS/SWITCH</span></div>
+                    <div class="node olt" style="top:80%; left:25%;"><i class="fa-solid fa-broadcast-tower"></i><span class="node-label">OLT</span></div>
+                    <div class="node onu" style="top:80%; left:5%; border-color:#ffcc00; color:#ffcc00;"><i class="fa-solid fa-house-signal"></i><span class="node-label">ONU</span></div>
 
-                    <div class="conn-line" style="top:13.5%; left:13%; width:22%; height:2px; background:#444;"><div class="data-packet" style="animation: packetMove 2s infinite linear;"></div></div>
-                    <div class="conn-line" style="top:13.5%; left:38%; width:22%; height:2px; background:#444;"><div class="data-packet" style="animation: packetMove 2s infinite linear 0.5s;"></div></div>
-                    <div class="conn-line" style="top:17%; left:63%; width:2px; height:28%; background:#444;"><div class="data-packet" style="animation: packetDown 2s infinite linear 1s;"></div></div>
-                    <div class="conn-line" style="top:50%; left:39%; width:21%; height:2px; background:#444;"><div class="data-packet" style="animation: packetMove 2s infinite linear reverse 0.5s;"></div></div>
-                    <div class="conn-line" style="top:53%; left:38%; width:2px; height:22%; background:#444;"><div class="data-packet" style="animation: packetDown 2s infinite linear 1.5s;"></div></div>
-                    <div class="conn-line" style="top:78%; left:14%; width:21%; height:2px; background:#444;"><div class="data-packet" style="animation: packetMove 2s infinite linear reverse 2s;"></div></div>
+                    <div class="conn-line" style="top:13.5%; left:9%; width:18%; height:2px; background:#444;"><div class="data-packet" style="animation: packetMove 2s infinite linear;"></div></div>
+                    <div class="conn-line" style="top:13.5%; left:29%; width:18%; height:2px; background:#444;"><div class="data-packet" style="animation: packetMove 2s infinite linear 0.5s;"></div></div>
+                    <div class="conn-line" style="top:17%; left:48%; width:2px; height:28%; background:#444;"><div class="data-packet" style="animation: packetDown 2s infinite linear 1s;"></div></div>
+                    <div class="conn-line" style="top:50%; left:29%; width:18%; height:2px; background:#444;"><div class="data-packet" style="animation: packetMove 2s infinite linear reverse 0.5s;"></div></div>
+                    <div class="conn-line" style="top:53%; left:28%; width:2px; height:27%; background:#444;"><div class="data-packet" style="animation: packetDown 2s infinite linear 1.5s;"></div></div>
+                    <div class="conn-line" style="top:83%; left:9%; width:18%; height:2px; background:#444;"><div class="data-packet" style="animation: packetMove 2s infinite linear reverse 2s;"></div></div>
                 </div>
             </div>
 
-            <div id="view-terminal" class="hidden fade-in" style="height: 500px;">
-                <h3 style="font-family: 'Orbitron'; margin-bottom: 20px; color: var(--text-main);">SECURE SHELL (SSH)</h3>
+            <div id="view-terminal" class="hidden fade-in" style="height: 100%;">
+                <h3 style="font-family: 'Orbitron'; margin-bottom: 20px; color: var(--text-main);">SECURE SHELL</h3>
                 <div class="terminal-window" onclick="document.getElementById('term-input').focus()">
                     <div id="term-output">
-                        <div>KNS SECURE SHELL [v6.0]</div>
-                        <div>(c) 2026 KNS Global. Access Level: ROOT</div>
+                        <div>KNS SECURE SHELL [v7.0]</div>
+                        <div>(c) 2026 KNS Global. System Access Required.</div>
                         <br>
-                        <div>Type 'help' for available commands.</div>
-                        <br>
+                        <div>login: <span id="ssh-login-stage"></span></div>
                     </div>
-                    <div style="display: flex;">
-                        <span style="color: var(--neon); margin-right: 10px;">root@kns-core:~#</span>
-                        <input type="text" id="term-input" autocomplete="off">
-                    </div>
+                    <input type="text" id="term-input" autocomplete="off" style="opacity: 0; position: absolute;">
                 </div>
             </div>
 
             <div id="view-profile" class="hidden fade-in">
                 <h3 style="font-family: 'Orbitron'; margin-bottom: 20px; color: var(--text-main);">MEU CADASTRO</h3>
-                
                 <div class="profile-tabs">
                     <button class="tab-btn active">Pessoal</button>
                     <button class="tab-btn">Preferências</button>
                     <button class="tab-btn">Notificações</button>
                 </div>
-
                 <div class="card" style="max-width: 900px; cursor: default;">
                     <div style="display: flex; gap: 20px; align-items: center; margin-bottom: 30px;">
-                        <div style="position: relative;">
-                            <img src="./assets/foto.jpg" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border);" onerror="this.src='https://via.placeholder.com/80'">
-                            <button style="position: absolute; bottom: 0; right: 0; background: var(--sys-bg); border: 1px solid var(--border); color: var(--text-main); font-size: 0.7rem; padding: 2px 5px; border-radius: 4px;">Alterar</button>
-                        </div>
+                        <img src="./assets/foto.jpg" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border);" onerror="this.src='https://via.placeholder.com/80'">
                         <div style="flex: 1;">
                             <label style="display: block; font-size: 0.8rem; color: var(--text-muted);">Nome *</label>
                             <input type="text" class="form-control" value="Kaleb Nunes">
                         </div>
                     </div>
-
                     <div class="form-grid">
-                        <div class="form-group">
-                            <label>E-mail</label>
-                            <input type="email" class="form-control" value="comercial@knsconsultoria.com.br">
-                        </div>
-                        <div class="form-group">
-                            <label>Telefone</label>
-                            <input type="text" class="form-control" value="+55 47 98890-1616">
-                        </div>
-                        <div class="form-group">
-                            <label>Usuário</label>
-                            <input type="text" class="form-control" value="kaleb.nunes" disabled style="opacity: 0.7;">
-                        </div>
-                        <div class="form-group">
-                            <label>Idioma</label>
-                            <select class="form-control">
-                                <option>Português do Brasil</option>
-                                <option>English</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>País</label>
-                            <input type="text" class="form-control" value="Brasil">
-                        </div>
-                        <div class="form-group">
-                            <label>Estado</label>
-                            <input type="text" class="form-control" value="Santa Catarina">
-                        </div>
+                        <div class="form-group"><label>E-mail</label><input type="email" class="form-control" value="comercial@knsconsultoria.com.br"></div>
+                        <div class="form-group"><label>Telefone</label><input type="text" class="form-control" value="+55 47 98890-1616"></div>
+                        <div class="form-group"><label>Usuário</label><input type="text" class="form-control" value="kaleb.nunes" disabled></div>
+                        <div class="form-group"><label>Idioma</label><select class="form-control"><option>Português do Brasil</option></select></div>
                     </div>
-                    <div style="margin-top: 20px; text-align: right;">
-                        <button class="btn-primary" onclick="alert('Dados salvos!')">SALVAR ALTERAÇÕES</button>
-                    </div>
+                    <div style="margin-top: 20px; text-align: right;"><button class="btn-primary" onclick="alert('Salvo!')">SALVAR ALTERAÇÕES</button></div>
                 </div>
             </div>
 
@@ -444,7 +339,6 @@
     </style>
 
     <script>
-        // --- THEME SWITCHER ---
         function toggleTheme() {
             const html = document.documentElement;
             const current = html.getAttribute('data-theme');
@@ -455,24 +349,22 @@
         function openGateway() { document.getElementById('gateway-modal').classList.remove('hidden'); }
         function closeGateway() { document.getElementById('gateway-modal').classList.add('hidden'); document.getElementById('auth-error').style.display = 'none'; }
         
+        // Enter para logar
+        document.getElementById('pass-in').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') authSystem();
+        });
+
         function authSystem() {
             const u = document.getElementById('user-in').value;
             const p = document.getElementById('pass-in').value;
-            // LOGIN: kaleb.nunes / 13091993
             if (u === 'kaleb.nunes' && p === '13091993') {
                 closeGateway();
                 document.getElementById('public-site').classList.add('hidden');
                 document.getElementById('system-app').classList.remove('hidden');
-                generateLogs();
             } else {
                 document.getElementById('auth-error').style.display = 'block';
             }
         }
-
-        // PERMITE TECLA ENTER NO LOGIN
-        document.getElementById('pass-in').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') authSystem();
-        });
 
         function sysLogout() {
             document.getElementById('system-app').classList.add('hidden');
@@ -486,87 +378,137 @@
             ['dashboard', 'topology', 'terminal', 'profile'].forEach(v => document.getElementById('view-'+v).classList.add('hidden'));
             document.getElementById('view-'+viewId).classList.remove('hidden');
             
-            // Remove active from all buttons
             document.querySelectorAll('.sys-menu-btn').forEach(b => b.classList.remove('active'));
-            // Add active if clicked from sidebar
             const btn = document.querySelector(`.sys-menu-btn[onclick="sysNav('${viewId}')"]`);
             if(btn) btn.classList.add('active');
 
-            if(viewId === 'terminal') setTimeout(() => document.getElementById('term-input').focus(), 100);
+            if(viewId === 'terminal') {
+                sshState = 'user'; // Reset SSH
+                document.getElementById('term-output').innerHTML = `
+                    <div>KNS SECURE SHELL [v7.0]</div>
+                    <div>(c) 2026 KNS Global. System Access Required.</div>
+                    <br>
+                    <div>login: <span id='current-input'></span></div>
+                `;
+                document.getElementById('term-input').value = '';
+                document.getElementById('term-input').focus();
+            }
         }
 
-        // --- TERMINAL SSH LOGIC ---
+        // --- TERMINAL LOGIC (COMPLEXA) ---
+        let sshState = 'user'; // user, pass, shell
+        let sshUser = '';
         const termInput = document.getElementById('term-input');
-        const termOutput = document.getElementById('term-output');
-
-        termInput.addEventListener('keydown', function (e) {
-            if (e.key === 'Enter') {
-                const cmd = this.value.trim();
-                printTerm(`root@kns-core:~# ${cmd}`);
+        
+        termInput.addEventListener('keydown', function(e) {
+            if(e.key === 'Enter') {
+                const val = this.value.trim();
                 this.value = '';
-                
-                if (cmd) processCommand(cmd.toLowerCase());
-                
-                // Auto scroll
-                const win = document.querySelector('.terminal-window');
-                win.scrollTop = win.scrollHeight;
+                processSSH(val);
+            } else if (e.key === 'Tab') {
+                e.preventDefault();
+                // Simples autocomplete
+                if(this.value.startsWith('dis')) this.value = 'display ';
+                if(this.value.startsWith('sh')) this.value = 'show ';
             }
         });
 
-        function printTerm(text, color) {
+        // Mirror input to span (para ver o que digita, exceto senha)
+        termInput.addEventListener('input', function() {
+            if(sshState !== 'pass') {
+                const span = document.getElementById('current-input');
+                if(span) span.innerText = this.value;
+            }
+        });
+
+        function print(text, color='#0f0') {
             const div = document.createElement('div');
-            if(color) div.style.color = color;
-            div.textContent = text;
-            termOutput.appendChild(div);
+            div.style.color = color;
+            div.innerHTML = text;
+            document.getElementById('term-output').appendChild(div);
         }
 
-        function processCommand(cmd) {
-            setTimeout(() => {
-                switch(cmd) {
-                    case 'help':
-                        printTerm("COMMANDS: status, uptime, speedtest, ping, backup, clear, exit");
-                        break;
-                    case 'status':
-                        printTerm("SYSTEM HEALTH: OPTIMAL");
-                        printTerm("CPU: 12% | RAM: 4GB/32GB | DISK: 20%");
-                        break;
-                    case 'uptime':
-                        printTerm("UPTIME: 45 days, 12 hours, 03 minutes");
-                        break;
-                    case 'speedtest':
-                        printTerm("RUNNING SPEEDTEST...", "#00ccff");
-                        setTimeout(() => printTerm("DOWNLOAD: 980 Mbps", "#00ff88"), 1000);
-                        setTimeout(() => printTerm("UPLOAD: 940 Mbps", "#00ff88"), 1500);
-                        break;
-                    case 'ping':
-                        printTerm("Pinging 8.8.8.8 with 32 bytes of data:");
-                        setTimeout(() => printTerm("Reply from 8.8.8.8: bytes=32 time=4ms TTL=118"), 500);
-                        setTimeout(() => printTerm("Reply from 8.8.8.8: bytes=32 time=4ms TTL=118"), 1000);
-                        break;
-                    case 'backup':
-                        printTerm("STARTING INCREMENTAL BACKUP...", "#ffcc00");
-                        setTimeout(() => printTerm("BACKUP COMPLETED: snapshot_v49.tar.gz", "#00ff88"), 2000);
-                        break;
-                    case 'clear':
-                        termOutput.innerHTML = '';
-                        break;
-                    case 'exit':
-                        sysLogout();
-                        break;
-                    default:
-                        printTerm(`bash: ${cmd}: command not found`, "#ff3333");
+        function processSSH(val) {
+            const out = document.getElementById('term-output');
+            
+            if (sshState === 'user') {
+                if (val === 'kalebnunes') {
+                    sshUser = val;
+                    sshState = 'pass';
+                    // Remove linha de input anterior visualmente
+                    print(`login: ${val}`, '#fff');
+                    print(`Password: <span id='current-input'></span>`);
+                } else {
+                    print(`login: ${val}`, '#fff');
+                    print('Invalid user.', '#f00');
+                    print('login: <span id="current-input"></span>');
                 }
-            }, 200);
-        }
+            } 
+            else if (sshState === 'pass') {
+                if (val === '13091993') {
+                    print('Password: *********', '#fff');
+                    print('<br>Welcome to KNS-CORE-ROUTER (Huawei VRP).');
+                    print('Type "help" or "?" for commands.<br>');
+                    sshState = 'shell';
+                    print(`<span style="color:#00ff88"><${sshUser}@kns-core></span> <span id="current-input"></span>`);
+                } else {
+                    print('Password: *', '#fff');
+                    print('Access denied.', '#f00');
+                    sshState = 'user';
+                    print('login: <span id="current-input"></span>');
+                }
+            } 
+            else if (sshState === 'shell') {
+                // Atualiza linha anterior
+                const last = out.lastElementChild;
+                last.innerHTML = `<span style="color:#00ff88"><${sshUser}@kns-core></span> ${val}`;
+                
+                // Processa Comandos
+                const cmd = val.toLowerCase();
+                
+                if (cmd === 'ping 8.8.8.8' || cmd === 'ping google.com') {
+                    print('PING 8.8.8.8: 56 data bytes');
+                    setTimeout(()=>print('64 bytes from 8.8.8.8: icmp_seq=1 ttl=118 time=4.1 ms'), 500);
+                    setTimeout(()=>print('64 bytes from 8.8.8.8: icmp_seq=2 ttl=118 time=4.2 ms'), 1000);
+                    setTimeout(()=>print('64 bytes from 8.8.8.8: icmp_seq=3 ttl=118 time=4.1 ms'), 1500);
+                }
+                else if (cmd.includes('display bgp')) {
+                    print('BGP Local Router ID is 45.10.10.1');
+                    print('Status codes: * - valid, > - best, d - damped');
+                    print('   Network            Next Hop        MED        LocPrf    PrefVal Path/Ogn');
+                    print('*> 1.1.1.0/24         10.232.4.221    0                     0      20940 i');
+                    print('*> 186.235.240.0/24   0.0.0.0         0                     0      i');
+                }
+                else if (cmd.includes('show gpon onu')) {
+                    print('OnuIndex   Admin State  OMCC State   Phase State   Channel');
+                    print('----------------------------------------------------------');
+                    print('1/6/16:1   enable       up           working       1 (GPON)');
+                }
+                else if (cmd === 'display interface brief') {
+                    print('Interface                  PHY      Protocol  InUti OutUti   inErrors  outErrors');
+                    print('XGigabitEthernet0/0/1      up       up        45%   12%      0         0');
+                    print('XGigabitEthernet0/0/2      up       up        10%   5%       0         0');
+                }
+                else if (cmd === 'clear' || cmd === 'cls') {
+                    out.innerHTML = '';
+                }
+                else if (cmd === 'help' || cmd === '?') {
+                    print('Commands: ping, display bgp peer, display interface brief, show gpon onu state, clear');
+                }
+                else if (cmd !== '') {
+                    print(`Error: Unrecognized command "${val}"`, '#f00');
+                }
 
-        function generateLogs() {
-            const logBox = document.getElementById('sys-logs');
-            const now = new Date();
-            logBox.innerHTML = `
-                <div>[${now.toLocaleTimeString()}] AUTH: Admin login successful from ${Math.floor(Math.random()*255)}.12.0.1</div>
-                <div>[${new Date(now - 500000).toLocaleTimeString()}] SYSTEM: Zabbix Agent check: OK</div>
-                <div>[${new Date(now - 1200000).toLocaleTimeString()}] BACKUP: Cloud Sync completed (120GB)</div>
-            `;
+                // Nova linha de input
+                setTimeout(() => {
+                    const div = document.createElement('div');
+                    div.innerHTML = `<span style="color:#00ff88"><${sshUser}@kns-core></span> <span id="current-input"></span>`;
+                    out.appendChild(div);
+                    // Auto scroll
+                    const win = document.querySelector('.terminal-window');
+                    win.scrollTop = win.scrollHeight;
+                }, 100); // Pequeno delay
+            }
         }
     </script>
 </body>
