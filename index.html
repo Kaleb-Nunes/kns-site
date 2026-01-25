@@ -9,19 +9,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- GLOBAL CORE --- */
+        /* --- CORE ENGINE --- */
         :root {
-            --bg-body: #050505;
-            --bg-panel: rgba(20, 20, 20, 0.9);
+            --bg-body: #020202;
+            --bg-panel: rgba(20, 20, 20, 0.95);
             --text-main: #ffffff;
             --text-muted: #8f9ba8;
             --neon: #00ff88;
             --neon-dim: rgba(0, 255, 136, 0.1);
             --border: rgba(255, 255, 255, 0.1);
-            --nav-bg: rgba(5,5,5,0.95);
+            --nav-bg: rgba(2,2,2,0.95);
             --sys-bg: #0b0b0b;
             --sys-sidebar: #111;
-            --input-bg: rgba(255,255,255,0.05);
+            --input-bg: #151515;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
@@ -31,43 +31,40 @@
         .fade-in { animation: fadeIn 0.5s ease forwards; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* Botões */
+        /* --- UI ELEMENTS --- */
         .btn-primary { background: var(--text-main); color: #000; padding: 12px 30px; border: none; font-family: 'Orbitron'; font-weight: 700; cursor: pointer; border-radius: 4px; text-decoration: none; transition: 0.3s; display: inline-block; }
         .btn-primary:hover { background: var(--neon); box-shadow: 0 0 20px var(--neon-dim); }
         
         .btn-outline { background: transparent; border: 1px solid var(--neon); color: var(--neon); padding: 8px 20px; border-radius: 4px; font-family: 'Orbitron'; font-size: 0.7rem; cursor: pointer; transition: 0.3s; }
         .btn-outline:hover { background: var(--neon); color: #000; }
 
-        /* =========================================
-           PART 1: KNS CONSULTORIA (SITE VITRINE - MASTER)
-           ========================================= */
+        /* ================= KNS CONSULTORIA (SITE) ================= */
         
         .site-nav { position: fixed; top: 0; width: 100%; height: 90px; padding: 0 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: var(--nav-bg); border-bottom: 1px solid var(--border); }
-        .brand { font-family: 'Orbitron'; font-weight: 900; font-size: 1.6rem; letter-spacing: 1px; color: var(--text-main); display: flex; align-items: center; gap: 10px; }
+        .brand { font-family: 'Orbitron'; font-weight: 900; font-size: 1.5rem; letter-spacing: 1px; color: var(--text-main); display: flex; align-items: center; gap: 10px; }
         .nav-links { display: flex; align-items: center; gap: 30px; }
         .nav-link { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; font-weight: 600; transition: 0.3s; letter-spacing: 1px; }
         .nav-link:hover { color: var(--neon); }
         
-        /* Language Selector */
         .lang-select { font-family: 'Orbitron'; font-size: 0.7rem; color: var(--text-muted); cursor: pointer; display: flex; gap: 10px; border-right: 1px solid var(--border); padding-right: 20px; margin-right: 10px; }
         .lang-opt:hover, .lang-opt.active { color: var(--neon); }
 
-        /* HERO RESTAURADO (GRANDE) */
+        /* HERO - Visual Grande */
         .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 140px 5% 50px; }
         .hero-t1 { font-family: 'Orbitron'; font-weight: 800; font-size: clamp(2rem, 5vw, 4rem); color: var(--text-muted); letter-spacing: 4px; margin-bottom: 10px; }
         .hero-t2 { font-family: 'Orbitron'; font-weight: 900; font-size: clamp(3.5rem, 8vw, 7rem); color: transparent; -webkit-text-stroke: 2px var(--text-main); text-transform: uppercase; position: relative; line-height: 1; }
         .hero-t2::before { content: 'ABSOLUTA.'; position: absolute; top: 0; left: 0; width: 0%; height: 100%; color: var(--neon); overflow: hidden; white-space: nowrap; border-right: 6px solid var(--neon); -webkit-text-stroke: 0px; animation: typeFill 4s ease-in-out infinite alternate; }
         @keyframes typeFill { 0%, 20% { width: 0%; } 80%, 100% { width: 100%; } }
 
-        /* MONITOR GRANDE (RESTAURADO) */
+        /* MONITOR APPLE PRO XDR (GRANDE) */
         .monitor-wrapper { margin-top: 80px; max-width: 1200px; width: 100%; position: relative; perspective: 1000px; }
         .monitor-frame { border: 1px solid #333; background: #000; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 80px rgba(0,0,0,0.6); aspect-ratio: 16/9; position: relative; border: 12px solid #1a1a1a; border-bottom-width: 25px; }
-        .monitor-stand { width: 200px; height: 80px; background: linear-gradient(180deg, #222, #111); margin: -5px auto 0; border-radius: 0 0 15px 15px; box-shadow: 0 10px 20px #000; }
+        .monitor-stand { width: 220px; height: 90px; background: linear-gradient(180deg, #222, #111); margin: -5px auto 0; border-radius: 0 0 15px 15px; box-shadow: 0 10px 20px #000; }
 
         /* MARQUEE */
         .marquee { background: #000; border-y: 1px solid var(--border); padding: 30px 0; overflow: hidden; white-space: nowrap; }
         .marquee-content { display: inline-block; animation: scroll 40s linear infinite; }
-        .tech-item { display: inline-flex; align-items: center; gap: 15px; margin: 0 50px; color: #555; font-family: 'Orbitron'; font-weight: 700; font-size: 1.3rem; }
+        .tech-item { display: inline-flex; align-items: center; gap: 15px; margin: 0 50px; color: #666; font-family: 'Orbitron'; font-weight: 700; font-size: 1.2rem; }
         .tech-item:hover { color: var(--neon); text-shadow: 0 0 10px var(--neon-dim); }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
@@ -83,7 +80,6 @@
         .card-premium h3 { font-family: 'Orbitron'; margin-bottom: 15px; font-size: 1.5rem; }
         .card-premium p { line-height: 1.8; color: var(--text-muted); font-size: 1rem; }
 
-        /* FOUNDER */
         .founder-grid { display: grid; grid-template-columns: 400px 1fr auto; gap: 60px; align-items: center; background: var(--bg-panel); padding: 60px; border-radius: 20px; border: 1px solid var(--border); margin-top: 100px; }
         .founder-img { width: 100%; height: 450px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border); filter: saturate(0); transition: 0.5s; }
         .founder-img:hover { filter: saturate(1); }
@@ -95,10 +91,7 @@
         .footer-link { display: block; color: #666; text-decoration: none; margin-bottom: 10px; font-size: 0.9rem; transition: 0.3s; }
         .footer-link:hover { color: var(--neon); padding-left: 5px; }
 
-        /* =========================================
-           PART 2: KNS COMMAND CENTER (PORTAL)
-           ========================================= */
-        
+        /* ================= KNS ACTIVO (PORTAL) ================= */
         #system-app { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--sys-bg); z-index: 2000; display: flex; }
         
         .sys-sidebar { width: 280px; background: var(--sys-sidebar); border-right: 1px solid var(--border); display: flex; flex-direction: column; padding: 30px 20px; }
@@ -113,19 +106,19 @@
         .profile-container { cursor: pointer; display: flex; align-items: center; gap: 15px; padding: 5px 15px; border-radius: 30px; transition: 0.3s; border: 1px solid transparent; }
         .profile-container:hover { border-color: var(--border); background: var(--bg-panel); }
         .header-avatar { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--neon); }
+        .profile-pic-large { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid var(--neon); }
 
-        /* TOPOLOGY MAP (ALIVE) */
+        /* TOPOLOGIA MAP (ALIVE) */
         .topology-container { width: 100%; height: 700px; background: #050505; border: 1px solid var(--border); border-radius: 12px; position: relative; overflow: hidden; background-image: radial-gradient(#222 1px, transparent 1px); background-size: 40px 40px; }
         .node { position: absolute; width: 90px; height: 90px; background: #111; border: 1px solid #444; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; box-shadow: 0 0 20px rgba(0,0,0,0.5); z-index: 10; cursor: pointer; transition: 0.3s; }
         .node:hover { border-color: var(--neon); box-shadow: 0 0 40px var(--neon-dim); transform: scale(1.1); color: var(--neon); }
         .node i { font-size: 2rem; margin-bottom: 5px; }
         .node-label { font-family: 'JetBrains Mono'; font-size: 0.65rem; color: #888; text-transform: uppercase; text-align: center; margin-top: 5px; font-weight: bold; }
         
-        /* Topology Positions */
         .node.cdn { top: 10%; left: 5%; border-color: #00ccff; color: #00ccff; }
         .node.ptt { top: 10%; left: 25%; }
         .node.op { top: 10%; left: 45%; }
-        .node.prov { top: 45%; left: 45%; width: 110px; height: 110px; border-color: var(--neon); color: var(--neon); background: #0a1a0f; } /* LOCAL ISP */
+        .node.prov { top: 45%; left: 45%; width: 110px; height: 110px; border-color: var(--neon); color: var(--neon); background: #0a1a0f; }
         .node.sw { top: 45%; left: 25%; }
         .node.olt { top: 80%; left: 25%; }
         .node.onu { top: 80%; left: 5%; border-color: #ffcc00; color: #ffcc00; }
@@ -133,23 +126,25 @@
         .conn-line { position: absolute; background: #333; z-index: 1; transform-origin: top left; }
         .data-packet { position: absolute; width: 8px; height: 8px; background: var(--neon); border-radius: 50%; z-index: 2; box-shadow: 0 0 10px var(--neon); opacity: 0; }
 
-        /* KNS CODEX (BOOK STYLE) */
-        .codex-card { background: #111; border: 1px solid #333; border-radius: 8px; margin-bottom: 20px; overflow: hidden; }
-        .codex-header { background: #1a1a1a; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; }
-        .codex-title { font-family: 'Orbitron'; color: var(--neon); font-size: 1rem; }
-        .codex-desc { font-size: 0.85rem; color: #ccc; padding: 15px 20px; font-family: 'Plus Jakarta Sans'; border-bottom: 1px solid #222; background: #151515; }
-        .codex-code { padding: 20px; font-family: 'JetBrains Mono'; font-size: 0.85rem; color: #a5d6ff; background: #080808; overflow-x: auto; }
+        /* WIKI CODEX BOOK */
+        .codex-container { display: grid; grid-template-columns: 250px 1fr; gap: 30px; height: 600px; }
+        .codex-menu { border-right: 1px solid var(--border); overflow-y: auto; padding-right: 10px; }
+        .codex-item { padding: 12px; cursor: pointer; color: var(--text-muted); font-size: 0.85rem; border-radius: 4px; margin-bottom: 5px; transition: 0.2s; font-family: 'JetBrains Mono'; }
+        .codex-item:hover, .codex-item.active { background: #151515; color: var(--neon); }
+        .codex-content { overflow-y: auto; padding: 20px; background: #111; border-radius: 8px; border: 1px solid var(--border); }
+        .code-block { background: #000; padding: 20px; border-radius: 6px; font-family: 'JetBrains Mono'; font-size: 0.85rem; color: #a5d6ff; border-left: 3px solid var(--neon); margin-top: 15px; white-space: pre-wrap; }
 
         /* SSH TERMINAL */
         .terminal-window { background: #000; border: 1px solid #333; padding: 20px; font-family: 'JetBrains Mono', monospace; color: #0f0; height: 100%; overflow-y: auto; font-size: 0.95rem; display: flex; flex-direction: column; }
         #term-output { flex: 1; margin-bottom: 10px; white-space: pre-wrap; line-height: 1.5; }
+        .term-input-line { display: flex; align-items: center; }
         #term-input { background: transparent; border: none; color: #fff; width: 100%; outline: none; font-family: inherit; font-size: inherit; caret-color: var(--neon); }
 
-        /* PERFIL & FORMULÁRIOS */
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        .form-group label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px; font-weight: 600; }
-        .form-control { width: 100%; padding: 12px; background: #151515; border: 1px solid #333; color: #fff; border-radius: 6px; font-family: 'Plus Jakarta Sans'; }
-        .form-control:focus { border-color: var(--neon); outline: none; }
+        /* PROFILE */
+        .profile-tabs { display: flex; gap: 20px; border-bottom: 1px solid var(--border); margin-bottom: 30px; }
+        .tab-btn { padding: 10px 20px; background: none; border: none; color: var(--text-muted); cursor: pointer; font-family: 'Plus Jakarta Sans'; font-weight: 600; border-bottom: 2px solid transparent; }
+        .tab-btn.active { color: var(--neon); border-bottom-color: var(--neon); }
+        .form-control { width: 100%; padding: 12px; background: var(--input-bg); border: 1px solid var(--border); color: var(--text-main); border-radius: 6px; font-family: 'Plus Jakarta Sans'; }
 
         /* Login Gateway */
         #gateway-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); z-index: 5000; display: flex; align-items: center; justify-content: center; }
@@ -164,16 +159,16 @@
 
     <div id="public-site">
         <nav class="site-nav">
-            <div class="brand"><i class="fa-solid fa-layer-group" style="color: var(--neon);"></i> KNS CONSULTORIA</div>
+            <div class="brand"><i class="fa-solid fa-layer-group" style="color: var(--neon);"></i> KNS CONSULTORIA GLOBAL</div>
             <div class="nav-links">
                 <a href="#p9" class="nav-link">Soluções</a>
                 <a href="#about" class="nav-link">Founder</a>
                 <div class="lang-select">
                     <span class="lang-opt active">PT</span>
-                    <span class="lang-opt" onclick="alert('Switching to English (Demo)')">EN</span>
-                    <span class="lang-opt" onclick="alert('Cambiando a Español (Demo)')">ES</span>
+                    <span class="lang-opt">EN</span>
+                    <span class="lang-opt">ES</span>
                 </div>
-                <button class="btn-outline" onclick="openGateway()"><i class="fa-solid fa-lock"></i> ÁREA DO CLIENTE</button>
+                <button class="btn-outline" onclick="openGateway()"><i class="fa-solid fa-lock"></i> KNS COMMAND CENTER</button>
             </div>
         </nav>
 
@@ -196,14 +191,12 @@
 
         <div class="marquee">
             <div class="marquee-content">
-                <span class="tech-item"><i class="fa-brands fa-python"></i> PYTHON AUTOMATION</span>
                 <span class="tech-item"><i class="fa-solid fa-server"></i> ZABBIX</span>
                 <span class="tech-item"><i class="fa-solid fa-chart-line"></i> GRAFANA</span>
                 <span class="tech-item"><i class="fa-solid fa-network-wired"></i> LIBRENMS</span>
                 <span class="tech-item"><i class="fa-solid fa-eye"></i> PRTG</span>
                 <span class="tech-item"><i class="fa-solid fa-file-invoice"></i> GRAYLOG</span>
-                <span class="tech-item"><i class="fa-brands fa-aws"></i> AWS CLOUD</span>
-                <span class="tech-item"><i class="fa-solid fa-server"></i> ZABBIX</span>
+                <span class="tech-item"><i class="fa-brands fa-python"></i> PYTHON</span>
             </div>
         </div>
 
@@ -212,23 +205,23 @@
                 <span class="mono" style="color: var(--neon); letter-spacing: 2px;">SOLUÇÃO PREMIUM</span>
                 <h2 class="section-title">PROTOCOLO 09</h2>
                 <p style="color: var(--text-muted); max-width: 800px; margin: 0 auto 50px;">
-                    O Protocolo 09 é a nossa metodologia proprietária que transforma o caos em previsibilidade. Não entregamos apenas software, entregamos a paz de espírito de uma operação blindada.
+                    O Protocolo 09 é a nossa metodologia proprietária que transforma o caos em previsibilidade.
                 </p>
                 <div class="grid-3">
                     <div class="card-premium">
                         <i class="fa-solid fa-eye"></i>
                         <h3>Observabilidade Total</h3>
-                        <p>Muito além de ping. Monitoramos KPIs de negócio, transações e experiência do usuário final. Unificamos Zabbix, Grafana e Graylog em uma visão única de comando.</p>
+                        <p>Monitoramos KPIs de negócio, transações e experiência do usuário final. Unificamos Zabbix, Grafana e Graylog em uma visão única de comando.</p>
                     </div>
                     <div class="card-premium">
                         <i class="fa-solid fa-robot"></i>
                         <h3>Auto-Cura (Self-Healing)</h3>
-                        <p>Nossos robôs em Python identificam falhas e executam correções antes que seu cliente perceba. Reinício de serviços, limpeza de logs e failover automático.</p>
+                        <p>Nossos robôs em Python identificam falhas e executam correções antes que seu cliente perceba. Reinício de serviços e failover automático.</p>
                     </div>
                     <div class="card-premium">
                         <i class="fa-solid fa-file-shield"></i>
                         <h3>Governança & Compliance</h3>
-                        <p>SLA agressivo garantido em contrato. Auditoria contínua de segurança, adequação à LGPD e documentação viva da sua topologia de rede.</p>
+                        <p>SLA agressivo garantido em contrato. Auditoria contínua de segurança, adequação à LGPD e documentação viva da rede.</p>
                     </div>
                 </div>
             </div>
@@ -236,37 +229,24 @@
 
         <section id="about" class="section">
             <div class="founder-grid">
-                <div>
-                    <img src="./assets/foto.jpg" alt="Kaleb Nunes" class="founder-img" onerror="this.src='https://via.placeholder.com/400x500'">
-                </div>
+                <div><img src="./assets/foto.jpg" alt="Kaleb Nunes" class="founder-img" onerror="this.src='https://via.placeholder.com/400x500'"></div>
                 <div>
                     <span class="mono" style="color: var(--neon);">FOUNDER & HEAD OF ENGINEERING</span>
                     <h2 class="section-title" style="text-align: left; margin-bottom: 20px;">KALEB NUNES</h2>
                     <p style="line-height: 1.8; color: var(--text-muted); font-size: 1.1rem; margin-bottom: 30px;">
-                        "Meu foco não é vender horas técnicas, é vender continuidade de negócio. Se sua operação para, você perde dinheiro. Minha missão é garantir que a tecnologia seja um ativo invisível e lucrativo, não um problema visível."
+                        "Meu foco não é vender horas técnicas, é vender continuidade de negócio. Minha missão é garantir que a tecnologia seja um ativo invisível e lucrativo."
                     </p>
                     <div style="display: flex; gap: 40px;">
-                        <div>
-                            <strong style="color: var(--text-main); font-size: 2rem;">+10</strong><br>
-                            <span style="font-size: 0.8rem; color: var(--text-muted);">ANOS DE EXPERIÊNCIA</span>
-                        </div>
-                        <div>
-                            <strong style="color: var(--text-main); font-size: 2rem;">TOP 1%</strong><br>
-                            <span style="font-size: 0.8rem; color: var(--text-muted);">SAGE CERTIFIED GLOBAL</span>
-                        </div>
+                        <div><strong style="color: var(--text-main); font-size: 2rem;">+10</strong><br><span style="font-size: 0.8rem; color: var(--text-muted);">ANOS DE EXPERIÊNCIA</span></div>
+                        <div><strong style="color: var(--text-main); font-size: 2rem;">TOP 1%</strong><br><span style="font-size: 0.8rem; color: var(--text-muted);">SAGE CERTIFIED GLOBAL</span></div>
                     </div>
                 </div>
-                <div>
-                    <img src="./assets/sage_full.png" alt="SAGE Certified" class="cert-badge" title="Visualizar Credencial">
-                </div>
+                <div><img src="./assets/sage_full.png" alt="SAGE Certified" class="cert-badge" title="Visualizar Credencial"></div>
             </div>
         </section>
 
         <footer class="site-footer">
-            <div class="footer-col">
-                <h4>KNS CONSULTORIA GLOBAL</h4>
-                <p style="color: #666; font-size: 0.9rem;">Balneário Camboriú, SC - Brasil</p>
-            </div>
+            <div class="footer-col"><h4>KNS CONSULTORIA GLOBAL</h4><p style="color: #666; font-size: 0.9rem;">Balneário Camboriú, SC - Brasil</p></div>
             <div class="footer-col">
                 <h4>CONTATO DIRETO</h4>
                 <a href="https://wa.me/5547988901616" class="footer-link"><i class="fa-brands fa-whatsapp"></i> +55 (47) 98890-1616</a>
@@ -277,9 +257,7 @@
                 <a href="#" class="footer-link"><i class="fa-brands fa-linkedin"></i> LinkedIn Corporativo</a>
                 <a href="#" class="footer-link"><i class="fa-brands fa-github"></i> GitHub Projects</a>
             </div>
-            <div class="footer-col">
-                <a href="https://calendly.com/kalebdossantos1206/30min" target="_blank" class="btn-primary">FALE COM O BOARD</a>
-            </div>
+            <div class="footer-col"><a href="https://calendly.com/kalebdossantos1206/30min" target="_blank" class="btn-primary">FALE COM O BOARD</a></div>
         </footer>
     </div>
 
@@ -290,27 +268,22 @@
                 <h3 style="font-family: 'Orbitron'; margin-top: 15px; color: var(--text-main);">KNS COMMAND CENTER</h3>
                 <span class="mono" style="color: var(--text-muted); font-size: 0.7rem;">ACESSO RESTRITO</span>
             </div>
-            
-            <div id="login-form">
-                <input type="text" id="user-in" class="gateway-input" placeholder="Usuário (kaleb.nunes)">
-                <input type="password" id="pass-in" class="gateway-input" placeholder="Senha">
-                <button onclick="authSystem()" style="width: 100%; padding: 15px; background: var(--neon); border: none; font-weight: bold; cursor: pointer; color: #000; font-family: 'Orbitron'; letter-spacing: 1px;">ENTRAR</button>
-                <button onclick="closeGateway()" style="width: 100%; padding: 12px; background: transparent; border: none; color: var(--text-muted); margin-top: 15px; cursor: pointer;">Voltar ao Site</button>
-                <p id="auth-error" style="color: #ff3333; font-size: 0.8rem; text-align: center; margin-top: 20px; display: none;"><i class="fa-solid fa-circle-exclamation"></i> ACESSO NEGADO</p>
-            </div>
+            <input type="text" id="user-in" class="gateway-input" placeholder="Usuário (kaleb.nunes)">
+            <input type="password" id="pass-in" class="gateway-input" placeholder="Senha">
+            <button onclick="authSystem()" style="width: 100%; padding: 15px; background: var(--neon); border: none; font-weight: bold; cursor: pointer; color: #000; font-family: 'Orbitron'; letter-spacing: 1px;">ENTRAR</button>
+            <button onclick="closeGateway()" style="width: 100%; padding: 12px; background: transparent; border: none; color: var(--text-muted); margin-top: 15px; cursor: pointer;">Voltar ao Site</button>
+            <p id="auth-error" style="color: #ff3333; font-size: 0.8rem; text-align: center; margin-top: 20px; display: none;"><i class="fa-solid fa-circle-exclamation"></i> ACESSO NEGADO</p>
         </div>
     </div>
 
     <div id="system-app" class="hidden">
         <div class="sys-sidebar">
             <div class="sys-logo"><i class="fa-solid fa-cube"></i> KNS<span style="font-weight: 300;">CENTER</span></div>
-            
             <button class="sys-menu-btn active" onclick="sysNav('dashboard')"><i class="fa-solid fa-chart-pie"></i> DASHBOARD</button>
             <button class="sys-menu-btn" onclick="sysNav('topology')"><i class="fa-solid fa-network-wired"></i> TOPOLOGIA</button>
             <button class="sys-menu-btn" onclick="sysNav('terminal')"><i class="fa-solid fa-terminal"></i> TERMINAL SSH</button>
             <button class="sys-menu-btn" onclick="sysNav('codex')"><i class="fa-solid fa-book"></i> KNS CODEX</button>
             <button class="sys-menu-btn" onclick="sysNav('profile')"><i class="fa-solid fa-user-gear"></i> MEU CADASTRO</button>
-            
             <div style="margin-top: auto; border-top: 1px solid #222; padding-top: 20px;">
                 <button class="sys-menu-btn" onclick="sysLogout()" style="color: #ff3333;"><i class="fa-solid fa-power-off"></i> LOGOUT</button>
             </div>
@@ -318,34 +291,18 @@
 
         <div class="sys-main">
             <div class="sys-header">
-                <div>
-                    <h2 style="font-family: 'Orbitron'; color: var(--text-main);">PAINEL DE CONTROLE</h2>
-                    <span class="mono" style="color: var(--neon); font-size: 0.8rem;">● SISTEMA ONLINE</span>
-                </div>
+                <div><h2 style="font-family: 'Orbitron'; color: var(--text-main);">PAINEL DE CONTROLE</h2><span class="mono" style="color: var(--neon); font-size: 0.8rem;">● SISTEMA ONLINE</span></div>
                 <div class="profile-container" onclick="sysNav('profile')">
-                    <div style="text-align: right;">
-                        <div style="font-weight: bold; font-size: 0.9rem; color: var(--text-main);">KALEB NUNES</div>
-                        <div style="font-size: 0.7rem; color: var(--text-muted);">ADMINISTRADOR</div>
-                    </div>
+                    <div style="text-align: right;"><div style="font-weight: bold; font-size: 0.9rem; color: var(--text-main);">KALEB NUNES</div><div style="font-size: 0.7rem; color: var(--text-muted);">ADMINISTRADOR</div></div>
                     <img src="./assets/foto.jpg" class="header-avatar" onerror="this.src='https://via.placeholder.com/40'">
                 </div>
             </div>
 
             <div id="view-dashboard" class="fade-in">
                 <div class="grid-3" style="margin-top: 0;">
-                    <div class="card" style="background: rgba(20,20,20,0.5);">
-                        <span class="mono" style="color: var(--text-muted); font-size: 0.7rem;">STATUS REDE</span>
-                        <div style="font-size: 2.5rem; font-family: 'Orbitron'; color: var(--neon); margin: 15px 0;">ONLINE</div>
-                        <div style="height: 4px; background: #222; width: 100%;"><div style="height: 100%; width: 100%; background: var(--neon);"></div></div>
-                    </div>
-                    <div class="card" style="background: rgba(20,20,20,0.5);">
-                        <span class="mono" style="color: var(--text-muted); font-size: 0.7rem;">LATÊNCIA MÉDIA</span>
-                        <div style="font-size: 2.5rem; font-family: 'Orbitron'; color: var(--text-main); margin: 15px 0;">4ms</div>
-                    </div>
-                    <div class="card" style="background: rgba(20,20,20,0.5);">
-                        <span class="mono" style="color: var(--text-muted); font-size: 0.7rem;">CLIENTES ATIVOS</span>
-                        <div style="font-size: 2.5rem; font-family: 'Orbitron'; color: #fff; margin: 15px 0;">12</div>
-                    </div>
+                    <div class="card" style="background: rgba(20,20,20,0.5);"><span class="mono" style="color: var(--text-muted); font-size: 0.7rem;">STATUS REDE</span><div style="font-size: 2.5rem; font-family: 'Orbitron'; color: var(--neon); margin: 15px 0;">ONLINE</div></div>
+                    <div class="card" style="background: rgba(20,20,20,0.5);"><span class="mono" style="color: var(--text-muted); font-size: 0.7rem;">LATÊNCIA MÉDIA</span><div style="font-size: 2.5rem; font-family: 'Orbitron'; color: var(--text-main); margin: 15px 0;">4ms</div></div>
+                    <div class="card" style="background: rgba(20,20,20,0.5);"><span class="mono" style="color: var(--text-muted); font-size: 0.7rem;">CLIENTES ATIVOS</span><div style="font-size: 2.5rem; font-family: 'Orbitron'; color: #fff; margin: 15px 0;">12</div></div>
                 </div>
             </div>
 
@@ -355,11 +312,10 @@
                     <div class="node cdn" style="top:10%; left:5%; border-color:#00ccff; color:#00ccff;"><i class="fa-solid fa-cloud"></i><span class="node-label">CDN</span></div>
                     <div class="node ptt" style="top:10%; left:25%;"><i class="fa-solid fa-network-wired"></i><span class="node-label">PTT-SP</span></div>
                     <div class="node op" style="top:10%; left:45%;"><i class="fa-solid fa-building"></i><span class="node-label">OPERADORA</span></div>
-                    <div class="node prov" style="top:45%; left:45%; width:110px; height:110px; border-color:var(--neon); color:var(--neon);"><i class="fa-solid fa-server"></i><span class="node-label" style="color:var(--neon); font-weight:bold;">LOCAL ISP</span></div>
+                    <div class="node prov" style="top:45%; left:45%; width:110px; height:110px; border-color:var(--neon); color:var(--neon);"><i class="fa-solid fa-server"></i><span class="node-label" style="color:var(--neon);">LOCAL ISP</span></div>
                     <div class="node sw" style="top:45%; left:25%;"><i class="fa-solid fa-sitemap"></i><span class="node-label">MPLS/SWITCH</span></div>
                     <div class="node olt" style="top:80%; left:25%;"><i class="fa-solid fa-broadcast-tower"></i><span class="node-label">OLT</span></div>
                     <div class="node onu" style="top:80%; left:5%; border-color:#ffcc00; color:#ffcc00;"><i class="fa-solid fa-house-signal"></i><span class="node-label">ONU</span></div>
-
                     <div class="conn-line" style="top:13.5%; left:9%; width:18%; height:2px; background:#444;"><div class="data-packet" style="animation: packetMove 2s infinite linear;"></div></div>
                     <div class="conn-line" style="top:13.5%; left:29%; width:18%; height:2px; background:#444;"><div class="data-packet" style="animation: packetMove 2s infinite linear 0.5s;"></div></div>
                     <div class="conn-line" style="top:17%; left:48%; width:2px; height:28%; background:#444;"><div class="data-packet" style="animation: packetDown 2s infinite linear 1s;"></div></div>
@@ -373,79 +329,40 @@
                 <h3 style="font-family: 'Orbitron'; margin-bottom: 20px;">SECURE SHELL (SSH)</h3>
                 <div class="terminal-window" onclick="document.getElementById('term-input').focus()">
                     <div id="term-output"></div>
-                    <div style="display: flex;">
+                    <div class="term-input-line">
                         <span id="term-prompt" style="color: var(--neon); margin-right: 10px;">login as:</span>
                         <input type="text" id="term-input" autocomplete="off">
-                        <input type="password" id="term-pass" autocomplete="off" style="display:none; background:transparent; border:none; color:transparent; width:1px;">
                     </div>
                 </div>
             </div>
 
             <div id="view-codex" class="hidden fade-in">
-                <h3 style="font-family: 'Orbitron'; margin-bottom: 30px;">KNS CODEX (MANUAL DE OPERAÇÕES)</h3>
-                
-                <div class="codex-card">
-                    <div class="codex-header">
-                        <span class="codex-title"><i class="fa-solid fa-server"></i> Comandos Huawei (VRP)</span>
+                <h3 style="font-family: 'Orbitron'; margin-bottom: 30px;">KNS CODEX (BASE DE CONHECIMENTO)</h3>
+                <div class="codex-container">
+                    <div class="codex-menu">
+                        <div class="codex-item active" onclick="loadCodex('huawei')"><i class="fa-solid fa-server"></i> Comandos Huawei</div>
+                        <div class="codex-item" onclick="loadCodex('datacom')"><i class="fa-solid fa-network-wired"></i> Comandos Datacom</div>
+                        <div class="codex-item" onclick="loadCodex('olt')"><i class="fa-solid fa-broadcast-tower"></i> Configuração OLT</div>
+                        <div class="codex-item" onclick="loadCodex('bgp')"><i class="fa-solid fa-globe"></i> BGP & Peers</div>
                     </div>
-                    <div class="codex-desc">
-                        Utilizado para verificar o status de interfaces e potências ópticas em roteadores NE/NetEngine.
-                    </div>
-                    <div class="codex-code">
-display interface brief          # Verificar Status de Todas as interfaces
-display transceiver diagnosis    # Verificar Potência óptica
-display current-configuration    # Mostrar configuração atual
-undo shutdown                    # Levantar interface
-                    </div>
-                </div>
-
-                <div class="codex-card">
-                    <div class="codex-header">
-                        <span class="codex-title"><i class="fa-solid fa-network-wired"></i> Troubleshooting OLT</span>
-                    </div>
-                    <div class="codex-desc">
-                        Passo a passo para identificar falhas massivas ou clientes isolados na fibra.
-                    </div>
-                    <div class="codex-code">
-display ont autofind all         # Listar ONTs disponíveis
-display ont info summary         # Resumo de ONTs na porta
-display ont optical-info         # Verificar sinal óptico (dBm)
-ont add [port] [id] sn-auth      # Provisionar ONT
-                    </div>
-                </div>
-
-                <div class="codex-card">
-                    <div class="codex-header">
-                        <span class="codex-title"><i class="fa-solid fa-globe"></i> BGP & Roteamento</span>
-                    </div>
-                    <div class="codex-desc">
-                        Análise de peers com operadoras e PTT.
-                    </div>
-                    <div class="codex-code">
-display bgp peer                 # Mostrar status das sessões BGP
-display bgp routing-table        # Ver tabela de rotas recebidas
-show ip route                    # Tabela de roteamento geral
-                    </div>
+                    <div class="codex-content" id="codex-display">
+                        </div>
                 </div>
             </div>
 
             <div id="view-profile" class="hidden fade-in">
                 <h3 style="font-family: 'Orbitron'; margin-bottom: 20px;">MEU CADASTRO</h3>
-                
                 <div class="profile-tabs">
                     <button class="tab-btn active" onclick="switchProfileTab('pessoal')">Pessoal</button>
                     <button class="tab-btn" onclick="switchProfileTab('preferencias')">Preferências</button>
                     <button class="tab-btn" onclick="switchProfileTab('notificacoes')">Notificações</button>
                 </div>
-
                 <div id="tab-pessoal">
                     <div class="card" style="max-width: 900px; cursor: default; background: #111;">
                         <div style="display: flex; gap: 30px; align-items: center; margin-bottom: 30px; border-bottom: 1px solid #333; padding-bottom: 30px;">
                             <div style="position: relative;">
-                                <img src="./assets/foto.jpg" class="profile-pic-large kns-avatar" onerror="this.src='https://via.placeholder.com/100'">
-                                <label for="file-upload" style="position: absolute; bottom: 0; right: 0; background: var(--neon); color: #000; padding: 5px; border-radius: 50%; cursor: pointer;">
-                                    <i class="fa-solid fa-camera"></i>
-                                </label>
+                                <img src="./assets/foto.jpg" class="profile-pic-large header-avatar" onerror="this.src='https://via.placeholder.com/120'">
+                                <label for="file-upload" style="position: absolute; bottom: 0; right: 0; background: var(--neon); color: #000; padding: 8px; border-radius: 50%; cursor: pointer;"><i class="fa-solid fa-camera"></i></label>
                                 <input type="file" id="file-upload" hidden onchange="updatePhoto(this)">
                             </div>
                             <div style="flex: 1;">
@@ -455,50 +372,15 @@ show ip route                    # Tabela de roteamento geral
                         </div>
                         <div class="form-grid">
                             <div class="form-group"><label>E-mail Corporativo</label><input type="email" class="form-control" value="comercial@knsconsultoria.com.br"></div>
-                            <div class="form-group"><label>Telefone / WhatsApp</label><input type="text" class="form-control" value="+55 47 98890-1616"></div>
-                            <div class="form-group"><label>Usuário do Sistema</label><input type="text" class="form-control" value="kaleb.nunes" disabled style="opacity: 0.7;"></div>
+                            <div class="form-group"><label>Telefone</label><input type="text" class="form-control" value="+55 47 98890-1616"></div>
                             <div class="form-group"><label>Cargo</label><input type="text" class="form-control" value="Head of Engineering"></div>
                         </div>
-                        <div style="text-align: right; margin-top: 20px;">
-                            <button class="btn-primary" onclick="alert('Dados atualizados com sucesso!')">SALVAR ALTERAÇÕES</button>
-                        </div>
+                        <div style="text-align: right; margin-top: 20px;"><button class="btn-primary" onclick="alert('Dados salvos!')">SALVAR ALTERAÇÕES</button></div>
                     </div>
                 </div>
-
-                <div id="tab-preferencias" class="hidden">
-                    <div class="card" style="max-width: 900px; background: #111;">
-                        <div class="form-group">
-                            <label>Idioma da Interface</label>
-                            <select class="form-control">
-                                <option>Português do Brasil</option>
-                                <option>English (US)</option>
-                                <option>Español</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Tema Padrão</label>
-                            <select class="form-control">
-                                <option>KNS Dark (Recomendado)</option>
-                                <option>Light Mode</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="tab-notificacoes" class="hidden">
-                    <div class="card" style="max-width: 900px; background: #111;">
-                        <div style="display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #333;">
-                            <span>Alertas de Queda (Downtime)</span>
-                            <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #333;">
-                            <span>Relatórios Semanais (E-mail)</span>
-                            <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
-                        </div>
-                    </div>
-                </div>
+                <div id="tab-preferencias" class="hidden"><div class="card" style="max-width: 900px; background: #111;"><div class="form-group"><label>Idioma</label><select class="form-control"><option>Português</option></select></div></div></div>
+                <div id="tab-notificacoes" class="hidden"><div class="card" style="max-width: 900px; background: #111;"><div class="form-group"><label>Alertas por E-mail</label><input type="checkbox" checked></div></div></div>
             </div>
-
         </div>
     </div>
 
@@ -511,11 +393,7 @@ show ip route                    # Tabela de roteamento geral
         // --- GATEWAY LOGIC ---
         function openGateway() { document.getElementById('gateway-modal').classList.remove('hidden'); }
         function closeGateway() { document.getElementById('gateway-modal').classList.add('hidden'); document.getElementById('auth-error').style.display = 'none'; }
-        
-        // Enter para logar
-        document.getElementById('pass-in').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') authSystem();
-        });
+        document.getElementById('pass-in').addEventListener('keypress', function(e) { if (e.key === 'Enter') authSystem(); });
 
         function authSystem() {
             const u = document.getElementById('user-in').value;
@@ -529,65 +407,40 @@ show ip route                    # Tabela de roteamento geral
             }
         }
 
-        function sysLogout() {
-            document.getElementById('system-app').classList.add('hidden');
-            document.getElementById('public-site').classList.remove('hidden');
-            document.getElementById('user-in').value = '';
-            document.getElementById('pass-in').value = '';
-            sysNav('dashboard');
-        }
+        function sysLogout() { location.reload(); }
 
         function sysNav(viewId) {
             ['dashboard', 'topology', 'terminal', 'profile', 'codex'].forEach(v => document.getElementById('view-'+v).classList.add('hidden'));
             document.getElementById('view-'+viewId).classList.remove('hidden');
-            
             document.querySelectorAll('.sys-menu-btn').forEach(b => b.classList.remove('active'));
             const btn = document.querySelector(`.sys-menu-btn[onclick="sysNav('${viewId}')"]`);
             if(btn) btn.classList.add('active');
-
             if(viewId === 'terminal') initSSH();
+            if(viewId === 'codex') loadCodex('huawei');
         }
 
-        // --- PROFILE LOGIC ---
-        function updatePhoto(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    document.querySelectorAll('.header-avatar, .profile-pic-large').forEach(img => img.src = e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        function switchProfileTab(tabName) {
-            ['pessoal', 'preferencias', 'notificacoes'].forEach(t => document.getElementById('tab-'+t).classList.add('hidden'));
-            document.getElementById('tab-'+tabName).classList.remove('hidden');
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
-        }
-
-        // --- SSH INTELLIGENCE ---
-        let sshStep = 0; // 0=check, 1=user, 2=pass, 3=shell
-        const termInput = document.getElementById('term-input');
+        // --- SSH INTELLIGENT LOGIC ---
+        let sshState = 0; // 0=start, 1=user, 2=pass, 3=shell
         const termOutput = document.getElementById('term-output');
+        const termInput = document.getElementById('term-input');
         const termPrompt = document.getElementById('term-prompt');
 
         function initSSH() {
-            termOutput.innerHTML = '<div>KNS SECURE SHELL [v8.0]</div><div>(c) 2026 KNS Global.</div><br>';
-            
-            if (localStorage.getItem('kns_ssh_auth') === 'true') {
-                // Auto Login
-                termOutput.innerHTML += '<div>Auto-authenticating admin... Success.</div><br>';
-                sshStep = 3;
+            termOutput.innerHTML = '<div>KNS SECURE SHELL [v9.0]</div><div>(c) 2026 KNS Global. Access Level: ROOT</div><br>';
+            // Check Auto-Login
+            if (localStorage.getItem('kns_ssh_token') === 'authorized') {
+                termOutput.innerHTML += '<div>Authenticating via Token... Success.</div><br>';
+                sshState = 3;
                 termPrompt.innerText = 'root@kns-core:~#';
                 termPrompt.style.color = 'var(--neon)';
+                termInput.type = 'text';
             } else {
-                sshStep = 1;
+                sshState = 1;
                 termPrompt.innerText = 'login as:';
                 termPrompt.style.color = '#fff';
+                termInput.type = 'text';
             }
             termInput.value = '';
-            termInput.type = 'text';
             termInput.focus();
         }
 
@@ -596,39 +449,34 @@ show ip route                    # Tabela de roteamento geral
                 const val = this.value;
                 this.value = '';
 
-                if (sshStep === 1) { // User
+                if(sshState === 1) { // User
                     print(`login as: ${val}`);
-                    if (val === 'kalebnunes') {
-                        sshStep = 2;
+                    if(val === 'kalebnunes') {
+                        sshState = 2;
                         termPrompt.innerText = `kalebnunes@kns-core's password:`;
-                        this.type = 'password'; // Mask input
+                        this.type = 'password'; // MASK PASSWORD
                     } else {
                         print('Access denied', '#f00');
                     }
-                } 
-                else if (sshStep === 2) { // Pass
-                    print(``); // Don't print pass
-                    if (val === '13091993') {
-                        sshStep = 3;
-                        localStorage.setItem('kns_ssh_auth', 'true'); // Save auth
-                        print('<br>Welcome to KNS-CORE-ROUTER (Huawei VRP).');
-                        print('Type "help" for commands.<br>');
+                } else if(sshState === 2) { // Pass
+                    // No print for pass
+                    if(val === '13091993') {
+                        sshState = 3;
+                        localStorage.setItem('kns_ssh_token', 'authorized'); // Save Token
+                        this.type = 'text';
+                        print('<br>Welcome to KNS-CORE. Type "help".<br>');
                         termPrompt.innerText = 'root@kns-core:~#';
                         termPrompt.style.color = 'var(--neon)';
-                        this.type = 'text';
                     } else {
                         print('Access denied', '#f00');
-                        sshStep = 1;
-                        termPrompt.innerText = 'login as:';
+                        sshState = 1;
                         this.type = 'text';
+                        termPrompt.innerText = 'login as:';
                     }
-                } 
-                else if (sshStep === 3) { // Shell
+                } else if(sshState === 3) { // Shell
                     print(`<span style="color:var(--neon)">root@kns-core:~#</span> ${val}`);
-                    processCommand(val);
+                    processCmd(val);
                 }
-                
-                // Scroll
                 const win = document.querySelector('.terminal-window');
                 win.scrollTop = win.scrollHeight;
             }
@@ -641,24 +489,46 @@ show ip route                    # Tabela de roteamento geral
             termOutput.appendChild(div);
         }
 
-        function processCommand(cmd) {
+        function processCmd(cmd) {
             cmd = cmd.toLowerCase().trim();
-            if (cmd === 'help') {
-                print('Commands: display bgp peer, display interface brief, ping, status, clear');
-            } else if (cmd.includes('ping')) {
-                print('PING 8.8.8.8 (8.8.8.8): 56 data bytes');
-                setTimeout(()=>print('64 bytes from 8.8.8.8: icmp_seq=0 ttl=118 time=4.1 ms'), 500);
-                setTimeout(()=>print('64 bytes from 8.8.8.8: icmp_seq=1 ttl=118 time=4.2 ms'), 1000);
-            } else if (cmd === 'display bgp peer') {
-                print('BGP Local Router ID is 45.10.10.1');
-                print('Status codes: * - valid, > - best, d - damped');
-                print('   Network            Next Hop        Metric LocPrf Weight Path');
-                print('*> 186.235.240.0/24   0.0.0.0         0      100    0      i');
-            } else if (cmd === 'clear') {
-                termOutput.innerHTML = '';
+            if (cmd === 'help') print('Commands: ping, display bgp peer, show gpon onu, display interface, clear');
+            else if (cmd.includes('ping')) { print('PING 8.8.8.8: 56 data bytes'); setTimeout(()=>print('64 bytes from 8.8.8.8: icmp_seq=0 ttl=118 time=4.1 ms'), 500); }
+            else if (cmd === 'display bgp peer') print('BGP Local Router ID 45.10.10.1. State: Established.');
+            else if (cmd === 'clear') termOutput.innerHTML = '';
+            else print(`bash: ${cmd}: command not found`);
+        }
+
+        // --- CODEX LOGIC ---
+        function loadCodex(topic) {
+            const display = document.getElementById('codex-display');
+            let content = '';
+            if(topic === 'huawei') {
+                content = `<div class="wiki-section"><div class="wiki-title">Comandos Huawei (VRP)</div><div class="codex-desc">Verificação de interfaces.</div><div class="code-block">display interface brief\ndisplay transceiver diagnosis\ndisplay current-configuration</div></div>`;
+            } else if(topic === 'olt') {
+                content = `<div class="wiki-section"><div class="wiki-title">Comandos OLT Huawei</div><div class="codex-desc">Provisionamento.</div><div class="code-block">display ont autofind all\ndisplay ont info summary\nont add [port] [id] sn-auth</div></div>`;
+            } else if(topic === 'bgp') {
+                content = `<div class="wiki-section"><div class="wiki-title">BGP Routing</div><div class="codex-desc">Peers e tabelas.</div><div class="code-block">display bgp peer\ndisplay bgp routing-table</div></div>`;
             } else {
-                print(`bash: ${cmd}: command not found`);
+                content = `<div class="wiki-section"><div class="wiki-title">Datacom</div><div class="code-block">show interface status</div></div>`;
             }
+            display.innerHTML = content;
+            document.querySelectorAll('.codex-item').forEach(i => i.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // --- PROFILE ---
+        function updatePhoto(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) { document.querySelectorAll('.header-avatar').forEach(img => img.src = e.target.result); }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        function switchProfileTab(tabName) {
+            ['pessoal', 'preferencias', 'notificacoes'].forEach(t => document.getElementById('tab-'+t).classList.add('hidden'));
+            document.getElementById('tab-'+tabName).classList.remove('hidden');
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
         }
     </script>
 </body>
