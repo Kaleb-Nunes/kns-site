@@ -12,19 +12,19 @@
         /* --- CORE ENGINE --- */
         :root {
             --bg-body: #020202;
-            --bg-panel: rgba(20, 20, 20, 0.95);
+            --bg-panel: rgba(18, 18, 18, 0.95);
             --text-main: #ffffff;
-            --text-muted: #8f9ba8;
+            --text-muted: #9ca3af;
             --neon: #00ff88;
-            --neon-dim: rgba(0, 255, 136, 0.1);
+            --neon-dim: rgba(0, 255, 136, 0.15);
             --border: rgba(255, 255, 255, 0.1);
-            --nav-bg: rgba(2,2,2,0.95);
+            --nav-bg: rgba(2, 2, 2, 0.98);
             --sys-bg: #0b0b0b;
             --sys-sidebar: #111;
-            --input-bg: #151515;
+            --input-bg: #1a1a1a;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; outline: none; }
         body { background-color: var(--bg-body); color: var(--text-main); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
         .mono { font-family: 'JetBrains Mono'; }
         .hidden { display: none !important; }
@@ -32,127 +32,141 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         /* --- UI ELEMENTS --- */
-        .btn-primary { background: var(--text-main); color: #000; padding: 12px 30px; border: none; font-family: 'Orbitron'; font-weight: 700; cursor: pointer; border-radius: 4px; text-decoration: none; transition: 0.3s; display: inline-block; }
-        .btn-primary:hover { background: var(--neon); box-shadow: 0 0 20px var(--neon-dim); }
+        .btn-primary { 
+            background: var(--text-main); color: #000; padding: 14px 35px; border: none; 
+            font-family: 'Orbitron'; font-weight: 800; cursor: pointer; border-radius: 4px; 
+            text-decoration: none; transition: 0.3s; display: inline-block; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .btn-primary:hover { background: var(--neon); box-shadow: 0 0 30px var(--neon-dim); transform: translateY(-2px); }
         
-        .btn-outline { background: transparent; border: 1px solid var(--neon); color: var(--neon); padding: 8px 20px; border-radius: 4px; font-family: 'Orbitron'; font-size: 0.7rem; cursor: pointer; transition: 0.3s; }
-        .btn-outline:hover { background: var(--neon); color: #000; }
+        .btn-outline { 
+            background: transparent; border: 1px solid var(--neon); color: var(--neon); 
+            padding: 10px 25px; border-radius: 4px; font-family: 'Orbitron'; font-size: 0.75rem; 
+            cursor: pointer; transition: 0.3s; font-weight: bold; letter-spacing: 1px;
+        }
+        .btn-outline:hover { background: var(--neon); color: #000; box-shadow: 0 0 20px var(--neon-dim); }
 
         /* ================= KNS CONSULTORIA (SITE) ================= */
         
-        .site-nav { position: fixed; top: 0; width: 100%; height: 90px; padding: 0 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: var(--nav-bg); border-bottom: 1px solid var(--border); }
-        .brand { font-family: 'Orbitron'; font-weight: 900; font-size: 1.5rem; letter-spacing: 1px; color: var(--text-main); display: flex; align-items: center; gap: 10px; }
+        .site-nav { position: fixed; top: 0; width: 100%; height: 90px; padding: 0 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: var(--nav-bg); border-bottom: 1px solid var(--border); backdrop-filter: blur(10px); }
+        .brand { font-family: 'Orbitron'; font-weight: 900; font-size: 1.6rem; letter-spacing: 1px; color: var(--text-main); display: flex; align-items: center; gap: 12px; }
         .nav-links { display: flex; align-items: center; gap: 30px; }
-        .nav-link { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; font-weight: 600; transition: 0.3s; letter-spacing: 1px; }
+        .nav-link { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; text-transform: uppercase; font-weight: 600; transition: 0.3s; letter-spacing: 1px; }
         .nav-link:hover { color: var(--neon); }
         
-        .lang-select { font-family: 'Orbitron'; font-size: 0.7rem; color: var(--text-muted); cursor: pointer; display: flex; gap: 10px; border-right: 1px solid var(--border); padding-right: 20px; margin-right: 10px; }
-        .lang-opt:hover, .lang-opt.active { color: var(--neon); }
+        /* Language Selector */
+        .lang-select { font-family: 'Orbitron'; font-size: 0.75rem; color: var(--text-muted); cursor: pointer; display: flex; gap: 15px; border-right: 1px solid var(--border); padding-right: 25px; margin-right: 10px; font-weight: bold; }
+        .lang-opt { transition: 0.3s; opacity: 0.6; }
+        .lang-opt:hover, .lang-opt.active { color: var(--neon); opacity: 1; text-shadow: 0 0 10px var(--neon-dim); }
 
         /* HERO - Visual Grande */
-        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 140px 5% 50px; }
-        .hero-t1 { font-family: 'Orbitron'; font-weight: 800; font-size: clamp(2rem, 5vw, 4rem); color: var(--text-muted); letter-spacing: 4px; margin-bottom: 10px; }
-        .hero-t2 { font-family: 'Orbitron'; font-weight: 900; font-size: clamp(3.5rem, 8vw, 7rem); color: transparent; -webkit-text-stroke: 2px var(--text-main); text-transform: uppercase; position: relative; line-height: 1; }
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 160px 5% 80px; }
+        .hero-t1 { font-family: 'Orbitron'; font-weight: 800; font-size: clamp(2rem, 5vw, 4.5rem); color: var(--text-muted); letter-spacing: 6px; margin-bottom: 10px; }
+        .hero-t2 { font-family: 'Orbitron'; font-weight: 900; font-size: clamp(3.5rem, 8vw, 8rem); color: transparent; -webkit-text-stroke: 2px var(--text-main); text-transform: uppercase; position: relative; line-height: 1; }
         .hero-t2::before { content: 'ABSOLUTA.'; position: absolute; top: 0; left: 0; width: 0%; height: 100%; color: var(--neon); overflow: hidden; white-space: nowrap; border-right: 6px solid var(--neon); -webkit-text-stroke: 0px; animation: typeFill 4s ease-in-out infinite alternate; }
         @keyframes typeFill { 0%, 20% { width: 0%; } 80%, 100% { width: 100%; } }
 
         /* MONITOR APPLE PRO XDR (GRANDE) */
-        .monitor-wrapper { margin-top: 80px; max-width: 1200px; width: 100%; position: relative; perspective: 1000px; }
-        .monitor-frame { border: 1px solid #333; background: #000; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 80px rgba(0,0,0,0.6); aspect-ratio: 16/9; position: relative; border: 12px solid #1a1a1a; border-bottom-width: 25px; }
-        .monitor-stand { width: 220px; height: 90px; background: linear-gradient(180deg, #222, #111); margin: -5px auto 0; border-radius: 0 0 15px 15px; box-shadow: 0 10px 20px #000; }
+        .monitor-wrapper { margin-top: 80px; max-width: 1400px; width: 100%; position: relative; perspective: 1000px; }
+        .monitor-frame { border: 1px solid #333; background: #000; border-radius: 16px; overflow: hidden; box-shadow: 0 30px 100px rgba(0,0,0,0.7); aspect-ratio: 16/9; position: relative; border: 12px solid #1a1a1a; border-bottom-width: 25px; }
+        .monitor-stand { width: 240px; height: 100px; background: linear-gradient(180deg, #222, #111); margin: -5px auto 0; border-radius: 0 0 15px 15px; box-shadow: 0 10px 30px #000; }
 
         /* MARQUEE */
-        .marquee { background: #000; border-y: 1px solid var(--border); padding: 30px 0; overflow: hidden; white-space: nowrap; }
+        .marquee { background: #000; border-y: 1px solid var(--border); padding: 40px 0; overflow: hidden; white-space: nowrap; }
         .marquee-content { display: inline-block; animation: scroll 40s linear infinite; }
-        .tech-item { display: inline-flex; align-items: center; gap: 15px; margin: 0 50px; color: #666; font-family: 'Orbitron'; font-weight: 700; font-size: 1.2rem; }
-        .tech-item:hover { color: var(--neon); text-shadow: 0 0 10px var(--neon-dim); }
+        .tech-item { display: inline-flex; align-items: center; gap: 15px; margin: 0 60px; color: #666; font-family: 'Orbitron'; font-weight: 700; font-size: 1.4rem; transition: 0.3s; }
+        .tech-item:hover { color: var(--neon); text-shadow: 0 0 15px var(--neon-dim); transform: scale(1.05); }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         /* SECTIONS */
-        .section { padding: 120px 5%; max-width: 1600px; margin: 0 auto; }
-        .p9-box { background: linear-gradient(180deg, rgba(0,255,136,0.03) 0%, transparent); border: 1px solid var(--border); border-radius: 24px; padding: 80px 5%; text-align: center; }
-        .section-title { font-family: 'Orbitron'; font-size: 3rem; margin: 20px 0; color: var(--text-main); }
+        .section { padding: 140px 5%; max-width: 1600px; margin: 0 auto; }
+        .p9-box { background: linear-gradient(180deg, rgba(0,255,136,0.03) 0%, transparent); border: 1px solid var(--border); border-radius: 24px; padding: 100px 5%; text-align: center; }
+        .section-title { font-family: 'Orbitron'; font-size: 3.5rem; margin: 20px 0; color: var(--text-main); font-weight: 900; }
         
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; margin-top: 60px; }
-        .card-premium { padding: 50px; background: var(--bg-panel); border: 1px solid var(--border); border-radius: 12px; transition: 0.4s; text-align: left; }
-        .card-premium:hover { border-color: var(--neon); transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
-        .card-premium i { font-size: 2.5rem; color: var(--neon); margin-bottom: 25px; }
-        .card-premium h3 { font-family: 'Orbitron'; margin-bottom: 15px; font-size: 1.5rem; }
-        .card-premium p { line-height: 1.8; color: var(--text-muted); font-size: 1rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 40px; margin-top: 80px; }
+        .card-premium { padding: 50px; background: var(--bg-panel); border: 1px solid var(--border); border-radius: 16px; transition: 0.4s; text-align: left; }
+        .card-premium:hover { border-color: var(--neon); transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,255,136,0.05); }
+        .card-premium i { font-size: 3rem; color: var(--neon); margin-bottom: 25px; display: inline-block; }
+        .card-premium h3 { font-family: 'Orbitron'; margin-bottom: 20px; font-size: 1.6rem; color: #fff; }
+        .card-premium p { line-height: 1.8; color: var(--text-muted); font-size: 1.05rem; }
 
-        .founder-grid { display: grid; grid-template-columns: 400px 1fr auto; gap: 60px; align-items: center; background: var(--bg-panel); padding: 60px; border-radius: 20px; border: 1px solid var(--border); margin-top: 100px; }
-        .founder-img { width: 100%; height: 450px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border); filter: saturate(0); transition: 0.5s; }
-        .founder-img:hover { filter: saturate(1); }
-        .cert-badge { width: 160px; transition: 0.4s; cursor: zoom-in; }
-        .cert-badge:hover { transform: scale(3) translateX(-50px) translateY(-50px); z-index: 999; background: #fff; padding: 10px; border-radius: 8px; box-shadow: 0 0 50px #000; }
+        /* FOUNDER */
+        .founder-grid { display: grid; grid-template-columns: 450px 1fr auto; gap: 80px; align-items: center; background: var(--bg-panel); padding: 80px; border-radius: 24px; border: 1px solid var(--border); margin-top: 100px; }
+        .founder-img { width: 100%; height: 500px; object-fit: cover; border-radius: 16px; border: 1px solid var(--border); transition: 0.5s; }
+        .cert-badge { width: 180px; transition: 0.4s; cursor: zoom-in; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)); }
+        .cert-badge:hover { transform: scale(3.5) translateX(-60px) translateY(-60px); z-index: 999; background: #fff; padding: 10px; border-radius: 8px; box-shadow: 0 0 100px #000; border: 4px solid var(--neon); }
 
-        .site-footer { border-top: 1px solid var(--border); padding: 80px 5%; background: #080808; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 50px; }
-        .footer-col h4 { font-family: 'Orbitron'; color: #fff; margin-bottom: 20px; }
-        .footer-link { display: block; color: #666; text-decoration: none; margin-bottom: 10px; font-size: 0.9rem; transition: 0.3s; }
+        .site-footer { border-top: 1px solid var(--border); padding: 100px 5%; background: #080808; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 60px; }
+        .footer-col h4 { font-family: 'Orbitron'; color: #fff; margin-bottom: 25px; font-size: 1.1rem; letter-spacing: 1px; }
+        .footer-link { display: flex; align-items: center; gap: 10px; color: #888; text-decoration: none; margin-bottom: 15px; font-size: 0.95rem; transition: 0.3s; }
         .footer-link:hover { color: var(--neon); padding-left: 5px; }
 
         /* ================= KNS ACTIVO (PORTAL) ================= */
         #system-app { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--sys-bg); z-index: 2000; display: flex; }
         
-        .sys-sidebar { width: 280px; background: var(--sys-sidebar); border-right: 1px solid var(--border); display: flex; flex-direction: column; padding: 30px 20px; }
-        .sys-logo { font-family: 'Orbitron'; font-size: 1.2rem; color: var(--neon); margin-bottom: 40px; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
-        .sys-menu-btn { width: 100%; padding: 15px; background: transparent; border: none; color: var(--text-muted); text-align: left; font-family: 'JetBrains Mono'; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 15px; border-radius: 6px; margin-bottom: 5px; transition: 0.2s; font-weight: 600; }
-        .sys-menu-btn:hover, .sys-menu-btn.active { background: var(--neon-dim); color: var(--neon); border-left: 3px solid var(--neon); }
+        .sys-sidebar { width: 280px; background: var(--sys-sidebar); border-right: 1px solid var(--border); display: flex; flex-direction: column; padding: 40px 25px; }
+        .sys-logo { font-family: 'Orbitron'; font-size: 1.3rem; color: var(--neon); margin-bottom: 50px; border-bottom: 1px solid var(--border); padding-bottom: 30px; letter-spacing: 1px; }
+        .sys-menu-btn { width: 100%; padding: 16px; background: transparent; border: none; color: var(--text-muted); text-align: left; font-family: 'JetBrains Mono'; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; gap: 15px; border-radius: 8px; margin-bottom: 8px; transition: 0.2s; font-weight: 600; }
+        .sys-menu-btn:hover, .sys-menu-btn.active { background: var(--neon-dim); color: var(--neon); border-left: 4px solid var(--neon); }
         
-        .sys-main { flex: 1; padding: 40px; overflow-y: auto; background: var(--sys-bg); }
-        .sys-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
+        .sys-main { flex: 1; padding: 50px; overflow-y: auto; background: var(--sys-bg); }
+        .sys-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 50px; border-bottom: 1px solid var(--border); padding-bottom: 30px; }
         
         /* Avatar & Profile */
-        .profile-container { cursor: pointer; display: flex; align-items: center; gap: 15px; padding: 5px 15px; border-radius: 30px; transition: 0.3s; border: 1px solid transparent; }
-        .profile-container:hover { border-color: var(--border); background: var(--bg-panel); }
+        .profile-container { cursor: pointer; display: flex; align-items: center; gap: 15px; padding: 8px 20px; border-radius: 40px; transition: 0.3s; border: 1px solid transparent; }
+        .profile-container:hover { border-color: var(--border); background: var(--input-bg); }
         .header-avatar { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--neon); }
-        .profile-pic-large { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid var(--neon); }
+        .profile-pic-large { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 4px solid var(--neon); box-shadow: 0 0 30px var(--neon-dim); }
 
-        /* TOPOLOGIA MAP (ALIVE) */
-        .topology-container { width: 100%; height: 700px; background: #050505; border: 1px solid var(--border); border-radius: 12px; position: relative; overflow: hidden; background-image: radial-gradient(#222 1px, transparent 1px); background-size: 40px 40px; }
-        .node { position: absolute; width: 90px; height: 90px; background: #111; border: 1px solid #444; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; box-shadow: 0 0 20px rgba(0,0,0,0.5); z-index: 10; cursor: pointer; transition: 0.3s; }
-        .node:hover { border-color: var(--neon); box-shadow: 0 0 40px var(--neon-dim); transform: scale(1.1); color: var(--neon); }
-        .node i { font-size: 2rem; margin-bottom: 5px; }
-        .node-label { font-family: 'JetBrains Mono'; font-size: 0.65rem; color: #888; text-transform: uppercase; text-align: center; margin-top: 5px; font-weight: bold; }
+        /* TOPOLOGY MAP (ALIVE) */
+        .topology-container { width: 100%; height: 750px; background: #080808; border: 1px solid var(--border); border-radius: 16px; position: relative; overflow: hidden; background-image: radial-gradient(var(--border) 1px, transparent 1px); background-size: 50px 50px; }
+        .node { position: absolute; width: 100px; height: 100px; background: #111; border: 1px solid #444; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; box-shadow: 0 0 20px rgba(0,0,0,0.8); z-index: 10; cursor: pointer; transition: 0.3s; }
+        .node:hover { border-color: var(--neon); box-shadow: 0 0 50px var(--neon-dim); transform: scale(1.1); color: var(--neon); z-index: 20; }
+        .node i { font-size: 2.5rem; margin-bottom: 8px; }
+        .node-label { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #888; text-transform: uppercase; text-align: center; margin-top: 5px; font-weight: bold; letter-spacing: 1px; }
         
         .node.cdn { top: 10%; left: 5%; border-color: #00ccff; color: #00ccff; }
         .node.ptt { top: 10%; left: 25%; }
         .node.op { top: 10%; left: 45%; }
-        .node.prov { top: 45%; left: 45%; width: 110px; height: 110px; border-color: var(--neon); color: var(--neon); background: #0a1a0f; }
+        .node.prov { top: 45%; left: 45%; width: 130px; height: 130px; border-color: var(--neon); color: var(--neon); background: #0a1a0f; } /* LOCAL ISP */
         .node.sw { top: 45%; left: 25%; }
         .node.olt { top: 80%; left: 25%; }
         .node.onu { top: 80%; left: 5%; border-color: #ffcc00; color: #ffcc00; }
 
         .conn-line { position: absolute; background: #333; z-index: 1; transform-origin: top left; }
-        .data-packet { position: absolute; width: 8px; height: 8px; background: var(--neon); border-radius: 50%; z-index: 2; box-shadow: 0 0 10px var(--neon); opacity: 0; }
+        .data-packet { position: absolute; width: 8px; height: 8px; background: var(--neon); border-radius: 50%; z-index: 2; box-shadow: 0 0 15px var(--neon); opacity: 0; }
 
-        /* WIKI CODEX BOOK */
-        .codex-container { display: grid; grid-template-columns: 250px 1fr; gap: 30px; height: 600px; }
-        .codex-menu { border-right: 1px solid var(--border); overflow-y: auto; padding-right: 10px; }
-        .codex-item { padding: 12px; cursor: pointer; color: var(--text-muted); font-size: 0.85rem; border-radius: 4px; margin-bottom: 5px; transition: 0.2s; font-family: 'JetBrains Mono'; }
-        .codex-item:hover, .codex-item.active { background: #151515; color: var(--neon); }
-        .codex-content { overflow-y: auto; padding: 20px; background: #111; border-radius: 8px; border: 1px solid var(--border); }
-        .code-block { background: #000; padding: 20px; border-radius: 6px; font-family: 'JetBrains Mono'; font-size: 0.85rem; color: #a5d6ff; border-left: 3px solid var(--neon); margin-top: 15px; white-space: pre-wrap; }
+        /* KNS CODEX (BOOK STYLE) */
+        .codex-container { display: grid; grid-template-columns: 300px 1fr; gap: 40px; height: 650px; }
+        .codex-menu { border-right: 1px solid var(--border); overflow-y: auto; padding-right: 20px; }
+        .codex-item { padding: 15px; cursor: pointer; color: var(--text-muted); font-size: 0.9rem; border-radius: 6px; margin-bottom: 8px; transition: 0.2s; font-family: 'JetBrains Mono'; border-left: 3px solid transparent; }
+        .codex-item:hover, .codex-item.active { background: #1a1a1a; color: var(--neon); border-left-color: var(--neon); }
+        .codex-content { overflow-y: auto; padding: 30px; background: #111; border-radius: 12px; border: 1px solid var(--border); }
+        .code-block { background: #050505; padding: 25px; border-radius: 8px; font-family: 'JetBrains Mono'; font-size: 0.9rem; color: #a5d6ff; border-left: 4px solid var(--neon); margin-top: 20px; white-space: pre-wrap; line-height: 1.6; }
+        .codex-desc { line-height: 1.8; color: #ccc; margin-bottom: 20px; font-size: 1rem; }
 
         /* SSH TERMINAL */
-        .terminal-window { background: #000; border: 1px solid #333; padding: 20px; font-family: 'JetBrains Mono', monospace; color: #0f0; height: 100%; overflow-y: auto; font-size: 0.95rem; display: flex; flex-direction: column; }
-        #term-output { flex: 1; margin-bottom: 10px; white-space: pre-wrap; line-height: 1.5; }
-        .term-input-line { display: flex; align-items: center; }
+        .terminal-window { background: #050505; border: 1px solid #333; padding: 30px; font-family: 'JetBrains Mono', monospace; color: #0f0; height: 600px; overflow-y: auto; font-size: 1rem; display: flex; flex-direction: column; border-radius: 12px; box-shadow: inset 0 0 50px rgba(0,0,0,0.8); }
+        #term-output { flex: 1; margin-bottom: 10px; white-space: pre-wrap; line-height: 1.6; }
         #term-input { background: transparent; border: none; color: #fff; width: 100%; outline: none; font-family: inherit; font-size: inherit; caret-color: var(--neon); }
 
-        /* PROFILE */
-        .profile-tabs { display: flex; gap: 20px; border-bottom: 1px solid var(--border); margin-bottom: 30px; }
-        .tab-btn { padding: 10px 20px; background: none; border: none; color: var(--text-muted); cursor: pointer; font-family: 'Plus Jakarta Sans'; font-weight: 600; border-bottom: 2px solid transparent; }
+        /* PROFILE FORM */
+        .profile-tabs { display: flex; gap: 30px; border-bottom: 1px solid var(--border); margin-bottom: 40px; }
+        .tab-btn { padding: 15px 10px; background: none; border: none; color: var(--text-muted); cursor: pointer; font-family: 'Plus Jakarta Sans'; font-weight: 700; font-size: 1rem; border-bottom: 3px solid transparent; }
         .tab-btn.active { color: var(--neon); border-bottom-color: var(--neon); }
-        .form-control { width: 100%; padding: 12px; background: var(--input-bg); border: 1px solid var(--border); color: var(--text-main); border-radius: 6px; font-family: 'Plus Jakarta Sans'; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px; font-weight: 600; }
+        .form-control { width: 100%; padding: 15px; background: var(--input-bg); border: 1px solid #333; color: #fff; border-radius: 8px; font-family: 'Plus Jakarta Sans'; font-size: 1rem; transition: 0.3s; }
+        .form-control:focus { border-color: var(--neon); outline: none; background: #222; }
 
         /* Login Gateway */
-        #gateway-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); z-index: 5000; display: flex; align-items: center; justify-content: center; }
-        .gateway-box { width: 450px; padding: 60px; background: #0a0a0a; border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 0 100px rgba(0,255,136,0.05); }
-        .gateway-input { width: 100%; padding: 15px; background: #151515; border: 1px solid #333; color: #fff; margin-bottom: 20px; border-radius: 6px; font-size: 1rem; }
+        #gateway-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); backdrop-filter: blur(30px); z-index: 5000; display: flex; align-items: center; justify-content: center; }
+        .gateway-box { width: 480px; padding: 60px; background: #0a0a0a; border: 1px solid var(--border); border-radius: 20px; box-shadow: 0 0 150px rgba(0,255,136,0.08); }
+        .gateway-input { width: 100%; padding: 16px; background: #1a1a1a; border: 1px solid #333; color: #fff; margin-bottom: 20px; border-radius: 8px; font-size: 1rem; font-family: 'Plus Jakarta Sans'; }
         .gateway-input:focus { border-color: var(--neon); outline: none; }
 
-        @media (max-width: 900px) { .nav-links, .sys-sidebar { display: none; } .hero-t2 { font-size: 3rem; } .founder-grid { grid-template-columns: 1fr; text-align: center; } }
+        @media (max-width: 900px) { .nav-links, .sys-sidebar { display: none; } .hero-t2 { font-size: 3rem; } .founder-grid { grid-template-columns: 1fr; text-align: center; } .grid-3 { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -161,23 +175,25 @@
         <nav class="site-nav">
             <div class="brand"><i class="fa-solid fa-layer-group" style="color: var(--neon);"></i> KNS CONSULTORIA GLOBAL</div>
             <div class="nav-links">
-                <a href="#p9" class="nav-link">Soluções</a>
-                <a href="#about" class="nav-link">Founder</a>
+                <a href="#p9" class="nav-link" data-lang="solutions">Soluções</a>
+                <a href="#about" class="nav-link" data-lang="founder">Founder</a>
+                
                 <div class="lang-select">
-                    <span class="lang-opt active">PT</span>
-                    <span class="lang-opt">EN</span>
-                    <span class="lang-opt">ES</span>
+                    <span class="lang-opt active" onclick="setLang('pt')">PT</span>
+                    <span class="lang-opt" onclick="setLang('en')">EN</span>
+                    <span class="lang-opt" onclick="setLang('es')">ES</span>
                 </div>
-                <button class="btn-outline" onclick="openGateway()"><i class="fa-solid fa-lock"></i> KNS COMMAND CENTER</button>
+                
+                <button class="btn-outline" onclick="openGateway()"><i class="fa-solid fa-lock"></i> <span data-lang="client_area">ÁREA DO CLIENTE</span></button>
             </div>
         </nav>
 
         <section class="hero">
             <div class="hero-title">
-                <span class="hero-t1">CONTINUIDADE</span>
+                <span class="hero-t1" data-lang="hero_t1">CONTINUIDADE</span>
                 <span class="hero-t2">ABSOLUTA.</span>
             </div>
-            <p style="color: var(--text-muted); margin-top: 30px; font-size: 1.2rem; max-width: 700px;">
+            <p style="color: var(--text-muted); margin-top: 30px; font-size: 1.2rem; max-width: 700px;" data-lang="hero_sub">
                 Engenharia de Infraestrutura Crítica, Governança e Proteção de Ativos Digitais.
             </p>
             
@@ -191,37 +207,38 @@
 
         <div class="marquee">
             <div class="marquee-content">
-                <span class="tech-item"><i class="fa-solid fa-server"></i> ZABBIX</span>
+                <span class="tech-item"><i class="fa-brands fa-python"></i> PYTHON AUTOMATION</span>
+                <span class="tech-item"><i class="fa-solid fa-server"></i> ZABBIX ENTERPRISE</span>
                 <span class="tech-item"><i class="fa-solid fa-chart-line"></i> GRAFANA</span>
                 <span class="tech-item"><i class="fa-solid fa-network-wired"></i> LIBRENMS</span>
-                <span class="tech-item"><i class="fa-solid fa-eye"></i> PRTG</span>
+                <span class="tech-item"><i class="fa-solid fa-eye"></i> PRTG MONITOR</span>
                 <span class="tech-item"><i class="fa-solid fa-file-invoice"></i> GRAYLOG</span>
-                <span class="tech-item"><i class="fa-brands fa-python"></i> PYTHON</span>
+                <span class="tech-item"><i class="fa-brands fa-aws"></i> AWS CLOUD</span>
             </div>
         </div>
 
         <section id="p9" class="section">
             <div class="p9-box">
-                <span class="mono" style="color: var(--neon); letter-spacing: 2px;">SOLUÇÃO PREMIUM</span>
+                <span class="mono" style="color: var(--neon); letter-spacing: 2px;" data-lang="methodology">METODOLOGIA PROPRIETÁRIA</span>
                 <h2 class="section-title">PROTOCOLO 09</h2>
-                <p style="color: var(--text-muted); max-width: 800px; margin: 0 auto 50px;">
-                    O Protocolo 09 é a nossa metodologia proprietária que transforma o caos em previsibilidade.
+                <p style="color: var(--text-muted); max-width: 800px; margin: 0 auto 50px; font-size: 1.1rem;" data-lang="p9_desc">
+                    O Protocolo 09 é a nossa metodologia exclusiva que transforma o caos em previsibilidade. Integramos monitoramento preditivo, automação via código e governança corporativa em uma única camada de inteligência.
                 </p>
                 <div class="grid-3">
                     <div class="card-premium">
                         <i class="fa-solid fa-eye"></i>
-                        <h3>Observabilidade Total</h3>
-                        <p>Monitoramos KPIs de negócio, transações e experiência do usuário final. Unificamos Zabbix, Grafana e Graylog em uma visão única de comando.</p>
+                        <h3 data-lang="card1_title">Observabilidade</h3>
+                        <p data-lang="card1_desc">Não monitoramos apenas servidores; monitoramos o dinheiro. Dashboards de negócio que correlacionam latência com perda de receita. Visão unificada com Zabbix, Grafana e Graylog.</p>
                     </div>
                     <div class="card-premium">
                         <i class="fa-solid fa-robot"></i>
-                        <h3>Auto-Cura (Self-Healing)</h3>
-                        <p>Nossos robôs em Python identificam falhas e executam correções antes que seu cliente perceba. Reinício de serviços e failover automático.</p>
+                        <h3 data-lang="card2_title">Auto-Cura</h3>
+                        <p data-lang="card2_desc">A intervenção humana é lenta. Nossos scripts em Python identificam gargalos e executam correções (restart, failover, limpeza) antes que o usuário final perceba a falha.</p>
                     </div>
                     <div class="card-premium">
                         <i class="fa-solid fa-file-shield"></i>
-                        <h3>Governança & Compliance</h3>
-                        <p>SLA agressivo garantido em contrato. Auditoria contínua de segurança, adequação à LGPD e documentação viva da rede.</p>
+                        <h3 data-lang="card3_title">Governança</h3>
+                        <p data-lang="card3_desc">Blindagem jurídica e técnica. SLA agressivo garantido em contrato, auditoria contínua de segurança e adequação total às normas da LGPD.</p>
                     </div>
                 </div>
             </div>
@@ -229,24 +246,37 @@
 
         <section id="about" class="section">
             <div class="founder-grid">
-                <div><img src="./assets/foto.jpg" alt="Kaleb Nunes" class="founder-img" onerror="this.src='https://via.placeholder.com/400x500'"></div>
+                <div>
+                    <img src="./assets/foto.jpg" alt="Kaleb Nunes" class="founder-img" onerror="this.src='https://via.placeholder.com/400x500?text=Kaleb+Nunes'">
+                </div>
                 <div>
                     <span class="mono" style="color: var(--neon);">FOUNDER & HEAD OF ENGINEERING</span>
                     <h2 class="section-title" style="text-align: left; margin-bottom: 20px;">KALEB NUNES</h2>
-                    <p style="line-height: 1.8; color: var(--text-muted); font-size: 1.1rem; margin-bottom: 30px;">
-                        "Meu foco não é vender horas técnicas, é vender continuidade de negócio. Minha missão é garantir que a tecnologia seja um ativo invisível e lucrativo."
+                    <p style="line-height: 1.8; color: var(--text-muted); font-size: 1.1rem; margin-bottom: 30px;" data-lang="bio">
+                        "Meu foco não é vender horas técnicas, é vender continuidade de negócio. Se sua operação para, você perde dinheiro. Minha missão é garantir que a tecnologia seja um ativo invisível e lucrativo, não um problema visível."
                     </p>
                     <div style="display: flex; gap: 40px;">
-                        <div><strong style="color: var(--text-main); font-size: 2rem;">+10</strong><br><span style="font-size: 0.8rem; color: var(--text-muted);">ANOS DE EXPERIÊNCIA</span></div>
-                        <div><strong style="color: var(--text-main); font-size: 2rem;">TOP 1%</strong><br><span style="font-size: 0.8rem; color: var(--text-muted);">SAGE CERTIFIED GLOBAL</span></div>
+                        <div>
+                            <strong style="color: var(--text-main); font-size: 2rem;">+10</strong><br>
+                            <span style="font-size: 0.8rem; color: var(--text-muted);" data-lang="exp">ANOS DE EXPERIÊNCIA</span>
+                        </div>
+                        <div>
+                            <strong style="color: var(--text-main); font-size: 2rem;">TOP 1%</strong><br>
+                            <span style="font-size: 0.8rem; color: var(--text-muted);">SAGE CERTIFIED GLOBAL</span>
+                        </div>
                     </div>
                 </div>
-                <div><img src="./assets/sage_full.png" alt="SAGE Certified" class="cert-badge" title="Visualizar Credencial"></div>
+                <div>
+                    <img src="./assets/sage_full.png" alt="SAGE Certified" class="cert-badge" title="Visualizar Credencial">
+                </div>
             </div>
         </section>
 
         <footer class="site-footer">
-            <div class="footer-col"><h4>KNS CONSULTORIA GLOBAL</h4><p style="color: #666; font-size: 0.9rem;">Balneário Camboriú, SC - Brasil</p></div>
+            <div class="footer-col">
+                <h4>KNS CONSULTORIA GLOBAL</h4>
+                <p style="color: #666; font-size: 0.9rem;">Balneário Camboriú, SC - Brasil</p>
+            </div>
             <div class="footer-col">
                 <h4>CONTATO DIRETO</h4>
                 <a href="https://wa.me/5547988901616" class="footer-link"><i class="fa-brands fa-whatsapp"></i> +55 (47) 98890-1616</a>
@@ -254,10 +284,12 @@
             </div>
             <div class="footer-col">
                 <h4>CONECTE-SE</h4>
-                <a href="#" class="footer-link"><i class="fa-brands fa-linkedin"></i> LinkedIn Corporativo</a>
-                <a href="#" class="footer-link"><i class="fa-brands fa-github"></i> GitHub Projects</a>
+                <a href="https://linkedin.com/in/kalebnunes" class="footer-link" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn Corporativo</a>
+                <a href="https://github.com/kalebnunes" class="footer-link" target="_blank"><i class="fa-brands fa-github"></i> GitHub Projects</a>
             </div>
-            <div class="footer-col"><a href="https://calendly.com/kalebdossantos1206/30min" target="_blank" class="btn-primary">FALE COM O BOARD</a></div>
+            <div class="footer-col">
+                <a href="https://calendly.com/kalebdossantos1206/30min" target="_blank" class="btn-primary" data-lang="cta_board">FALE COM O BOARD</a>
+            </div>
         </footer>
     </div>
 
@@ -268,22 +300,27 @@
                 <h3 style="font-family: 'Orbitron'; margin-top: 15px; color: var(--text-main);">KNS COMMAND CENTER</h3>
                 <span class="mono" style="color: var(--text-muted); font-size: 0.7rem;">ACESSO RESTRITO</span>
             </div>
-            <input type="text" id="user-in" class="gateway-input" placeholder="Usuário (kaleb.nunes)">
-            <input type="password" id="pass-in" class="gateway-input" placeholder="Senha">
-            <button onclick="authSystem()" style="width: 100%; padding: 15px; background: var(--neon); border: none; font-weight: bold; cursor: pointer; color: #000; font-family: 'Orbitron'; letter-spacing: 1px;">ENTRAR</button>
-            <button onclick="closeGateway()" style="width: 100%; padding: 12px; background: transparent; border: none; color: var(--text-muted); margin-top: 15px; cursor: pointer;">Voltar ao Site</button>
-            <p id="auth-error" style="color: #ff3333; font-size: 0.8rem; text-align: center; margin-top: 20px; display: none;"><i class="fa-solid fa-circle-exclamation"></i> ACESSO NEGADO</p>
+            
+            <div id="login-form">
+                <input type="text" id="user-in" class="gateway-input" placeholder="Usuário (kaleb.nunes)">
+                <input type="password" id="pass-in" class="gateway-input" placeholder="Senha">
+                <button onclick="authSystem()" style="width: 100%; padding: 15px; background: var(--neon); border: none; font-weight: bold; cursor: pointer; color: #000; font-family: 'Orbitron'; letter-spacing: 1px;">ENTRAR</button>
+                <button onclick="closeGateway()" style="width: 100%; padding: 12px; background: transparent; border: none; color: var(--text-muted); margin-top: 15px; cursor: pointer;">Voltar ao Site</button>
+                <p id="auth-error" style="color: #ff3333; font-size: 0.8rem; text-align: center; margin-top: 20px; display: none;"><i class="fa-solid fa-circle-exclamation"></i> ACESSO NEGADO</p>
+            </div>
         </div>
     </div>
 
     <div id="system-app" class="hidden">
         <div class="sys-sidebar">
             <div class="sys-logo"><i class="fa-solid fa-cube"></i> KNS<span style="font-weight: 300;">CENTER</span></div>
+            
             <button class="sys-menu-btn active" onclick="sysNav('dashboard')"><i class="fa-solid fa-chart-pie"></i> DASHBOARD</button>
             <button class="sys-menu-btn" onclick="sysNav('topology')"><i class="fa-solid fa-network-wired"></i> TOPOLOGIA</button>
             <button class="sys-menu-btn" onclick="sysNav('terminal')"><i class="fa-solid fa-terminal"></i> TERMINAL SSH</button>
             <button class="sys-menu-btn" onclick="sysNav('codex')"><i class="fa-solid fa-book"></i> KNS CODEX</button>
             <button class="sys-menu-btn" onclick="sysNav('profile')"><i class="fa-solid fa-user-gear"></i> MEU CADASTRO</button>
+            
             <div style="margin-top: auto; border-top: 1px solid #222; padding-top: 20px;">
                 <button class="sys-menu-btn" onclick="sysLogout()" style="color: #ff3333;"><i class="fa-solid fa-power-off"></i> LOGOUT</button>
             </div>
@@ -291,18 +328,34 @@
 
         <div class="sys-main">
             <div class="sys-header">
-                <div><h2 style="font-family: 'Orbitron'; color: var(--text-main);">PAINEL DE CONTROLE</h2><span class="mono" style="color: var(--neon); font-size: 0.8rem;">● SISTEMA ONLINE</span></div>
+                <div>
+                    <h2 style="font-family: 'Orbitron'; color: var(--text-main);">PAINEL DE CONTROLE</h2>
+                    <span class="mono" style="color: var(--neon); font-size: 0.8rem;">● SISTEMA ONLINE</span>
+                </div>
                 <div class="profile-container" onclick="sysNav('profile')">
-                    <div style="text-align: right;"><div style="font-weight: bold; font-size: 0.9rem; color: var(--text-main);">KALEB NUNES</div><div style="font-size: 0.7rem; color: var(--text-muted);">ADMINISTRADOR</div></div>
+                    <div style="text-align: right;">
+                        <div style="font-weight: bold; font-size: 0.9rem; color: var(--text-main);">KALEB NUNES</div>
+                        <div style="font-size: 0.7rem; color: var(--text-muted);">ADMINISTRADOR</div>
+                    </div>
                     <img src="./assets/foto.jpg" class="header-avatar" onerror="this.src='https://via.placeholder.com/40'">
                 </div>
             </div>
 
             <div id="view-dashboard" class="fade-in">
                 <div class="grid-3" style="margin-top: 0;">
-                    <div class="card" style="background: rgba(20,20,20,0.5);"><span class="mono" style="color: var(--text-muted); font-size: 0.7rem;">STATUS REDE</span><div style="font-size: 2.5rem; font-family: 'Orbitron'; color: var(--neon); margin: 15px 0;">ONLINE</div></div>
-                    <div class="card" style="background: rgba(20,20,20,0.5);"><span class="mono" style="color: var(--text-muted); font-size: 0.7rem;">LATÊNCIA MÉDIA</span><div style="font-size: 2.5rem; font-family: 'Orbitron'; color: var(--text-main); margin: 15px 0;">4ms</div></div>
-                    <div class="card" style="background: rgba(20,20,20,0.5);"><span class="mono" style="color: var(--text-muted); font-size: 0.7rem;">CLIENTES ATIVOS</span><div style="font-size: 2.5rem; font-family: 'Orbitron'; color: #fff; margin: 15px 0;">12</div></div>
+                    <div class="card" style="background: rgba(20,20,20,0.5);">
+                        <span class="mono" style="color: var(--text-muted); font-size: 0.7rem;">STATUS REDE</span>
+                        <div style="font-size: 2.5rem; font-family: 'Orbitron'; color: var(--neon); margin: 15px 0;">ONLINE</div>
+                        <div style="height: 4px; background: #222; width: 100%;"><div style="height: 100%; width: 100%; background: var(--neon);"></div></div>
+                    </div>
+                    <div class="card" style="background: rgba(20,20,20,0.5);">
+                        <span class="mono" style="color: var(--text-muted); font-size: 0.7rem;">LATÊNCIA MÉDIA</span>
+                        <div style="font-size: 2.5rem; font-family: 'Orbitron'; color: var(--text-main); margin: 15px 0;">4ms</div>
+                    </div>
+                    <div class="card" style="background: rgba(20,20,20,0.5);">
+                        <span class="mono" style="color: var(--text-muted); font-size: 0.7rem;">CLIENTES ATIVOS</span>
+                        <div style="font-size: 2.5rem; font-family: 'Orbitron'; color: #fff; margin: 15px 0;">12</div>
+                    </div>
                 </div>
             </div>
 
@@ -316,6 +369,7 @@
                     <div class="node sw" style="top:45%; left:25%;"><i class="fa-solid fa-sitemap"></i><span class="node-label">MPLS/SWITCH</span></div>
                     <div class="node olt" style="top:80%; left:25%;"><i class="fa-solid fa-broadcast-tower"></i><span class="node-label">OLT</span></div>
                     <div class="node onu" style="top:80%; left:5%; border-color:#ffcc00; color:#ffcc00;"><i class="fa-solid fa-house-signal"></i><span class="node-label">ONU</span></div>
+                    
                     <div class="conn-line" style="top:13.5%; left:9%; width:18%; height:2px; background:#444;"><div class="data-packet" style="animation: packetMove 2s infinite linear;"></div></div>
                     <div class="conn-line" style="top:13.5%; left:29%; width:18%; height:2px; background:#444;"><div class="data-packet" style="animation: packetMove 2s infinite linear 0.5s;"></div></div>
                     <div class="conn-line" style="top:17%; left:48%; width:2px; height:28%; background:#444;"><div class="data-packet" style="animation: packetDown 2s infinite linear 1s;"></div></div>
@@ -342,8 +396,8 @@
                     <div class="codex-menu">
                         <div class="codex-item active" onclick="loadCodex('huawei')"><i class="fa-solid fa-server"></i> Comandos Huawei</div>
                         <div class="codex-item" onclick="loadCodex('datacom')"><i class="fa-solid fa-network-wired"></i> Comandos Datacom</div>
-                        <div class="codex-item" onclick="loadCodex('olt')"><i class="fa-solid fa-broadcast-tower"></i> Configuração OLT</div>
-                        <div class="codex-item" onclick="loadCodex('bgp')"><i class="fa-solid fa-globe"></i> BGP & Peers</div>
+                        <div class="codex-item" onclick="loadCodex('olt')"><i class="fa-solid fa-broadcast-tower"></i> OLT Huawei</div>
+                        <div class="codex-item" onclick="loadCodex('bgp')"><i class="fa-solid fa-globe"></i> BGP & Roteamento</div>
                     </div>
                     <div class="codex-content" id="codex-display">
                         </div>
@@ -352,35 +406,76 @@
 
             <div id="view-profile" class="hidden fade-in">
                 <h3 style="font-family: 'Orbitron'; margin-bottom: 20px;">MEU CADASTRO</h3>
+                
                 <div class="profile-tabs">
                     <button class="tab-btn active" onclick="switchProfileTab('pessoal')">Pessoal</button>
                     <button class="tab-btn" onclick="switchProfileTab('preferencias')">Preferências</button>
                     <button class="tab-btn" onclick="switchProfileTab('notificacoes')">Notificações</button>
                 </div>
+
                 <div id="tab-pessoal">
                     <div class="card" style="max-width: 900px; cursor: default; background: #111;">
                         <div style="display: flex; gap: 30px; align-items: center; margin-bottom: 30px; border-bottom: 1px solid #333; padding-bottom: 30px;">
                             <div style="position: relative;">
-                                <img src="./assets/foto.jpg" class="profile-pic-large header-avatar" onerror="this.src='https://via.placeholder.com/120'">
-                                <label for="file-upload" style="position: absolute; bottom: 0; right: 0; background: var(--neon); color: #000; padding: 8px; border-radius: 50%; cursor: pointer;"><i class="fa-solid fa-camera"></i></label>
+                                <img src="./assets/foto.jpg" class="profile-pic-large header-avatar" onerror="this.src='https://via.placeholder.com/140'">
+                                <label for="file-upload" style="position: absolute; bottom: 0; right: 0; background: var(--neon); color: #000; padding: 8px; border-radius: 50%; cursor: pointer;">
+                                    <i class="fa-solid fa-camera"></i>
+                                </label>
                                 <input type="file" id="file-upload" hidden onchange="updatePhoto(this)">
                             </div>
                             <div style="flex: 1;">
-                                <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 5px;">Nome Completo</label>
+                                <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 5px;">Nome Completo *</label>
                                 <input type="text" class="form-control" value="Kaleb Nunes" style="font-size: 1.2rem; font-weight: bold;">
                             </div>
                         </div>
                         <div class="form-grid">
                             <div class="form-group"><label>E-mail Corporativo</label><input type="email" class="form-control" value="comercial@knsconsultoria.com.br"></div>
-                            <div class="form-group"><label>Telefone</label><input type="text" class="form-control" value="+55 47 98890-1616"></div>
+                            <div class="form-group"><label>Telefone / WhatsApp</label><input type="text" class="form-control" value="+55 47 98890-1616"></div>
+                            <div class="form-group"><label>Usuário do Sistema</label><input type="text" class="form-control" value="kaleb.nunes"></div>
                             <div class="form-group"><label>Cargo</label><input type="text" class="form-control" value="Head of Engineering"></div>
                         </div>
-                        <div style="text-align: right; margin-top: 20px;"><button class="btn-primary" onclick="alert('Dados salvos!')">SALVAR ALTERAÇÕES</button></div>
+                        <div style="text-align: right; margin-top: 20px;">
+                            <button class="btn-primary" onclick="alert('Dados salvos com sucesso!')">SALVAR ALTERAÇÕES</button>
+                        </div>
                     </div>
                 </div>
-                <div id="tab-preferencias" class="hidden"><div class="card" style="max-width: 900px; background: #111;"><div class="form-group"><label>Idioma</label><select class="form-control"><option>Português</option></select></div></div></div>
-                <div id="tab-notificacoes" class="hidden"><div class="card" style="max-width: 900px; background: #111;"><div class="form-group"><label>Alertas por E-mail</label><input type="checkbox" checked></div></div></div>
+
+                <div id="tab-preferencias" class="hidden">
+                    <div class="card" style="max-width: 900px; background: #111;">
+                        <div class="form-group">
+                            <label>Idioma do Sistema</label>
+                            <select class="form-control">
+                                <option>Português do Brasil</option>
+                                <option>English (US)</option>
+                                <option>Español</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Tema Padrão</label>
+                            <select class="form-control">
+                                <option>KNS Dark (Recomendado)</option>
+                                <option>Light Mode</option>
+                            </select>
+                        </div>
+                        <div style="text-align: right; margin-top: 20px;"><button class="btn-primary" onclick="alert('Preferências salvas!')">SALVAR</button></div>
+                    </div>
+                </div>
+
+                <div id="tab-notificacoes" class="hidden">
+                    <div class="card" style="max-width: 900px; background: #111;">
+                        <div style="display: flex; justify-content: space-between; padding: 20px 0; border-bottom: 1px solid #333;">
+                            <span>Receber alertas de queda (Downtime)</span>
+                            <input type="checkbox" checked style="transform: scale(1.5);">
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 20px 0; border-bottom: 1px solid #333;">
+                            <span>Relatórios semanais por e-mail</span>
+                            <input type="checkbox" checked style="transform: scale(1.5);">
+                        </div>
+                        <div style="text-align: right; margin-top: 20px;"><button class="btn-primary" onclick="alert('Notificações atualizadas!')">SALVAR</button></div>
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
 
@@ -390,10 +485,70 @@
     </style>
 
     <script>
+        // --- TRANSLATION ENGINE ---
+        const translations = {
+            pt: {
+                solutions: "Soluções", founder: "Founder", client_area: "ÁREA DO CLIENTE",
+                hero_t1: "CONTINUIDADE", hero_sub: "Engenharia de Infraestrutura Crítica, Governança e Proteção de Ativos Digitais.",
+                methodology: "METODOLOGIA PROPRIETÁRIA", p9_desc: "O Protocolo 09 é a nossa metodologia exclusiva que transforma o caos em previsibilidade...",
+                card1_title: "Observabilidade", card1_desc: "Não monitoramos apenas servidores; monitoramos o dinheiro. Dashboards de negócio...",
+                card2_title: "Auto-Cura", card2_desc: "A intervenção humana é lenta. Nossos scripts em Python identificam gargalos...",
+                card3_title: "Governança", card3_desc: "Blindagem jurídica e técnica. SLA agressivo garantido em contrato...",
+                bio: "\"Meu foco não é vender horas técnicas, é vender continuidade de negócio. Se sua operação para, você perde dinheiro.\"",
+                exp: "ANOS DE EXPERIÊNCIA", cta_board: "FALE COM O BOARD"
+            },
+            en: {
+                solutions: "Solutions", founder: "Founder", client_area: "CLIENT PORTAL",
+                hero_t1: "CONTINUITY", hero_sub: "Critical Infrastructure Engineering, Governance and Digital Asset Protection.",
+                methodology: "PROPRIETARY METHODOLOGY", p9_desc: "Protocol 09 is our exclusive methodology that turns chaos into predictability...",
+                card1_title: "Observability", card1_desc: "We don't just monitor servers; we monitor money. Business dashboards correlating latency with revenue loss...",
+                card2_title: "Self-Healing", card2_desc: "Human intervention is slow. Our Python scripts identify bottlenecks and execute fixes...",
+                card3_title: "Governance", card3_desc: "Legal and technical shielding. Aggressive SLA guaranteed in contract...",
+                bio: "\"My focus is not selling technical hours, it's selling business continuity. If your operation stops, you lose money.\"",
+                exp: "YEARS EXPERIENCE", cta_board: "TALK TO THE BOARD"
+            },
+            es: {
+                solutions: "Soluciones", founder: "Fundador", client_area: "ÁREA DE CLIENTE",
+                hero_t1: "CONTINUIDAD", hero_sub: "Ingeniería de Infraestructura Crítica, Gobernanza y Protección de Activos Digitales.",
+                methodology: "METODOLOGÍA PROPIETARIA", p9_desc: "El Protocolo 09 es nuestra metodología exclusiva que transforma el caos en previsibilidad...",
+                card1_title: "Observabilidad", card1_desc: "No solo monitoreamos servidores; monitoreamos dinero. Tableros de negocios...",
+                card2_title: "Auto-Curación", card2_desc: "La intervención humana es lenta. Nuestros scripts en Python identifican cuellos de botella...",
+                card3_title: "Gobernanza", card3_desc: "Blindaje jurídico y técnico. SLA agresivo garantizado en contrato...",
+                bio: "\"Mi enfoque no es vender horas técnicas, es vender continuidad del negocio. Si su operación se detiene, pierde dinero.\"",
+                exp: "AÑOS DE EXPERIENCIA", cta_board: "HABLE CON LA JUNTA"
+            }
+        };
+
+        function setLang(lang) {
+            document.querySelectorAll('.lang-opt').forEach(el => el.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Map keys
+            document.querySelector('[data-lang="solutions"]').innerText = translations[lang].solutions;
+            document.querySelector('[data-lang="founder"]').innerText = translations[lang].founder;
+            document.querySelector('[data-lang="client_area"]').innerText = translations[lang].client_area;
+            document.querySelector('[data-lang="hero_t1"]').innerText = translations[lang].hero_t1;
+            document.querySelector('[data-lang="hero_sub"]').innerText = translations[lang].hero_sub;
+            document.querySelector('[data-lang="methodology"]').innerText = translations[lang].methodology;
+            document.querySelector('[data-lang="p9_desc"]').innerText = translations[lang].p9_desc;
+            document.querySelector('[data-lang="card1_title"]').innerText = translations[lang].card1_title;
+            document.querySelector('[data-lang="card1_desc"]').innerText = translations[lang].card1_desc;
+            document.querySelector('[data-lang="card2_title"]').innerText = translations[lang].card2_title;
+            document.querySelector('[data-lang="card2_desc"]').innerText = translations[lang].card2_desc;
+            document.querySelector('[data-lang="card3_title"]').innerText = translations[lang].card3_title;
+            document.querySelector('[data-lang="card3_desc"]').innerText = translations[lang].card3_desc;
+            document.querySelector('[data-lang="bio"]').innerText = translations[lang].bio;
+            document.querySelector('[data-lang="exp"]').innerText = translations[lang].exp;
+            document.querySelector('[data-lang="cta_board"]').innerText = translations[lang].cta_board;
+        }
+
         // --- GATEWAY LOGIC ---
         function openGateway() { document.getElementById('gateway-modal').classList.remove('hidden'); }
         function closeGateway() { document.getElementById('gateway-modal').classList.add('hidden'); document.getElementById('auth-error').style.display = 'none'; }
-        document.getElementById('pass-in').addEventListener('keypress', function(e) { if (e.key === 'Enter') authSystem(); });
+        
+        document.getElementById('pass-in').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') authSystem();
+        });
 
         function authSystem() {
             const u = document.getElementById('user-in').value;
@@ -407,19 +562,43 @@
             }
         }
 
-        function sysLogout() { location.reload(); }
+        function sysLogout() {
+            document.getElementById('system-app').classList.add('hidden');
+            document.getElementById('public-site').classList.remove('hidden');
+            document.getElementById('user-in').value = '';
+            document.getElementById('pass-in').value = '';
+            sysNav('dashboard');
+        }
 
         function sysNav(viewId) {
             ['dashboard', 'topology', 'terminal', 'profile', 'codex'].forEach(v => document.getElementById('view-'+v).classList.add('hidden'));
             document.getElementById('view-'+viewId).classList.remove('hidden');
+            
             document.querySelectorAll('.sys-menu-btn').forEach(b => b.classList.remove('active'));
             const btn = document.querySelector(`.sys-menu-btn[onclick="sysNav('${viewId}')"]`);
             if(btn) btn.classList.add('active');
+
             if(viewId === 'terminal') initSSH();
             if(viewId === 'codex') loadCodex('huawei');
         }
 
-        // --- SSH INTELLIGENT LOGIC ---
+        // --- PROFILE LOGIC ---
+        function updatePhoto(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) { document.querySelectorAll('.header-avatar, .profile-pic-large').forEach(img => img.src = e.target.result); }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function switchProfileTab(tabName) {
+            ['pessoal', 'preferencias', 'notificacoes'].forEach(t => document.getElementById('tab-'+t).classList.add('hidden'));
+            document.getElementById('tab-'+tabName).classList.remove('hidden');
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // --- SSH INTELLIGENCE (PERSISTENT & MASKED) ---
         let sshState = 0; // 0=start, 1=user, 2=pass, 3=shell
         const termOutput = document.getElementById('term-output');
         const termInput = document.getElementById('term-input');
@@ -427,9 +606,10 @@
 
         function initSSH() {
             termOutput.innerHTML = '<div>KNS SECURE SHELL [v9.0]</div><div>(c) 2026 KNS Global. Access Level: ROOT</div><br>';
-            // Check Auto-Login
-            if (localStorage.getItem('kns_ssh_token') === 'authorized') {
-                termOutput.innerHTML += '<div>Authenticating via Token... Success.</div><br>';
+            
+            // Check persistence
+            if (localStorage.getItem('kns_ssh_session') === 'active') {
+                termOutput.innerHTML += '<div>Resuming active session... Success.</div><br>';
                 sshState = 3;
                 termPrompt.innerText = 'root@kns-core:~#';
                 termPrompt.style.color = 'var(--neon)';
@@ -458,13 +638,15 @@
                     } else {
                         print('Access denied', '#f00');
                     }
-                } else if(sshState === 2) { // Pass
+                } 
+                else if(sshState === 2) { // Pass
                     // No print for pass
                     if(val === '13091993') {
                         sshState = 3;
-                        localStorage.setItem('kns_ssh_token', 'authorized'); // Save Token
+                        localStorage.setItem('kns_ssh_session', 'active'); // Save Session
                         this.type = 'text';
-                        print('<br>Welcome to KNS-CORE. Type "help".<br>');
+                        print('<br>Welcome to KNS-CORE-ROUTER (Huawei VRP).');
+                        print('Type "help" for commands.<br>');
                         termPrompt.innerText = 'root@kns-core:~#';
                         termPrompt.style.color = 'var(--neon)';
                     } else {
@@ -473,7 +655,8 @@
                         this.type = 'text';
                         termPrompt.innerText = 'login as:';
                     }
-                } else if(sshState === 3) { // Shell
+                } 
+                else if(sshState === 3) { // Shell
                     print(`<span style="color:var(--neon)">root@kns-core:~#</span> ${val}`);
                     processCmd(val);
                 }
@@ -493,41 +676,29 @@
             cmd = cmd.toLowerCase().trim();
             if (cmd === 'help') print('Commands: ping, display bgp peer, show gpon onu, display interface, clear');
             else if (cmd.includes('ping')) { print('PING 8.8.8.8: 56 data bytes'); setTimeout(()=>print('64 bytes from 8.8.8.8: icmp_seq=0 ttl=118 time=4.1 ms'), 500); }
-            else if (cmd === 'display bgp peer') print('BGP Local Router ID 45.10.10.1. State: Established.');
+            else if (cmd === 'display bgp peer') print('BGP Local Router ID 45.10.10.1. State: Established. Peers: 2 UP.');
             else if (cmd === 'clear') termOutput.innerHTML = '';
             else print(`bash: ${cmd}: command not found`);
         }
 
-        // --- CODEX LOGIC ---
+        // --- CODEX LOGIC (BOOK) ---
         function loadCodex(topic) {
             const display = document.getElementById('codex-display');
             let content = '';
             if(topic === 'huawei') {
-                content = `<div class="wiki-section"><div class="wiki-title">Comandos Huawei (VRP)</div><div class="codex-desc">Verificação de interfaces.</div><div class="code-block">display interface brief\ndisplay transceiver diagnosis\ndisplay current-configuration</div></div>`;
+                content = `<div class="codex-desc">Comandos essenciais para operação em equipamentos VRP (Huawei).</div>
+                <div class="code-block">display interface brief          # Verificar Status de Todas as interfaces\ndisplay transceiver diagnosis    # Verificar Potência óptica\ndisplay current-configuration    # Mostrar configuração atual\nundo shutdown                    # Levantar interface</div>`;
             } else if(topic === 'olt') {
-                content = `<div class="wiki-section"><div class="wiki-title">Comandos OLT Huawei</div><div class="codex-desc">Provisionamento.</div><div class="code-block">display ont autofind all\ndisplay ont info summary\nont add [port] [id] sn-auth</div></div>`;
+                content = `<div class="codex-desc">Provisionamento e troubleshooting em OLTs Huawei/ZTE.</div>
+                <div class="code-block">display ont autofind all         # Listar ONTs disponíveis\ndisplay ont info summary         # Resumo de ONTs na porta\ndisplay ont optical-info         # Verificar sinal óptico (dBm)\nont add [port] [id] sn-auth      # Provisionar ONT</div>`;
             } else if(topic === 'bgp') {
-                content = `<div class="wiki-section"><div class="wiki-title">BGP Routing</div><div class="codex-desc">Peers e tabelas.</div><div class="code-block">display bgp peer\ndisplay bgp routing-table</div></div>`;
+                content = `<div class="codex-desc">Análise de roteamento de borda e troca de tráfego.</div>
+                <div class="code-block">display bgp peer                 # Mostrar status das sessões BGP\ndisplay bgp routing-table        # Ver tabela de rotas recebidas\nshow ip route                    # Tabela de roteamento geral</div>`;
             } else {
-                content = `<div class="wiki-section"><div class="wiki-title">Datacom</div><div class="code-block">show interface status</div></div>`;
+                content = `<div class="codex-desc">Comandos para switches Datacom (DmOS).</div><div class="code-block">show interface status\nshow mac-address-table</div>`;
             }
             display.innerHTML = content;
             document.querySelectorAll('.codex-item').forEach(i => i.classList.remove('active'));
-            event.target.classList.add('active');
-        }
-
-        // --- PROFILE ---
-        function updatePhoto(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) { document.querySelectorAll('.header-avatar').forEach(img => img.src = e.target.result); }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-        function switchProfileTab(tabName) {
-            ['pessoal', 'preferencias', 'notificacoes'].forEach(t => document.getElementById('tab-'+t).classList.add('hidden'));
-            document.getElementById('tab-'+tabName).classList.remove('hidden');
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             event.target.classList.add('active');
         }
     </script>
