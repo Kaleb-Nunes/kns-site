@@ -1,43 +1,50 @@
 # 🌐 KNS_OFFICIAL_SITE // WEB_INTERFACE
 
-> **Status**: PRODUCTION_READY
-> **Host**: GitHub Pages
-> **Service**: KNS Consultoria Global
+> **System_Status**: OPERATIONAL
+> **Encryption_Level**: SECURE_TUNNEL_ACTIVE
+> **Consultancy**: KNS (Infra, Redes, NOC, Observabilidade)
 
-Interface web institucional da KNS Consultoria, focada em apresentar soluções de Engenharia de Continuidade, Monitoramento de Missão Crítica e Infraestrutura de Redes.
+Painel de Monitoramento de Rede (NOC/SOC) de alta performance. Este sistema funde métricas reais do **Zabbix** com uma interface reativa e automação de **Auto-Healing** via Python.
 
 ---
 
-## 🛠️ WEB_STACK
+## 🛠️ CORE_ENGINE (Stack Tecnológica)
 
 ```yml
-frontend:
-  language: "HTML5 / CSS3 / JavaScript"
-  framework: "Vanilla JS (Zero Dependencies)"
-  styling: "Custom Neon UI Architecture"
-deployment:
-  platform: "GitHub Pages"
-  automation: "GitHub Actions CI/CD"
+infrastructure:
+  backend: "Node.js + Express (Hybrid Orchestration)"
+  intelligence: "Python 3 Sentinela (Zabbix JSON-RPC API)"
+  deployment: "Docker + Edge Monitoring Tunnels"
+  frontend: "Vanilla JS + CSS3 Neon Grid System"
+  📊 CAPABILITIES (Diferenciais)
+📡 Real-Time Telemetry: Conexão direta via API ao Host 10777 (Wi-Fi Interface).
 
-👤 PROJECT_LEAD
+🚨 Reactive_UI: Alertas visuais dinâmicos (Glow Pulse) quando o tráfego excede 50 Mbps.
+
+🌓 Hybrid_Mode: Operação contínua via simulação inteligente ou telemetria real do Zabbix.
+
+🤖 Auto-Healing_Sentinel: Script Python autônomo para monitoramento de latência e mitigação de incidentes.
+
+🚀 DEPLOYMENT_LOG (Como Executar)
+Para inicializar o ecossistema Protocolo 09:
+
+1. Boot up Network Dashboard (Node.js)
+# Terminal 1
+$ node server.js
+
+2. Activate Sentinel Intelligence (Python)
+# Terminal 2
+$ python3 scripts/auto_healing.py
+
+3. Establish Interface Connection
+Target: http://localhost:3000
+
+👤 SYSTEM_AUTHOR
 {
-  "author": "Kaleb Nunes dos Santos",
-  "title": "Founder & Head of Engineering",
-  "company": "KNS Consultoria Global",
-  "location": "Balneário Camboriú, SC"
+  "name": "Kaleb Nunes",
+  "role": "Implementation Consultant",
+  "focus": ["Infrastructure", "Networks", "NOC", "Observability"],
+  "location": "Balneário Camboriú, SC - BR"
 }
 
-“Transformando operações caóticas em sistemas previsíveis.”
-
-### 2. Ajustes Técnicos Prioritários
-
-Baseado na estrutura do seu repositório:
-
-* **Remova arquivos de teste:** Delete o arquivo `teste_final.txt`. Manter arquivos de "teste final" em produção tira o aspecto profissional do portfólio.
-* **Fix na codificação:** Ao salvar seu `index.html` e `README.md`, certifique-se de usar a codificação **UTF-8** no VS Code para evitar os símbolos `` que aparecem no seu deploy atual.
-* **Otimização do CNAME:** Verifique se o seu arquivo `CNAME` aponta corretamente para `knsconsultoria.com.br`, garantindo que o redirecionamento do domínio que você listou no seu perfil esteja funcional.
-
-### 3. Integração no Perfil
-Agora que você tem o **KNS-Command-Center** e o **kns-site** ajustados, certifique-se de que ambos estejam nos seus "Pinned Repositories". No seu perfil, o `kns-site` deve servir como a porta de entrada institucional, enquanto o `KNS-Command-Center` é a prova técnica do seu poder de fogo com Zabbix e automação.
-
-**Deseja que eu ajude a criar uma seção de "Portfólio de Projetos" dentro do seu `kns-site` para linkar diretamente o Protocolo 09 de forma visual?** Seria excelente para converter visitantes em clientes.
+“In infrastructure we trust, in monitoring we verify.”
