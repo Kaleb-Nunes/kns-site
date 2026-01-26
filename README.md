@@ -1,50 +1,41 @@
-# 🌐 KNS_OFFICIAL_SITE // WEB_INTERFACE
+# 🌐 KNS_OFFICIAL_SITE // WEB_INTERFACE ⚡
 
-> **System_Status**: OPERATIONAL
-> **Encryption_Level**: SECURE_TUNNEL_ACTIVE
-> **Consultancy**: KNS (Infra, Redes, NOC, Observabilidade)
+> **System_Status**: PRODUCTION_READY
+> **Deployment_Route**: https://knsconsultoria.com.br
+> **Identity**: KNS Consultoria Global - Engenharia de Continuidade
 
-Painel de Monitoramento de Rede (NOC/SOC) de alta performance. Este sistema funde métricas reais do **Zabbix** com uma interface reativa e automação de **Auto-Healing** via Python.
+Interface web institucional da **KNS**, projetada para apresentar soluções de monitoramento de missão crítica, infraestrutura de redes e o framework **Protocolo 09**.
 
 ---
 
-## 🛠️ CORE_ENGINE (Stack Tecnológica)
+## 🛠️ WEB_ENGINE (Stack Tecnológica)
 
 ```yml
-infrastructure:
-  backend: "Node.js + Express (Hybrid Orchestration)"
-  intelligence: "Python 3 Sentinela (Zabbix JSON-RPC API)"
-  deployment: "Docker + Edge Monitoring Tunnels"
-  frontend: "Vanilla JS + CSS3 Neon Grid System"
-  📊 CAPABILITIES (Diferenciais)
-📡 Real-Time Telemetry: Conexão direta via API ao Host 10777 (Wi-Fi Interface).
-
-🚨 Reactive_UI: Alertas visuais dinâmicos (Glow Pulse) quando o tráfego excede 50 Mbps.
-
-🌓 Hybrid_Mode: Operação contínua via simulação inteligente ou telemetria real do Zabbix.
-
-🤖 Auto-Healing_Sentinel: Script Python autônomo para monitoramento de latência e mitigação de incidentes.
-
-🚀 DEPLOYMENT_LOG (Como Executar)
-Para inicializar o ecossistema Protocolo 09:
-
-1. Boot up Network Dashboard (Node.js)
-# Terminal 1
-$ node server.js
-
-2. Activate Sentinel Intelligence (Python)
-# Terminal 2
-$ python3 scripts/auto_healing.py
-
-3. Establish Interface Connection
-Target: http://localhost:3000
-
-👤 SYSTEM_AUTHOR
-{
-  "name": "Kaleb Nunes",
-  "role": "Implementation Consultant",
-  "focus": ["Infrastructure", "Networks", "NOC", "Observability"],
-  "location": "Balneário Camboriú, SC - BR"
-}
+frontend:
+  core: "HTML5 / CSS3 / JavaScript (Vanilla)"
+  design: "Custom Neon-NOC Architecture"
+  optimization: "Zero Dependency / High Performance"
+deployment:
+  host: "GitHub Pages"
+  domain: "knsconsultoria.com.br"
 
 “In infrastructure we trust, in monitoring we verify.”
+
+🛰️ REPOSITORY_MAP (Arquitetura)
+/assets: Repositório de identidade visual e mídia da marca KNS.
+
+index.html: Estrutura principal otimizada para SEO e conversão.
+
+script.js: Lógica de interatividade e animações dinâmicas.
+
+style.css: Design System focado em Dark Mode e visibilidade industrial.
+
+👤 PROJECT_LEAD (Identidade)
+{
+  "author": "Kaleb Nunes dos Santos",
+  "role": "Founder & Head of Engineering",
+  "location": "Balneário Camboriú, SC - BR",
+  "specialties": ["NOC", "SOC", "Zabbix", "Python", "Redes"]
+}
+
+“Transformando operações caóticas em sistemas previsíveis através do Protocolo 09.”
