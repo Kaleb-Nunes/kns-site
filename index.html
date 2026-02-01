@@ -1,251 +1,207 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="dark">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KNS Global | Engineering Continuity</title>
+    <title>KNS Global | Continuity & Critical Mission Engineering</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@100;400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=JetBrains+Mono:wght@300;500&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
     
     <style>
         :root {
-            --neon: #00ff88;
-            --neon-glow: rgba(0, 255, 136, 0.4);
-            --bg-deep: #020202;
-            --panel-glass: rgba(15, 15, 15, 0.7);
-            --border-line: rgba(255, 255, 255, 0.05);
-            --text-secondary: #64748b;
+            --primary: #00ff88;
+            --surface: #0a0a0a;
+            --bg: #000000;
+            --border: rgba(255, 255, 255, 0.05);
+            --text-muted: #666;
+            --mono: 'JetBrains Mono', monospace;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: grayscale; }
         body { 
-            background: var(--bg-deep); 
+            background: var(--bg); 
             color: #fff; 
             font-family: 'Inter', sans-serif; 
-            overflow-x: hidden; 
-            background-image: radial-gradient(circle at 50% 50%, #0a0a0a 0%, #020202 100%);
+            line-height: 1.5;
+            letter-spacing: -0.02em;
         }
 
-        /* --- UI COMPONENT: NAVIGATION --- */
-        .site-header {
-            position: fixed; top: 0; width: 100%; height: 72px;
+        /* NAVIGATION: STEALTH MODE */
+        nav {
+            position: fixed; top: 0; width: 100%; height: 80px;
             display: flex; align-items: center; justify-content: space-between;
-            padding: 0 40px; z-index: 1000;
-            background: rgba(0,0,0,0.8); backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-line);
+            padding: 0 60px; z-index: 1000;
+            background: rgba(0,0,0,0.9); border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(20px);
         }
-        .brand-box { font-family: 'Orbitron'; font-weight: 900; letter-spacing: 3px; font-size: 1.1rem; color: var(--neon); }
+        .logo { font-weight: 900; font-size: 1.2rem; letter-spacing: 2px; }
+        .nav-meta { display: flex; gap: 40px; font-family: var(--mono); font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; }
 
-        /* --- UI COMPONENT: HERO ENGINE --- */
-        .hero-engine {
+        /* HERO: THE CONTINUITY PROMISE */
+        .hero {
             height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            perspective: 1000px;
+            padding: 0 60px; text-align: center;
         }
-        .hero-title-group { text-align: center; margin-bottom: 40px; }
-        .hero-title-group h1 { 
-            font-family: 'Orbitron'; font-size: clamp(3rem, 8vw, 6rem); 
-            text-transform: uppercase; line-height: 1; letter-spacing: -2px;
-        }
-        .stroke-text { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.1); }
-        .neon-text { color: var(--neon); text-shadow: 0 0 30px var(--neon-glow); }
-
-        /* --- MONITOR XDR DISPLAY --- */
-        .xdr-display {
-            position: relative; width: 85%; max-width: 1100px; aspect-ratio: 16/9;
-            background: #000; border-radius: 16px; border: 1px solid #222;
-            box-shadow: 0 50px 100px -20px rgba(0,0,0,0.8);
-            overflow: hidden; transform: rotateX(5deg);
-        }
-        .xdr-display::before {
-            content: ""; position: absolute; inset: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 50%);
-            z-index: 2; pointer-events: none;
-        }
-
-        /* --- FOUNDER SECTION: GRID MASTER --- */
-        .founder-container {
-            padding: 120px 5%; display: grid; grid-template-columns: 400px 1fr; gap: 80px; align-items: start;
-        }
-        .founder-visual { position: sticky; top: 120px; }
-        .image-mask {
-            border-radius: 24px; overflow: hidden; border: 1px solid var(--border-line);
-            filter: grayscale(1) contrast(1.1); transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-        .image-mask:hover { filter: grayscale(0) contrast(1); border-color: var(--neon); }
-        .image-mask img { width: 100%; display: block; }
-
-        .founder-details h2 { font-family: 'Orbitron'; font-size: 3.5rem; margin: 10px 0 30px; }
-        .protocol-label { 
-            display: inline-block; padding: 6px 12px; border: 1px solid var(--neon); 
-            color: var(--neon); font-family: 'JetBrains Mono'; font-size: 0.7rem; border-radius: 4px;
-            margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px;
-        }
-
-        /* --- COMMAND CENTER LAYER --- */
-        #master-overlay {
-            position: fixed; inset: 0; background: var(--bg-deep); z-index: 9999;
-            display: none; grid-template-columns: 300px 1fr;
-        }
-        .sys-sidebar { background: #080808; border-right: 1px solid var(--border-line); padding: 40px; }
-        .sys-content { padding: 40px; display: grid; grid-template-rows: auto 1fr; gap: 30px; }
+        .hero-label { font-family: var(--mono); color: var(--primary); font-size: 0.7rem; letter-spacing: 5px; margin-bottom: 20px; }
+        .hero h1 { font-size: clamp(3rem, 12vw, 10rem); font-weight: 900; line-height: 0.85; margin-bottom: 40px; }
         
-        .terminal-shell {
-            background: #000; border: 1px solid #1a1a1a; border-radius: 12px;
-            display: flex; flex-direction: column; overflow: hidden;
+        /* THE XDR DISPLAY: DEEP BLACK */
+        .display-container {
+            width: 100%; max-width: 1200px; aspect-ratio: 16/9;
+            background: #050505; border: 1px solid #111; border-radius: 4px;
+            overflow: hidden; position: relative;
+            box-shadow: 0 100px 200px rgba(0,0,0,0.5);
         }
-        .terminal-header { background: #111; padding: 10px 20px; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #444; }
-        #shell-output { flex: 1; padding: 25px; font-family: 'JetBrains Mono'; color: var(--neon); font-size: 0.9rem; overflow-y: auto; }
 
-        /* --- ANIMATIONS --- */
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-        .live-dot { width: 8px; height: 8px; background: var(--neon); border-radius: 50%; box-shadow: 0 0 10px var(--neon); animation: pulse 2s infinite; }
+        /* EXECUTIVE FOUNDER SECTION */
+        .exec-section {
+            padding: 160px 10%; display: grid; grid-template-columns: 1fr 1.2fr; gap: 100px;
+            align-items: center; border-top: 1px solid var(--border);
+        }
+        .exec-image {
+            position: relative; border-radius: 2px; overflow: hidden;
+            filter: grayscale(1); transition: 0.8s;
+        }
+        .exec-image:hover { filter: grayscale(0); }
+        .exec-image img { width: 100%; display: block; }
+
+        .exec-content h2 { font-size: 4rem; font-weight: 900; margin-bottom: 30px; letter-spacing: -3px; }
+        .exec-content p { font-size: 1.2rem; color: #888; margin-bottom: 40px; font-weight: 300; }
+
+        /* KPI GRID: DATA-DRIVEN */
+        .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+        .kpi-item { background: var(--bg); padding: 40px; }
+        .kpi-item span { font-family: var(--mono); font-size: 0.6rem; color: var(--text-muted); display: block; margin-bottom: 10px; }
+        .kpi-item h4 { font-size: 2rem; font-weight: 400; color: var(--primary); }
+
+        /* COMMAND CENTER: TIER-4 ACCESS */
+        #command-center {
+            position: fixed; inset: 0; background: #000; z-index: 10000;
+            display: none; padding: 60px; grid-template-rows: auto 1fr;
+        }
+        .cc-header { display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 30px; margin-bottom: 30px; }
+        .cc-grid { display: grid; grid-template-columns: 1fr 350px; gap: 30px; height: 100%; }
+        
+        /* TERMINAL: KNS-KERNEL */
+        .terminal-block {
+            background: #050505; border: 1px solid #111; padding: 40px;
+            font-family: var(--mono); font-size: 0.85rem; color: #444; overflow-y: auto;
+        }
+        .cursor { color: var(--primary); font-weight: bold; }
+        
+        button.btn-access {
+            background: #fff; color: #000; border: none; padding: 12px 30px;
+            font-weight: 900; font-size: 0.7rem; letter-spacing: 2px; cursor: pointer;
+            transition: 0.3s;
+        }
+        button.btn-access:hover { background: var(--primary); }
     </style>
 </head>
 <body>
 
-    <header class="site-header">
-        <div class="brand-box">KNS GLOBAL</div>
-        <div style="display: flex; gap: 30px; align-items: center;">
-            <div style="display: flex; align-items: center; gap: 10px;">
-                <span class="live-dot"></span>
-                <span class="mono" style="font-size: 0.7rem; letter-spacing: 1px;">CORE_V6: STABLE</span>
-            </div>
-            <button onclick="Engine.toggleSystem()" style="background: var(--neon); color: #000; border: none; padding: 10px 24px; border-radius: 4px; font-family: 'Orbitron'; font-weight: 900; cursor: pointer; font-size: 0.7rem;">COMMAND CENTER</button>
-        </div>
-    </header>
-
-    <main>
-        <section class="hero-engine">
-            <div class="hero-title-group">
-                <h1 class="stroke-text">CONTINUIDADE</h1>
-                <h1 class="neon-text">ABSOLUTA.</h1>
-            </div>
-            <div class="xdr-display">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/T9wvW0EYfE0?autoplay=1&mute=1&loop=1&playlist=T9wvW0EYfE0&controls=0&modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media"></iframe>
-            </div>
-        </section>
-
-        <section class="founder-container">
-            <div class="founder-visual">
-                <div class="image-mask">
-                    <img src="./foto.jpg.jpg" alt="Kaleb Nunes" onerror="this.src='https://via.placeholder.com/400x500/111/00ff88?text=KALEB+NUNES'">
-                </div>
-                <div style="margin-top: 30px; display: flex; justify-content: space-between; align-items: center;">
-                    <img src="./sage- certificado.png" style="width: 150px; opacity: 0.6;" alt="SAGE Certified">
-                    <div style="text-align: right;">
-                        <p class="mono" style="font-size: 0.8rem; color: var(--neon);">SAGE CERTIFIED</p>
-                        <p class="mono" style="font-size: 0.6rem; color: var(--text-secondary);">Hurricane Electric BGP</p>
-                    </div>
-                </div>
-            </div>
-            <div class="founder-details">
-                <span class="protocol-label">Protocolo 09 // Ativado</span>
-                <h2 class="mono">KALEB NUNES</h2>
-                <p style="font-size: 1.25rem; line-height: 1.6; color: #cbd5e1; margin-bottom: 40px; font-weight: 300;">
-                    Fundador e Head of Engineering. Especialista em infraestrutura crítica e arquitetura de monitoramento híbrido. 
-                    Desenvolvi o **Protocolo 09** como um framework de resiliência ativa, unificando Zabbix, Grafana e automação Python 
-                    para garantir que a tecnologia seja um ativo de continuidade, não de interrupção.
-                </p>
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
-                    <div style="padding: 30px; background: rgba(255,255,255,0.02); border: 1px solid var(--border-line); border-radius: 12px;">
-                        <i class="fa-solid fa-microchip" style="color: var(--neon); font-size: 1.5rem; margin-bottom: 15px;"></i>
-                        <h4 class="mono" style="margin-bottom: 10px;">Engineering</h4>
-                        <p style="font-size: 0.85rem; color: var(--text-secondary);">Design de redes escaláveis e ambientes NOC enterprise.</p>
-                    </div>
-                    <div style="padding: 30px; background: rgba(255,255,255,0.02); border: 1px solid var(--border-line); border-radius: 12px;">
-                        <i class="fa-solid fa-shield-halved" style="color: var(--neon); font-size: 1.5rem; margin-bottom: 15px;"></i>
-                        <h4 class="mono" style="margin-bottom: 10px;">Observability</h4>
-                        <p style="font-size: 0.85rem; color: var(--text-secondary);">Dashboards de missão crítica e telemetria preditiva.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <div id="master-overlay">
-        <aside class="sys-sidebar">
-            <div class="brand-box" style="font-size: 0.8rem; margin-bottom: 60px;">KNS_OS_V6</div>
-            <nav class="mono" style="font-size: 0.75rem; display: grid; gap: 25px;">
-                <div style="color: var(--neon);"><i class="fa-solid fa-terminal" style="margin-right: 10px;"></i> CORE_SHELL</div>
-                <div style="opacity: 0.3;"><i class="fa-solid fa-chart-line" style="margin-right: 10px;"></i> ANALYTICS</div>
-                <div style="opacity: 0.3;"><i class="fa-solid fa-sitemap" style="margin-right: 10px;"></i> TOPOLOGY</div>
-            </nav>
-            <button onclick="Engine.toggleSystem()" style="margin-top: auto; background: none; border: 1px solid #333; color: #ff4444; padding: 10px; cursor: pointer; border-radius: 4px; width: 100%; font-size: 0.7rem;" class="mono">TERMINATE SESSION</button>
-        </aside>
-        <section class="sys-content">
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-                <div style="background: #000; border: 1px solid var(--border-line); padding: 25px; border-radius: 12px;">
-                    <p class="mono" style="font-size: 0.6rem; color: var(--text-secondary);">SYS_UPTIME</p>
-                    <h3 class="mono" style="font-size: 1.8rem; color: var(--neon);">99.999%</h3>
-                </div>
-                <div style="background: #000; border: 1px solid var(--border-line); padding: 25px; border-radius: 12px; grid-column: span 2;">
-                    <p class="mono" style="font-size: 0.6rem; color: var(--text-secondary);">CORE_PULSE_LATENCY (4ms)</p>
-                    <svg viewBox="0 0 400 50" style="width: 100%; height: 50px;">
-                        <path id="wave" d="M0 25 Q 50 5, 100 25 T 200 25 T 300 25 T 400 25" stroke="#00ff88" fill="transparent" stroke-width="2"/>
-                    </svg>
-                </div>
-            </div>
-            <div class="terminal-shell">
-                <div class="terminal-header">KALEB@KNS-CORE: ~ (SSH)</div>
-                <div id="shell-output"></div>
-                <div style="padding: 15px 25px; border-top: 1px solid #111; display: flex; gap: 15px;">
-                    <span style="color: var(--neon);" class="mono">#</span>
-                    <input type="text" id="shell-input" autocomplete="off" style="background: none; border: none; outline: none; color: #fff; flex: 1;" class="mono" placeholder="Input command...">
-                </div>
-            </div>
-        </section>
+<nav>
+    <div class="logo">KNS GLOBAL</div>
+    <div class="nav-meta">
+        <div><span>MTTR:</span> <span style="color: var(--primary);">0.4ms</span></div>
+        <div><span>SLA:</span> <span style="color: var(--primary);">99.999%</span></div>
+        <button class="btn-access" onclick="Control.open()">ENTER SYSTEM</button>
     </div>
+</nav>
 
-    <script>
-        const Engine = {
-            toggleSystem() {
-                const overlay = document.getElementById('master-overlay');
-                const isOpen = overlay.style.display === 'grid';
-                overlay.style.display = isOpen ? 'none' : 'grid';
-                if(!isOpen) this.boot();
-            },
-            boot() {
-                const out = document.getElementById('shell-output');
-                out.innerHTML = '';
-                const lines = [
-                    "[ OK ] Kernel v6.0.2 loaded.",
-                    "[ OK ] Tunneling Cloudflare active.",
-                    "[ OK ] Protocol 09 methodology injection successful.",
-                    "[ OK ] Welcome, Root Kaleb Nunes."
-                ];
-                lines.forEach((l, i) => {
-                    setTimeout(() => {
-                        const div = document.createElement('div');
-                        div.textContent = l;
-                        out.appendChild(div);
-                        out.scrollTop = out.scrollHeight;
-                    }, i * 400);
-                });
-            }
-        };
+<section class="hero">
+    <div class="hero-label">CONTINUITY OF CRITICAL MISSION</div>
+    <h1>ESTABILIDADE<br>ABSOLUTA.</h1>
+    <div class="display-container">
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/T9wvW0EYfE0?autoplay=1&mute=1&loop=1&playlist=T9wvW0EYfE0&controls=0&modestbranding=1&rel=0&iv_load_policy=3" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+    </div>
+</section>
 
-        // Shell Engine
-        document.getElementById('shell-input').addEventListener('keypress', (e) => {
-            if(e.key === 'Enter') {
-                const cmd = e.target.value.toLowerCase();
-                const out = document.getElementById('shell-output');
-                const div = document.createElement('div');
-                div.style.color = '#fff';
-                div.textContent = `# ${cmd}`;
-                out.appendChild(div);
+<section class="exec-section">
+    <div class="exec-image">
+        <img src="./foto.jpg.jpg" alt="Kaleb Nunes" onerror="this.src='https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800'">
+    </div>
+    <div class="exec-content">
+        <div class="hero-label" style="margin-bottom: 10px;">FOUNDER & HEAD OF ENGINEERING</div>
+        <h2>KALEB NUNES</h2>
+        <p>Especialista em Engenharia de Continuidade para infraestruturas distribuídas. Autor do **Protocolo 09**, um framework proprietário de confiabilidade projetado para mitigar riscos operacionais em ativos de alta criticidade através de observabilidade ativa e automação resiliente.</p>
+        
+        <div class="kpi-grid">
+            <div class="kpi-item">
+                <span>EXPERIENCE</span>
+                <h4>10Y+</h4>
+            </div>
+            <div class="kpi-item">
+                <span>CERTIFICATION</span>
+                <h4>SAGE</h4>
+            </div>
+            <div class="kpi-item">
+                <span>AVAILABILITY</span>
+                <h4>L3</h4>
+            </div>
+        </div>
+        
+        <div style="margin-top: 60px; display: flex; gap: 40px; align-items: center;">
+            <img src="./sage- certificado.png" style="height: 100px; opacity: 0.4;" alt="Sage BGP Certificate">
+            <a href="https://wa.me/5547988901616" style="color: var(--primary); text-decoration: none; font-family: var(--mono); font-size: 0.8rem; border-bottom: 1px solid var(--primary);">SOLICITAR BRIEFING TÉCNICO</a>
+        </div>
+    </div>
+</section>
 
-                const res = document.createElement('div');
-                if(cmd === 'status') res.textContent = "CORE_NOMINAL // TEMP: 32C // LOAD: 0.12";
-                else if(cmd === 'help') res.textContent = "status, help, clear, exit";
-                else if(cmd === 'clear') { out.innerHTML = ''; e.target.value = ''; return; }
-                else res.textContent = "ERR: COMMAND_NOT_FOUND";
-                
-                out.appendChild(res);
-                e.target.value = '';
-                out.scrollTop = out.scrollHeight;
-            }
-        });
-    </script>
+<div id="command-center">
+    <div class="cc-header">
+        <div class="logo">KNS COMMAND CENTER <span style="color: #333; font-weight: 300;">v6.0</span></div>
+        <button onclick="Control.close()" style="background: none; border: none; color: #fff; font-family: var(--mono); cursor: pointer;">[CLOSE]</button>
+    </div>
+    <div class="cc-grid">
+        <div class="terminal-block" id="logs">
+            <div style="margin-bottom: 20px;">SYSTEM_BOOT_SEQUENCE_COMPLETE</div>
+        </div>
+        <div style="border-left: 1px solid var(--border); padding-left: 30px;">
+            <div class="hero-label" style="margin-bottom: 20px;">REAL-TIME METRICS</div>
+            <div style="margin-bottom: 40px;">
+                <span style="display: block; font-family: var(--mono); font-size: 0.6rem; color: var(--text-muted);">ACTIVE_SESSIONS</span>
+                <div style="font-size: 2.5rem; font-weight: 300;">1,024</div>
+            </div>
+            <div style="margin-bottom: 40px;">
+                <span style="display: block; font-family: var(--mono); font-size: 0.6rem; color: var(--text-muted);">GLOBAL_LATENCY</span>
+                <div style="font-size: 2.5rem; font-weight: 300; color: var(--primary);">4ms</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const Control = {
+        open() {
+            document.getElementById('command-center').style.display = 'grid';
+            this.boot();
+        },
+        close() {
+            document.getElementById('command-center').style.display = 'none';
+        },
+        boot() {
+            const container = document.getElementById('logs');
+            const lines = [
+                "Establishing encrypted handshake with Global Nodes...",
+                "Pulling telemetry from Grafana Enterprise API...",
+                "Zabbix Distributed Proxies: HEALTHY",
+                "Protocol 09: ACTIVE_RESILIENCE_MODE_ON",
+                "Authenticated: Root User Kaleb Nunes"
+            ];
+            container.innerHTML = '';
+            lines.forEach((t, i) => {
+                setTimeout(() => {
+                    const d = document.createElement('div');
+                    d.innerHTML = `<span class="cursor">></span> ${t}`;
+                    d.style.marginBottom = "5px";
+                    container.appendChild(d);
+                    container.scrollTop = container.scrollHeight;
+                }, i * 500);
+            });
+        }
+    }
+</script>
+
 </body>
 </html>
