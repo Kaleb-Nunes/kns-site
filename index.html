@@ -3,181 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>KNS GLOBAL | Sovereign Infrastructure & Critical Engineering</title>
+    <title>KNS GLOBAL | Sovereign Infrastructure Engineering</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Plus+Jakarta+Sans:wght@200;400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@100;400;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
             --neon: #00ff88;
             --neon-glow: rgba(0, 255, 136, 0.4);
-            --bg: #030303;
-            --glass: rgba(15, 15, 15, 0.7);
-            --border: rgba(255, 255, 255, 0.08);
-            --text-high: #ffffff;
-            --text-low: #6b7280;
+            --bg: #020202;
+            --surface: rgba(10, 10, 10, 0.85);
+            --border: rgba(255, 255, 255, 0.05);
+            --text-h: #ffffff;
+            --text-l: #444;
         }
 
-        [data-theme="light"] {
-            --bg: #fdfdfd;
-            --glass: rgba(255, 255, 255, 0.8);
-            --border: rgba(0, 0, 0, 0.05);
-            --text-high: #111827;
-            --text-low: #4b5563;
-            --neon: #059669;
+        /* Sovereign UI Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { background: var(--bg); color: var(--text-h); font-family: 'Inter', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
+        .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; }
+
+        /* Scanned Background Effect */
+        body::before {
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 2px, 3px 100%; pointer-events: none; z-index: 9999;
         }
 
-        /* Engineering Reset */
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
-        body { background: var(--bg); color: var(--text-high); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
-        .mono { font-family: 'JetBrains Mono', monospace; }
+        /* Executive Bridge (Navbar) */
+        .bridge {
+            position: fixed; top: 0; width: 100%; z-index: 5000; padding: 2rem 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            backdrop-filter: blur(40px); border-bottom: 1px solid var(--border);
+        }
+        .bridge-logo { font-family: 'Orbitron'; font-weight: 900; font-size: 1.2rem; letter-spacing: 5px; }
+        .bridge-status { display: flex; align-items: center; gap: 20px; font-size: 0.6rem; color: var(--neon); }
 
-        /* Custom Cursor for High-End Experience */
-        #cursor { position: fixed; width: 20px; height: 20px; border: 1px solid var(--neon); border-radius: 50%; pointer-events: none; z-index: 9999; transition: transform 0.1s ease; mix-blend-mode: difference; }
+        /* Hero: Absolute Authority */
+        .the-vault {
+            height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 255, 136, 0.05) 0%, transparent 80%);
+        }
+        .sovereign-title {
+            font-family: 'Orbitron'; font-size: clamp(3rem, 12vw, 9rem); font-weight: 900;
+            text-align: center; line-height: 0.8; letter-spacing: -8px; opacity: 0.9;
+        }
+        .hero-monitor {
+            width: 85vw; max-width: 1200px; margin-top: 4rem; border: 1px solid var(--border);
+            border-radius: 4px; overflow: hidden; background: #000; box-shadow: 0 0 100px rgba(0,0,0,1);
+        }
 
-        /* Navigation: Architectural Layout */
-        .nav-bridge { position: fixed; top: 0; width: 100%; z-index: 5000; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(30px); border-bottom: 1px solid var(--border); }
-        .nav-logo { font-family: 'Orbitron'; font-weight: 900; letter-spacing: 4px; font-size: 1.1rem; }
-        .nav-ops { display: flex; gap: 2rem; align-items: center; }
-        .lang-switch { font-family: 'JetBrains Mono'; font-size: 0.65rem; color: var(--text-low); display: flex; gap: 10px; }
-        .lang-switch span { cursor: pointer; transition: 0.3s; }
-        .lang-switch span.active { color: var(--neon); border-bottom: 1px solid var(--neon); }
+        /* Matrix Grid: The Core Solutions */
+        .matrix-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+            background: var(--border); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+        }
+        .matrix-unit {
+            padding: 8rem 4rem; background: var(--bg); position: relative; overflow: hidden; transition: 0.6s;
+        }
+        .matrix-unit:hover { background: rgba(0, 255, 136, 0.02); }
+        .matrix-unit h3 { font-family: 'Orbitron'; font-size: 1.5rem; margin-bottom: 2rem; }
+        .matrix-unit p { color: #888; font-size: 1rem; line-height: 1.8; max-width: 300px; }
 
-        /* Hero: The Sovereign Reveal */
-        .hero-chamber { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; overflow: hidden; }
-        .bg-grid { position: absolute; width: 200%; height: 200%; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 50px 50px; transform: rotateX(60deg) translateY(-50%); z-index: -1; animation: gridMove 20s linear infinite; opacity: 0.5; }
-        @keyframes gridMove { from { background-position: 0 0; } to { background-position: 0 50px; } }
+        /* Bio-Feedback Section (Founder) */
+        .founder-chamber {
+            padding: 15rem 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 10rem; align-items: center;
+        }
+        .portrait-frame {
+            position: relative; border-left: 1px solid var(--neon); padding-left: 2rem;
+        }
+        .portrait-frame img {
+            width: 100%; border-radius: 2px; filter: grayscale(1) brightness(0.7) contrast(1.2);
+            mix-blend-mode: screen; transition: 0.8s;
+        }
+        .portrait-frame:hover img { filter: grayscale(0) brightness(1); mix-blend-mode: normal; }
 
-        .hero-title { font-family: 'Orbitron'; font-size: clamp(2rem, 10vw, 7rem); font-weight: 900; text-align: center; line-height: 0.8; letter-spacing: -5px; }
-        .glitch-text { color: transparent; -webkit-text-stroke: 1px var(--text-high); position: relative; }
-        .glitch-text::after { content: attr(data-text); position: absolute; left: 0; top: 0; width: 100%; height: 100%; color: var(--neon); -webkit-text-stroke: 0px; clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%); transform: translate(5px, -5px); animation: glitch 4s infinite; }
+        /* Data-Stream Footer */
+        .data-footer {
+            padding: 2rem 5%; border-top: 1px solid var(--border); background: #000;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .stream-line { white-space: nowrap; font-family: 'JetBrains Mono'; color: var(--neon); font-size: 0.6rem; opacity: 0.4; overflow: hidden; width: 60%; }
 
-        @keyframes glitch { 0% { transform: translate(5px, -5px); } 50% { transform: translate(-5px, 5px); } 100% { transform: translate(5px, -5px); } }
-
-        /* The Command Center Preview */
-        .monitor-frame { width: 100%; max-width: 1100px; aspect-ratio: 16/9; background: #000; border-radius: 20px; border: 1px solid #333; overflow: hidden; position: relative; box-shadow: 0 50px 150px rgba(0,0,0,0.8); margin-top: 50px; }
-        .monitor-frame iframe { width: 100%; height: 100%; pointer-events: none; filter: contrast(1.1) brightness(0.8); }
-
-        /* Solution Matrix */
-        .matrix-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); max-width: 1300px; margin: 0 auto; border: 1px solid var(--border); }
-        .matrix-cell { padding: 5rem 3rem; background: var(--bg); transition: 0.5s; position: relative; overflow: hidden; }
-        .matrix-cell:hover { background: rgba(0, 255, 136, 0.02); }
-        .matrix-cell::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--neon); transform: scaleX(0); transition: 0.5s; transform-origin: left; }
-        .matrix-cell:hover::before { transform: scaleX(1); }
-        .matrix-cell h3 { font-family: 'Orbitron'; font-size: 1.2rem; margin-bottom: 1.5rem; }
-        .matrix-cell p { color: var(--text-low); font-size: 0.95rem; line-height: 1.6; }
-
-        /* Founder: Executive Profile */
-        .exec-profile { padding: 10rem 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; align-items: center; max-width: 1400px; margin: 0 auto; }
-        .profile-visual { position: relative; }
-        .profile-visual img { width: 100%; border-radius: 4px; filter: grayscale(1) contrast(1.1); }
-        .profile-visual::after { content: 'SAGE CERTIFIED'; position: absolute; bottom: -20px; right: -20px; background: var(--neon); color: #000; padding: 10px 20px; font-family: 'JetBrains Mono'; font-weight: 800; font-size: 0.7rem; }
-
-        .btn-action { background: var(--neon); color: #000; padding: 1.5rem 3rem; font-family: 'Orbitron'; font-weight: 900; text-decoration: none; display: inline-flex; align-items: center; gap: 15px; border-radius: 4px; box-shadow: 0 0 40px var(--neon-glow); }
+        /* Buttons: Military Grade */
+        .btn-sovereign {
+            padding: 1.5rem 4rem; background: var(--neon); color: #000;
+            font-family: 'Orbitron'; font-weight: 900; text-decoration: none;
+            letter-spacing: 2px; transition: 0.4s; position: relative;
+        }
+        .btn-sovereign:hover { transform: scale(1.05); box-shadow: 0 0 50px var(--neon-glow); }
     </style>
 </head>
 <body>
 
-    <div id="cursor"></div>
-
-    <nav class="nav-bridge">
-        <div class="nav-logo">KNS GLOBAL <span style="color:var(--neon)">//</span> PROTOTYPE</div>
-        <div class="nav-ops">
-            <div class="lang-switch">
-                <span class="active" onclick="translate('pt')">PT_BR</span>
-                <span onclick="translate('en')">EN_US</span>
-                <span onclick="translate('es')">ES_ES</span>
-            </div>
-            <div onclick="toggleMode()" style="cursor:pointer; color:var(--text-high)"><i class="fa-solid fa-moon"></i></div>
-            <a href="https://wa.me/5547988901616" class="btn-action" style="padding: 0.7rem 1.5rem; font-size: 0.65rem; box-shadow: none;">REQUEST ACCESS</a>
+    <nav class="bridge">
+        <div class="bridge-logo">KNS GLOBAL <span style="font-weight:100; color:var(--text-l)">//</span></div>
+        <div class="bridge-status mono">
+            <span>NETWORK: NOMINAL</span>
+            <span>UPLINK: 42.1 Gbps</span>
+            <div id="theme-btn" onclick="toggle()" style="cursor:pointer"><i class="fa-solid fa-ghost"></i></div>
         </div>
     </nav>
 
-    <header class="hero-chamber">
-        <div class="bg-grid"></div>
-        <span class="mono" style="color:var(--neon); letter-spacing: 5px; font-size: 0.7rem; margin-bottom: 2rem;">CRITICAL INFRASTRUCTURE & CONTINUITY</span>
-        <h1 class="hero-title">
-            <span id="title-1">CONTINUIDADE</span> <br>
-            <span class="glitch-text" id="title-2" data-text="ABSOLUTA.">ABSOLUTA.</span>
+    <main class="the-vault">
+        <h1 class="sovereign-title">
+            CONTINUIDADE<br>
+            <span style="color:var(--neon)">ABSOLUTA.</span>
         </h1>
-        
-        <div class="monitor-frame">
-            <iframe src="https://www.youtube.com/embed/T9wvW0EYfE0?autoplay=1&mute=1&loop=1&playlist=T9wvW0EYfE0&controls=0&modestbranding=1" frameborder="0"></iframe>
+        <div class="hero-monitor">
+            <iframe width="100%" height="675" src="https://www.youtube.com/embed/T9wvW0EYfE0?autoplay=1&mute=1&loop=1&playlist=T9wvW0EYfE0&controls=0&modestbranding=1" frameborder="0"></iframe>
         </div>
-    </header>
+    </main>
 
-    <section class="matrix-container">
-        <div class="matrix-cell">
-            <span class="mono" style="color:var(--neon); font-size: 0.6rem;">// SYSTEM_OBSERVABILITY</span>
-            <h3 id="card1-h">Observabilidade Ativa</h3>
-            <p id="card1-p">Não apenas monitoramos. Antecipamos a degradação de serviços críticos através de análise preditiva.</p>
+    <section class="matrix-grid">
+        <div class="matrix-unit">
+            <span class="mono" style="color:var(--neon)">[ 01_OBSERVABILITY ]</span>
+            <h3>Visão Total</h3>
+            <p>Engenharia de dados que antecipa falhas críticas em infraestruturas ISP de larga escala.</p>
         </div>
-        <div class="matrix-cell">
-            <span class="mono" style="color:var(--neon); font-size: 0.6rem;">// AUTO_HEALING_CORE</span>
-            <h3 id="card2-h">Sistemas de Auto-Cura</h3>
-            <p id="card2-p">Protocolos de resposta automática que restabelecem o fluxo operacional em milissegundos.</p>
+        <div class="matrix-unit">
+            <span class="mono" style="color:var(--neon)">[ 02_AUTO_HEALING ]</span>
+            <h3>Resiliência Ativa</h3>
+            <p>Protocolo 09: Automação em Python que repara sistemas em milissegundos sem intervenção humana.</p>
         </div>
-        <div class="matrix-cell">
-            <span class="mono" style="color:var(--neon); font-size: 0.6rem;">// BGP_RESILIENCE</span>
-            <h3 id="card3-h">Governança BGP/Cloud</h3>
-            <p id="card3-p">Arquitetura de alta performance para detentores de AS e ISPs de escala nacional.</p>
+        <div class="matrix-unit">
+            <span class="mono" style="color:var(--neon)">[ 03_SOVEREIGNTY ]</span>
+            <h3>BGP SAGE</h3>
+            <p>Governança de roteamento e escalabilidade para detentores de AS de nível nacional.</p>
         </div>
     </section>
 
-    <section class="exec-profile">
-        <div class="profile-visual">
+    <section class="founder-chamber">
+        <div class="portrait-frame">
             <img src="./foto.jpg.jpg" alt="Kaleb Nunes CEO" onerror="this.src='https://via.placeholder.com/600x800'">
         </div>
         <div>
-            <span class="mono" style="color:var(--neon); font-weight: bold;">[ CHIEF_ENGINEER ]</span>
-            <h2 style="font-family:'Orbitron'; font-size: 3.5rem; margin: 2rem 0;">KALEB NUNES</h2>
-            <p id="founder-p" style="color:var(--text-low); font-size: 1.3rem; line-height: 1.8; margin-bottom: 3rem;">
-                "Multinacionais não podem errar. Nossa engenharia foca na proteção da receita através da estabilidade técnica inquebrável."
+            <span class="mono" style="color:var(--neon); font-weight: bold; font-size: 1rem;">// CHIEF_ENGINEER</span>
+            <h2 style="font-family: 'Orbitron'; font-size: 4rem; margin: 2rem 0; letter-spacing: -2px;">KALEB NUNES</h2>
+            <p style="color: #666; font-size: 1.4rem; line-height: 1.6; font-weight: 300; margin-bottom: 4rem;">
+                "A continuidade não é um serviço, é um estado de soberania. Blindamos o faturamento dos nossos clientes através da perfeição técnica."
             </p>
-            <div style="display: flex; gap: 4rem;">
-                <img src="./sage- certificado.png" style="width: 180px; filter: grayscale(1) brightness(2);" onerror="this.src='https://he.net/img/sage-certified.png'">
-                <div class="mono" style="font-size: 0.8rem; border-left: 1px solid var(--border); padding-left: 2rem;">
-                    <div style="color:var(--neon)">CERTIFICATION:</div>
-                    <div>HURRICANE ELECTRIC</div>
-                    <div>RANK: SAGE BGP CERTIFIED</div>
+            <div style="display: flex; gap: 50px; align-items: center;">
+                <img src="./sage- certificado.png" style="width: 200px; filter: invert(1);" onerror="this.src='https://he.net/img/sage-certified.png'">
+                <div class="mono" style="line-height: 2;">
+                    STATUS: SAGE CERTIFIED GLOBAL<br>
+                    ID: HURRICANE_ELECTRIC_BGP_V6<br>
+                    RANK: TOP 1% WORLDWIDE
                 </div>
             </div>
         </div>
     </section>
 
-    <footer style="padding: 10rem 5%; text-align: center; background: #000;">
-        <h2 style="font-family:'Orbitron'; font-size: 2.5rem; margin-bottom: 3rem;">READY TO SECURE YOUR EMPIRE?</h2>
-        <a href="https://wa.me/5547988901616" class="btn-action">START STRATEGIC DIALOGUE</a>
-    </footer>
+    <div class="data-footer">
+        <div class="stream-line mono" id="stream"></div>
+        <a href="https://wa.me/5547988901616" class="btn-sovereign">REQUISITAR PROTOCOLO</a>
+    </div>
 
     <script>
-        // Custom Cursor Engine
-        const cursor = document.getElementById('cursor');
-        document.addEventListener('mousemove', e => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
+        // Data Stream Simulator
+        const stream = document.getElementById('stream');
+        const logs = [
+            "TX: 4.2GBPS // RX: 1.8GBPS", "CORE_ROUTER_01: NOMINAL", "BGP_SESSION: ESTABLISHED",
+            "SAGE_VALIDATION: COMPLETED", "DDoS_SHIELD: ACTIVE", "LATENCY: 4ms"
+        ];
+        setInterval(() => {
+            const log = logs[Math.floor(Math.random()*logs.length)];
+            stream.innerText = `[${new Date().toLocaleTimeString()}] ${log} | ${stream.innerText.substring(0, 100)}`;
+        }, 1000);
 
-        // Translation Engine
-        const content = {
-            pt: { t1: "CONTINUIDADE", h2: "ABSOLUTA.", c1h: "Observabilidade Ativa", c1p: "Monitoria preditiva.", f: "Nossa engenharia foca na proteção da receita." },
-            en: { t1: "ABSOLUTE", h2: "CONTINUITY.", c1h: "Active Observability", c1p: "Predictive monitoring.", f: "Our engineering focuses on revenue protection." },
-            es: { t1: "CONTINUIDAD", h2: "ABSOLUTA.", c1h: "Observabilidad Activa", c1p: "Monitorización predictiva.", f: "Nuestra ingeniería se centra en la protección de ingresos." }
-        };
-
-        function translate(lang) {
-            document.getElementById('title-1').innerText = content[lang].t1;
-            document.getElementById('title-2').innerText = content[lang].h2;
-            document.getElementById('title-2').setAttribute('data-text', content[lang].h2);
-            document.querySelectorAll('.lang-switch span').forEach(s => s.classList.remove('active'));
-            event.target.classList.add('active');
-        }
-
-        function toggleMode() {
-            const html = document.documentElement;
-            html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+        function toggle() {
+            const h = document.documentElement;
+            h.setAttribute('data-theme', h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
         }
     </script>
 </body>
