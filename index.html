@@ -1,185 +1,85 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="dark">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KNS GLOBAL | Sovereign Engineering Map</title>
+    <title>KNS GLOBAL | Enterprise Continuity Systems</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=JetBrains+Mono&family=Plus+Jakarta+Sans:wght@200;800&display=swap" rel="stylesheet">
 
     <style>
-        :root {
-            --neon: #00ff88;
-            --bg: #050505;
-            --surface: rgba(10, 10, 10, 0.9);
-            --border: rgba(255, 255, 255, 0.05);
-            --text: #ffffff;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            background: var(--bg); 
-            color: var(--text); 
-            font-family: 'Inter', sans-serif; 
-            overflow: hidden; /* Impede scroll para focar no mapa */
-            height: 100vh;
-        }
-
-        /* Background Grid Profissional */
-        .grid-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: radial-gradient(var(--border) 1px, transparent 1px);
-            background-size: 50px 50px; z-index: -1;
-        }
-
-        /* Navbar "HUD" */
-        .hud-header {
-            position: fixed; top: 0; width: 100%; padding: 2rem 5%;
-            display: flex; justify-content: space-between; align-items: center;
-            backdrop-filter: blur(10px); z-index: 1000;
-        }
-        .brand { font-family: 'Orbitron'; letter-spacing: 5px; font-weight: 900; font-size: 1.2rem; }
-
-        /* Container do Mapa Interativo */
-        #map-container {
-            width: 100vw; height: 100vh; cursor: grab;
-            display: flex; align-items: center; justify-content: center;
-        }
-        #map-container:active { cursor: grabbing; }
-
-        .node {
-            position: absolute; width: 120px; height: 120px;
-            background: var(--surface); border: 1px solid var(--border);
-            border-radius: 50%; display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-            z-index: 2;
-        }
-        .node:hover {
-            border-color: var(--neon); transform: scale(1.2);
-            box-shadow: 0 0 30px rgba(0, 255, 136, 0.2);
-        }
-        .node i { font-size: 2rem; color: var(--neon); margin-bottom: 8px; }
-        .node span { font-family: 'Orbitron'; font-size: 0.6rem; text-align: center; font-weight: bold; }
-
-        /* Linhas de Conexão (SVG) */
-        svg#connections {
-            position: absolute; top: 0; left: 0;
-            width: 100%; height: 100%; pointer-events: none; z-index: 1;
-        }
-        line { stroke: var(--border); stroke-width: 1; stroke-dasharray: 5; }
-
-        /* Painel Lateral de Informação */
-        .info-panel {
-            position: fixed; right: 2rem; top: 50%; transform: translateY(-50%);
-            width: 300px; background: var(--surface); border: 1px solid var(--border);
-            padding: 2rem; border-radius: 12px; backdrop-filter: blur(20px);
-            display: none; animation: slideIn 0.4s forwards;
-        }
-        @keyframes slideIn { from { opacity: 0; transform: translate(50px, -50%); } to { opacity: 1; transform: translate(0, -50%); } }
-
-        .btn-access {
-            position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
-            background: var(--neon); color: #000; padding: 1.2rem 3rem;
-            font-family: 'Orbitron'; font-weight: 900; text-decoration: none;
-            border-radius: 4px; box-shadow: 0 0 40px rgba(0, 255, 136, 0.3);
-        }
+        :root { --neon: #00ff88; --bg: #050505; }
+        body { background: var(--bg); color: white; font-family: 'Plus Jakarta Sans', sans-serif; cursor: crosshair; }
+        .neon-border { border: 1px solid rgba(0, 255, 136, 0.2); }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); }
+        #custom-cursor { position: fixed; width: 10px; height: 10px; background: var(--neon); border-radius: 50%; pointer-events: none; z-index: 9999; }
     </style>
 </head>
-<body>
+<body class="overflow-x-hidden">
 
-    <div class="grid-bg"></div>
+    <div id="custom-cursor"></div>
 
-    <header class="hud-header">
-        <div class="brand">KNS GLOBAL // SKILL MAP</div>
-        <div class="mono" style="color: var(--neon); font-size: 0.7rem;">SYSTEM STATUS: ONLINE</div>
-    </header>
+    <nav class="fixed top-0 w-full z-50 p-6 glass flex justify-between items-center border-b border-white/5">
+        <div class="font-black tracking-widest font-['Orbitron']">KNS GLOBAL //</div>
+        <div class="flex gap-6 items-center text-[10px] font-bold">
+            <button onclick="changeLang('PT')" class="hover:text-neon">PT</button>
+            <button onclick="changeLang('EN')" class="hover:text-neon">EN</button>
+            <button onclick="toggleTheme()" class="text-lg"><i class="fa-solid fa-moon"></i></button>
+            <a href="#contact" class="bg-neon text-black px-4 py-2 font-['Orbitron']">REQUEST AUDIT</a>
+        </div>
+    </nav>
 
-    <div id="map-container">
-        <svg id="connections"></svg>
+    <main class="min-height-screen pt-40 flex flex-col items-center">
+        <h1 class="text-[12vw] font-black leading-none text-center tracking-tighter uppercase mb-12">
+            Continuity<br><span class="text-neon">Absolute.</span>
+        </h1>
         
-        <div class="node" style="width: 160px; height: 160px; border-color: var(--neon);" data-id="root">
-            <img src="./foto.jpg.jpg" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; opacity: 0.8;" onerror="this.src='https://via.placeholder.com/160'">
-            <div style="position: absolute; bottom: -10px; background: var(--neon); color: #000; padding: 2px 10px; font-family: 'Orbitron'; font-size: 0.5rem; font-weight: 900;">FOUNDER</div>
+        <div class="w-[85vw] max-w-6xl aspect-video rounded-xl overflow-hidden shadow-2xl shadow-neon/10 border border-white/10">
+            <iframe src="https://www.youtube.com/embed/T9wvW0EYfE0?autoplay=1&mute=1&loop=1&playlist=T9wvW0EYfE0" class="w-full h-full"></iframe>
         </div>
+    </main>
 
-        <div class="node" style="margin-left: -300px; margin-top: -200px;" data-id="bgp">
-            <i class="fa-solid fa-network-wired"></i>
-            <span>BGP SAGE</span>
+    <section id="contact" class="py-40 px-6 flex justify-center">
+        <div class="w-full max-w-lg glass p-10 rounded-2xl border border-white/10">
+            <h2 class="font-['Orbitron'] text-2xl mb-8">SECURE CONNECTION</h2>
+            <form id="leadForm" class="space-y-6">
+                <input type="text" placeholder="COMPANY NAME" class="w-full bg-white/5 p-4 outline-none border-b border-white/10 focus:border-neon">
+                <input type="email" placeholder="OFFICIAL EMAIL" class="w-full bg-white/5 p-4 outline-none border-b border-white/10 focus:border-neon">
+                <button type="submit" class="w-full bg-neon text-black py-5 font-black uppercase tracking-widest hover:brightness-110 transition-all">
+                    Initialize Protocol 09
+                </button>
+            </form>
         </div>
-        <div class="node" style="margin-left: 300px; margin-top: -200px;" data-id="python">
-            <i class="fa-brands fa-python"></i>
-            <span>AUTO-HEALING</span>
-        </div>
-        <div class="node" style="margin-left: 0px; margin-top: 300px;" data-id="zabbix">
-            <i class="fa-solid fa-chart-line"></i>
-            <span>ZABBIX/GRAFANA</span>
-        </div>
-    </div>
+    </section>
 
-    <div class="info-panel" id="panel">
-        <h3 id="panel-title" style="font-family: 'Orbitron'; color: var(--neon);">Title</h3>
-        <p id="panel-desc" style="margin-top: 1rem; font-size: 0.9rem; color: #888; line-height: 1.6;">Description goes here.</p>
-    </div>
-
-    <a href="https://wa.me/5547988901616" class="btn-access">REQUISITAR ACESSO AO BOARD</a>
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-20 px-[10%] py-40 items-center">
+        <div class="relative group">
+            <img src="./foto.jpg.jpg" class="grayscale group-hover:grayscale-0 transition-all duration-700 rounded-sm">
+            <div class="absolute -bottom-5 -right-5 bg-neon text-black p-4 font-bold text-xs">SAGE CERTIFIED</div>
+        </div>
+        <div>
+            <span class="text-neon font-mono text-xs tracking-[5px] uppercase">CHIEF ENGINEER</span>
+            <h2 class="text-6xl font-black mt-4 mb-8">Kaleb Nunes</h2>
+            <p class="text-gray-400 text-xl italic">"Garantimos que a tecnologia seja um ativo invisível e lucrativo. Não vendemos configuração, vendemos continuidade."</p>
+            <img src="./sage- certificado.png" class="w-40 mt-12 opacity-50 hover:opacity-100 transition-opacity">
+        </div>
+    </section>
 
     <script>
-        const nodes = document.querySelectorAll('.node');
-        const svg = document.getElementById('connections');
-        const panel = document.getElementById('panel');
-
-        // Função para desenhar as conexões dinâmicas
-        function drawConnections() {
-            const root = document.querySelector('[data-id="root"]').getBoundingClientRect();
-            const rootX = root.left + root.width / 2;
-            const rootY = root.top + root.height / 2;
-
-            svg.innerHTML = '';
-            nodes.forEach(node => {
-                if (node.dataset.id !== 'root') {
-                    const rect = node.getBoundingClientRect();
-                    const nodeX = rect.left + rect.width / 2;
-                    const nodeY = rect.top + rect.height / 2;
-
-                    const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-                    line.setAttribute("x1", rootX);
-                    line.setAttribute("y1", rootY);
-                    line.setAttribute("x2", nodeX);
-                    line.setAttribute("y2", nodeY);
-                    svg.appendChild(line);
-                }
-            });
-        }
-
-        // Interatividade: Ao clicar nos nós
-        nodes.forEach(node => {
-            node.addEventListener('click', () => {
-                const id = node.dataset.id;
-                panel.style.display = 'block';
-                if(id === 'bgp') {
-                    document.getElementById('panel-title').innerText = 'HURRICANE ELECTRIC SAGE';
-                    document.getElementById('panel-desc').innerText = 'Engenharia de roteamento avançada e governança de AS em escala global. Rank Top 1% Worldwide.';
-                }
-                if(id === 'python') {
-                    document.getElementById('panel-title').innerText = 'AUTO-HEALING CORE';
-                    document.getElementById('panel-desc').innerText = 'Desenvolvimento de automações em Python para recuperação de falhas críticas sem intervenção humana.';
-                }
-            });
+        // Cursor Logic
+        document.addEventListener('mousemove', e => {
+            const cursor = document.getElementById('custom-cursor');
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
         });
 
-        window.addEventListener('load', drawConnections);
-        window.addEventListener('resize', drawConnections);
-
-        // Movimentação sutil da "câmera" com o mouse (Efeito Parallax)
-        const container = document.getElementById('map-container');
-        document.addEventListener('mousemove', (e) => {
-            const x = (window.innerWidth / 2 - e.pageX) / 30;
-            const y = (window.innerHeight / 2 - e.pageY) / 30;
-            container.style.transform = `translate(${x}px, ${y}px)`;
-            drawConnections();
+        // Form Submission
+        document.getElementById('leadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            // Simulação de integração com o backend FastAPI
+            alert("Sinal enviado. Protocolo 09 em prontidão.");
         });
     </script>
 </body>
