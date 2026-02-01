@@ -2,186 +2,185 @@
 <html lang="pt-BR" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>KNS GLOBAL | Sovereign Engineering & Infrastructure</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KNS GLOBAL | Sovereign Engineering Map</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@200;400;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
             --neon: #00ff88;
-            --neon-glow: rgba(0, 255, 136, 0.4);
-            --bg: #010101;
-            --surface: rgba(10, 10, 10, 0.85);
+            --bg: #050505;
+            --surface: rgba(10, 10, 10, 0.9);
             --border: rgba(255, 255, 255, 0.05);
-            --text-high: #ffffff;
-            --text-low: #6b7280;
+            --text: #ffffff;
         }
 
-        [data-theme="light"] {
-            --bg: #f9fafb;
-            --surface: rgba(255, 255, 255, 0.9);
-            --border: rgba(0, 0, 0, 0.08);
-            --text-high: #111827;
-            --text-low: #4b5563;
-            --neon: #059669;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: var(--bg); 
+            color: var(--text); 
+            font-family: 'Inter', sans-serif; 
+            overflow: hidden; /* Impede scroll para focar no mapa */
+            height: 100vh;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        body { background: var(--bg); color: var(--text-high); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
-        .mono { font-family: 'JetBrains Mono', monospace; }
+        /* Background Grid Profissional */
+        .grid-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(var(--border) 1px, transparent 1px);
+            background-size: 50px 50px; z-index: -1;
+        }
 
-        /* HUD - Heads Up Display (Navbar) */
-        .hud-nav {
-            position: fixed; top: 0; width: 100%; z-index: 5000; padding: 1.5rem 5%;
+        /* Navbar "HUD" */
+        .hud-header {
+            position: fixed; top: 0; width: 100%; padding: 2rem 5%;
             display: flex; justify-content: space-between; align-items: center;
-            backdrop-filter: blur(40px); border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px); z-index: 1000;
         }
-        .hud-logo { font-family: 'Orbitron'; font-weight: 900; font-size: 1.1rem; letter-spacing: 4px; text-decoration: none; color: inherit; }
-        
-        .nav-controls { display: flex; align-items: center; gap: 20px; }
-        .lang-trigger { font-family: 'JetBrains Mono'; font-size: 0.65rem; border: 1px solid var(--border); padding: 5px 10px; cursor: pointer; border-radius: 4px; }
-        .lang-trigger:hover { border-color: var(--neon); color: var(--neon); }
+        .brand { font-family: 'Orbitron'; letter-spacing: 5px; font-weight: 900; font-size: 1.2rem; }
 
-        /* Main Viewport */
-        .viewport { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        .viewport h1 { font-family: 'Orbitron'; font-size: clamp(3rem, 10vw, 8rem); font-weight: 900; line-height: 0.85; margin-bottom: 2rem; letter-spacing: -6px; }
-
-        /* Video Terminal */
-        .terminal-container {
-            width: 85vw; max-width: 1200px; border: 1px solid var(--border);
-            border-radius: 8px; overflow: hidden; background: #000;
-            box-shadow: 0 0 120px rgba(0,0,0,0.8);
+        /* Container do Mapa Interativo */
+        #map-container {
+            width: 100vw; height: 100vh; cursor: grab;
+            display: flex; align-items: center; justify-content: center;
         }
-        .terminal-container iframe { width: 100%; aspect-ratio: 16/9; display: block; border: none; }
+        #map-container:active { cursor: grabbing; }
 
-        /* Solution Grid (Glassmorphism) */
-        .solution-matrix { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); max-width: 1400px; margin: 0 auto; }
-        .matrix-unit { padding: 6rem 3rem; background: var(--bg); transition: 0.5s; }
-        .matrix-unit:hover { background: rgba(0, 255, 136, 0.02); }
-        .matrix-unit h3 { font-family: 'Orbitron'; font-size: 1.4rem; margin-bottom: 1.5rem; }
-        .matrix-unit p { color: var(--text-low); line-height: 1.7; font-size: 1rem; }
-
-        /* CEO Chamber */
-        .ceo-chamber { padding: 10rem 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; max-width: 1300px; margin: 0 auto; align-items: center; }
-        .ceo-photo-wrapper { position: relative; border: 1px solid var(--border); padding: 15px; border-radius: 4px; }
-        .ceo-photo-wrapper img { width: 100%; border-radius: 2px; filter: grayscale(1); transition: 0.8s; }
-        .ceo-photo-wrapper:hover img { filter: grayscale(0); }
-        .ceo-badge { position: absolute; top: -10px; right: -10px; background: var(--neon); color: #000; font-family: 'Orbitron'; font-weight: 900; font-size: 0.6rem; padding: 5px 10px; }
-
-        /* Global Footer DataStream */
-        .datastream-footer {
-            padding: 1rem 5%; background: #000; border-top: 1px solid var(--border);
-            display: flex; justify-content: space-between; align-items: center;
+        .node {
+            position: absolute; width: 120px; height: 120px;
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 50%; display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            z-index: 2;
         }
-        .stream-text { font-family: 'JetBrains Mono'; font-size: 0.65rem; color: var(--neon); opacity: 0.5; overflow: hidden; width: 70%; }
+        .node:hover {
+            border-color: var(--neon); transform: scale(1.2);
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.2);
+        }
+        .node i { font-size: 2rem; color: var(--neon); margin-bottom: 8px; }
+        .node span { font-family: 'Orbitron'; font-size: 0.6rem; text-align: center; font-weight: bold; }
+
+        /* Linhas de Conexão (SVG) */
+        svg#connections {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%; pointer-events: none; z-index: 1;
+        }
+        line { stroke: var(--border); stroke-width: 1; stroke-dasharray: 5; }
+
+        /* Painel Lateral de Informação */
+        .info-panel {
+            position: fixed; right: 2rem; top: 50%; transform: translateY(-50%);
+            width: 300px; background: var(--surface); border: 1px solid var(--border);
+            padding: 2rem; border-radius: 12px; backdrop-filter: blur(20px);
+            display: none; animation: slideIn 0.4s forwards;
+        }
+        @keyframes slideIn { from { opacity: 0; transform: translate(50px, -50%); } to { opacity: 1; transform: translate(0, -50%); } }
 
         .btn-access {
+            position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
             background: var(--neon); color: #000; padding: 1.2rem 3rem;
             font-family: 'Orbitron'; font-weight: 900; text-decoration: none;
-            border-radius: 4px; box-shadow: 0 0 40px var(--neon-glow); transition: 0.4s;
+            border-radius: 4px; box-shadow: 0 0 40px rgba(0, 255, 136, 0.3);
         }
     </style>
 </head>
 <body>
 
-    <nav class="hud-nav">
-        <a href="#" class="hud-logo">KNS GLOBAL //</a>
-        <div class="nav-controls">
-            <div class="lang-trigger mono" onclick="cycleLanguage()">LANG: <span id="current-lang">PT-BR</span></div>
-            <div onclick="toggleTheme()" style="cursor:pointer; color:var(--text-high); font-size: 1.2rem;"><i class="fa-solid fa-bolt"></i></div>
-            <a href="https://wa.me/5547988901616" class="btn-access" style="padding: 0.7rem 1.5rem; font-size: 0.6rem; box-shadow: none;">REQUEST ACCESS</a>
-        </div>
-    </nav>
+    <div class="grid-bg"></div>
 
-    <section class="viewport">
-        <span class="mono" style="color:var(--neon); letter-spacing: 4px; font-size: 0.7rem; margin-bottom: 2rem;">CRITICAL INFRASTRUCTURE PROTOCOL</span>
-        <h1 id="main-title">CONTINUIDADE<br><span style="color:var(--neon)">ABSOLUTA.</span></h1>
+    <header class="hud-header">
+        <div class="brand">KNS GLOBAL // SKILL MAP</div>
+        <div class="mono" style="color: var(--neon); font-size: 0.7rem;">SYSTEM STATUS: ONLINE</div>
+    </header>
+
+    <div id="map-container">
+        <svg id="connections"></svg>
         
-        <div class="terminal-container">
-            <iframe src="https://www.youtube.com/embed/T9wvW0EYfE0?autoplay=1&mute=1&loop=1&playlist=T9wvW0EYfE0&controls=0&modestbranding=1" allow="autoplay"></iframe>
+        <div class="node" style="width: 160px; height: 160px; border-color: var(--neon);" data-id="root">
+            <img src="./foto.jpg.jpg" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; opacity: 0.8;" onerror="this.src='https://via.placeholder.com/160'">
+            <div style="position: absolute; bottom: -10px; background: var(--neon); color: #000; padding: 2px 10px; font-family: 'Orbitron'; font-size: 0.5rem; font-weight: 900;">FOUNDER</div>
         </div>
-    </section>
 
-    <div class="solution-matrix">
-        <div class="matrix-unit">
-            <span class="mono" style="color:var(--neon)">[ 01_OBSERVABILITY ]</span>
-            <h3 id="card1-h">Observabilidade Ativa</h3>
-            <p id="card1-p">Previsão de degradação em tempo real através do monitoramento de processos de negócio.</p>
+        <div class="node" style="margin-left: -300px; margin-top: -200px;" data-id="bgp">
+            <i class="fa-solid fa-network-wired"></i>
+            <span>BGP SAGE</span>
         </div>
-        <div class="matrix-unit">
-            <span class="mono" style="color:var(--neon)">[ 02_AUTOHEAL ]</span>
-            <h3 id="card2-h">Sistemas Autônomos</h3>
-            <p id="card2-p">Automação reativa com Protocolo 09 que neutraliza incidentes antes da percepção humana.</p>
+        <div class="node" style="margin-left: 300px; margin-top: -200px;" data-id="python">
+            <i class="fa-brands fa-python"></i>
+            <span>AUTO-HEALING</span>
         </div>
-        <div class="matrix-unit">
-            <span class="mono" style="color:var(--neon)">[ 03_SCALABILITY ]</span>
-            <h3 id="card3-h">Governança BGP</h3>
-            <p id="card3-p">Engenharia de roteamento para ISPs e AS que buscam estabilidade inquebrável.</p>
+        <div class="node" style="margin-left: 0px; margin-top: 300px;" data-id="zabbix">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>ZABBIX/GRAFANA</span>
         </div>
     </div>
 
-    <section class="ceo-chamber">
-        <div class="ceo-photo-wrapper">
-            <img src="./foto.jpg.jpg" alt="Kaleb Nunes CEO" onerror="this.src='https://via.placeholder.com/400x500'">
-            <div class="ceo-badge">SAGE BGP CERTIFIED</div>
-        </div>
-        <div>
-            <span class="mono" style="color:var(--neon); font-weight: bold; font-size: 1rem;">// THE_FOUNDER</span>
-            <h2 style="font-family: 'Orbitron'; font-size: 3.5rem; margin: 1.5rem 0;">KALEB NUNES</h2>
-            <p id="founder-text" style="color: var(--text-low); font-size: 1.3rem; line-height: 1.8; font-style: italic; margin-bottom: 3rem;">
-                "A tecnologia deve ser invisível. Se você a percebe, é porque ela falhou. Nós garantimos o silêncio da perfeição."
-            </p>
-            <div style="display: flex; gap: 40px; align-items: center;">
-                <img src="./sage- certificado.png" style="width: 160px; filter: grayscale(1) invert(var(--inv, 0));" onerror="this.src='https://he.net/img/sage-certified.png'">
-                <div class="mono" style="font-size: 0.75rem; border-left: 2px solid var(--neon); padding-left: 20px;">
-                    HURRICANE ELECTRIC<br>
-                    RANK: SAGE BGP<br>
-                    CERTIFIED WORLDWIDE
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="info-panel" id="panel">
+        <h3 id="panel-title" style="font-family: 'Orbitron'; color: var(--neon);">Title</h3>
+        <p id="panel-desc" style="margin-top: 1rem; font-size: 0.9rem; color: #888; line-height: 1.6;">Description goes here.</p>
+    </div>
 
-    <footer class="datastream-footer">
-        <div class="stream-text mono" id="footer-logs">SYSTEMS_ACTIVE // BGP_STABLE // NO_PACKET_LOSS</div>
-        <a href="https://wa.me/5547988901616" class="btn-access" style="padding: 1rem 2rem;">START STRATEGIC DIALOGUE</a>
-    </footer>
+    <a href="https://wa.me/5547988901616" class="btn-access">REQUISITAR ACESSO AO BOARD</a>
 
     <script>
-        // Full-Stack Logic Emulator
-        const languages = {
-            'pt': { title: 'CONTINUIDADE<br><span style="color:#00ff88">ABSOLUTA.</span>', c1: 'Observabilidade Ativa', c2: 'Sistemas Autônomos', founder: 'A tecnologia deve ser invisível. Se você a percebe, é porque ela falhou.' },
-            'en': { title: 'ABSOLUTE<br><span style="color:#00ff88">CONTINUITY.</span>', c1: 'Active Observability', c2: 'Autonomous Systems', founder: 'Technology must be invisible. If you notice it, it has failed.' }
-        };
+        const nodes = document.querySelectorAll('.node');
+        const svg = document.getElementById('connections');
+        const panel = document.getElementById('panel');
 
-        let currentLang = 'pt';
+        // Função para desenhar as conexões dinâmicas
+        function drawConnections() {
+            const root = document.querySelector('[data-id="root"]').getBoundingClientRect();
+            const rootX = root.left + root.width / 2;
+            const rootY = root.top + root.height / 2;
 
-        function cycleLanguage() {
-            currentLang = currentLang === 'pt' ? 'en' : 'pt';
-            document.getElementById('current-lang').innerText = currentLang === 'pt' ? 'PT-BR' : 'EN-US';
-            document.getElementById('main-title').innerHTML = languages[currentLang].title;
-            document.getElementById('card1-h').innerText = languages[currentLang].c1;
-            document.getElementById('card2-h').innerText = languages[currentLang].c2;
-            document.getElementById('founder-text').innerText = languages[currentLang].founder;
+            svg.innerHTML = '';
+            nodes.forEach(node => {
+                if (node.dataset.id !== 'root') {
+                    const rect = node.getBoundingClientRect();
+                    const nodeX = rect.left + rect.width / 2;
+                    const nodeY = rect.top + rect.height / 2;
+
+                    const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+                    line.setAttribute("x1", rootX);
+                    line.setAttribute("y1", rootY);
+                    line.setAttribute("x2", nodeX);
+                    line.setAttribute("y2", nodeY);
+                    svg.appendChild(line);
+                }
+            });
         }
 
-        function toggleTheme() {
-            const h = document.documentElement;
-            const isDark = h.getAttribute('data-theme') === 'dark';
-            h.setAttribute('data-theme', isDark ? 'light' : 'dark');
-            h.style.setProperty('--inv', isDark ? '1' : '0');
-        }
+        // Interatividade: Ao clicar nos nós
+        nodes.forEach(node => {
+            node.addEventListener('click', () => {
+                const id = node.dataset.id;
+                panel.style.display = 'block';
+                if(id === 'bgp') {
+                    document.getElementById('panel-title').innerText = 'HURRICANE ELECTRIC SAGE';
+                    document.getElementById('panel-desc').innerText = 'Engenharia de roteamento avançada e governança de AS em escala global. Rank Top 1% Worldwide.';
+                }
+                if(id === 'python') {
+                    document.getElementById('panel-title').innerText = 'AUTO-HEALING CORE';
+                    document.getElementById('panel-desc').innerText = 'Desenvolvimento de automações em Python para recuperação de falhas críticas sem intervenção humana.';
+                }
+            });
+        });
 
-        // Live Log Stream Simulator
-        const logs = ["ROUTING_TABLE: SYNCED", "LATENCY_TEST: 4ms", "BGP_UPLINK: ACTIVE", "SAGE_VERIFICATION: OK", "DDOS_SHIELD: NOMINAL"];
-        setInterval(() => {
-            const log = logs[Math.floor(Math.random() * logs.length)];
-            const footer = document.getElementById('footer-logs');
-            footer.innerText = `[${new Date().toLocaleTimeString()}] ${log} | ${footer.innerText.substring(0, 80)}`;
-        }, 1200);
+        window.addEventListener('load', drawConnections);
+        window.addEventListener('resize', drawConnections);
+
+        // Movimentação sutil da "câmera" com o mouse (Efeito Parallax)
+        const container = document.getElementById('map-container');
+        document.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth / 2 - e.pageX) / 30;
+            const y = (window.innerHeight / 2 - e.pageY) / 30;
+            container.style.transform = `translate(${x}px, ${y}px)`;
+            drawConnections();
+        });
     </script>
 </body>
 </html>
