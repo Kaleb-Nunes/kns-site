@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KNS Systems | Strategic Web Solutions SC</title>
+    <title>KNS Systems | Global Web Engineering</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.11.0/css/flag-icons.min.css"/>
@@ -16,8 +16,8 @@
                 extend: {
                     colors: {
                         navy: { 950: '#020c1b', 900: '#0a192f', 800: '#112240' },
-                        gold: { 400: '#D4AF37', 500: '#C5A028' }, // Dourado "Embraed"
-                        paper: '#F2F4F8', // Off-white premium (não agride os olhos)
+                        gold: { 400: '#D4AF37', 500: '#C5A028' },
+                        paper: '#F2F4F8',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -32,16 +32,12 @@
     </script>
 
     <style>
-        /* Estética "High-End Corporate" */
         body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
         h1, h2, h3, h4 { font-family: 'Playfair Display', serif; letter-spacing: -0.02em; }
         
-        /* Fundo Modo Claro: Papel Premium (Suave) */
         body.light { background-color: #F2F4F8; color: #1e293b; }
-        /* Fundo Modo Escuro: Deep Navy (Luxo Noturno) */
         body.dark { background-color: #020c1b; color: #e2e8f0; }
 
-        /* Grid Sutil de Fundo (Tech) */
         .bg-grid {
             background-size: 50px 50px;
             background-image: linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
@@ -52,7 +48,6 @@
                               linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
         }
 
-        /* Glassmorphism Refinado */
         .glass-premium {
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(16px);
@@ -65,7 +60,6 @@
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
         }
 
-        /* Animações Sutis */
         .hover-lift { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         .hover-lift:hover { transform: translateY(-5px); }
     </style>
@@ -104,17 +98,18 @@
                     <span class="italic text-slate-500 dark:text-gold-400" data-i18n="hero_title_2">Líderes de Mercado.</span>
                 </h1>
                 <p class="text-lg text-slate-600 dark:text-slate-400 mb-10 leading-relaxed border-l-2 border-slate-300 dark:border-gold-500 pl-6" data-i18n="hero_desc">
-                    De Balneário Camboriú a Joinville. Criamos ecossistemas web que consolidam autoridade, automatizam vendas e preparam sua empresa para o mercado global.
+                    De Startups a Multinacionais. Criamos ecossistemas web que consolidam autoridade, automatizam vendas e posicionam sua marca no topo.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-5">
                     <a href="#market-data" class="px-8 py-4 bg-slate-900 dark:bg-gold-500 text-white dark:text-black rounded font-bold hover:shadow-xl transition text-center" data-i18n="btn_market">
                         Ver Inteligência de Mercado
                     </a>
-                    <a href="https://wa.me/5547988901616" class="px-8 py-4 border border-slate-300 dark:border-navy-800 text-slate-700 dark:text-white rounded font-bold hover:bg-white dark:hover:bg-navy-800 transition text-center" data-i18n="btn_contact">
+                    <a href="https://wa.me/5547988901616" class="px-8 py-4 border-2 border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black rounded font-bold transition text-center" data-i18n="btn_contact">
                         Agendar Consultoria
                     </a>
                 </div>
             </div>
+            
             <div class="relative h-[500px] w-full hidden md:block opacity-60 dark:opacity-40">
                 <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-full animate-[spin_60s_linear_infinite]">
                     <path fill="currentColor" d="M44.7,-76.4C58.9,-69.2,71.8,-59.1,81.6,-46.6C91.4,-34.1,98.1,-19.2,95.8,-5.2C93.5,8.8,82.2,21.9,71.6,33.5C60.9,45.1,50.8,55.2,39.3,63.3C27.8,71.4,14.9,77.5,1.2,75.4C-12.5,73.4,-26,63.1,-38.6,53.4C-51.2,43.7,-62.9,34.5,-70.5,22.2C-78.1,9.9,-81.6,-5.5,-78.3,-19.8C-75,-34.1,-64.9,-47.3,-52.7,-55.1C-40.5,-62.9,-26.2,-65.4,-12.3,-67.2C1.6,-69,15.5,-70.1,30.5,-83.6" transform="translate(100 100)" class="text-slate-200 dark:text-navy-800" />
@@ -133,32 +128,29 @@
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold mb-4 text-slate-900 dark:text-white" data-i18n="sc_title">Inteligência de Mercado: Santa Catarina</h2>
-                <p class="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto" data-i18n="sc_desc">Não criamos apenas sites. Analisamos o comportamento econômico da região para posicionar sua marca onde o dinheiro está.</p>
+                <p class="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto" data-i18n="sc_desc">Analisamos o comportamento econômico da região para criar soluções que atendem do microempreendedor à indústria.</p>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="p-8 bg-slate-50 dark:bg-navy-900 rounded-lg hover-lift border border-slate-100 dark:border-navy-800">
                     <div class="text-4xl mb-4 text-gold-500"><i class="fa-solid fa-building"></i></div>
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Balneário Camboriú</h3>
-                    <p class="text-sm text-slate-600 dark:text-slate-400 mb-4" data-i18n="bc_stat">Turismo de luxo e Real Estate. Foco em captação de leads de alto padrão.</p>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Real Estate & Luxo</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mb-4" data-i18n="bc_stat">Soluções para Imobiliárias e Construtoras. Foco em captação de leads de alto padrão.</p>
                     <div class="w-full bg-slate-200 dark:bg-navy-800 h-1 mt-4"><div class="bg-gold-500 h-1" style="width: 95%"></div></div>
-                    <p class="text-xs text-right mt-1 text-slate-400">Potencial Digital: Muito Alto</p>
                 </div>
                 
                 <div class="p-8 bg-slate-50 dark:bg-navy-900 rounded-lg hover-lift border border-slate-100 dark:border-navy-800">
                     <div class="text-4xl mb-4 text-blue-500"><i class="fa-solid fa-microchip"></i></div>
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Florianópolis</h3>
-                    <p class="text-sm text-slate-600 dark:text-slate-400 mb-4" data-i18n="fln_stat">Polo Tecnológico da América Latina. Foco em performance, SEO e escalabilidade.</p>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Tecnologia & Startups</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mb-4" data-i18n="fln_stat">Landing Pages de Alta Performance para empresas SAAS e Tech. Foco em escalabilidade.</p>
                     <div class="w-full bg-slate-200 dark:bg-navy-800 h-1 mt-4"><div class="bg-blue-500 h-1" style="width: 90%"></div></div>
-                    <p class="text-xs text-right mt-1 text-slate-400">Inovação: Extrema</p>
                 </div>
 
                 <div class="p-8 bg-slate-50 dark:bg-navy-900 rounded-lg hover-lift border border-slate-100 dark:border-navy-800">
                     <div class="text-4xl mb-4 text-slate-600 dark:text-slate-300"><i class="fa-solid fa-industry"></i></div>
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Joinville & Norte</h3>
-                    <p class="text-sm text-slate-600 dark:text-slate-400 mb-4" data-i18n="joi_stat">Força Industrial. Foco em sistemas robustos, catálogos B2B e automação.</p>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Indústria & Varejo</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mb-4" data-i18n="joi_stat">Sistemas robustos para catálogo B2B e Automação de Delivery para comércio local.</p>
                     <div class="w-full bg-slate-200 dark:bg-navy-800 h-1 mt-4"><div class="bg-slate-500 h-1" style="width: 85%"></div></div>
-                    <p class="text-xs text-right mt-1 text-slate-400">Solidez: Alta</p>
                 </div>
             </div>
         </div>
@@ -166,27 +158,33 @@
 
     <section class="py-24 px-6 relative">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold mb-12 text-slate-900 dark:text-white text-center" data-i18n="cases_title">Portfólio Regional</h2>
+            <h2 class="text-3xl font-bold mb-12 text-slate-900 dark:text-white text-center" data-i18n="cases_title">Soluções Especializadas</h2>
             <div class="grid md:grid-cols-3 gap-6">
                 <div class="glass-premium p-8 rounded-xl border-t-4 border-gold-500">
-                    <p class="text-xs font-bold uppercase text-slate-400 mb-2">Real Estate • Balneário Camboriú</p>
-                    <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Brava Prime Imóveis</h4>
-                    <p class="text-sm text-slate-600 dark:text-slate-300 italic mb-6" data-i18n="case_1_quote">"Precisávamos de um site que falasse a língua do cliente triple-A. A KNS entregou uma plataforma onde vendemos apartamentos de R$ 10 mi pelo WhatsApp."</p>
-                    <div class="flex text-gold-500 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-xs font-bold uppercase text-slate-400 mb-2">Para Mercado Imobiliário</p>
+                    <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Plataformas de Venda</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-300 mb-6" data-i18n="sol_1_desc">
+                        Desenvolvemos vitrines digitais que valorizam imóveis de alto padrão. Imagens em alta resolução, tour virtual e integração direta com corretores no WhatsApp.
+                    </p>
+                    <div class="text-xs font-bold text-gold-500 uppercase tracking-wider">Ideal para Construtoras</div>
                 </div>
 
                 <div class="glass-premium p-8 rounded-xl border-t-4 border-blue-500">
-                    <p class="text-xs font-bold uppercase text-slate-400 mb-2">Startup • Florianópolis</p>
-                    <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Nexus Data Solutions</h4>
-                    <p class="text-sm text-slate-600 dark:text-slate-300 italic mb-6" data-i18n="case_2_quote">"A velocidade de carregamento era crítica para nós. Otimizaram nosso frontend e a taxa de rejeição caiu 40% na primeira semana."</p>
-                    <div class="flex text-gold-500 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-xs font-bold uppercase text-slate-400 mb-2">Para Serviços & Tech</p>
+                    <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Conversão Acelerada</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-300 mb-6" data-i18n="sol_2_desc">
+                        Sites focados em velocidade (Core Web Vitals) para empresas que investem em tráfego pago. Reduzimos o custo por lead aumentando a qualidade da página.
+                    </p>
+                    <div class="text-xs font-bold text-blue-500 uppercase tracking-wider">Ideal para Startups/Clinicas</div>
                 </div>
 
                 <div class="glass-premium p-8 rounded-xl border-t-4 border-slate-500">
-                    <p class="text-xs font-bold uppercase text-slate-400 mb-2">Gastronomia • Itapema</p>
-                    <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Porto Cabral Bistrô</h4>
-                    <p class="text-sm text-slate-600 dark:text-slate-300 italic mb-6" data-i18n="case_3_quote">"Nossa operação no verão era um caos. O cardápio digital automatizado da KNS salvou nossa temporada. Faturamento subiu 25%."</p>
-                    <div class="flex text-gold-500 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-xs font-bold uppercase text-slate-400 mb-2">Para Gastronomia & Varejo</p>
+                    <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Cardápio Inteligente</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-300 mb-6" data-i18n="sol_3_desc">
+                        Eliminamos o erro humano nos pedidos. O cliente escolhe no digital e o pedido chega pronto e somado para sua equipe, reduzindo custos operacionais.
+                    </p>
+                    <div class="text-xs font-bold text-slate-500 uppercase tracking-wider">Ideal para Delivery/Lojas</div>
                 </div>
             </div>
         </div>
@@ -201,24 +199,24 @@
                 <div class="p-8 border border-slate-200 dark:border-navy-800 rounded-xl bg-slate-50 dark:bg-navy-900/50">
                     <h3 class="text-lg font-bold text-slate-500 uppercase tracking-widest mb-4" data-i18n="plan_biz_name">Business Growth</h3>
                     <div class="text-4xl font-serif font-bold text-slate-900 dark:text-white mb-6">R$ 1.500 <span class="text-sm font-sans font-normal text-slate-400">/ único</span></div>
-                    <p class="text-sm text-slate-600 dark:text-slate-400 mb-8" data-i18n="plan_biz_desc">Para empresas que precisam profissionalizar sua presença digital e sair do amadorismo.</p>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mb-8" data-i18n="plan_biz_desc">Perfeito para pequenos negócios e profissionais liberais que buscam profissionalismo imediato.</p>
                     <ul class="space-y-3 text-sm text-slate-700 dark:text-slate-300 mb-8">
                         <li class="flex gap-2"><i class="fa-solid fa-check text-green-500"></i> Landing Page Alta Conversão</li>
                         <li class="flex gap-2"><i class="fa-solid fa-check text-green-500"></i> Integração WhatsApp Business</li>
                         <li class="flex gap-2"><i class="fa-solid fa-check text-green-500"></i> Otimização Google Maps</li>
                     </ul>
-                    <a href="https://wa.me/5547988901616" class="block w-full py-3 bg-white dark:bg-navy-800 border border-slate-300 dark:border-navy-700 text-slate-700 dark:text-white text-center rounded font-bold transition hover:bg-slate-50" data-i18n="btn_biz">Selecionar Business</a>
+                    <a href="https://wa.me/5547988901616?text=Tenho%20interesse%20no%20plano%20Business." class="block w-full py-3 bg-white dark:bg-navy-800 border border-slate-300 dark:border-navy-700 text-slate-700 dark:text-white text-center rounded font-bold transition hover:bg-slate-50" data-i18n="btn_biz">Selecionar Business</a>
                 </div>
 
                 <div class="relative p-10 bg-slate-900 dark:bg-black text-white rounded-xl shadow-2xl transform md:scale-105">
                     <div class="absolute top-0 right-0 bg-gold-500 text-black text-xs font-bold px-4 py-1 rounded-bl uppercase">High End</div>
                     <h3 class="text-lg font-bold text-gold-400 uppercase tracking-widest mb-4" data-i18n="plan_ent_name">KNS Enterprise</h3>
                     <div class="text-4xl font-serif font-bold text-white mb-6" data-i18n="plan_ent_price">Sob Consulta</div>
-                    <p class="text-sm text-slate-300 mb-8" data-i18n="plan_ent_desc">Desenvolvimento sob medida para grandes players. Integrações complexas, design exclusivo e estratégia de dados.</p>
+                    <p class="text-sm text-slate-300 mb-8" data-i18n="plan_ent_desc">Para construtoras, indústrias e projetos complexos. Integrações de dados, design exclusivo e consultoria estratégica.</p>
                     <ul class="space-y-3 text-sm text-slate-200 mb-8">
                         <li class="flex gap-2"><i class="fa-solid fa-check text-gold-500"></i> <strong>Design System Exclusivo</strong></li>
                         <li class="flex gap-2"><i class="fa-solid fa-check text-gold-500"></i> Dashboards & Analytics</li>
-                        <li class="flex gap-2"><i class="fa-solid fa-check text-gold-500"></i> Multi-idioma (PT/EN/ES)</li>
+                        <li class="flex gap-2"><i class="fa-solid fa-check text-gold-500"></i> Multi-idioma Global</li>
                         <li class="flex gap-2"><i class="fa-solid fa-check text-gold-500"></i> Consultoria de SEO Regional</li>
                     </ul>
                     <a href="https://wa.me/5547988901616?text=Tenho%20interesse%20no%20plano%20Enterprise." class="block w-full py-4 bg-gold-500 hover:bg-gold-400 text-black text-center rounded font-bold transition shadow-lg shadow-gold-500/20" data-i18n="btn_ent">Falar com Engenheiro</a>
@@ -239,7 +237,6 @@
     </footer>
 
     <script>
-        // Toggle Dark/Light (Com persistência)
         function toggleTheme() {
             const html = document.documentElement;
             const body = document.body;
@@ -256,7 +253,6 @@
             }
         }
         
-        // Auto-Check Theme
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
             document.body.classList.remove('light');
@@ -265,58 +261,58 @@
             document.body.classList.add('light');
         }
 
-        // Dicionário de Tradução Completo (Enterprise Level)
+        // Traduções Atualizadas para a nova estratégia (Generic Industries)
         const translations = {
             pt: {
                 badge_status: "Operação: Todo o Estado de SC",
                 hero_title_1: "Engenharia Digital para",
                 hero_title_2: "Líderes de Mercado.",
-                hero_desc: "De Balneário Camboriú a Joinville. Criamos ecossistemas web que consolidam autoridade, automatizam vendas e preparam sua empresa para o mercado global.",
+                hero_desc: "De Startups a Multinacionais. Criamos ecossistemas web que consolidam autoridade, automatizam vendas e posicionam sua marca no topo.",
                 btn_market: "Ver Inteligência de Mercado",
                 btn_contact: "Agendar Consultoria",
                 hero_card: "\"O m² de BC é o mais valorizado do Brasil. Sua presença digital precisa refletir esse valor, ou você está perdendo negócios.\"",
                 sc_title: "Inteligência de Mercado: Santa Catarina",
-                sc_desc: "Não criamos apenas sites. Analisamos o comportamento econômico da região para posicionar sua marca onde o dinheiro está.",
-                bc_stat: "Turismo de luxo e Real Estate. Foco em captação de leads de alto padrão.",
-                fln_stat: "Polo Tecnológico da América Latina. Foco em performance, SEO e escalabilidade.",
-                joi_stat: "Força Industrial. Foco em sistemas robustos, catálogos B2B e automação.",
-                cases_title: "Portfólio Regional",
-                case_1_quote: "\"Precisávamos de um site que falasse a língua do cliente triple-A. A KNS entregou uma plataforma onde vendemos apartamentos de R$ 10 mi pelo WhatsApp.\"",
-                case_2_quote: "\"A velocidade de carregamento era crítica para nós. Otimizaram nosso frontend e a taxa de rejeição caiu 40% na primeira semana.\"",
-                case_3_quote: "\"Nossa operação no verão era um caos. O cardápio digital automatizado da KNS salvou nossa temporada. Faturamento subiu 25%.\"",
+                sc_desc: "Analisamos o comportamento econômico da região para criar soluções que atendem do microempreendedor à indústria.",
+                bc_stat: "Soluções para Imobiliárias e Construtoras. Foco em captação de leads de alto padrão.",
+                fln_stat: "Landing Pages de Alta Performance para empresas SAAS e Tech. Foco em escalabilidade.",
+                joi_stat: "Sistemas robustos para catálogo B2B e Automação de Delivery para comércio local.",
+                cases_title: "Soluções Especializadas",
+                sol_1_desc: "Desenvolvemos vitrines digitais que valorizam imóveis de alto padrão. Imagens em alta resolução, tour virtual e integração direta com corretores no WhatsApp.",
+                sol_2_desc: "Sites focados em velocidade (Core Web Vitals) para empresas que investem em tráfego pago. Reduzimos o custo por lead aumentando a qualidade da página.",
+                sol_3_desc: "Eliminamos o erro humano nos pedidos. O cliente escolhe no digital e o pedido chega pronto e somado para sua equipe, reduzindo custos operacionais.",
                 plans_title: "Modelos de Investimento",
                 plan_biz_name: "Business Growth",
-                plan_biz_desc: "Para empresas que precisam profissionalizar sua presença digital e sair do amadorismo.",
+                plan_biz_desc: "Perfeito para pequenos negócios e profissionais liberais que buscam profissionalismo imediato.",
                 btn_biz: "Selecionar Business",
                 plan_ent_name: "KNS Enterprise",
                 plan_ent_price: "Sob Consulta",
-                plan_ent_desc: "Desenvolvimento sob medida para grandes players. Integrações complexas, design exclusivo e estratégia de dados.",
+                plan_ent_desc: "Para construtoras, indústrias e projetos complexos. Integrações de dados, design exclusivo e consultoria estratégica.",
                 btn_ent: "Falar com Engenheiro"
             },
             en: {
                 badge_status: "Operations: Entire State of SC",
                 hero_title_1: "Digital Engineering for",
                 hero_title_2: "Market Leaders.",
-                hero_desc: "From Balneário Camboriú to Joinville. We create web ecosystems that consolidate authority, automate sales, and prepare your company for the global market.",
+                hero_desc: "From Startups to Multinationals. We create web ecosystems that consolidate authority, automate sales, and position your brand at the top.",
                 btn_market: "View Market Intelligence",
                 btn_contact: "Schedule Consulting",
                 hero_card: "\"BC's sq. meter is the most valuable in Brazil. Your digital presence must reflect this value, or you are losing business.\"",
                 sc_title: "Market Intelligence: Santa Catarina",
-                sc_desc: "We don't just create websites. We analyze regional economic behavior to position your brand where the money is.",
-                bc_stat: "Luxury Tourism and Real Estate. Focus on high-end lead generation.",
-                fln_stat: "Latin America's Tech Hub. Focus on performance, SEO, and scalability.",
-                joi_stat: "Industrial Powerhouse. Focus on robust systems, B2B catalogs, and automation.",
-                cases_title: "Regional Portfolio",
-                case_1_quote: "\"We needed a site that spoke the language of the triple-A client. KNS delivered a platform where we sell $2M apartments via WhatsApp.\"",
-                case_2_quote: "\"Load speed was critical for us. They optimized our frontend and bounce rate dropped 40% in the first week.\"",
-                case_3_quote: "\"Our summer operation was chaotic. KNS's automated digital menu saved our season. Revenue went up 25%.\"",
+                sc_desc: "We analyze regional economic behavior to create solutions serving from micro-entrepreneurs to industries.",
+                bc_stat: "Solutions for Real Estate and Construction. Focus on high-end lead generation.",
+                fln_stat: "High Performance Landing Pages for SAAS and Tech. Focus on scalability.",
+                joi_stat: "Robust systems for B2B catalogs and Delivery Automation for local commerce.",
+                cases_title: "Specialized Solutions",
+                sol_1_desc: "We develop digital showcases that enhance high-end properties. High-res images, virtual tours, and direct integration with realtors via WhatsApp.",
+                sol_2_desc: "Speed-focused websites (Core Web Vitals) for companies investing in paid traffic. We reduce cost per lead by increasing page quality.",
+                sol_3_desc: "We eliminate human error in orders. The client chooses digitally, and the order arrives ready and summed up for your team, reducing costs.",
                 plans_title: "Investment Models",
                 plan_biz_name: "Business Growth",
-                plan_biz_desc: "For companies that need to professionalize their digital presence and stop being amateurs.",
+                plan_biz_desc: "Perfect for small businesses and professionals seeking immediate professionalism.",
                 btn_biz: "Select Business",
                 plan_ent_name: "KNS Enterprise",
                 plan_ent_price: "On Request",
-                plan_ent_desc: "Tailor-made development for major players. Complex integrations, exclusive design, and data strategy.",
+                plan_ent_desc: "For construction firms, industries, and complex projects. Data integrations, exclusive design, and strategic consulting.",
                 btn_ent: "Talk to Engineer"
             }
         };
