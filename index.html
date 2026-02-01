@@ -1,86 +1,41 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KNS GLOBAL | Enterprise Continuity Systems</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=JetBrains+Mono&family=Plus+Jakarta+Sans:wght@200;800&display=swap" rel="stylesheet">
+// App.tsx
+import { useEffect } from "react";
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Toaster } from 'sonner';
+import CustomCursor from './components/CustomCursor';
+import Navigation from './components/Navigation';
+import Hero from './components/Hero';
+import Solutions from './components/Solutions';
+import Founder from './components/Founder';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
 
-    <style>
-        :root { --neon: #00ff88; --bg: #050505; }
-        body { background: var(--bg); color: white; font-family: 'Plus Jakarta Sans', sans-serif; cursor: crosshair; }
-        .neon-border { border: 1px solid rgba(0, 255, 136, 0.2); }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); }
-        #custom-cursor { position: fixed; width: 10px; height: 10px; background: var(--neon); border-radius: 50%; pointer-events: none; z-index: 9999; }
-    </style>
-</head>
-<body class="overflow-x-hidden">
+const Home = () => {
+  return (
+    <div className="min-h-screen bg-black text-white">
+      <CustomCursor />
+      <Navigation />
+      <Hero />
+      <Solutions />
+      <Founder />
+      <Contact />
+      <Footer />
+    </div>
+  );
+};
 
-    <div id="custom-cursor"></div>
+function App() {
+  return (
+    <>
+      <Toaster position="top-right" richColors />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
+    </>
+  );
+}
 
-    <nav class="fixed top-0 w-full z-50 p-6 glass flex justify-between items-center border-b border-white/5">
-        <div class="font-black tracking-widest font-['Orbitron']">KNS GLOBAL //</div>
-        <div class="flex gap-6 items-center text-[10px] font-bold">
-            <button onclick="changeLang('PT')" class="hover:text-neon">PT</button>
-            <button onclick="changeLang('EN')" class="hover:text-neon">EN</button>
-            <button onclick="toggleTheme()" class="text-lg"><i class="fa-solid fa-moon"></i></button>
-            <a href="#contact" class="bg-neon text-black px-4 py-2 font-['Orbitron']">REQUEST AUDIT</a>
-        </div>
-    </nav>
-
-    <main class="min-height-screen pt-40 flex flex-col items-center">
-        <h1 class="text-[12vw] font-black leading-none text-center tracking-tighter uppercase mb-12">
-            Continuity<br><span class="text-neon">Absolute.</span>
-        </h1>
-        
-        <div class="w-[85vw] max-w-6xl aspect-video rounded-xl overflow-hidden shadow-2xl shadow-neon/10 border border-white/10">
-            <iframe src="https://www.youtube.com/embed/T9wvW0EYfE0?autoplay=1&mute=1&loop=1&playlist=T9wvW0EYfE0" class="w-full h-full"></iframe>
-        </div>
-    </main>
-
-    <section id="contact" class="py-40 px-6 flex justify-center">
-        <div class="w-full max-w-lg glass p-10 rounded-2xl border border-white/10">
-            <h2 class="font-['Orbitron'] text-2xl mb-8">SECURE CONNECTION</h2>
-            <form id="leadForm" class="space-y-6">
-                <input type="text" placeholder="COMPANY NAME" class="w-full bg-white/5 p-4 outline-none border-b border-white/10 focus:border-neon">
-                <input type="email" placeholder="OFFICIAL EMAIL" class="w-full bg-white/5 p-4 outline-none border-b border-white/10 focus:border-neon">
-                <button type="submit" class="w-full bg-neon text-black py-5 font-black uppercase tracking-widest hover:brightness-110 transition-all">
-                    Initialize Protocol 09
-                </button>
-            </form>
-        </div>
-    </section>
-
-    <section class="grid grid-cols-1 md:grid-cols-2 gap-20 px-[10%] py-40 items-center">
-        <div class="relative group">
-            <img src="./foto.jpg.jpg" class="grayscale group-hover:grayscale-0 transition-all duration-700 rounded-sm">
-            <div class="absolute -bottom-5 -right-5 bg-neon text-black p-4 font-bold text-xs">SAGE CERTIFIED</div>
-        </div>
-        <div>
-            <span class="text-neon font-mono text-xs tracking-[5px] uppercase">CHIEF ENGINEER</span>
-            <h2 class="text-6xl font-black mt-4 mb-8">Kaleb Nunes</h2>
-            <p class="text-gray-400 text-xl italic">"Garantimos que a tecnologia seja um ativo invisível e lucrativo. Não vendemos configuração, vendemos continuidade."</p>
-            <img src="./sage- certificado.png" class="w-40 mt-12 opacity-50 hover:opacity-100 transition-opacity">
-        </div>
-    </section>
-
-    <script>
-        // Cursor Logic
-        document.addEventListener('mousemove', e => {
-            const cursor = document.getElementById('custom-cursor');
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-
-        // Form Submission
-        document.getElementById('leadForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            // Simulação de integração com o backend FastAPI
-            alert("Sinal enviado. Protocolo 09 em prontidão.");
-        });
-    </script>
-</body>
-</html>
+export default App;
