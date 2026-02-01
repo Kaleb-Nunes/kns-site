@@ -3,306 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KNS Consultoria | Soluções Digitais High-End</title>
-    
+    <title>KNS Consultoria | Soluções Web para Restaurantes</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.11.0/css/flag-icons.min.css"/>
-
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
-                    colors: {
-                        brand: {
-                            light: '#3b82f6',
-                            dark: '#0f172a',
-                            accent: '#06b6d4'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['Fira Code', 'monospace'],
-                    },
+                    colors: { brand: { light: '#3b82f6', dark: '#0f172a', accent: '#06b6d4' } },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['Fira Code', 'monospace'] },
                 }
             }
         }
     </script>
-    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
-    
     <style>
         body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
-        
-        /* --- FUNDO AUTOMATIZADO HACKER --- */
-        .cyber-grid {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background-size: 40px 40px;
-            animation: gridMove 20s linear infinite;
-        }
-        .dark .cyber-grid {
-            background-color: #0f172a;
-            background-image: linear-gradient(to right, rgba(56, 189, 248, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
-        }
-        .light .cyber-grid {
-            background-color: #f8fafc;
-            background-image: linear-gradient(to right, rgba(99, 102, 241, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
-        }
+        .cyber-grid { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-size: 40px 40px; animation: gridMove 20s linear infinite; }
+        .dark .cyber-grid { background-color: #0f172a; background-image: linear-gradient(to right, rgba(56, 189, 248, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(56, 189, 248, 0.05) 1px, transparent 1px); }
+        .light .cyber-grid { background-color: #f8fafc; background-image: linear-gradient(to right, rgba(99, 102, 241, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(99, 102, 241, 0.05) 1px, transparent 1px); }
         @keyframes gridMove { 0% { transform: translateY(0); } 100% { transform: translateY(40px); } }
-
-        /* Spotlight */
-        #cursor-glow {
-            position: fixed; width: 600px; height: 600px; border-radius: 50%; pointer-events: none;
-            transform: translate(-50%, -50%); z-index: -1; transition: opacity 0.3s;
-        }
-        .dark #cursor-glow { background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(15, 23, 42, 0) 70%); }
-        body:not(.dark) #cursor-glow { background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, rgba(255, 255, 255, 0) 70%); }
-
-        /* Glassmorphism */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        .dark .glass-panel {
-            background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(56, 189, 248, 0.1);
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.05);
-        }
-
-        /* Efeito de Digitação */
-        .typing-effect {
-            border-right: 2px solid; white-space: nowrap; overflow: hidden;
-            animation: blink 0.75s step-end infinite; font-family: 'Fira Code', monospace;
-        }
-        @keyframes blink { 50% { border-color: transparent; } }
-
-        /* Bandeiras */
+        .glass-panel { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.2); }
+        .dark .glass-panel { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(56, 189, 248, 0.1); box-shadow: 0 0 15px rgba(56, 189, 248, 0.05); }
         .fi { font-size: 1.4rem; border-radius: 50%; cursor: pointer; filter: grayscale(100%) opacity(0.5); transition: all 0.3s ease; }
         .fi:hover, .fi.active { filter: grayscale(0%) opacity(1); transform: scale(1.2); box-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
     </style>
 </head>
 <body class="light antialiased transition-colors duration-300">
-
     <div class="cyber-grid"></div>
-    <div id="cursor-glow"></div>
 
     <nav class="fixed w-full z-50 glass-panel border-b border-gray-100 dark:border-gray-800 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <div class="flex items-center gap-3 group cursor-pointer" onclick="window.scrollTo(0,0)">
-                    <div class="relative">
-                        <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-200"></div>
-                        <div class="relative bg-white dark:bg-slate-900 text-blue-600 dark:text-cyan-400 w-10 h-10 rounded-lg flex items-center justify-center text-xl font-mono border border-gray-200 dark:border-gray-700">&lt;/&gt;</div>
-                    </div>
-                    <span class="font-extrabold text-2xl tracking-tighter text-slate-800 dark:text-white transition-colors">KNS<span class="text-blue-600 dark:text-cyan-400">.TECH</span></span>
+                <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="bg-white dark:bg-slate-900 text-blue-600 dark:text-cyan-400 w-10 h-10 rounded-lg flex items-center justify-center text-xl font-mono border border-gray-200 dark:border-gray-700">&lt;/&gt;</div>
+                    <span class="font-extrabold text-2xl tracking-tighter text-slate-800 dark:text-white transition-colors">KNS<span class="text-blue-600 dark:text-cyan-400">.CONSULTORIA</span></span>
                 </div>
-                <div class="flex items-center gap-6">
-                    <div class="flex items-center gap-4 bg-slate-200/50 dark:bg-slate-900/50 px-5 py-2 rounded-full border border-slate-300/50 dark:border-slate-700/50 backdrop-blur-md">
+                <div class="flex items-center gap-4">
+                    <div class="hidden md:flex items-center gap-3 bg-slate-200/50 dark:bg-slate-900/50 px-4 py-1 rounded-full border border-slate-300/50 dark:border-slate-700/50">
                         <span onclick="setLanguage('pt')" class="fi fi-br active" title="Português"></span>
                         <span onclick="setLanguage('en')" class="fi fi-us" title="English"></span>
                         <span onclick="setLanguage('es')" class="fi fi-es" title="Español"></span>
                     </div>
-                    <button onclick="toggleTheme()" class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center hover:bg-blue-100 dark:hover:bg-cyan-900/30 text-slate-600 dark:text-yellow-400 transition shadow-sm ring-1 ring-slate-300 dark:ring-slate-700">
-                        <span id="theme-icon" class="text-xl">🌙</span>
-                    </button>
+                    <button onclick="toggleTheme()" class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center hover:bg-blue-100 dark:hover:bg-cyan-900/30 text-slate-600 dark:text-yellow-400 transition shadow-sm"><span id="theme-icon" class="text-xl">🌙</span></button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <section class="relative pt-40 pb-32 lg:pt-56 lg:pb-48 overflow-hidden">
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
-            <div class="inline-flex items-center gap-2 py-1 px-4 rounded-full bg-blue-500/10 border border-blue-500/20 mb-8 backdrop-blur-sm">
-                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                <span class="text-blue-600 dark:text-cyan-400 text-xs font-mono font-bold tracking-wide uppercase typing-effect" style="border-right: none;">SystemStatus: Online</span>
-            </div>
+    <section class="relative pt-32 pb-20 lg:pt-48 overflow-hidden text-center px-4">
+        <span class="inline-block py-1 px-3 rounded-full bg-blue-500/10 border border-blue-500/20 mb-6 backdrop-blur-sm text-blue-600 dark:text-cyan-400 text-xs font-mono font-bold uppercase">
+            Especialistas em Food Service BC
+        </span>
+        <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white mb-6" data-i18n="hero_title">
+            Soluções Web para <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-400">Restaurantes que Vendem</span>
+        </h1>
+        <p class="max-w-2xl mx-auto text-lg text-slate-600 dark:text-slate-300 mb-10" data-i18n="hero_desc">
+            Reduza a carga operacional do seu time e pare de perder clientes. Sites que convertem visitantes em pedidos e transmitem confiança imediata.
+        </p>
+        <div class="flex justify-center gap-4">
+            <a href="#planos" class="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold shadow-lg transition flex items-center gap-2">
+                <span data-i18n="cta_plans">Ver Planos</span> <i class="fa-solid fa-arrow-down"></i>
+            </a>
+            <a href="https://wa.me/5547988901616?text=Quero%20agendar%20um%20diagnóstico%20gratuito." target="_blank" class="px-8 py-4 glass-panel text-slate-800 dark:text-white rounded-xl font-bold hover:bg-white/50 transition">
+                <span data-i18n="cta_demo">Diagnóstico Gratuito (15min)</span>
+            </a>
+        </div>
+    </section>
 
-            <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-8" data-i18n="hero_title">
-                Seu Restaurante <br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-400 dark:from-cyan-400 dark:to-blue-600">Nível Expert</span>
-            </h1>
+    <section class="py-16">
+        <div class="max-w-5xl mx-auto px-4 grid md:grid-cols-3 gap-6">
+            <div class="glass-panel p-6 rounded-2xl text-center">
+                <div class="text-4xl mb-2 text-green-500 font-bold">60%</div>
+                <p class="text-slate-600 dark:text-slate-300 text-sm font-bold">Redução em ligações repetitivas sobre cardápio e preços</p>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl text-center">
+                <div class="text-4xl mb-2 text-blue-500 font-bold">40%</div>
+                <p class="text-slate-600 dark:text-slate-300 text-sm font-bold">Aumento na visibilidade online em buscas locais (BC)</p>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl text-center">
+                <div class="text-4xl mb-2 text-purple-500 font-bold"><i class="fa-brands fa-whatsapp"></i></div>
+                <p class="text-slate-600 dark:text-slate-300 text-sm font-bold">Conversão direta: Pedidos chegam prontos no WhatsApp</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="planos" class="py-20 relative z-10">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-slate-900 dark:text-white" data-i18n="pricing_title">Investimento Sob Medida</h2>
             
-            <p class="mt-4 max-w-2xl mx-auto text-xl text-slate-600 dark:text-slate-300 mb-12 leading-relaxed font-light" data-i18n="hero_desc">
-                Pare de perder tempo no WhatsApp e aumente suas vendas. Tecnologia de ponta para automatizar seu atendimento e dominar o Google.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row justify-center gap-5">
-                <a href="https://wa.me/5547988901616?text=Gostaria%20de%20iniciar%20um%20projeto%20com%20a%20KNS." target="_blank" class="relative px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold shadow-lg shadow-blue-600/30 overflow-hidden group transition-all hover:scale-105">
-                    <div class="absolute top-0 left-0 w-full h-full bg-white/20 transform -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
-                    <div class="flex items-center gap-3"><span data-i18n="cta_button">Quero uma Demonstração</span> <i class="fa-solid fa-terminal text-sm"></i></div>
-                </a>
-                <a href="#solucoes" class="px-8 py-4 glass-panel text-slate-700 dark:text-white rounded-xl font-bold hover:bg-white/50 dark:hover:bg-white/10 transition border border-slate-200 dark:border-slate-700 flex items-center justify-center gap-2">
-                    <span data-i18n="secondary_button">Ver Soluções</span> <i class="fa-solid fa-arrow-down animate-bounce"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section id="solucoes" class="py-24 relative z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-20">
-                <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-4 font-mono" data-i18n="solutions_title">&lt;Problemas_Resolvidos /&gt;</h2>
-                <p class="text-slate-500 dark:text-slate-400" data-i18n="solutions_subtitle">O fim das dores de cabeça do seu delivery.</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass-panel p-8 rounded-3xl hover:border-blue-500 dark:hover:border-cyan-500 transition duration-500 group relative overflow-hidden">
-                    <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center text-blue-600 dark:text-cyan-400 text-2xl mb-6 group-hover:scale-110 transition">
-                        <i class="fa-solid fa-robot"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 text-slate-900 dark:text-white" data-i18n="card1_title">Menos Trabalho Manual</h3>
-                    <p class="text-slate-600 dark:text-slate-300 mb-6 text-sm leading-relaxed" data-i18n="card1_desc">
-                        Seu cardápio online funciona 24/7. Chega de responder "quanto custa?" e "tem coca?" no WhatsApp toda hora. Deixe sua equipe focar no que importa.
-                    </p>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="glass-panel p-8 rounded-3xl border-l-4 border-slate-400 hover:scale-105 transition duration-300">
+                    <h3 class="text-xl font-bold text-slate-500 uppercase tracking-wide mb-2">Plano Básico</h3>
+                    <div class="text-4xl font-extrabold text-slate-900 dark:text-white mb-4">R$ 800</div>
+                    <p class="text-sm text-slate-500 mb-6 italic">Ideal para começar rápido.</p>
+                    <ul class="space-y-3 text-slate-600 dark:text-slate-300 mb-8 text-sm">
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> One-Page (Página Única)</li>
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Cardápio Digital Simples</li>
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Integração WhatsApp</li>
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Google Maps Local</li>
+                        <li><i class="fa-solid fa-clock text-blue-500 mr-2"></i> Entrega em 7 dias</li>
+                    </ul>
+                    <a href="https://wa.me/5547988901616?text=Tenho%20interesse%20no%20Plano%20Básico." class="block w-full py-3 bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-white text-center rounded-lg font-bold hover:brightness-90 transition">Contratar Básico</a>
                 </div>
 
-                <div class="glass-panel p-8 rounded-3xl hover:border-purple-500 dark:hover:border-purple-500 transition duration-500 group relative overflow-hidden">
-                    <div class="w-14 h-14 bg-purple-100 dark:bg-purple-900/30 rounded-2xl flex items-center justify-center text-purple-600 dark:text-purple-400 text-2xl mb-6 group-hover:scale-110 transition">
-                        <i class="fa-solid fa-eye"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 text-slate-900 dark:text-white" data-i18n="card2_title">Mais Visibilidade</h3>
-                    <p class="text-slate-600 dark:text-slate-300 mb-6 text-sm leading-relaxed" data-i18n="card2_desc">
-                        SEO Local otimizado para aparecer quando o turista busca "Restaurante em Balneário Camboriú". Saia da invisibilidade.
-                    </p>
-                </div>
-
-                 <div class="glass-panel p-8 rounded-3xl hover:border-green-500 dark:hover:border-green-500 transition duration-500 group relative overflow-hidden">
-                    <div class="w-14 h-14 bg-green-100 dark:bg-green-900/30 rounded-2xl flex items-center justify-center text-green-600 dark:text-green-400 text-2xl mb-6 group-hover:scale-110 transition">
-                        <i class="fa-brands fa-whatsapp"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 text-slate-900 dark:text-white" data-i18n="card3_title">Pedidos Organizados</h3>
-                    <p class="text-slate-600 dark:text-slate-300 mb-6 text-sm leading-relaxed" data-i18n="card3_desc">
-                        O cliente monta o pedido no site e ele chega pronto e somado no seu WhatsApp. Zero erros de anotação, zero confusão na cozinha.
-                    </p>
+                <div class="relative glass-panel p-10 rounded-3xl border-2 border-blue-500 shadow-2xl shadow-blue-500/20 transform md:scale-110 z-10">
+                    <div class="absolute top-0 right-0 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-xl uppercase">Mais Vendido</div>
+                    <h3 class="text-xl font-bold text-blue-500 uppercase tracking-wide mb-2">Plano Profissional</h3>
+                    <div class="text-5xl font-extrabold text-slate-900 dark:text-white mb-4">R$ 1.500</div>
+                    <p class="text-sm text-slate-500 mb-6 italic">Solução completa de conversão.</p>
+                    <ul class="space-y-3 text-slate-600 dark:text-slate-300 mb-8 font-medium">
+                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> <strong>3-5 Páginas Customizadas</strong></li>
+                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Cardápio Digital Organizado</li>
+                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> <strong>SEO Otimizado para BC</strong></li>
+                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Galeria de Fotos Premium</li>
+                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Suporte por 30 dias</li>
+                    </ul>
+                    <a href="https://wa.me/5547988901616?text=Quero%20o%20Plano%20Profissional%20de%20R$1500." class="block w-full py-4 bg-blue-600 hover:bg-blue-700 text-white text-center rounded-lg font-bold transition shadow-lg">Quero o Profissional</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-24 relative z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-center mb-16 text-slate-900 dark:text-white font-mono" data-i18n="cases_title">Clientes:Aprovados</h2>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="glass-panel p-8 rounded-2xl hover:-translate-y-2 transition duration-300">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center text-white font-bold text-lg">AZ</div>
-                        <div>
-                            <h4 class="font-bold text-slate-900 dark:text-white">Armazém Z</h4>
-                            <p class="text-xs text-slate-500 font-mono">FLORIANÓPOLIS_SC</p>
-                        </div>
-                    </div>
-                    <p class="text-slate-600 dark:text-slate-300 text-sm italic" data-i18n="case1_text">"O cardápio digital acabou com a fila de espera para pedir. Vendas aumentaram 40%."</p>
-                    <div class="mt-6 flex text-yellow-400 text-xs gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+    <section class="py-20 bg-slate-50/50 dark:bg-slate-900/50">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-2xl font-bold text-center mb-10 text-slate-900 dark:text-white">Como Funciona (Sem Enrolação)</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div class="p-4">
+                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-3 text-blue-600 font-bold">1</div>
+                    <h4 class="font-bold text-sm dark:text-white">Diagnóstico</h4>
+                    <p class="text-xs text-slate-500">Gratuito (15 min)</p>
                 </div>
-                <div class="glass-panel p-8 rounded-2xl hover:-translate-y-2 transition duration-300 border-b-4 border-blue-500">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-lg">SG</div>
-                        <div>
-                            <h4 class="font-bold text-slate-900 dark:text-white">Serra Gourmet</h4>
-                            <p class="text-xs text-slate-500 font-mono">LAGES_SC</p>
-                        </div>
-                    </div>
-                    <p class="text-slate-600 dark:text-slate-300 text-sm italic" data-i18n="case2_text">"Antes ninguém nos achava no Google. Hoje somos referência na região."</p>
-                    <div class="mt-6 flex text-yellow-400 text-xs gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="p-4">
+                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-3 text-blue-600 font-bold">2</div>
+                    <h4 class="font-bold text-sm dark:text-white">Proposta</h4>
+                    <p class="text-xs text-slate-500">Personalizada (24h)</p>
                 </div>
-                <div class="glass-panel p-8 rounded-2xl hover:-translate-y-2 transition duration-300">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center text-white font-bold text-lg">VP</div>
-                        <div>
-                            <h4 class="font-bold text-slate-900 dark:text-white">Vila do Porto</h4>
-                            <p class="text-xs text-slate-500 font-mono">ITAJAÍ_SC</p>
-                        </div>
-                    </div>
-                    <p class="text-slate-600 dark:text-slate-300 text-sm italic" data-i18n="case3_text">"Sem erros na cozinha e sem telefone tocando. O sistema é perfeito."</p>
-                    <div class="mt-6 flex text-yellow-400 text-xs gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <div class="p-4">
+                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-3 text-blue-600 font-bold">3</div>
+                    <h4 class="font-bold text-sm dark:text-white">Desenvolvimento</h4>
+                    <p class="text-xs text-slate-500">Ágil (7-14 dias)</p>
+                </div>
+                <div class="p-4">
+                    <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-3 text-green-600 font-bold">4</div>
+                    <h4 class="font-bold text-sm dark:text-white">Lançamento</h4>
+                    <p class="text-xs text-slate-500">Treinamento Incluso</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <a href="https://wa.me/5547988901616?text=Gostaria%20de%20iniciar%20um%20projeto%20com%20a%20KNS." target="_blank" class="fixed bottom-8 right-8 z-50 group">
-       <div class="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-20"></div>
-       <span class="absolute right-16 top-2 bg-white dark:bg-slate-800 text-slate-800 dark:text-white text-xs font-bold py-2 px-4 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition duration-300 whitespace-nowrap border border-slate-100 dark:border-slate-700" data-i18n="whatsapp_float">Falar no WhatsApp</span>
+    <section class="py-20 relative z-10">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="glass-panel p-8 md:p-12 rounded-3xl">
+                <h2 class="text-2xl font-bold mb-6 text-slate-900 dark:text-white">Por que a KNS Consultoria?</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <p class="text-slate-600 dark:text-slate-300 mb-6">
+                            Somos especialistas em soluções web para o setor de alimentação em Balneário Camboriú. Nosso foco não é "código", é <strong>venda e operação</strong>.
+                        </p>
+                        <blockquote class="border-l-4 border-blue-500 pl-4 italic text-slate-500 text-sm">
+                            "A tecnologia deve facilitar sua vida, não complicar. Criamos sites que funcionam para você." <br>
+                            <span class="font-bold not-italic text-slate-700 dark:text-slate-200">- Kaleb Nunes, Fundador</span>
+                        </blockquote>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3 text-slate-700 dark:text-slate-200">
+                            <span class="w-8 h-8 rounded-full bg-red-100 text-red-500 flex items-center justify-center"><i class="fa-solid fa-bullseye"></i></span>
+                            Especialização em Food Service
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-700 dark:text-slate-200">
+                            <span class="w-8 h-8 rounded-full bg-blue-100 text-blue-500 flex items-center justify-center"><i class="fa-solid fa-location-dot"></i></span>
+                            Conhecimento Profundo de BC
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-700 dark:text-slate-200">
+                            <span class="w-8 h-8 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center"><i class="fa-solid fa-bolt"></i></span>
+                            Desenvolvimento Ágil
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <a href="https://wa.me/5547988901616?text=Vi%20o%20site%20e%20quero%20tirar%20dúvidas." target="_blank" class="fixed bottom-8 right-8 z-50 group">
+       <span class="absolute right-16 top-2 bg-white dark:bg-slate-800 text-slate-800 dark:text-white text-xs font-bold py-2 px-4 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition duration-300 whitespace-nowrap border border-slate-100 dark:border-slate-700">Falar com Kaleb</span>
        <div class="relative w-16 h-16 bg-[#25D366] hover:bg-[#20bd5a] rounded-full flex items-center justify-center shadow-lg shadow-green-500/40 transition duration-300 transform group-hover:scale-110 border-2 border-white dark:border-slate-900">
             <i class="fa-brands fa-whatsapp text-3xl text-white"></i>
        </div>
     </a>
 
-    <footer class="relative z-10 bg-slate-50 dark:bg-[#0b1121] text-slate-400 py-12 border-t border-slate-200 dark:border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <div class="flex items-center justify-center gap-2 mb-6"><i class="fa-solid fa-terminal text-blue-500"></i><span class="font-mono text-sm font-bold text-slate-600 dark:text-slate-300">KNS.TECH SYSTEMS</span></div>
-            <p class="mb-2 text-xs font-mono">Todos os direitos reservados &copy; 2026 KNS Consultoria. BC, SC.</p>
-        </div>
+    <footer class="bg-slate-50 dark:bg-[#0b1121] text-slate-400 py-12 border-t border-slate-200 dark:border-slate-800 text-center text-sm">
+        <p class="mb-2 font-bold text-slate-600 dark:text-slate-300">KNS Consultoria - Balneário Camboriú/SC</p>
+        <p>E-mail: kaleb@knsconsultoria.com.br | kalebdossantos59924@gmail.com</p>
+        <p class="mt-4 text-xs opacity-50">&copy; 2026 Todos os direitos reservados.</p>
     </footer>
 
     <script>
-        // --- MOUSE SPOTLIGHT ---
-        const cursorGlow = document.getElementById('cursor-glow');
-        document.addEventListener('mousemove', (e) => { cursorGlow.style.left = e.clientX + 'px'; cursorGlow.style.top = e.clientY + 'px'; });
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.classList.contains('dark')) { html.classList.remove('dark'); localStorage.setItem('theme', 'light'); document.getElementById('theme-icon').innerText = '🌙'; } 
+            else { html.classList.add('dark'); localStorage.setItem('theme', 'dark'); document.getElementById('theme-icon').innerText = '☀️'; }
+        }
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) { document.documentElement.classList.add('dark'); document.getElementById('theme-icon').innerText = '☀️'; }
 
-        // --- TRADUÇÕES (Baseadas no Notion) ---
+        // Traduções Simplificadas para manter foco no PT (Principal)
         const translations = {
-            pt: {
-                hero_title: "Seu Restaurante <br> <span class='text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-400 dark:from-cyan-400 dark:to-blue-600'>Nível Expert</span>",
-                hero_desc: "Pare de perder tempo no WhatsApp e aumente suas vendas. Tecnologia de ponta para automatizar seu atendimento e dominar o Google.",
-                cta_button: "Quero uma Demonstração",
-                secondary_button: "Ver Soluções",
-                solutions_title: "<Problemas_Resolvidos />",
-                solutions_subtitle: "O fim das dores de cabeça do seu delivery.",
-                card1_title: "Menos Trabalho Manual",
-                card1_desc: "Seu cardápio online funciona 24/7. Chega de responder 'quanto custa?' e 'tem coca?' no WhatsApp toda hora. Deixe sua equipe focar no que importa.",
-                card2_title: "Mais Visibilidade",
-                card2_desc: "SEO Local otimizado para aparecer quando o turista busca 'Restaurante em Balneário Camboriú'. Saia da invisibilidade.",
-                card3_title: "Pedidos Organizados",
-                card3_desc: "O cliente monta o pedido no site e ele chega pronto e somado no seu WhatsApp. Zero erros de anotação, zero confusão na cozinha.",
-                cases_title: "Clientes:Aprovados",
-                case1_text: "\"O cardápio digital acabou com a fila de espera para pedir. Vendas aumentaram 40%.\"",
-                case2_text: "\"Antes ninguém nos achava no Google. Hoje somos referência na região.\"",
-                case3_text: "\"Sem erros na cozinha e sem telefone tocando. O sistema é perfeito.\"",
-                whatsapp_float: "Falar no WhatsApp"
-            },
-            en: {
-                hero_title: "Your Restaurant <br> <span class='text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-400 dark:from-cyan-400 dark:to-blue-600'>Expert Level</span>",
-                hero_desc: "Stop wasting time on WhatsApp and increase sales. Cutting-edge technology to automate your service and dominate Google.",
-                cta_button: "Get a Demo",
-                secondary_button: "See Solutions",
-                solutions_title: "<Problems_Solved />",
-                solutions_subtitle: "The end of your delivery headaches.",
-                card1_title: "Less Manual Work",
-                card1_desc: "Your online menu works 24/7. Stop answering 'how much?' on WhatsApp every hour. Let your team focus on what matters.",
-                card2_title: "More Visibility",
-                card2_desc: "Local SEO optimized to appear when tourists search for 'Restaurant in Balneário Camboriú'. Get out of invisibility.",
-                card3_title: "Organized Orders",
-                card3_desc: "The client builds the order on the site and it arrives ready on your WhatsApp. Zero errors, zero kitchen confusion.",
-                cases_title: "Clients::Approved",
-                case1_text: "\"The digital menu ended the waiting line to order. Sales increased by 40%.\"",
-                case2_text: "\"Before, no one found us on Google. Today we are a reference in the region.\"",
-                case3_text: "\"No kitchen errors and no phone ringing. The system is perfect.\"",
-                whatsapp_float: "Chat on WhatsApp"
-            },
-            es: {
-                hero_title: "Su Restaurante <br> <span class='text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-400 dark:from-cyan-400 dark:to-blue-600'>Nivel Experto</span>",
-                hero_desc: "Deje de perder tiempo en WhatsApp y aumente sus ventas. Tecnología de punta para automatizar su servicio y dominar Google.",
-                cta_button: "Quiero una Demo",
-                secondary_button: "Ver Soluciones",
-                solutions_title: "<Problemas_Resueltos />",
-                solutions_subtitle: "El fin de los dolores de cabeza de su delivery.",
-                card1_title: "Menos Trabajo Manual",
-                card1_desc: "Su menú en línea funciona 24/7. Basta de responder '¿cuánto cuesta?' en WhatsApp a cada hora. Deje que su equipo se concentre.",
-                card2_title: "Más Visibilidad",
-                card2_desc: "SEO Local optimizado para aparecer cuando el turista busca 'Restaurante en Balneário Camboriú'. Salga de la invisibilidad.",
-                card3_title: "Pedidos Organizados",
-                card3_desc: "El cliente arma el pedido en el sitio y llega listo a su WhatsApp. Cero errores, cero confusión en la cocina.",
-                cases_title: "Clientes::Aprobados",
-                case1_text: "\"El menú digital acabó con la fila de espera. Las ventas aumentaron un 40%.\"",
-                case2_text: "\"Antes nadie nos encontraba en Google. Hoy somos referencia en la región.\"",
-                case3_text: "\"Sin errores en la cocina y sin teléfono sonando. El sistema es perfecto.\"",
-                whatsapp_float: "Hablar en WhatsApp"
-            }
+            pt: { hero_title: "Soluções Web para <br> <span class='text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-400'>Restaurantes que Vendem</span>", hero_desc: "Reduza a carga operacional do seu time e pare de perder clientes. Sites que convertem visitantes em pedidos e transmitem confiança imediata.", pricing_title: "Investimento Sob Medida" },
+            en: { hero_title: "Web Solutions for <br> <span class='text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-400'>High Selling Restaurants</span>", hero_desc: "Reduce your team's workload and stop losing customers. Websites that convert visitors into orders and build immediate trust.", pricing_title: "Tailored Investment" },
+            es: { hero_title: "Soluciones Web para <br> <span class='text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-400'>Restaurantes que Venden</span>", hero_desc: "Reduzca la carga operativa de su equipo y deje de perder clientes. Sitios que convierten visitantes en pedidos y transmiten confianza.", pricing_title: "Inversión a Medida" }
         };
-
         function setLanguage(lang) {
             const elements = document.querySelectorAll('[data-i18n]');
             elements.forEach(el => { const key = el.getAttribute('data-i18n'); if (translations[lang][key]) el.innerHTML = translations[lang][key]; });
@@ -311,19 +223,6 @@
             if(lang === 'en') document.querySelector('.fi-us').classList.add('active');
             if(lang === 'es') document.querySelector('.fi-es').classList.add('active');
         }
-
-        // --- TEMA ---
-        function toggleTheme() {
-            const body = document.body; const html = document.documentElement; const icon = document.getElementById('theme-icon');
-            if (html.classList.contains('dark')) { html.classList.remove('dark'); body.classList.add('light'); localStorage.setItem('theme', 'light'); icon.innerText = '🌙'; } 
-            else { html.classList.add('dark'); body.classList.remove('light'); localStorage.setItem('theme', 'dark'); icon.innerText = '☀️'; }
-        }
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) { document.documentElement.classList.add('dark'); document.body.classList.remove('light'); document.getElementById('theme-icon').innerText = '☀️'; } else { document.documentElement.classList.remove('dark'); document.body.classList.add('light'); }
-        
-        // --- EFEITO DIGITAÇÃO ---
-        const typeWriterElement = document.querySelector('.typing-effect'); const text = typeWriterElement.innerText; typeWriterElement.innerText = ''; let i = 0;
-        function typeWriter() { if (i < text.length) { typeWriterElement.innerText += text.charAt(i); i++; setTimeout(typeWriter, 100); } }
-        window.onload = typeWriter;
     </script>
 </body>
 </html>
