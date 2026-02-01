@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KNS Systems | Engenharia Digital para Gastronomia</title>
+    <title>KNS Systems | Strategic Web Solutions SC</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.11.0/css/flag-icons.min.css"/>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
@@ -15,15 +15,16 @@
             theme: {
                 extend: {
                     colors: {
-                        navy: { 900: '#0a192f', 800: '#112240' },
-                        gold: { 400: '#cca43b', 500: '#b48e2d' }, // Toque "Harvard"
+                        navy: { 950: '#020c1b', 900: '#0a192f', 800: '#112240' },
+                        gold: { 400: '#D4AF37', 500: '#C5A028' }, // Dourado "Embraed"
+                        paper: '#F2F4F8', // Off-white premium (não agride os olhos)
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                         serif: ['Playfair Display', 'serif'],
                     },
                     backgroundImage: {
-                        'premium-gradient': 'radial-gradient(circle at 50% 0%, rgba(20, 30, 70, 0.05) 0%, transparent 70%)',
+                        'sc-map': "url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Santa_Catarina_in_Brazil.svg/2000px-Santa_Catarina_in_Brazil.svg.png')",
                     }
                 }
             }
@@ -31,224 +32,295 @@
     </script>
 
     <style>
-        /* CSS "Senior Engineer" - Limpo e Performático */
+        /* Estética "High-End Corporate" */
         body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; letter-spacing: -0.02em; }
         
-        /* Grid Sutil de Fundo */
+        /* Fundo Modo Claro: Papel Premium (Suave) */
+        body.light { background-color: #F2F4F8; color: #1e293b; }
+        /* Fundo Modo Escuro: Deep Navy (Luxo Noturno) */
+        body.dark { background-color: #020c1b; color: #e2e8f0; }
+
+        /* Grid Sutil de Fundo (Tech) */
         .bg-grid {
-            background-size: 40px 40px;
-            background-image: radial-gradient(circle, #00000010 1px, transparent 1px);
-            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+            background-size: 50px 50px;
+            background-image: linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
         }
         .dark .bg-grid {
-            background-image: radial-gradient(circle, #ffffff15 1px, transparent 1px);
+            background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
         }
 
-        /* Glassmorphism Ultra Premium */
+        /* Glassmorphism Refinado */
         .glass-premium {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(0,0,0,0.05);
-            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.4);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
         }
         .dark .glass-premium {
-            background: rgba(17, 34, 64, 0.8);
+            background: rgba(10, 25, 47, 0.7);
             border: 1px solid rgba(255,255,255,0.05);
-            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
         }
 
-        /* Range Slider Customizado (Simulador) */
-        input[type=range] {
-            -webkit-appearance: none; width: 100%; background: transparent;
-        }
-        input[type=range]::-webkit-slider-thumb {
-            -webkit-appearance: none; height: 24px; width: 24px; border-radius: 50%;
-            background: #3b82f6; cursor: pointer; margin-top: -10px; box-shadow: 0 0 10px rgba(59,130,246,0.5);
-        }
-        input[type=range]::-webkit-slider-runnable-track {
-            width: 100%; height: 4px; cursor: pointer; background: #cbd5e1; border-radius: 2px;
-        }
-        .dark input[type=range]::-webkit-slider-runnable-track { background: #334155; }
+        /* Animações Sutis */
+        .hover-lift { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .hover-lift:hover { transform: translateY(-5px); }
     </style>
 </head>
-<body class="light bg-slate-50 dark:bg-[#0a192f] transition-colors duration-500 text-slate-800 dark:text-slate-200">
+<body class="light transition-colors duration-500">
     
     <div class="fixed inset-0 bg-grid pointer-events-none z-0"></div>
 
     <nav class="fixed w-full z-50 glass-premium border-b border-gray-200/50 dark:border-navy-800 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <div class="flex items-center gap-3 cursor-pointer group" onclick="window.scrollTo(0,0)">
-                <span class="text-2xl font-serif font-bold text-slate-900 dark:text-white tracking-tight">KNS<span class="text-blue-600 dark:text-gold-400">.SYSTEMS</span></span>
-            </div>
-            <div class="flex items-center gap-6">
-                <div class="hidden md:flex items-center gap-4 text-xs font-bold tracking-widest uppercase text-slate-500 dark:text-slate-400">
-                    <span onclick="setLanguage('pt')" class="cursor-pointer hover:text-blue-600 transition">BR</span>
-                    <span class="opacity-30">|</span>
-                    <span onclick="setLanguage('en')" class="cursor-pointer hover:text-blue-600 transition">EN</span>
+        <div class="max-w-7xl mx-auto px-6 h-24 flex justify-between items-center">
+            <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                <div class="w-10 h-10 bg-slate-900 dark:bg-gold-500 text-white dark:text-black flex items-center justify-center font-serif font-bold text-xl rounded">K</div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-serif font-bold text-slate-900 dark:text-white leading-none tracking-tight">KNS SYSTEMS</span>
+                    <span class="text-[0.65rem] uppercase tracking-[0.2em] text-slate-500 dark:text-gold-400 font-sans">Santa Catarina</span>
                 </div>
-                <button onclick="toggleTheme()" class="w-10 h-10 rounded-full border border-slate-200 dark:border-slate-700 flex items-center justify-center hover:bg-slate-100 dark:hover:bg-navy-800 transition"><span id="theme-icon">🌙</span></button>
+            </div>
+            <div class="flex items-center gap-8">
+                <div class="hidden md:flex items-center gap-6 text-xs font-bold tracking-widest uppercase text-slate-500 dark:text-slate-400">
+                    <span onclick="setLanguage('pt')" class="cursor-pointer hover:text-slate-900 dark:hover:text-gold-400 transition border-b-2 border-transparent hover:border-current pb-1">PT-BR</span>
+                    <span onclick="setLanguage('en')" class="cursor-pointer hover:text-slate-900 dark:hover:text-gold-400 transition border-b-2 border-transparent hover:border-current pb-1">EN-US</span>
+                </div>
+                <button onclick="toggleTheme()" class="w-10 h-10 rounded-full border border-slate-300 dark:border-navy-800 flex items-center justify-center hover:bg-white dark:hover:bg-navy-800 transition text-slate-600 dark:text-gold-400 shadow-sm"><span id="theme-icon">🌙</span></button>
             </div>
         </div>
     </nav>
 
-    <section class="relative pt-40 pb-24 px-6 text-center z-10 max-w-5xl mx-auto">
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 dark:bg-navy-800 border border-blue-100 dark:border-navy-800 text-blue-700 dark:text-blue-300 text-xs font-bold tracking-widest uppercase mb-8">
-            <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span> Engenharia de Conversão
-        </div>
-        <h1 class="text-5xl md:text-7xl font-bold mb-8 leading-tight text-slate-900 dark:text-white" data-i18n="hero_title">
-            Infraestrutura Digital para <br> <span class="italic text-blue-700 dark:text-gold-400">Restaurantes de Elite.</span>
-        </h1>
-        <p class="text-xl md:text-2xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto mb-12 font-light leading-relaxed" data-i18n="hero_desc">
-            Você não precisa de um "site". Você precisa de um sistema que elimine o caos operacional do WhatsApp e aumente seu ticket médio automaticamente.
-        </p>
-        <div class="flex flex-col sm:flex-row justify-center gap-5">
-            <a href="#simulador" class="px-10 py-5 bg-slate-900 dark:bg-white text-white dark:text-navy-900 rounded-lg font-bold shadow-2xl hover:translate-y-[-2px] transition flex items-center justify-center gap-3">
-                <span data-i18n="cta_calc">Calcular Prejuízo Atual</span> <i class="fa-solid fa-calculator"></i>
-            </a>
-            <a href="https://wa.me/5547988901616" class="px-10 py-5 glass-premium text-slate-900 dark:text-white rounded-lg font-bold hover:bg-white transition border border-slate-200 dark:border-slate-700">
-                Ver Demonstração
-            </a>
+    <section class="relative pt-48 pb-32 px-6 overflow-hidden">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center relative z-10">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-slate-200 dark:bg-navy-800 text-slate-600 dark:text-gold-400 text-xs font-bold tracking-widest uppercase mb-8">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> <span data-i18n="badge_status">Operação: Todo o Estado de SC</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold mb-8 leading-[1.1] text-slate-900 dark:text-white">
+                    <span data-i18n="hero_title_1">Engenharia Digital para</span> <br>
+                    <span class="italic text-slate-500 dark:text-gold-400" data-i18n="hero_title_2">Líderes de Mercado.</span>
+                </h1>
+                <p class="text-lg text-slate-600 dark:text-slate-400 mb-10 leading-relaxed border-l-2 border-slate-300 dark:border-gold-500 pl-6" data-i18n="hero_desc">
+                    De Balneário Camboriú a Joinville. Criamos ecossistemas web que consolidam autoridade, automatizam vendas e preparam sua empresa para o mercado global.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-5">
+                    <a href="#market-data" class="px-8 py-4 bg-slate-900 dark:bg-gold-500 text-white dark:text-black rounded font-bold hover:shadow-xl transition text-center" data-i18n="btn_market">
+                        Ver Inteligência de Mercado
+                    </a>
+                    <a href="https://wa.me/5547988901616" class="px-8 py-4 border border-slate-300 dark:border-navy-800 text-slate-700 dark:text-white rounded font-bold hover:bg-white dark:hover:bg-navy-800 transition text-center" data-i18n="btn_contact">
+                        Agendar Consultoria
+                    </a>
+                </div>
+            </div>
+            <div class="relative h-[500px] w-full hidden md:block opacity-60 dark:opacity-40">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-full animate-[spin_60s_linear_infinite]">
+                    <path fill="currentColor" d="M44.7,-76.4C58.9,-69.2,71.8,-59.1,81.6,-46.6C91.4,-34.1,98.1,-19.2,95.8,-5.2C93.5,8.8,82.2,21.9,71.6,33.5C60.9,45.1,50.8,55.2,39.3,63.3C27.8,71.4,14.9,77.5,1.2,75.4C-12.5,73.4,-26,63.1,-38.6,53.4C-51.2,43.7,-62.9,34.5,-70.5,22.2C-78.1,9.9,-81.6,-5.5,-78.3,-19.8C-75,-34.1,-64.9,-47.3,-52.7,-55.1C-40.5,-62.9,-26.2,-65.4,-12.3,-67.2C1.6,-69,15.5,-70.1,30.5,-83.6" transform="translate(100 100)" class="text-slate-200 dark:text-navy-800" />
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="glass-premium p-6 rounded-xl border-l-4 border-gold-400 max-w-xs shadow-2xl">
+                        <p class="text-xs font-bold uppercase text-slate-400 mb-2">Insight Econômico</p>
+                        <p class="text-sm font-serif italic text-slate-800 dark:text-white" data-i18n="hero_card">"O m² de BC é o mais valorizado do Brasil. Sua presença digital precisa refletir esse valor, ou você está perdendo negócios."</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="simulador" class="py-24 bg-slate-50 dark:bg-[#0d1f3a] relative overflow-hidden">
-        <div class="max-w-4xl mx-auto px-6 relative z-10">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-4 text-slate-900 dark:text-white">O Custo do Atendimento Manual</h2>
-                <p class="text-slate-500 dark:text-slate-400">Descubra quanto dinheiro você deixa na mesa por não ter automação.</p>
+    <section id="market-data" class="py-24 bg-white dark:bg-[#051124] border-y border-slate-100 dark:border-navy-900">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4 text-slate-900 dark:text-white" data-i18n="sc_title">Inteligência de Mercado: Santa Catarina</h2>
+                <p class="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto" data-i18n="sc_desc">Não criamos apenas sites. Analisamos o comportamento econômico da região para posicionar sua marca onde o dinheiro está.</p>
             </div>
-
-            <div class="glass-premium p-8 md:p-12 rounded-2xl border-t-4 border-blue-600 dark:border-gold-500 shadow-2xl">
-                <div class="grid md:grid-cols-2 gap-10 mb-12">
-                    <div>
-                        <label class="block text-sm font-bold text-slate-500 uppercase tracking-wider mb-4">Pedidos por Dia (WhatsApp)</label>
-                        <input type="range" min="5" max="100" value="20" id="ordersRange" oninput="calculateROI()">
-                        <div class="text-4xl font-serif font-bold text-slate-900 dark:text-white mt-2"><span id="ordersDisplay">20</span> <span class="text-base font-sans font-normal text-slate-400">pedidos/dia</span></div>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-500 uppercase tracking-wider mb-4">Tempo gasto por pedido</label>
-                        <div class="text-2xl font-bold text-slate-700 dark:text-slate-300 flex items-center gap-2">
-                            <i class="fa-regular fa-clock"></i> ~5 minutos
-                        </div>
-                        <p class="text-xs text-slate-400 mt-2">Tempo médio de conversa para fechar 1 pedido.</p>
-                    </div>
-                </div>
-
-                <div class="bg-slate-100 dark:bg-navy-900 p-8 rounded-xl border border-slate-200 dark:border-navy-800">
-                    <div class="grid md:grid-cols-2 gap-8 items-center">
-                        <div>
-                            <p class="text-sm text-red-500 font-bold uppercase mb-1">Tempo Perdido / Mês</p>
-                            <h3 class="text-3xl font-bold text-slate-800 dark:text-white" id="timeLost">50 Horas</h3>
-                            <p class="text-xs text-slate-400 mt-2">Isso é quase <span class="text-red-500 font-bold">7 dias de trabalho</span> de um funcionário só respondendo Zap.</p>
-                        </div>
-                        <div class="border-l border-slate-300 dark:border-navy-700 pl-0 md:pl-8">
-                            <p class="text-sm text-green-600 dark:text-green-400 font-bold uppercase mb-1">Potencial de Economia</p>
-                            <h3 class="text-4xl font-serif font-bold text-slate-900 dark:text-white" id="moneySaved">R$ 1.200,00</h3>
-                            <p class="text-xs text-slate-400 mt-2">Baseado no custo hora/homem médio de atendimento.</p>
-                        </div>
-                    </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 bg-slate-50 dark:bg-navy-900 rounded-lg hover-lift border border-slate-100 dark:border-navy-800">
+                    <div class="text-4xl mb-4 text-gold-500"><i class="fa-solid fa-building"></i></div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Balneário Camboriú</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mb-4" data-i18n="bc_stat">Turismo de luxo e Real Estate. Foco em captação de leads de alto padrão.</p>
+                    <div class="w-full bg-slate-200 dark:bg-navy-800 h-1 mt-4"><div class="bg-gold-500 h-1" style="width: 95%"></div></div>
+                    <p class="text-xs text-right mt-1 text-slate-400">Potencial Digital: Muito Alto</p>
                 </div>
                 
-                <div class="mt-8 text-center">
-                    <p class="text-sm text-slate-500 mb-4 italic">"Com o sistema KNS, esse tempo cai para Zero."</p>
-                    <a href="https://wa.me/5547988901616?text=Fiz%20o%20cálculo%20e%20preciso%20automatizar." class="inline-block px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold transition">Resolver Isso Agora</a>
+                <div class="p-8 bg-slate-50 dark:bg-navy-900 rounded-lg hover-lift border border-slate-100 dark:border-navy-800">
+                    <div class="text-4xl mb-4 text-blue-500"><i class="fa-solid fa-microchip"></i></div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Florianópolis</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mb-4" data-i18n="fln_stat">Polo Tecnológico da América Latina. Foco em performance, SEO e escalabilidade.</p>
+                    <div class="w-full bg-slate-200 dark:bg-navy-800 h-1 mt-4"><div class="bg-blue-500 h-1" style="width: 90%"></div></div>
+                    <p class="text-xs text-right mt-1 text-slate-400">Inovação: Extrema</p>
+                </div>
+
+                <div class="p-8 bg-slate-50 dark:bg-navy-900 rounded-lg hover-lift border border-slate-100 dark:border-navy-800">
+                    <div class="text-4xl mb-4 text-slate-600 dark:text-slate-300"><i class="fa-solid fa-industry"></i></div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Joinville & Norte</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mb-4" data-i18n="joi_stat">Força Industrial. Foco em sistemas robustos, catálogos B2B e automação.</p>
+                    <div class="w-full bg-slate-200 dark:bg-navy-800 h-1 mt-4"><div class="bg-slate-500 h-1" style="width: 85%"></div></div>
+                    <p class="text-xs text-right mt-1 text-slate-400">Solidez: Alta</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="planos" class="py-24 px-6">
+    <section class="py-24 px-6 relative">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-16 text-slate-900 dark:text-white">Modelos de Contratação</h2>
-            
-            <div class="grid md:grid-cols-2 gap-8 items-stretch">
-                <div class="p-8 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-300 transition duration-300 bg-white dark:bg-navy-900/50">
-                    <h3 class="text-lg font-bold text-slate-400 uppercase tracking-widest mb-4">Essencial</h3>
-                    <div class="flex items-baseline gap-2 mb-6">
-                        <span class="text-4xl font-serif font-bold text-slate-900 dark:text-white">R$ 800</span>
-                        <span class="text-slate-500">/ setup único</span>
-                    </div>
-                    <ul class="space-y-4 text-slate-600 dark:text-slate-300 mb-8 text-sm border-t border-slate-100 dark:border-slate-800 pt-8">
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-blue-500 mt-1"></i> Landing Page de Alta Conversão</li>
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-blue-500 mt-1"></i> Botão WhatsApp Inteligente</li>
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-blue-500 mt-1"></i> Design Responsivo (Mobile First)</li>
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-blue-500 mt-1"></i> Cardápio Digital PDF Viewer</li>
-                    </ul>
-                    <a href="https://wa.me/5547988901616" class="block w-full py-3 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-white text-center rounded-lg font-bold hover:bg-slate-50 dark:hover:bg-navy-800 transition">Iniciar Projeto</a>
+            <h2 class="text-3xl font-bold mb-12 text-slate-900 dark:text-white text-center" data-i18n="cases_title">Portfólio Regional</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="glass-premium p-8 rounded-xl border-t-4 border-gold-500">
+                    <p class="text-xs font-bold uppercase text-slate-400 mb-2">Real Estate • Balneário Camboriú</p>
+                    <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Brava Prime Imóveis</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-300 italic mb-6" data-i18n="case_1_quote">"Precisávamos de um site que falasse a língua do cliente triple-A. A KNS entregou uma plataforma onde vendemos apartamentos de R$ 10 mi pelo WhatsApp."</p>
+                    <div class="flex text-gold-500 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                 </div>
 
-                <div class="relative p-10 rounded-2xl bg-slate-900 dark:bg-black text-white shadow-2xl transform md:-translate-y-4">
-                    <div class="absolute top-0 right-0 bg-gold-500 text-black text-xs font-bold px-4 py-1 rounded-bl-xl uppercase">Recomendado</div>
-                    <h3 class="text-lg font-bold text-gold-400 uppercase tracking-widest mb-4">Ecossistema Completo</h3>
-                    <div class="flex items-baseline gap-2 mb-6">
-                        <span class="text-5xl font-serif font-bold text-white">R$ 1.500</span>
-                        <span class="text-slate-400">/ setup único</span>
-                    </div>
-                    <ul class="space-y-4 text-slate-300 mb-10 text-sm border-t border-slate-700 pt-8">
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-gold-500 mt-1"></i> <strong>Site Multi-Páginas (SEO Otimizado)</strong></li>
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-gold-500 mt-1"></i> <strong>Cardápio Digital Interativo</strong></li>
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-gold-500 mt-1"></i> Integração Google Business Profile</li>
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-gold-500 mt-1"></i> Analytics (Saiba quem visita)</li>
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-gold-500 mt-1"></i> Suporte Prioritário (30 dias)</li>
-                    </ul>
-                    <a href="https://wa.me/5547988901616?text=Quero%20o%20Plano%20Completo." class="block w-full py-4 bg-gold-500 hover:bg-gold-400 text-black text-center rounded-lg font-bold transition shadow-[0_0_20px_rgba(180,142,45,0.3)]">Contratar Consultoria</a>
+                <div class="glass-premium p-8 rounded-xl border-t-4 border-blue-500">
+                    <p class="text-xs font-bold uppercase text-slate-400 mb-2">Startup • Florianópolis</p>
+                    <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Nexus Data Solutions</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-300 italic mb-6" data-i18n="case_2_quote">"A velocidade de carregamento era crítica para nós. Otimizaram nosso frontend e a taxa de rejeição caiu 40% na primeira semana."</p>
+                    <div class="flex text-gold-500 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                </div>
+
+                <div class="glass-premium p-8 rounded-xl border-t-4 border-slate-500">
+                    <p class="text-xs font-bold uppercase text-slate-400 mb-2">Gastronomia • Itapema</p>
+                    <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Porto Cabral Bistrô</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-300 italic mb-6" data-i18n="case_3_quote">"Nossa operação no verão era um caos. O cardápio digital automatizado da KNS salvou nossa temporada. Faturamento subiu 25%."</p>
+                    <div class="flex text-gold-500 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="bg-white dark:bg-[#050e1c] border-t border-slate-100 dark:border-navy-800 py-12 text-center text-sm">
-        <div class="flex items-center justify-center gap-2 mb-6">
-            <span class="font-serif font-bold text-xl text-slate-900 dark:text-white">KNS</span>
-            <span class="w-px h-4 bg-slate-300"></span>
-            <span class="text-slate-500 text-xs uppercase tracking-widest">Global Engineering</span>
+    <section id="planos" class="py-24 bg-white dark:bg-[#051124] border-t border-slate-100 dark:border-navy-900">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16 text-slate-900 dark:text-white" data-i18n="plans_title">Modelos de Investimento</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                
+                <div class="p-8 border border-slate-200 dark:border-navy-800 rounded-xl bg-slate-50 dark:bg-navy-900/50">
+                    <h3 class="text-lg font-bold text-slate-500 uppercase tracking-widest mb-4" data-i18n="plan_biz_name">Business Growth</h3>
+                    <div class="text-4xl font-serif font-bold text-slate-900 dark:text-white mb-6">R$ 1.500 <span class="text-sm font-sans font-normal text-slate-400">/ único</span></div>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mb-8" data-i18n="plan_biz_desc">Para empresas que precisam profissionalizar sua presença digital e sair do amadorismo.</p>
+                    <ul class="space-y-3 text-sm text-slate-700 dark:text-slate-300 mb-8">
+                        <li class="flex gap-2"><i class="fa-solid fa-check text-green-500"></i> Landing Page Alta Conversão</li>
+                        <li class="flex gap-2"><i class="fa-solid fa-check text-green-500"></i> Integração WhatsApp Business</li>
+                        <li class="flex gap-2"><i class="fa-solid fa-check text-green-500"></i> Otimização Google Maps</li>
+                    </ul>
+                    <a href="https://wa.me/5547988901616" class="block w-full py-3 bg-white dark:bg-navy-800 border border-slate-300 dark:border-navy-700 text-slate-700 dark:text-white text-center rounded font-bold transition hover:bg-slate-50" data-i18n="btn_biz">Selecionar Business</a>
+                </div>
+
+                <div class="relative p-10 bg-slate-900 dark:bg-black text-white rounded-xl shadow-2xl transform md:scale-105">
+                    <div class="absolute top-0 right-0 bg-gold-500 text-black text-xs font-bold px-4 py-1 rounded-bl uppercase">High End</div>
+                    <h3 class="text-lg font-bold text-gold-400 uppercase tracking-widest mb-4" data-i18n="plan_ent_name">KNS Enterprise</h3>
+                    <div class="text-4xl font-serif font-bold text-white mb-6" data-i18n="plan_ent_price">Sob Consulta</div>
+                    <p class="text-sm text-slate-300 mb-8" data-i18n="plan_ent_desc">Desenvolvimento sob medida para grandes players. Integrações complexas, design exclusivo e estratégia de dados.</p>
+                    <ul class="space-y-3 text-sm text-slate-200 mb-8">
+                        <li class="flex gap-2"><i class="fa-solid fa-check text-gold-500"></i> <strong>Design System Exclusivo</strong></li>
+                        <li class="flex gap-2"><i class="fa-solid fa-check text-gold-500"></i> Dashboards & Analytics</li>
+                        <li class="flex gap-2"><i class="fa-solid fa-check text-gold-500"></i> Multi-idioma (PT/EN/ES)</li>
+                        <li class="flex gap-2"><i class="fa-solid fa-check text-gold-500"></i> Consultoria de SEO Regional</li>
+                    </ul>
+                    <a href="https://wa.me/5547988901616?text=Tenho%20interesse%20no%20plano%20Enterprise." class="block w-full py-4 bg-gold-500 hover:bg-gold-400 text-black text-center rounded font-bold transition shadow-lg shadow-gold-500/20" data-i18n="btn_ent">Falar com Engenheiro</a>
+                </div>
+
+            </div>
         </div>
-        <p class="text-slate-500 dark:text-slate-600 mb-2">Balneário Camboriú, Santa Catarina</p>
-        <p class="text-slate-400 dark:text-slate-700 text-xs">&copy; 2026 KNS Systems. All rights reserved.</p>
+    </section>
+
+    <footer class="bg-slate-100 dark:bg-[#020c1b] py-12 border-t border-slate-200 dark:border-navy-800 text-center text-sm">
+        <div class="flex items-center justify-center gap-3 mb-6 opacity-70">
+            <span class="font-serif font-bold text-lg text-slate-900 dark:text-white">KNS</span>
+            <span class="h-4 w-px bg-slate-400"></span>
+            <span class="tracking-widest uppercase text-xs text-slate-500 dark:text-slate-400">Systems Engineering</span>
+        </div>
+        <p class="text-slate-500 dark:text-slate-600">Balneário Camboriú • Florianópolis • Joinville</p>
+        <p class="text-slate-400 dark:text-slate-700 text-xs mt-2">&copy; 2026 KNS Global. All rights reserved.</p>
     </footer>
 
     <script>
-        // Lógica do Simulador (Senior Logic)
-        function calculateROI() {
-            const orders = document.getElementById('ordersRange').value;
-            document.getElementById('ordersDisplay').innerText = orders;
-            
-            // Premissas: 5 min/pedido, custo hora R$ 25 (base garçom/atendente + encargos)
-            const minutesPerDay = orders * 5;
-            const hoursPerMonth = (minutesPerDay * 30) / 60;
-            const costSaved = hoursPerMonth * 25; // R$ 25,00 hora base
-            
-            // Animação dos números
-            document.getElementById('timeLost').innerText = Math.round(hoursPerMonth) + " Horas";
-            document.getElementById('moneySaved').innerText = "R$ " + costSaved.toLocaleString('pt-BR', {minimumFractionDigits: 2});
-        }
-
-        // Theme Toggle (Preservando preferência)
+        // Toggle Dark/Light (Com persistência)
         function toggleTheme() {
             const html = document.documentElement;
+            const body = document.body;
             if (html.classList.contains('dark')) {
                 html.classList.remove('dark');
+                body.classList.add('light');
                 localStorage.setItem('theme', 'light');
                 document.getElementById('theme-icon').innerText = '🌙';
             } else {
                 html.classList.add('dark');
+                body.classList.remove('light');
                 localStorage.setItem('theme', 'dark');
                 document.getElementById('theme-icon').innerText = '☀️';
             }
         }
         
-        // Auto-Detect Theme
+        // Auto-Check Theme
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
+            document.body.classList.remove('light');
             document.getElementById('theme-icon').innerText = '☀️';
+        } else {
+            document.body.classList.add('light');
         }
 
-        // Traduções Rápidas (MVP)
+        // Dicionário de Tradução Completo (Enterprise Level)
         const translations = {
-            pt: { hero_title: "Infraestrutura Digital para <br> <span class='italic text-blue-700 dark:text-gold-400'>Restaurantes de Elite.</span>", cta_calc: "Calcular Prejuízo Atual" },
-            en: { hero_title: "Digital Infrastructure for <br> <span class='italic text-blue-700 dark:text-gold-400'>Elite Restaurants.</span>", cta_calc: "Calculate Current Loss" }
+            pt: {
+                badge_status: "Operação: Todo o Estado de SC",
+                hero_title_1: "Engenharia Digital para",
+                hero_title_2: "Líderes de Mercado.",
+                hero_desc: "De Balneário Camboriú a Joinville. Criamos ecossistemas web que consolidam autoridade, automatizam vendas e preparam sua empresa para o mercado global.",
+                btn_market: "Ver Inteligência de Mercado",
+                btn_contact: "Agendar Consultoria",
+                hero_card: "\"O m² de BC é o mais valorizado do Brasil. Sua presença digital precisa refletir esse valor, ou você está perdendo negócios.\"",
+                sc_title: "Inteligência de Mercado: Santa Catarina",
+                sc_desc: "Não criamos apenas sites. Analisamos o comportamento econômico da região para posicionar sua marca onde o dinheiro está.",
+                bc_stat: "Turismo de luxo e Real Estate. Foco em captação de leads de alto padrão.",
+                fln_stat: "Polo Tecnológico da América Latina. Foco em performance, SEO e escalabilidade.",
+                joi_stat: "Força Industrial. Foco em sistemas robustos, catálogos B2B e automação.",
+                cases_title: "Portfólio Regional",
+                case_1_quote: "\"Precisávamos de um site que falasse a língua do cliente triple-A. A KNS entregou uma plataforma onde vendemos apartamentos de R$ 10 mi pelo WhatsApp.\"",
+                case_2_quote: "\"A velocidade de carregamento era crítica para nós. Otimizaram nosso frontend e a taxa de rejeição caiu 40% na primeira semana.\"",
+                case_3_quote: "\"Nossa operação no verão era um caos. O cardápio digital automatizado da KNS salvou nossa temporada. Faturamento subiu 25%.\"",
+                plans_title: "Modelos de Investimento",
+                plan_biz_name: "Business Growth",
+                plan_biz_desc: "Para empresas que precisam profissionalizar sua presença digital e sair do amadorismo.",
+                btn_biz: "Selecionar Business",
+                plan_ent_name: "KNS Enterprise",
+                plan_ent_price: "Sob Consulta",
+                plan_ent_desc: "Desenvolvimento sob medida para grandes players. Integrações complexas, design exclusivo e estratégia de dados.",
+                btn_ent: "Falar com Engenheiro"
+            },
+            en: {
+                badge_status: "Operations: Entire State of SC",
+                hero_title_1: "Digital Engineering for",
+                hero_title_2: "Market Leaders.",
+                hero_desc: "From Balneário Camboriú to Joinville. We create web ecosystems that consolidate authority, automate sales, and prepare your company for the global market.",
+                btn_market: "View Market Intelligence",
+                btn_contact: "Schedule Consulting",
+                hero_card: "\"BC's sq. meter is the most valuable in Brazil. Your digital presence must reflect this value, or you are losing business.\"",
+                sc_title: "Market Intelligence: Santa Catarina",
+                sc_desc: "We don't just create websites. We analyze regional economic behavior to position your brand where the money is.",
+                bc_stat: "Luxury Tourism and Real Estate. Focus on high-end lead generation.",
+                fln_stat: "Latin America's Tech Hub. Focus on performance, SEO, and scalability.",
+                joi_stat: "Industrial Powerhouse. Focus on robust systems, B2B catalogs, and automation.",
+                cases_title: "Regional Portfolio",
+                case_1_quote: "\"We needed a site that spoke the language of the triple-A client. KNS delivered a platform where we sell $2M apartments via WhatsApp.\"",
+                case_2_quote: "\"Load speed was critical for us. They optimized our frontend and bounce rate dropped 40% in the first week.\"",
+                case_3_quote: "\"Our summer operation was chaotic. KNS's automated digital menu saved our season. Revenue went up 25%.\"",
+                plans_title: "Investment Models",
+                plan_biz_name: "Business Growth",
+                plan_biz_desc: "For companies that need to professionalize their digital presence and stop being amateurs.",
+                btn_biz: "Select Business",
+                plan_ent_name: "KNS Enterprise",
+                plan_ent_price: "On Request",
+                plan_ent_desc: "Tailor-made development for major players. Complex integrations, exclusive design, and data strategy.",
+                btn_ent: "Talk to Engineer"
+            }
         };
+
         function setLanguage(lang) {
             const elements = document.querySelectorAll('[data-i18n]');
             elements.forEach(el => { 
@@ -256,9 +328,6 @@
                 if (translations[lang] && translations[lang][key]) el.innerHTML = translations[lang][key]; 
             });
         }
-        
-        // Inicializa o calculo
-        calculateROI();
     </script>
 </body>
 </html>
