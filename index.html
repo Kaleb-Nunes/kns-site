@@ -2,185 +2,182 @@
 <html lang="pt-BR" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KNS GLOBAL | Absolute Continuity</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>KNS GLOBAL | Sovereign Infrastructure & Critical Engineering</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Plus+Jakarta+Sans:wght@200;400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --accent: #00ff88;
-            --accent-glow: rgba(0, 255, 136, 0.4);
-            --bg: #050505;
-            --surface: rgba(20, 20, 20, 0.6);
-            --border: rgba(255, 255, 255, 0.1);
-            --text-main: #ffffff;
-            --text-muted: #888888;
+            --neon: #00ff88;
+            --neon-glow: rgba(0, 255, 136, 0.4);
+            --bg: #030303;
+            --glass: rgba(15, 15, 15, 0.7);
+            --border: rgba(255, 255, 255, 0.08);
+            --text-high: #ffffff;
+            --text-low: #6b7280;
         }
 
         [data-theme="light"] {
-            --bg: #f8fafc;
-            --surface: rgba(255, 255, 255, 0.8);
-            --border: rgba(0, 0, 0, 0.08);
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-            --accent: #059669;
+            --bg: #fdfdfd;
+            --glass: rgba(255, 255, 255, 0.8);
+            --border: rgba(0, 0, 0, 0.05);
+            --text-high: #111827;
+            --text-low: #4b5563;
+            --neon: #059669;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        body { background: var(--bg); color: var(--text-main); overflow-x: hidden; }
+        /* Engineering Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        body { background: var(--bg); color: var(--text-high); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
         .mono { font-family: 'JetBrains Mono', monospace; }
-        
-        /* Navbar de Elite */
-        .navbar { position: fixed; top: 0; width: 100%; z-index: 2000; padding: 1rem 5%; background: var(--surface); backdrop-filter: blur(25px); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-        .nav-tools { display: flex; gap: 1.5rem; align-items: center; }
-        .lang-btn { background: none; border: 1px solid var(--border); color: var(--text-main); padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 0.7rem; font-weight: bold; }
-        .lang-btn.active { background: var(--accent); color: #000; border-color: var(--accent); }
 
-        /* Hero Cinema */
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 5%; background: radial-gradient(circle at center, var(--accent-glow) 0%, transparent 70%); }
-        .hero h1 { font-family: 'Orbitron'; font-size: clamp(2.5rem, 8vw, 5.5rem); line-height: 0.9; margin-bottom: 1.5rem; letter-spacing: -2px; }
-        .hero p { max-width: 750px; color: var(--text-muted); font-size: 1.2rem; margin-bottom: 3rem; }
+        /* Custom Cursor for High-End Experience */
+        #cursor { position: fixed; width: 20px; height: 20px; border: 1px solid var(--neon); border-radius: 50%; pointer-events: none; z-index: 9999; transition: transform 0.1s ease; mix-blend-mode: difference; }
 
-        /* Glass Cards */
-        .glass-card { background: var(--surface); border: 1px solid var(--border); padding: 3rem; border-radius: 24px; backdrop-filter: blur(10px); }
-        .solution-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; max-width: 1300px; margin: -100px auto 100px; padding: 0 5%; position: relative; z-index: 10; }
-        
-        /* Founder Section Premium */
-        .founder-box { max-width: 1200px; margin: 100px auto; display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: center; padding: 0 5%; }
-        .founder-img-wrapper { position: relative; }
-        .founder-img-wrapper::after { content: ''; position: absolute; inset: -10px; border: 2px solid var(--accent); border-radius: 20px; z-index: -1; }
-        .founder-img { width: 100%; border-radius: 15px; box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
+        /* Navigation: Architectural Layout */
+        .nav-bridge { position: fixed; top: 0; width: 100%; z-index: 5000; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(30px); border-bottom: 1px solid var(--border); }
+        .nav-logo { font-family: 'Orbitron'; font-weight: 900; letter-spacing: 4px; font-size: 1.1rem; }
+        .nav-ops { display: flex; gap: 2rem; align-items: center; }
+        .lang-switch { font-family: 'JetBrains Mono'; font-size: 0.65rem; color: var(--text-low); display: flex; gap: 10px; }
+        .lang-switch span { cursor: pointer; transition: 0.3s; }
+        .lang-switch span.active { color: var(--neon); border-bottom: 1px solid var(--neon); }
 
-        .btn-gold { background: var(--accent); color: #000; padding: 1rem 2rem; border-radius: 12px; font-family: 'Orbitron'; font-weight: 900; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 10px 20px var(--accent-glow); }
-        .btn-gold:hover { transform: translateY(-5px); box-shadow: 0 20px 40px var(--accent-glow); }
+        /* Hero: The Sovereign Reveal */
+        .hero-chamber { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; overflow: hidden; }
+        .bg-grid { position: absolute; width: 200%; height: 200%; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 50px 50px; transform: rotateX(60deg) translateY(-50%); z-index: -1; animation: gridMove 20s linear infinite; opacity: 0.5; }
+        @keyframes gridMove { from { background-position: 0 0; } to { background-position: 0 50px; } }
 
-        /* Monitor Frame */
-        .monitor-frame { width: 100%; max-width: 1000px; border: 8px solid #1a1a1a; border-radius: 20px; overflow: hidden; background: #000; margin-bottom: 50px; }
+        .hero-title { font-family: 'Orbitron'; font-size: clamp(2rem, 10vw, 7rem); font-weight: 900; text-align: center; line-height: 0.8; letter-spacing: -5px; }
+        .glitch-text { color: transparent; -webkit-text-stroke: 1px var(--text-high); position: relative; }
+        .glitch-text::after { content: attr(data-text); position: absolute; left: 0; top: 0; width: 100%; height: 100%; color: var(--neon); -webkit-text-stroke: 0px; clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%); transform: translate(5px, -5px); animation: glitch 4s infinite; }
+
+        @keyframes glitch { 0% { transform: translate(5px, -5px); } 50% { transform: translate(-5px, 5px); } 100% { transform: translate(5px, -5px); } }
+
+        /* The Command Center Preview */
+        .monitor-frame { width: 100%; max-width: 1100px; aspect-ratio: 16/9; background: #000; border-radius: 20px; border: 1px solid #333; overflow: hidden; position: relative; box-shadow: 0 50px 150px rgba(0,0,0,0.8); margin-top: 50px; }
+        .monitor-frame iframe { width: 100%; height: 100%; pointer-events: none; filter: contrast(1.1) brightness(0.8); }
+
+        /* Solution Matrix */
+        .matrix-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); max-width: 1300px; margin: 0 auto; border: 1px solid var(--border); }
+        .matrix-cell { padding: 5rem 3rem; background: var(--bg); transition: 0.5s; position: relative; overflow: hidden; }
+        .matrix-cell:hover { background: rgba(0, 255, 136, 0.02); }
+        .matrix-cell::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--neon); transform: scaleX(0); transition: 0.5s; transform-origin: left; }
+        .matrix-cell:hover::before { transform: scaleX(1); }
+        .matrix-cell h3 { font-family: 'Orbitron'; font-size: 1.2rem; margin-bottom: 1.5rem; }
+        .matrix-cell p { color: var(--text-low); font-size: 0.95rem; line-height: 1.6; }
+
+        /* Founder: Executive Profile */
+        .exec-profile { padding: 10rem 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; align-items: center; max-width: 1400px; margin: 0 auto; }
+        .profile-visual { position: relative; }
+        .profile-visual img { width: 100%; border-radius: 4px; filter: grayscale(1) contrast(1.1); }
+        .profile-visual::after { content: 'SAGE CERTIFIED'; position: absolute; bottom: -20px; right: -20px; background: var(--neon); color: #000; padding: 10px 20px; font-family: 'JetBrains Mono'; font-weight: 800; font-size: 0.7rem; }
+
+        .btn-action { background: var(--neon); color: #000; padding: 1.5rem 3rem; font-family: 'Orbitron'; font-weight: 900; text-decoration: none; display: inline-flex; align-items: center; gap: 15px; border-radius: 4px; box-shadow: 0 0 40px var(--neon-glow); }
     </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div style="font-family: 'Orbitron'; font-weight: 900; letter-spacing: 2px;">
-            <i class="fa-solid fa-cube text-accent"></i> KNS<span style="color:var(--accent)">GLOBAL</span>
-        </div>
-        
-        <div class="nav-tools">
-            <div id="lang-selector">
-                <button class="lang-btn active" onclick="setLang('pt')">PT</button>
-                <button class="lang-btn" onclick="setLang('en')">EN</button>
-                <button class="lang-btn" onclick="setLang('es')">ES</button>
+    <div id="cursor"></div>
+
+    <nav class="nav-bridge">
+        <div class="nav-logo">KNS GLOBAL <span style="color:var(--neon)">//</span> PROTOTYPE</div>
+        <div class="nav-ops">
+            <div class="lang-switch">
+                <span class="active" onclick="translate('pt')">PT_BR</span>
+                <span onclick="translate('en')">EN_US</span>
+                <span onclick="translate('es')">ES_ES</span>
             </div>
-            <button onclick="toggleTheme()" style="background:none; border:none; color:var(--text-main); cursor:pointer; font-size: 1.2rem;">
-                <i class="fa-solid fa-circle-half-stroke"></i>
-            </button>
-            <a href="#investor" class="btn-gold" style="padding: 0.5rem 1rem; font-size: 0.6rem;">COMMERCIAL ACCESS</a>
+            <div onclick="toggleMode()" style="cursor:pointer; color:var(--text-high)"><i class="fa-solid fa-moon"></i></div>
+            <a href="https://wa.me/5547988901616" class="btn-action" style="padding: 0.7rem 1.5rem; font-size: 0.65rem; box-shadow: none;">REQUEST ACCESS</a>
         </div>
     </nav>
 
-    <section class="hero">
-        <h1 id="hero-title">CONTINUIDADE <br><span style="color:var(--accent)">ABSOLUTA.</span></h1>
-        <p id="hero-desc">Liderando a engenharia de infraestrutura crítica e resiliência cibernética para o mercado global através do Protocolo 09.</p>
+    <header class="hero-chamber">
+        <div class="bg-grid"></div>
+        <span class="mono" style="color:var(--neon); letter-spacing: 5px; font-size: 0.7rem; margin-bottom: 2rem;">CRITICAL INFRASTRUCTURE & CONTINUITY</span>
+        <h1 class="hero-title">
+            <span id="title-1">CONTINUIDADE</span> <br>
+            <span class="glitch-text" id="title-2" data-text="ABSOLUTA.">ABSOLUTA.</span>
+        </h1>
         
         <div class="monitor-frame">
-            <iframe width="100%" height="562" src="https://www.youtube.com/embed/T9wvW0EYfE0?autoplay=1&mute=1&loop=1&playlist=T9wvW0EYfE0&controls=0" frameborder="0"></iframe>
+            <iframe src="https://www.youtube.com/embed/T9wvW0EYfE0?autoplay=1&mute=1&loop=1&playlist=T9wvW0EYfE0&controls=0&modestbranding=1" frameborder="0"></iframe>
+        </div>
+    </header>
+
+    <section class="matrix-container">
+        <div class="matrix-cell">
+            <span class="mono" style="color:var(--neon); font-size: 0.6rem;">// SYSTEM_OBSERVABILITY</span>
+            <h3 id="card1-h">Observabilidade Ativa</h3>
+            <p id="card1-p">Não apenas monitoramos. Antecipamos a degradação de serviços críticos através de análise preditiva.</p>
+        </div>
+        <div class="matrix-cell">
+            <span class="mono" style="color:var(--neon); font-size: 0.6rem;">// AUTO_HEALING_CORE</span>
+            <h3 id="card2-h">Sistemas de Auto-Cura</h3>
+            <p id="card2-p">Protocolos de resposta automática que restabelecem o fluxo operacional em milissegundos.</p>
+        </div>
+        <div class="matrix-cell">
+            <span class="mono" style="color:var(--neon); font-size: 0.6rem;">// BGP_RESILIENCE</span>
+            <h3 id="card3-h">Governança BGP/Cloud</h3>
+            <p id="card3-p">Arquitetura de alta performance para detentores de AS e ISPs de escala nacional.</p>
         </div>
     </section>
 
-    <div class="solution-grid">
-        <div class="glass-card">
-            <i class="fa-solid fa-chart-line" style="color:var(--accent); font-size: 2.5rem; margin-bottom: 1rem;"></i>
-            <h3 id="card1-title">Observabilidade Proativa</h3>
-            <p id="card1-desc" style="color:var(--text-muted)">Monitoramento de ativos que antecipa colapsos operacionais antes do impacto financeiro.</p>
-        </div>
-        <div class="glass-card">
-            <i class="fa-solid fa-microchip" style="color:var(--accent); font-size: 2.5rem; margin-bottom: 1rem;"></i>
-            <h3 id="card2-title">Auto-Cura Sistêmica</h3>
-            <p id="card2-desc" style="color:var(--text-muted)">Inteligência em Python aplicada para remediação autônoma de incidentes de rede.</p>
-        </div>
-        <div class="glass-card" style="border-color: var(--accent);">
-            <i class="fa-solid fa-vault" style="color:var(--accent); font-size: 2.5rem; margin-bottom: 1rem;"></i>
-            <h3 id="card3-title">Escalabilidade Segura</h3>
-            <p id="card3-desc" style="color:var(--text-muted)">Arquitetura BGP e Cloud para ISPs e empresas que buscam o próximo bilhão.</p>
-        </div>
-    </div>
-
-    <section class="founder-box">
-        <div class="founder-img-wrapper">
-            <img src="./foto.jpg.jpg" alt="Kaleb Nunes" class="founder-img" onerror="this.src='https://via.placeholder.com/400x500'">
+    <section class="exec-profile">
+        <div class="profile-visual">
+            <img src="./foto.jpg.jpg" alt="Kaleb Nunes CEO" onerror="this.src='https://via.placeholder.com/600x800'">
         </div>
         <div>
-            <span class="mono" style="color:var(--accent); font-weight: bold; letter-spacing: 3px;">CHIEF ENGINEERING OFFICER</span>
-            <h2 style="font-size: 3rem; margin: 1rem 0;">KALEB NUNES</h2>
-            <p id="founder-text" style="font-size: 1.2rem; color: var(--text-muted); font-style: italic; margin-bottom: 2rem;">
-                "Nós não configuramos servidores. Nós blindamos o fluxo de capital dos nossos clientes através da estabilidade absoluta."
+            <span class="mono" style="color:var(--neon); font-weight: bold;">[ CHIEF_ENGINEER ]</span>
+            <h2 style="font-family:'Orbitron'; font-size: 3.5rem; margin: 2rem 0;">KALEB NUNES</h2>
+            <p id="founder-p" style="color:var(--text-low); font-size: 1.3rem; line-height: 1.8; margin-bottom: 3rem;">
+                "Multinacionais não podem errar. Nossa engenharia foca na proteção da receita através da estabilidade técnica inquebrável."
             </p>
-            <div style="display: flex; gap: 3rem; align-items: center;">
-                <img src="./sage- certificado.png" style="width: 150px; filter: grayscale(1) invert(var(--inv));" onerror="this.src='https://he.net/img/sage-certified.png'">
-                <div>
-                    <h4 id="stat-title">EXPERTISE</h4>
-                    <p class="mono" style="color:var(--accent)">HURRICANE ELECTRIC SAGE</p>
+            <div style="display: flex; gap: 4rem;">
+                <img src="./sage- certificado.png" style="width: 180px; filter: grayscale(1) brightness(2);" onerror="this.src='https://he.net/img/sage-certified.png'">
+                <div class="mono" style="font-size: 0.8rem; border-left: 1px solid var(--border); padding-left: 2rem;">
+                    <div style="color:var(--neon)">CERTIFICATION:</div>
+                    <div>HURRICANE ELECTRIC</div>
+                    <div>RANK: SAGE BGP CERTIFIED</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer style="text-align: center; padding: 5rem; border-top: 1px solid var(--border);">
-        <a href="https://wa.me/5547988901616" class="btn-gold">START STRATEGIC DIALOGUE</a>
+    <footer style="padding: 10rem 5%; text-align: center; background: #000;">
+        <h2 style="font-family:'Orbitron'; font-size: 2.5rem; margin-bottom: 3rem;">READY TO SECURE YOUR EMPIRE?</h2>
+        <a href="https://wa.me/5547988901616" class="btn-action">START STRATEGIC DIALOGUE</a>
     </footer>
 
     <script>
-        const translations = {
-            pt: {
-                heroTitle: "CONTINUIDADE <br><span style='color:#00ff88'>ABSOLUTA.</span>",
-                heroDesc: "Liderando a engenharia de infraestrutura crítica para o mercado global através do Protocolo 09.",
-                card1Title: "Observabilidade Proativa",
-                card2Title: "Auto-Cura Sistêmica",
-                card3Title: "Escalabilidade Segura",
-                founderText: "Nós não configuramos servidores. Nós blindamos o fluxo de capital dos nossos clientes.",
-                statTitle: "EXPERTISE"
-            },
-            en: {
-                heroTitle: "ABSOLUTE <br><span style='color:#00ff88'>CONTINUITY.</span>",
-                heroDesc: "Leading critical infrastructure engineering for the global market through Protocol 09.",
-                card1Title: "Proactive Observability",
-                card2Title: "Systemic Self-Healing",
-                card3Title: "Secure Scalability",
-                founderText: "We don't configure servers. We shield our clients' capital flow through absolute stability.",
-                statTitle: "EXPERTISE"
-            },
-            es: {
-                heroTitle: "CONTINUIDAD <br><span style='color:#00ff88'>ABSOLUTA.</span>",
-                heroDesc: "Liderando la ingeniería de infraestructura crítica para el mercado global vía Protocolo 09.",
-                card1Title: "Observabilidad Proactiva",
-                card2Title: "Autocuración Sistémica",
-                card3Title: "Escalabilidad Segura",
-                founderText: "No configuramos servidores. Blindamos el flujo de capital de nuestros clientes.",
-                statTitle: "EXPERTISE"
-            }
+        // Custom Cursor Engine
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Translation Engine
+        const content = {
+            pt: { t1: "CONTINUIDADE", h2: "ABSOLUTA.", c1h: "Observabilidade Ativa", c1p: "Monitoria preditiva.", f: "Nossa engenharia foca na proteção da receita." },
+            en: { t1: "ABSOLUTE", h2: "CONTINUITY.", c1h: "Active Observability", c1p: "Predictive monitoring.", f: "Our engineering focuses on revenue protection." },
+            es: { t1: "CONTINUIDAD", h2: "ABSOLUTA.", c1h: "Observabilidad Activa", c1p: "Monitorización predictiva.", f: "Nuestra ingeniería se centra en la protección de ingresos." }
         };
 
-        function setLang(lang) {
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        function translate(lang) {
+            document.getElementById('title-1').innerText = content[lang].t1;
+            document.getElementById('title-2').innerText = content[lang].h2;
+            document.getElementById('title-2').setAttribute('data-text', content[lang].h2);
+            document.querySelectorAll('.lang-switch span').forEach(s => s.classList.remove('active'));
             event.target.classList.add('active');
-            
-            document.getElementById('hero-title').innerHTML = translations[lang].heroTitle;
-            document.getElementById('hero-desc').innerText = translations[lang].heroDesc;
-            document.getElementById('card1-title').innerText = translations[lang].card1Title;
-            document.getElementById('card2-title').innerText = translations[lang].card2Title;
-            document.getElementById('card3-title').innerText = translations[lang].card3Title;
-            document.getElementById('founder-text').innerText = translations[lang].founderText;
-            document.getElementById('stat-title').innerText = translations[lang].statTitle;
         }
 
-        function toggleTheme() {
+        function toggleMode() {
             const html = document.documentElement;
-            const isDark = html.getAttribute('data-theme') === 'dark';
-            html.setAttribute('data-theme', isDark ? 'light' : 'dark');
-            document.documentElement.style.setProperty('--inv', isDark ? '0' : '1');
+            html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
         }
     </script>
 </body>
