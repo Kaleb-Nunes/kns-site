@@ -62,6 +62,15 @@
 
         .hover-lift { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         .hover-lift:hover { transform: translateY(-5px); }
+
+        /* WhatsApp Button Elegance */
+        .wa-float {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .wa-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px -5px rgba(37, 211, 102, 0.5);
+        }
     </style>
 </head>
 <body class="light transition-colors duration-500">
@@ -226,15 +235,73 @@
         </div>
     </section>
 
-    <footer class="bg-slate-100 dark:bg-[#020c1b] py-12 border-t border-slate-200 dark:border-navy-800 text-center text-sm">
-        <div class="flex items-center justify-center gap-3 mb-6 opacity-70">
-            <span class="font-serif font-bold text-lg text-slate-900 dark:text-white">KNS</span>
-            <span class="h-4 w-px bg-slate-400"></span>
-            <span class="tracking-widest uppercase text-xs text-slate-500 dark:text-slate-400">Systems Engineering</span>
+    <footer class="bg-slate-100 dark:bg-[#020c1b] pt-16 pb-8 border-t border-slate-200 dark:border-navy-800 text-sm">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12 mb-12">
+            <div class="col-span-1 md:col-span-1">
+                <div class="flex items-center gap-2 mb-4">
+                    <div class="w-8 h-8 bg-slate-900 dark:bg-gold-500 text-white dark:text-black flex items-center justify-center font-serif font-bold rounded">K</div>
+                    <span class="font-serif font-bold text-lg text-slate-900 dark:text-white">KNS SYSTEMS</span>
+                </div>
+                <p class="text-slate-500 dark:text-slate-400 mb-4">
+                    Engenharia de software e inteligência de mercado para empresas que lideram seus setores em Santa Catarina e no Brasil.
+                </p>
+            </div>
+
+            <div class="col-span-1 md:col-span-2">
+                <h4 class="font-bold text-slate-900 dark:text-white mb-6 uppercase tracking-wider text-xs">Canais de Atendimento</h4>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <p class="text-xs font-bold text-slate-400 uppercase mb-1">Corporativo</p>
+                        <a href="mailto:kaleb@knsconsultoria.com.br" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-gold-400 transition block mb-2">kaleb@knsconsultoria.com.br</a>
+                        
+                        <p class="text-xs font-bold text-slate-400 uppercase mb-1 mt-4">Pessoal / Projetos</p>
+                        <a href="mailto:kalebdossantos59924@gmail.com" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-gold-400 transition block">kalebdossantos59924@gmail.com</a>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-slate-400 uppercase mb-1">WhatsApp / Plantão</p>
+                        <a href="https://wa.me/5547988901616" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-gold-400 transition block mb-2 text-lg font-serif">+55 (47) 98890-1616</a>
+                        <p class="text-xs text-slate-400">Balneário Camboriú - SC</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-slate-900 dark:text-white mb-6 uppercase tracking-wider text-xs">Conecte-se</h4>
+                <div class="flex flex-col gap-3">
+                    <a href="https://www.instagram.com/kalebnunes.tech/" target="_blank" class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-pink-600 dark:hover:text-pink-400 transition">
+                        <i class="fa-brands fa-instagram text-lg"></i> <span>Instagram</span>
+                    </a>
+                    <a href="https://www.facebook.com/kalebnunessantos/" target="_blank" class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition">
+                        <i class="fa-brands fa-facebook text-lg"></i> <span>Facebook</span>
+                    </a>
+                    <a href="https://github.com/Kaleb-Nunes" target="_blank" class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">
+                        <i class="fa-brands fa-github text-lg"></i> <span>GitHub / Portfolio</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-blue-700 dark:hover:text-blue-500 transition">
+                        <i class="fa-brands fa-linkedin text-lg"></i> <span>LinkedIn</span>
+                    </a>
+                </div>
+            </div>
         </div>
-        <p class="text-slate-500 dark:text-slate-600">Balneário Camboriú • Florianópolis • Joinville</p>
-        <p class="text-slate-400 dark:text-slate-700 text-xs mt-2">&copy; 2026 KNS Global. All rights reserved.</p>
+
+        <div class="max-w-7xl mx-auto px-6 border-t border-slate-200 dark:border-navy-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-slate-400 dark:text-slate-600 text-xs">&copy; 2026 KNS Systems. All rights reserved.</p>
+            <div class="flex gap-4">
+                <i class="fa-brands fa-html5 text-slate-300 hover:text-orange-500 transition"></i>
+                <i class="fa-brands fa-css3-alt text-slate-300 hover:text-blue-500 transition"></i>
+                <i class="fa-brands fa-js text-slate-300 hover:text-yellow-400 transition"></i>
+            </div>
+        </div>
     </footer>
+
+    <a href="https://wa.me/5547988901616?text=Olá,%20acessei%20o%20site%20da%20KNS." target="_blank" class="fixed bottom-6 right-6 z-50 group wa-float">
+        <div class="relative w-14 h-14 bg-white dark:bg-[#128C7E] rounded-full flex items-center justify-center shadow-lg border border-slate-100 dark:border-[#0f7a6d]">
+            <span class="absolute right-16 bg-slate-900 text-white text-xs font-bold py-1 px-3 rounded opacity-0 group-hover:opacity-100 transition duration-300 whitespace-nowrap shadow-xl pointer-events-none">
+                Falar com Engenheiro
+            </span>
+            <i class="fa-brands fa-whatsapp text-3xl text-[#128C7E] dark:text-white"></i>
+        </div>
+    </a>
 
     <script>
         function toggleTheme() {
@@ -261,7 +328,6 @@
             document.body.classList.add('light');
         }
 
-        // Traduções Atualizadas para a nova estratégia (Generic Industries)
         const translations = {
             pt: {
                 badge_status: "Operação: Todo o Estado de SC",
