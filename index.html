@@ -1,207 +1,149 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KNS Global | Continuity & Critical Mission Engineering</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>KNS GLOBAL | Infrastructure Engineering</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=JetBrains+Mono:wght@300;500&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         :root {
-            --primary: #00ff88;
-            --surface: #0a0a0a;
-            --bg: #000000;
-            --border: rgba(255, 255, 255, 0.05);
-            --text-muted: #666;
-            --mono: 'JetBrains Mono', monospace;
+            --accent: #00ff88;
+            --accent-glow: rgba(0, 255, 136, 0.3);
+            --bg: #050505;
+            --surface: rgba(15, 15, 15, 0.8);
+            --border: rgba(255, 255, 255, 0.08);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: grayscale; }
-        body { 
-            background: var(--bg); 
-            color: #fff; 
-            font-family: 'Inter', sans-serif; 
-            line-height: 1.5;
-            letter-spacing: -0.02em;
-        }
+        /* Base Reset & Core UX */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { background: var(--bg); color: var(--text-primary); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .hidden { display: none; }
 
-        /* NAVIGATION: STEALTH MODE */
-        nav {
-            position: fixed; top: 0; width: 100%; height: 80px;
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 0 60px; z-index: 1000;
-            background: rgba(0,0,0,0.9); border-bottom: 1px solid var(--border);
-            backdrop-filter: blur(20px);
-        }
-        .logo { font-weight: 900; font-size: 1.2rem; letter-spacing: 2px; }
-        .nav-meta { display: flex; gap: 40px; font-family: var(--mono); font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; }
+        /* Typography */
+        h1, h2, h3 { font-family: 'Orbitron', sans-serif; text-transform: uppercase; letter-spacing: 2px; }
 
-        /* HERO: THE CONTINUITY PROMISE */
-        .hero {
-            height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            padding: 0 60px; text-align: center;
-        }
-        .hero-label { font-family: var(--mono); color: var(--primary); font-size: 0.7rem; letter-spacing: 5px; margin-bottom: 20px; }
-        .hero h1 { font-size: clamp(3rem, 12vw, 10rem); font-weight: 900; line-height: 0.85; margin-bottom: 40px; }
+        /* Navigation - Zero Latency Experience */
+        .navbar { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1.5rem 5%; background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.2rem; font-weight: 900; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .logo i { color: var(--accent); }
+
+        /* Hero: The Hook */
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 5%; position: relative; }
+        .hero h1 { font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1; margin-bottom: 1.5rem; }
+        .hero .glitch { color: var(--accent); text-shadow: 0 0 20px var(--accent-glow); }
+        .hero p { max-width: 650px; color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 3rem; }
+
+        /* Monitor Frame: Command Center Preview */
+        .video-container { width: 100%; max-width: 1000px; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; background: #000; box-shadow: 0 40px 100px rgba(0,0,0,0.5); position: relative; }
+        .video-container iframe { width: 100%; aspect-ratio: 16/9; display: block; border: none; }
+
+        /* Solutions: Value Proposition */
+        .section-label { color: var(--accent); font-size: 0.8rem; font-weight: 700; margin-bottom: 1rem; display: block; }
+        .grid-solutions { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; width: 100%; max-width: 1200px; margin: 5rem auto; padding: 0 5%; }
+        .solution-card { background: var(--surface); border: 1px solid var(--border); padding: 3rem; border-radius: 16px; transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1); }
+        .solution-card:hover { border-color: var(--accent); transform: translateY(-10px); background: rgba(0, 255, 136, 0.02); }
+        .solution-card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 1.5rem; }
+
+        /* Founder: Trust & Authority */
+        .founder-wrapper { max-width: 1100px; margin: 5rem auto; padding: 4rem; background: var(--surface); border-radius: 24px; border: 1px solid var(--border); display: grid; grid-template-columns: 320px 1fr 200px; gap: 3rem; align-items: center; }
+        .founder-img { width: 100%; border-radius: 16px; border: 1px solid var(--accent); filter: grayscale(0.2); transition: 0.5s; }
+        .founder-img:hover { filter: grayscale(0); }
+        .founder-info h2 { font-size: 2rem; margin-bottom: 1rem; }
+        .founder-info p { color: var(--text-secondary); font-style: italic; font-size: 1.1rem; line-height: 1.8; }
         
-        /* THE XDR DISPLAY: DEEP BLACK */
-        .display-container {
-            width: 100%; max-width: 1200px; aspect-ratio: 16/9;
-            background: #050505; border: 1px solid #111; border-radius: 4px;
-            overflow: hidden; position: relative;
-            box-shadow: 0 100px 200px rgba(0,0,0,0.5);
-        }
+        /* Stats & Certs */
+        .cert-container { text-align: center; }
+        .cert-img { width: 100%; max-width: 160px; filter: contrast(1.2); opacity: 0.9; margin-top: 1.5rem; }
 
-        /* EXECUTIVE FOUNDER SECTION */
-        .exec-section {
-            padding: 160px 10%; display: grid; grid-template-columns: 1fr 1.2fr; gap: 100px;
-            align-items: center; border-top: 1px solid var(--border);
-        }
-        .exec-image {
-            position: relative; border-radius: 2px; overflow: hidden;
-            filter: grayscale(1); transition: 0.8s;
-        }
-        .exec-image:hover { filter: grayscale(0); }
-        .exec-image img { width: 100%; display: block; }
+        /* CTA */
+        .btn-prime { background: var(--accent); color: #000; padding: 1.2rem 2.5rem; border-radius: 8px; font-weight: 800; font-family: 'Orbitron'; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; transition: 0.3s; border: none; cursor: pointer; }
+        .btn-prime:hover { box-shadow: 0 0 30px var(--accent-glow); transform: scale(1.05); }
 
-        .exec-content h2 { font-size: 4rem; font-weight: 900; margin-bottom: 30px; letter-spacing: -3px; }
-        .exec-content p { font-size: 1.2rem; color: #888; margin-bottom: 40px; font-weight: 300; }
-
-        /* KPI GRID: DATA-DRIVEN */
-        .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-        .kpi-item { background: var(--bg); padding: 40px; }
-        .kpi-item span { font-family: var(--mono); font-size: 0.6rem; color: var(--text-muted); display: block; margin-bottom: 10px; }
-        .kpi-item h4 { font-size: 2rem; font-weight: 400; color: var(--primary); }
-
-        /* COMMAND CENTER: TIER-4 ACCESS */
-        #command-center {
-            position: fixed; inset: 0; background: #000; z-index: 10000;
-            display: none; padding: 60px; grid-template-rows: auto 1fr;
-        }
-        .cc-header { display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 30px; margin-bottom: 30px; }
-        .cc-grid { display: grid; grid-template-columns: 1fr 350px; gap: 30px; height: 100%; }
-        
-        /* TERMINAL: KNS-KERNEL */
-        .terminal-block {
-            background: #050505; border: 1px solid #111; padding: 40px;
-            font-family: var(--mono); font-size: 0.85rem; color: #444; overflow-y: auto;
-        }
-        .cursor { color: var(--primary); font-weight: bold; }
-        
-        button.btn-access {
-            background: #fff; color: #000; border: none; padding: 12px 30px;
-            font-weight: 900; font-size: 0.7rem; letter-spacing: 2px; cursor: pointer;
-            transition: 0.3s;
-        }
-        button.btn-access:hover { background: var(--primary); }
+        /* Animations */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .animate { animation: fadeUp 0.8s ease forwards; }
     </style>
 </head>
 <body>
 
-<nav>
-    <div class="logo">KNS GLOBAL</div>
-    <div class="nav-meta">
-        <div><span>MTTR:</span> <span style="color: var(--primary);">0.4ms</span></div>
-        <div><span>SLA:</span> <span style="color: var(--primary);">99.999%</span></div>
-        <button class="btn-access" onclick="Control.open()">ENTER SYSTEM</button>
-    </div>
-</nav>
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <i class="fa-solid fa-shield-halved"></i> KNS GLOBAL
+        </a>
+        <div style="display: flex; gap: 2rem; align-items: center;">
+            <a href="#solutions" style="color: var(--text-secondary); text-decoration: none; font-size: 0.75rem; font-family: 'Orbitron';">Soluções</a>
+            <button class="btn-prime" style="padding: 0.6rem 1.2rem; font-size: 0.6rem;" onclick="location.href='https://wa.me/5547988901616'">BOARD ACCESS</button>
+        </div>
+    </nav>
 
-<section class="hero">
-    <div class="hero-label">CONTINUITY OF CRITICAL MISSION</div>
-    <h1>ESTABILIDADE<br>ABSOLUTA.</h1>
-    <div class="display-container">
-        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/T9wvW0EYfE0?autoplay=1&mute=1&loop=1&playlist=T9wvW0EYfE0&controls=0&modestbranding=1&rel=0&iv_load_policy=3" frameborder="0" allow="autoplay; encrypted-media"></iframe>
-    </div>
-</section>
-
-<section class="exec-section">
-    <div class="exec-image">
-        <img src="./foto.jpg.jpg" alt="Kaleb Nunes" onerror="this.src='https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800'">
-    </div>
-    <div class="exec-content">
-        <div class="hero-label" style="margin-bottom: 10px;">FOUNDER & HEAD OF ENGINEERING</div>
-        <h2>KALEB NUNES</h2>
-        <p>Especialista em Engenharia de Continuidade para infraestruturas distribuídas. Autor do **Protocolo 09**, um framework proprietário de confiabilidade projetado para mitigar riscos operacionais em ativos de alta criticidade através de observabilidade ativa e automação resiliente.</p>
+    <header class="hero">
+        <span class="section-label animate">KNS INFRASTRUCTURE ENGINEERING</span>
+        <h1 class="animate">CONTINUIDADE <span class="glitch">ABSOLUTA.</span></h1>
+        <p class="animate">Proteção de ativos digitais e engenharia de disponibilidade crítica através do Protocolo 09. Não vendemos configuração, garantimos uptime.</p>
         
-        <div class="kpi-grid">
-            <div class="kpi-item">
-                <span>EXPERIENCE</span>
-                <h4>10Y+</h4>
-            </div>
-            <div class="kpi-item">
-                <span>CERTIFICATION</span>
-                <h4>SAGE</h4>
-            </div>
-            <div class="kpi-item">
-                <span>AVAILABILITY</span>
-                <h4>L3</h4>
-            </div>
+        <div class="video-container animate">
+            <iframe src="https://www.youtube.com/embed/T9wvW0EYfE0?autoplay=1&mute=1&loop=1&playlist=T9wvW0EYfE0&controls=0&modestbranding=1" allow="autoplay"></iframe>
         </div>
-        
-        <div style="margin-top: 60px; display: flex; gap: 40px; align-items: center;">
-            <img src="./sage- certificado.png" style="height: 100px; opacity: 0.4;" alt="Sage BGP Certificate">
-            <a href="https://wa.me/5547988901616" style="color: var(--primary); text-decoration: none; font-family: var(--mono); font-size: 0.8rem; border-bottom: 1px solid var(--primary);">SOLICITAR BRIEFING TÉCNICO</a>
-        </div>
-    </div>
-</section>
+    </header>
 
-<div id="command-center">
-    <div class="cc-header">
-        <div class="logo">KNS COMMAND CENTER <span style="color: #333; font-weight: 300;">v6.0</span></div>
-        <button onclick="Control.close()" style="background: none; border: none; color: #fff; font-family: var(--mono); cursor: pointer;">[CLOSE]</button>
-    </div>
-    <div class="cc-grid">
-        <div class="terminal-block" id="logs">
-            <div style="margin-bottom: 20px;">SYSTEM_BOOT_SEQUENCE_COMPLETE</div>
+    <section id="solutions" class="grid-solutions">
+        <div class="solution-card">
+            <i class="fa-solid fa-satellite-dish"></i>
+            <h3>Observabilidade</h3>
+            <p>Monitoramento 360º de processos críticos. Se o dado existe, nós o observamos em tempo real.</p>
         </div>
-        <div style="border-left: 1px solid var(--border); padding-left: 30px;">
-            <div class="hero-label" style="margin-bottom: 20px;">REAL-TIME METRICS</div>
-            <div style="margin-bottom: 40px;">
-                <span style="display: block; font-family: var(--mono); font-size: 0.6rem; color: var(--text-muted);">ACTIVE_SESSIONS</span>
-                <div style="font-size: 2.5rem; font-weight: 300;">1,024</div>
-            </div>
-            <div style="margin-bottom: 40px;">
-                <span style="display: block; font-family: var(--mono); font-size: 0.6rem; color: var(--text-muted);">GLOBAL_LATENCY</span>
-                <div style="font-size: 2.5rem; font-weight: 300; color: var(--primary);">4ms</div>
-            </div>
+        <div class="solution-card">
+            <i class="fa-solid fa-microchip"></i>
+            <h3>Auto-Cura</h3>
+            <p>Scripts de resiliência ativa que mitigam falhas antes mesmo da percepção do NOC.</p>
         </div>
-    </div>
-</div>
+        <div class="solution-card">
+            <i class="fa-solid fa-handshake-simple"></i>
+            <h3>Governança</h3>
+            <p>SLA agressivo e compliance técnico para operações que faturam milhões por hora.</p>
+        </div>
+    </section>
 
-<script>
-    const Control = {
-        open() {
-            document.getElementById('command-center').style.display = 'grid';
-            this.boot();
-        },
-        close() {
-            document.getElementById('command-center').style.display = 'none';
-        },
-        boot() {
-            const container = document.getElementById('logs');
-            const lines = [
-                "Establishing encrypted handshake with Global Nodes...",
-                "Pulling telemetry from Grafana Enterprise API...",
-                "Zabbix Distributed Proxies: HEALTHY",
-                "Protocol 09: ACTIVE_RESILIENCE_MODE_ON",
-                "Authenticated: Root User Kaleb Nunes"
-            ];
-            container.innerHTML = '';
-            lines.forEach((t, i) => {
-                setTimeout(() => {
-                    const d = document.createElement('div');
-                    d.innerHTML = `<span class="cursor">></span> ${t}`;
-                    d.style.marginBottom = "5px";
-                    container.appendChild(d);
-                    container.scrollTop = container.scrollHeight;
-                }, i * 500);
+    <section class="founder-wrapper">
+        <img src="./foto.jpg.jpg" alt="Kaleb Nunes" class="founder-img" onerror="this.src='https://via.placeholder.com/320x400'">
+        <div class="founder-info">
+            <span class="section-label">FOUNDER & HEAD OF ENGINEERING</span>
+            <h2>KALEB NUNES</h2>
+            <p>"Operações de alto faturamento não permitem amadorismo. Minha missão é transformar sua infraestrutura em um ativo blindado contra o caos."</p>
+            <div style="display: flex; gap: 3rem; margin-top: 2rem;">
+                <div class="stat"><strong style="font-size: 1.5rem; display: block;">+10</strong><small class="mono">ANOS EXP.</small></div>
+                <div class="stat"><strong style="font-size: 1.5rem; display: block;">TOP 1%</strong><small class="mono">GLOBAL RANK</small></div>
+            </div>
+        </div>
+        <div class="cert-container">
+            <span class="mono" style="font-size: 0.6rem; color: var(--accent);">BGP SAGE CERTIFIED</span>
+            <img src="./sage- certificado.png" alt="Hurricane Electric Certificate" class="cert-img" onerror="this.src='https://he.net/img/sage-certified.png'">
+        </div>
+    </section>
+
+    <footer style="padding: 5rem 5%; border-top: 1px solid var(--border); text-align: center;">
+        <h2 style="margin-bottom: 2rem;">PRONTO PARA O PRÓXIMO NÍVEL?</h2>
+        <a href="https://wa.me/5547988901616" class="btn-prime">REQUISITAR CONSULTORIA</a>
+        <div style="margin-top: 4rem; color: var(--text-secondary); font-size: 0.7rem;" class="mono">
+            © 2026 KNS GLOBAL • PROTOCOLO 09 ATIVO • BC / SC
+        </div>
+    </footer>
+
+    <script>
+        // Smooth In-View Animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.style.opacity = 1;
             });
-        }
-    }
-</script>
-
+        });
+        document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
