@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useCallback } from "react";
-import { BrowserRouter } from "react-router-dom"; // <--- IMPORTANTE
+import { BrowserRouter } from "react-router-dom"; // <--- O ROTEADOR ESTÁ AQUI
 import "./App.css";
 
 // --- DADOS DE TRADUÇÃO ---
@@ -36,6 +36,7 @@ const TRANSLATIONS = {
 
 const getTranslations = (lang) => TRANSLATIONS[lang] || TRANSLATIONS['pt'];
 
+// IMPORTS
 import Navigation from "./components/Navigation";
 import CustomCursor from "./components/CustomCursor";
 import WhatsAppFloat from "./components/WhatsAppFloat";
@@ -56,7 +57,7 @@ function App() {
   }, [lang]);
 
   return (
-    // ROTEADOR AQUI DENTRO = ZERO ERRO
+    // O ROTEADOR BLINDADO DENTRO DO APP
     <BrowserRouter>
       <div className="App" data-testid="app-container">
         <CustomCursor />
