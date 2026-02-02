@@ -1,351 +1,266 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KNS GLOBAL | Infraestrutura Crítica</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>KNS GLOBAL | Sovereign Infrastructure Engineering</title>
     
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        // Paleta exata do vídeo Emergent
-                        cyan: {
-                            DEFAULT: '#06b6d4',
-                            bright: '#00e5ff', // Botões e Destaques
-                            dim: 'rgba(6, 182, 212, 0.1)'
-                        },
-                        neon: {
-                            green: '#00ff88', // SAGE Accents
-                        },
-                        dark: {
-                            bg: '#020202',      // Fundo Preto Profundo
-                            surface: '#0a0a0a', // Cards
-                            border: '#1a1a1a'   // Bordas sutis
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Orbitron', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    backgroundImage: {
-                        'gradient-text': 'linear-gradient(to right, #ffffff, #00e5ff)',
-                        'grid-pattern': "linear-gradient(to right, #1f2937 1px, transparent 1px), linear-gradient(to bottom, #1f2937 1px, transparent 1px)",
-                    }
-                }
-            }
-        }
-    </script>
 
     <style>
-        body { background-color: #020202; color: white; overflow-x: hidden; }
+        /* --- CORE TOKENS (THE EMERGENT PALETTE) --- */
+        :root {
+            --bg: #030304;
+            --surface: #0e0e10;
+            --surface-hover: #1a1a1c;
+            --text-primary: #ffffff;
+            --text-secondary: #9ca3af;
+            
+            /* O "Glow" Azul e Ciano do Vídeo */
+            --accent: #06b6d4;
+            --accent-glow: rgba(6, 182, 212, 0.4);
+            --hero-light: radial-gradient(circle at 50% 20%, rgba(59, 130, 246, 0.25) 0%, transparent 60%);
+            
+            --border: rgba(255, 255, 255, 0.08);
+            --glass: blur(12px);
+            --font: 'Inter', sans-serif;
+        }
+
+        /* --- RESET & BASE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         
-        /* Grid Background Style do Vídeo */
-        .bg-grid {
-            background-size: 40px 40px;
-            mask-image: radial-gradient(circle at 50% 0%, black 40%, transparent 100%);
-            opacity: 0.1;
-            position: absolute; inset: 0; pointer-events: none; z-index: -1;
+        body { 
+            background-color: var(--bg);
+            color: var(--text-primary);
+            font-family: var(--font);
+            overflow-x: hidden;
+            background-image: var(--hero-light);
+            background-attachment: fixed;
         }
 
-        /* Efeito de Texto Vazado (Outline) */
-        .text-outline {
-            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
-            color: transparent;
+        /* --- NAVEGAÇÃO FLUTUANTE (ILHA DE VIDRO) --- */
+        .nav-container {
+            position: fixed; top: 24px; left: 50%; transform: translateX(-50%);
+            width: 90%; max-width: 1000px; height: 56px; z-index: 100;
+            background: rgba(3, 3, 4, 0.7); backdrop-filter: var(--glass);
+            border: 1px solid var(--border); border-radius: 100px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 24px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
         }
 
-        /* Botão Cyan Glow */
-        .btn-cyan {
-            background: linear-gradient(90deg, #00e5ff, #06b6d4);
-            box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
-            transition: all 0.3s ease;
+        .brand { font-weight: 800; letter-spacing: -0.02em; }
+        .brand span { color: var(--accent); }
+
+        .nav-links { display: flex; gap: 24px; align-items: center; }
+        .nav-links a {
+            color: var(--text-secondary); text-decoration: none;
+            font-size: 0.9rem; font-weight: 500; transition: 0.2s;
         }
-        .btn-cyan:hover {
-            box-shadow: 0 0 40px rgba(0, 229, 255, 0.6);
-            transform: translateY(-2px);
+        .nav-links a:hover { color: var(--text-primary); }
+        
+        .cta-btn {
+            background: var(--text-primary); color: var(--bg);
+            padding: 10px 20px; border-radius: 100px; font-weight: 700;
+            font-size: 0.85rem; text-decoration: none; transition: 0.3s;
+        }
+        .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3); }
+
+        /* --- HERO SECTION (O IMPACTO) --- */
+        .hero {
+            min-height: 90vh; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; text-align: center;
+            padding: 140px 20px 80px;
         }
 
-        /* Cards Hover Effect */
-        .tech-card {
-            background: #0a0a0a;
-            border: 1px solid #1a1a1a;
-            transition: all 0.3s ease;
+        .status-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 6px 14px; border-radius: 100px;
+            background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.2);
+            color: var(--accent); font-size: 0.75rem; font-weight: 600; margin-bottom: 32px;
         }
-        .tech-card:hover {
-            border-color: #00e5ff;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px -10px rgba(0, 229, 255, 0.15);
+        .dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 10px var(--accent); animation: pulse 2s infinite; }
+
+        h1.display {
+            font-size: clamp(3rem, 8vw, 6rem); font-weight: 800; line-height: 1;
+            letter-spacing: -0.03em; margin-bottom: 24px;
+        }
+
+        p.sub {
+            font-size: clamp(1.1rem, 2vw, 1.25rem); color: var(--text-secondary);
+            max-width: 600px; margin-bottom: 64px; line-height: 1.5;
+        }
+
+        /* O MONITOR 3D */
+        .monitor-frame {
+            width: 100%; max-width: 1000px; aspect-ratio: 16/9;
+            background: #000; border-radius: 12px; position: relative;
+            box-shadow: 0 50px 100px -20px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+            transform: perspective(1000px) rotateX(5deg);
+            overflow: hidden;
+        }
+        .monitor-frame iframe { width: 100%; height: 100%; border: none; opacity: 0.95; }
+
+        /* --- BENTO GRID LUMINOSO --- */
+        .section { padding: 120px 24px; max-width: 1200px; margin: 0 auto; }
+        
+        .bento-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+        }
+
+        .card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 20px; padding: 32px; position: relative; overflow: hidden;
+            transition: 0.3s;
+        }
+        .card:hover { transform: translateY(-4px); border-color: var(--accent); background: var(--surface-hover); }
+        
+        /* O EFEITO DE LUZ QUE SEGUE O MOUSE */
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(6, 182, 212, 0.08), transparent 40%);
+            opacity: 0; transition: opacity 0.5s; pointer-events: none;
+        }
+        .card:hover::before { opacity: 1; }
+
+        .card h3 { font-size: 1.25rem; margin-bottom: 12px; font-weight: 700; }
+        .card p { color: var(--text-secondary); line-height: 1.6; }
+        .card-icon { color: var(--accent); font-size: 1.5rem; margin-bottom: 20px; }
+
+        /* --- FOUNDER PROFILE --- */
+        .split-section {
+            display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 64px;
+            align-items: center; border-top: 1px solid var(--border); padding-top: 100px;
+        }
+
+        .photo-box { position: relative; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); }
+        .photo-box img { width: 100%; display: block; filter: grayscale(1); transition: 0.5s; }
+        .photo-box:hover img { filter: grayscale(0); }
+
+        .sage-badge {
+            position: absolute; bottom: 20px; right: 20px; background: rgba(0,0,0,0.8);
+            border: 1px solid var(--accent); padding: 10px 16px; border-radius: 12px;
+            font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; gap: 10px;
+        }
+
+        .social-row { display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
+        .social-btn {
+            padding: 8px 16px; border: 1px solid var(--border); border-radius: 50px;
+            text-decoration: none; color: var(--text-secondary); font-size: 0.9rem;
+            transition: 0.2s; display: flex; align-items: center; gap: 8px;
+        }
+        .social-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(6, 182, 212, 0.05); }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 100px 24px; text-align: center; border-top: 1px solid var(--border);
+            background: #000;
+        }
+
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+        
+        @media (max-width: 900px) {
+            .bento-grid, .split-section { grid-template-columns: 1fr; }
+            .nav-container { width: 95%; padding: 0 16px; }
+            h1.display { font-size: 3.5rem; }
         }
     </style>
 </head>
-<body class="antialiased">
+<body>
 
-    <nav class="fixed w-full z-50 top-0 border-b border-white/5 bg-black/80 backdrop-blur-md">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="#" class="font-display font-black text-xl tracking-wider">
-                KNS <span class="text-cyan-bright">GLOBAL</span>
-            </a>
-
-            <div class="hidden md:flex items-center gap-8 font-sans text-sm font-medium text-gray-400">
-                <a href="#services" class="hover:text-white transition-colors">Serviços</a>
-                <a href="#about" class="hover:text-white transition-colors">Sobre</a>
-                <a href="#contact" class="hover:text-white transition-colors">Contato</a>
-            </div>
-
-            <div class="hidden md:flex items-center gap-6">
-                <div class="flex border border-white/10 rounded overflow-hidden">
-                    <button class="px-3 py-1 bg-white/10 text-xs font-bold text-cyan-bright">PT</button>
-                    <button class="px-3 py-1 hover:bg-white/5 text-xs font-bold text-gray-500">EN</button>
-                    <button class="px-3 py-1 hover:bg-white/5 text-xs font-bold text-gray-500">ES</button>
-                </div>
-                <a href="#contact" class="bg-cyan-bright text-black px-6 py-2.5 rounded font-bold text-sm hover:brightness-110 transition-all shadow-[0_0_15px_rgba(6,182,212,0.4)]">
-                    Solicitar Acesso
-                </a>
-            </div>
+    <nav class="nav-container">
+        <div class="brand">KNS <span>GLOBAL</span></div>
+        <div class="nav-links">
+            <a href="#solucoes">Soluções</a>
+            <a href="#founder">Founder</a>
+            <a href="https://wa.me/5547988901616" class="cta-btn">Falar com Engenharia</a>
         </div>
     </nav>
 
-    <section class="relative min-h-screen pt-32 flex flex-col items-center justify-center text-center px-4 overflow-hidden">
-        <div class="bg-grid bg-grid-pattern"></div>
+    <header class="hero">
+        <div class="status-badge">
+            <div class="dot"></div>
+            PROTOCOL 09 ACTIVE
+        </div>
+
+        <h1 class="display">CONTINUIDADE<br>ABSOLUTA.</h1>
+        <p class="sub">Arquitetura soberana para multinacionais. Zero downtime. Observabilidade preditiva.</p>
         
-        <div class="mb-8 px-6 py-2 rounded-full border border-neon-green/30 bg-neon-green/5 text-neon-green font-mono text-[10px] uppercase tracking-widest" data-aos="fade-down">
-            Infraestrutura Crítica & Engenharia de Rede
+        <div class="monitor-frame">
+            <iframe src="https://www.youtube.com/embed/T9wvW0EYfE0?autoplay=1&mute=1&loop=1&playlist=T9wvW0EYfE0&controls=0&modestbranding=1&iv_load_policy=3" allow="autoplay; encrypted-media"></iframe>
         </div>
+    </header>
 
-        <h1 class="font-display font-black text-6xl md:text-8xl leading-none mb-6 tracking-tighter" data-aos="zoom-in" data-aos-duration="1000">
-            CONTINUIDADE<br>
-            <span class="text-transparent bg-clip-text bg-gradient-to-b from-cyan-bright to-cyan-700">ABSOLUTA.</span>
-        </h1>
-
-        <p class="max-w-2xl text-gray-400 text-lg md:text-xl font-light mb-10 leading-relaxed" data-aos="fade-up" data-aos-delay="200">
-            Arquitetura de rede certificada SAGE para a elite global. Zero downtime. <strong class="text-white">Máxima performance.</strong>
-        </p>
-
-        <div class="relative group" data-aos="fade-up" data-aos-delay="400">
-            <div class="absolute -inset-1 bg-cyan-bright rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-200"></div>
-            <a href="#contact" class="relative flex items-center gap-3 bg-gradient-to-r from-cyan-bright to-cyan-600 text-black px-10 py-4 rounded-lg font-bold font-display tracking-wide text-lg hover:scale-105 transition-transform">
-                Iniciar Diálogo Estratégico <i class="fa-solid fa-chevron-right text-sm"></i>
-            </a>
-        </div>
-
-        <div class="absolute bottom-10 animate-bounce">
-            <div class="w-[1px] h-16 bg-gradient-to-b from-cyan-bright to-transparent"></div>
-        </div>
-    </section>
-
-    <section id="services" class="py-32 px-6 bg-dark-bg relative">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-16">
-                <span class="text-cyan-bright font-mono text-xs tracking-widest">// SOLUÇÕES ENTERPRISE</span>
-                <h2 class="font-display font-bold text-5xl mt-4">MATRIZ DE <span class="text-cyan-bright">SOLUÇÕES</span></h2>
+    <section id="solucoes" class="section">
+        <div class="bento-grid" id="cards-container">
+            <div class="card">
+                <i class="fa-solid fa-eye card-icon"></i>
+                <h3>Observabilidade Preditiva</h3>
+                <p>Monitoramento Zabbix/Grafana que detecta anomalias financeiras antes da queda técnica.</p>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="tech-card p-8 rounded-xl" data-aos="fade-up">
-                    <i class="fa-solid fa-chart-line text-cyan-bright text-3xl mb-6"></i>
-                    <div class="font-mono text-[10px] text-cyan-bright mb-2">// SYSTEM_OBSERVABILITY</div>
-                    <h3 class="font-display font-bold text-xl mb-3">Observabilidade Ativa</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Antecipamos a degradação de serviços críticos através de análise preditiva avançada.</p>
-                </div>
-
-                <div class="tech-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="100">
-                    <i class="fa-solid fa-bolt text-cyan-bright text-3xl mb-6"></i>
-                    <div class="font-mono text-[10px] text-cyan-bright mb-2">// AUTO_HEALING</div>
-                    <h3 class="font-display font-bold text-xl mb-3">Sistemas de Auto-Cura</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Protocolos de resposta automática que restabelecem o fluxo em milissegundos.</p>
-                </div>
-
-                <div class="tech-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fa-solid fa-network-wired text-cyan-bright text-3xl mb-6"></i>
-                    <div class="font-mono text-[10px] text-cyan-bright mb-2">// BGP_GOVERNANCE</div>
-                    <h3 class="font-display font-bold text-xl mb-3">Governança BGP/Cloud</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Arquitetura de alta performance para detentores de AS e ISPs de grande porte.</p>
-                </div>
-
-                <div class="tech-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="300">
-                    <i class="fa-solid fa-shield-halved text-cyan-bright text-3xl mb-6"></i>
-                    <div class="font-mono text-[10px] text-cyan-bright mb-2">// CYBER_FORTRESS</div>
-                    <h3 class="font-display font-bold text-xl mb-3">Segurança Cibernética</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Auditorias e protocolos de segurança de nível militar para proteção de ativos.</p>
-                </div>
-
-                <div class="tech-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="400">
-                    <i class="fa-solid fa-server text-cyan-bright text-3xl mb-6"></i>
-                    <div class="font-mono text-[10px] text-cyan-bright mb-2">// DATA_CENTER</div>
-                    <h3 class="font-display font-bold text-xl mb-3">Engenharia de Data Center</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Design de data centers com redundância N+1 e escalabilidade infinita.</p>
-                </div>
-
-                <div class="tech-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="500">
-                    <i class="fa-solid fa-cloud text-cyan-bright text-3xl mb-6"></i>
-                    <div class="font-mono text-[10px] text-cyan-bright mb-2">// HYBRID_CLOUD</div>
-                    <h3 class="font-display font-bold text-xl mb-3">Multi-Cloud Strategy</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Integração entre AWS, Azure, GCP e infraestrutura on-premise.</p>
-                </div>
+            <div class="card">
+                <i class="fa-solid fa-robot card-icon"></i>
+                <h3>Auto-Healing</h3>
+                <p>Scripts Python autônomos que recuperam a infraestrutura em milissegundos.</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-network-wired card-icon"></i>
+                <h3>BGP Global Traffic</h3>
+                <p>Engenharia de tráfego avançada para ISPs e Multinacionais. Latência Zero.</p>
             </div>
         </div>
     </section>
 
-    <section class="py-20 border-y border-white/5 bg-black">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
-            <div>
-                <div class="font-display font-black text-4xl md:text-5xl text-neon-green mb-2">99.99%</div>
-                <div class="font-mono text-xs tracking-widest text-gray-500">UPTIME GARANTIDO</div>
-            </div>
-            <div>
-                <div class="font-display font-black text-4xl md:text-5xl text-neon-green mb-2">150+</div>
-                <div class="font-mono text-xs tracking-widest text-gray-500">CLIENTES ENTERPRISE</div>
-            </div>
-            <div>
-                <div class="font-display font-black text-4xl md:text-5xl text-neon-green mb-2">12</div>
-                <div class="font-mono text-xs tracking-widest text-gray-500">PAÍSES ATENDIDOS</div>
-            </div>
-            <div>
-                <div class="font-display font-black text-4xl md:text-5xl text-neon-green mb-2">15+</div>
-                <div class="font-mono text-xs tracking-widest text-gray-500">ANOS DE EXPERIÊNCIA</div>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="py-32 px-6 bg-gradient-to-b from-black to-dark-surface">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-20 items-center">
-            
-            <div class="relative" data-aos="fade-right">
-                <div class="absolute -inset-4 bg-gradient-to-r from-cyan-900 to-transparent rounded-2xl opacity-50 blur-2xl"></div>
-                <img src="./foto.jpg.jpg" alt="Kaleb Nunes" class="relative rounded-xl shadow-2xl border border-white/10 w-full grayscale hover:grayscale-0 transition-all duration-700">
-                
-                <div class="absolute bottom-10 left-[-20px] bg-black border border-neon-green/50 p-4 rounded-lg shadow-lg flex items-center gap-4">
-                    <i class="fa-solid fa-shield-halved text-3xl text-neon-green"></i>
-                    <div>
-                        <div class="font-mono text-[10px] text-gray-400">SAGE CERTIFIED</div>
-                        <div class="font-display font-bold text-white">HURRICANE ELECTRIC</div>
-                    </div>
+    <section id="founder" class="section">
+        <div class="split-section">
+            <div class="photo-box">
+                <img src="./assets/foto.jpg" alt="Kaleb Nunes" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop'">
+                <div class="sage-badge">
+                    <img src="./assets/sage_full.png" style="width: 50px;" onerror="this.style.display='none'">
+                    <div>SAGE CERTIFIED // TOP 1%</div>
                 </div>
             </div>
-
-            <div data-aos="fade-left">
-                <span class="font-mono text-neon-green text-xs tracking-widest mb-2 block">[ CHIEF ENGINEER ]</span>
-                <h2 class="font-display font-black text-5xl mb-8 leading-tight">KALEB NUNES DOS SANTOS</h2>
-                
-                <p class="text-xl text-gray-300 font-light italic mb-10 border-l-4 border-neon-green pl-6">
-                    "Multinacionais não podem errar. Nossa engenharia foca na proteção da receita através da estabilidade técnica inquebrável."
+            <div>
+                <div style="color: var(--accent); letter-spacing: 1px; margin-bottom: 16px; font-weight: 600;">HEAD OF ENGINEERING</div>
+                <h2 style="font-size: 3rem; line-height: 1.1; margin-bottom: 32px; font-weight: 800;">KALEB NUNES</h2>
+                <p style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.7; margin-bottom: 40px;">
+                    "Não vendemos configuração. Vendemos a certeza matemática de que sua operação global nunca vai parar. Minha engenharia foca na proteção absoluta do seu ativo mais valioso: disponibilidade."
                 </p>
 
-                <div class="bg-white/5 border border-white/10 p-6 rounded-xl flex items-center gap-6 mb-8">
-                    <img src="./sage- certificado.png" class="w-32 rounded shadow-lg">
-                    <div>
-                        <h4 class="font-display font-bold text-cyan-bright mb-1">CERTIFICAÇÃO:</h4>
-                        <div class="font-bold text-white mb-2">HURRICANE ELECTRIC</div>
-                        <div class="font-mono text-xs text-neon-green mb-2">RANK: SAGE BGP CERTIFIED</div>
-                        <p class="text-xs text-gray-500">Top 1% dos engenheiros de rede do mundo. Maestria completa em BGP e IPv6.</p>
-                    </div>
-                </div>
-
-                <a href="#" class="text-cyan-bright font-bold text-sm hover:underline flex items-center gap-2">
-                    <i class="fa-solid fa-external-link-alt"></i> Ver Certificado Completo
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 px-6 bg-black">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="font-display font-bold text-3xl text-center mb-16">O QUE DIZEM <span class="text-cyan-bright">NOSSOS CLIENTES</span></h2>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-dark-surface p-8 rounded-xl border border-white/5">
-                    <div class="text-neon-green text-xs mb-4 flex gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p class="text-gray-400 text-sm mb-6">"A KNS transformou completamente nossa infraestrutura. O uptime passou de 97% para 99.99%."</p>
-                    <div class="font-bold text-white text-sm">Carlos Mendes</div>
-                    <div class="text-xs text-gray-600">CTO • TechCorp Brasil</div>
-                </div>
-                <div class="bg-dark-surface p-8 rounded-xl border border-white/5">
-                    <div class="text-neon-green text-xs mb-4 flex gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p class="text-gray-400 text-sm mb-6">"Trabalhar com um profissional certificado SAGE faz toda a diferença na segurança."</p>
-                    <div class="font-bold text-white text-sm">Ana Rodrigues</div>
-                    <div class="text-xs text-gray-600">VP Infraestrutura • Global Finance</div>
-                </div>
-                <div class="bg-dark-surface p-8 rounded-xl border border-white/5">
-                    <div class="text-neon-green text-xs mb-4 flex gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p class="text-gray-400 text-sm mb-6">"Reduzimos 40% dos custos de infraestrutura mantendo performance superior."</p>
-                    <div class="font-bold text-white text-sm">Roberto Silva</div>
-                    <div class="text-xs text-gray-600">CEO • DataNet Solutions</div>
+                <div class="social-row">
+                    <a href="https://www.linkedin.com/in/kaleb-nunes/" class="social-btn"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
+                    <a href="https://github.com/Kaleb-Nunes" class="social-btn"><i class="fa-brands fa-github"></i> GitHub</a>
+                    <a href="https://www.instagram.com/kalebnunes.tech/" class="social-btn"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                    <a href="https://www.facebook.com/kalebnunessantos/" class="social-btn"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+                    <a href="mailto:kalebdossantos59924@gmail.com" class="social-btn"><i class="fa-solid fa-envelope"></i> Email</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="py-32 px-6 bg-dark-bg relative overflow-hidden">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 relative z-10">
-            <div>
-                <span class="font-mono text-neon-green text-xs tracking-widest mb-2 block">// COMUNICAÇÃO DIRETA</span>
-                <h2 class="font-display font-black text-5xl mb-6">PRONTO PARA <br> <span class="text-white">PROTEGER SEU IMPÉRIO?</span></h2>
-                <p class="text-gray-400 mb-10">Entre em contato para uma análise estratégica da sua infraestrutura.</p>
-
-                <form class="space-y-4">
-                    <div class="grid grid-cols-2 gap-4">
-                        <input type="text" placeholder="Nome completo" class="w-full bg-white/5 border border-white/10 p-4 rounded text-white focus:border-cyan-bright focus:outline-none transition-colors">
-                        <input type="email" placeholder="E-mail corporativo" class="w-full bg-white/5 border border-white/10 p-4 rounded text-white focus:border-cyan-bright focus:outline-none transition-colors">
-                    </div>
-                    <input type="text" placeholder="Empresa" class="w-full bg-white/5 border border-white/10 p-4 rounded text-white focus:border-cyan-bright focus:outline-none transition-colors">
-                    <textarea rows="4" placeholder="Descreva seu desafio" class="w-full bg-white/5 border border-white/10 p-4 rounded text-white focus:border-cyan-bright focus:outline-none transition-colors"></textarea>
-                    
-                    <button class="w-full bg-cyan-bright text-black font-bold py-4 rounded hover:brightness-110 transition-all flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-paper-plane"></i> Enviar Mensagem
-                    </button>
-                </form>
-            </div>
-
-            <div class="space-y-8 md:pl-20 pt-10">
-                <div class="flex items-start gap-4">
-                    <div class="w-10 h-10 bg-white/5 rounded flex items-center justify-center text-cyan-bright"><i class="fa-solid fa-location-dot"></i></div>
-                    <div>
-                        <div class="text-xs text-gray-500 font-mono mb-1">Localização</div>
-                        <div class="font-bold text-white">Balneário Camboriú, SC</div>
-                    </div>
-                </div>
-                <div class="flex items-start gap-4">
-                    <div class="w-10 h-10 bg-white/5 rounded flex items-center justify-center text-cyan-bright"><i class="fa-regular fa-envelope"></i></div>
-                    <div>
-                        <div class="text-xs text-gray-500 font-mono mb-1">E-mail</div>
-                        <a href="mailto:kaleb@knsconsultoria.com.br" class="font-bold text-white hover:text-cyan-bright">kaleb@knsconsultoria.com.br</a>
-                    </div>
-                </div>
-                <div class="flex items-start gap-4">
-                    <div class="w-10 h-10 bg-white/5 rounded flex items-center justify-center text-cyan-bright"><i class="fa-brands fa-whatsapp"></i></div>
-                    <div>
-                        <div class="text-xs text-gray-500 font-mono mb-1">WhatsApp</div>
-                        <a href="https://wa.me/5547988901616" class="font-bold text-white hover:text-cyan-bright">+55 47 98890-1616</a>
-                    </div>
-                </div>
-
-                <div class="pt-10 border-t border-white/10">
-                    <div class="text-xs text-gray-500 font-mono mb-4">Redes Sociais</div>
-                    <div class="flex gap-4">
-                        <a href="https://www.linkedin.com/in/kaleb-nunes/" class="w-10 h-10 border border-white/10 rounded flex items-center justify-center text-gray-400 hover:text-white hover:border-cyan-bright transition-all"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="https://github.com/Kaleb-Nunes" class="w-10 h-10 border border-white/10 rounded flex items-center justify-center text-gray-400 hover:text-white hover:border-cyan-bright transition-all"><i class="fa-brands fa-github"></i></a>
-                        <a href="https://www.instagram.com/kalebnunes.tech/" class="w-10 h-10 border border-white/10 rounded flex items-center justify-center text-gray-400 hover:text-white hover:border-cyan-bright transition-all"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/@KalebNunes" class="w-10 h-10 border border-white/10 rounded flex items-center justify-center text-gray-400 hover:text-white hover:border-cyan-bright transition-all"><i class="fa-brands fa-youtube"></i></a>
-                    </div>
-                </div>
-            </div>
+    <footer>
+        <h2 style="font-size: 2rem; margin-bottom: 32px; font-weight: 800;">PRONTO PARA ESCALAR?</h2>
+        <a href="https://wa.me/5547988901616" class="cta-btn" style="padding: 15px 40px; font-size: 1rem;">Iniciar Diálogo Estratégico</a>
+        <div style="margin-top: 64px; color: var(--text-secondary); font-size: 0.9rem;">
+            KNS GLOBAL ENGINEERING © 2026.<br>Balneário Camboriú, SC.
         </div>
-    </section>
-
-    <footer class="py-10 text-center border-t border-white/5 bg-black">
-        <p class="text-gray-600 text-xs font-mono">© 2026 KNS GLOBAL. TODOS OS DIREITOS RESERVADOS.</p>
     </footer>
 
     <script>
-        AOS.init({ once: true, offset: 50, duration: 800 });
+        // --- MOUSE TRACKING LUMINOSO PARA OS CARDS ---
+        document.getElementById("cards-container").onmousemove = e => {
+            for(const card of document.getElementsByClassName("card")) {
+                const rect = card.getBoundingClientRect(),
+                      x = e.clientX - rect.left,
+                      y = e.clientY - rect.top;
+                card.style.setProperty("--mouse-x", `${x}px`);
+                card.style.setProperty("--mouse-y", `${y}px`);
+            }
+        };
     </script>
 </body>
 </html>
