@@ -1,7 +1,8 @@
 import React, { useState, useMemo, useCallback } from "react";
+import { BrowserRouter } from "react-router-dom"; // <--- ADICIONEI ISSO
 import "./App.css";
 
-// --- DADOS DE TRADUÇÃO (Embutidos aqui para corrigir o erro de importação) ---
+// --- DADOS DE TRADUÇÃO ---
 const TRANSLATIONS = {
   pt: {
     nav: { home: "Início", services: "Serviços", founder: "Fundador", testimonials: "Depoimentos", contact: "Contato" },
@@ -33,7 +34,7 @@ const TRANSLATIONS = {
   }
 };
 
-// Função local que substitui o arquivo externo que estava falhando
+// Função local segura
 const getTranslations = (lang) => TRANSLATIONS[lang] || TRANSLATIONS['pt'];
 
 // --- IMPORTS DOS COMPONENTES ---
@@ -51,7 +52,6 @@ import FooterSection from "./components/sections/FooterSection";
 function App() {
   const [lang, setLang] = useState('pt');
   
-  // Carrega a tradução usando a função local segura
   const t = useMemo(() => getTranslations(lang), [lang]);
   
   const handleLanguageChange = useCallback((newLang) => {
@@ -61,18 +61,21 @@ function App() {
   }, [lang]);
 
   return (
-    <div className="App" data-testid="app-container">
-      <CustomCursor />
-      <Navigation lang={lang} setLang={handleLanguageChange} t={t} />
-      <HeroSection t={t} />
-      <ServicesSection t={t} lang={lang} />
-      <StatsSection t={t} />
-      <FounderSection t={t} />
-      <TestimonialsSection t={t} lang={lang} />
-      <ContactSection t={t} />
-      <FooterSection t={t} />
-      <WhatsAppFloat />
-    </div>
+    // ENVOLVI TUDO AQUI COM O ROUTER PARA CORRIGIR A TELA PRETA
+    <BrowserRouter>
+      <div className="App" data-testid="app-container">
+        <CustomCursor />
+        <Navigation lang={lang} setLang={handleLanguageChange} t={t} />
+        <HeroSection t={t} />
+        <ServicesSection t={t} lang={lang} />
+        <StatsSection t={t} />
+        <FounderSection t={t} />
+        <TestimonialsSection t={t} lang={lang} />
+        <ContactSection t={t} />
+        <FooterSection t={t} />
+        <WhatsAppFloat />
+      </div>
+    </BrowserRouter>
   );
 }
 
