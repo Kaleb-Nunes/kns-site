@@ -1,5 +1,5 @@
-import React, { useState, useMemo, useCallback } from "react";
-import { BrowserRouter } from "react-router-dom"; // <--- O ROTEADOR ESTÁ AQUI
+import React, { useState, useMemo, useCallback, useEffect } from "react";
+import { HashRouter } from "react-router-dom"; // <--- MUDANÇA: USANDO O MOTOR "TANQUE"
 import "./App.css";
 
 // --- DADOS DE TRADUÇÃO ---
@@ -52,13 +52,18 @@ function App() {
   const [lang, setLang] = useState('pt');
   const t = useMemo(() => getTranslations(lang), [lang]);
   
+  // LOG PARA PROVAR QUE A VERSÃO NOVA CARREGOU
+  useEffect(() => {
+    console.log("🚀 VERSÃO HASH-ROUTER CARREGADA COM SUCESSO! 🚀");
+  }, []);
+
   const handleLanguageChange = useCallback((newLang) => {
     if (newLang !== lang) setLang(newLang);
   }, [lang]);
 
   return (
-    // O ROTEADOR BLINDADO DENTRO DO APP
-    <BrowserRouter>
+    // USANDO HASH ROUTER PARA EVITAR ERROS DE ROTA
+    <HashRouter>
       <div className="App" data-testid="app-container">
         <CustomCursor />
         <Navigation lang={lang} setLang={handleLanguageChange} t={t} />
@@ -71,7 +76,7 @@ function App() {
         <FooterSection t={t} />
         <WhatsAppFloat />
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
