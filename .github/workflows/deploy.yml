@@ -1,10 +1,11 @@
 name: Deploy KNS Site
 
 on:
+  # Permite rodar automaticamente quando muda a main
   push:
     branches: ["main"]
-
-permissions:
+  # CRIA O BOTÃO MANUAL (A MÁGICA)
+  workflow_dispatch:
   contents: read
   pages: write
   id-token: write
