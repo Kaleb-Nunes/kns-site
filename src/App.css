@@ -1,0 +1,210 @@
+/* App specific styles */
+.App {
+  min-height: 100vh;
+  background: #050505;
+}
+
+/* Hero animations */
+.hero-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  line-height: 0.9;
+}
+
+.glitch-text {
+  position: relative;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
+}
+
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  color: #00F0FF;
+  -webkit-text-stroke: 0;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  animation: glitch 4s infinite;
+}
+
+@keyframes glitch {
+  0%, 100% { 
+    transform: translate(3px, -3px); 
+  }
+  25% { 
+    transform: translate(-3px, 3px); 
+  }
+  50% { 
+    transform: translate(3px, 3px); 
+  }
+  75% { 
+    transform: translate(-3px, -3px); 
+  }
+}
+
+/* Founder image effect */
+.founder-image {
+  filter: grayscale(0.3) contrast(1.1);
+  position: relative;
+}
+
+.founder-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 40%, rgba(0, 240, 255, 0.1) 100%);
+  pointer-events: none;
+}
+
+/* Stats counter */
+.stat-number {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 4rem;
+  background: linear-gradient(135deg, #00F0FF 0%, #00FF94 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Testimonial card */
+.testimonial-card {
+  background: linear-gradient(145deg, rgba(10, 10, 10, 0.9), rgba(5, 5, 5, 0.9));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+  border-color: rgba(0, 240, 255, 0.3);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.testimonial-card::before {
+  content: '"';
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  font-size: 120px;
+  font-family: 'Rajdhani', sans-serif;
+  color: rgba(0, 240, 255, 0.1);
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* Social icons */
+.social-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #A0A0A0;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.social-icon:hover {
+  background: rgba(0, 240, 255, 0.1);
+  border-color: #00F0FF;
+  color: #00F0FF;
+  transform: translateY(-3px);
+}
+
+/* WhatsApp floating button */
+.whatsapp-float {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 28px;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  cursor: pointer;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+}
+
+/* Language switcher */
+.lang-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #A0A0A0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.lang-btn.active,
+.lang-btn:hover {
+  background: rgba(0, 240, 255, 0.1);
+  border-color: #00F0FF;
+  color: #00F0FF;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .stat-number {
+    font-size: 2.5rem;
+  }
+  
+  .testimonial-card::before {
+    font-size: 80px;
+    top: 10px;
+    left: 20px;
+  }
+  
+  .whatsapp-float {
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+}
+
+/* Performance optimizations */
+.hero-title,
+.glitch-text,
+.stat-number {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
