@@ -12,4 +12,5 @@ Projeto de alta performance desenvolvido para prospecção de restaurantes em Ba
 - Internacionalização (PT/EN/ES)
 - Dark/Light Mode automático
 - Integração direta com WhatsApp API
-. 
+
+  
