@@ -1,68 +1,42 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="KNS Global - Sovereign Infrastructure & Critical Engineering. Soluções enterprise para empresas que não podem falhar."
-    />
-    <meta name="keywords" content="infrastructure, engineering, enterprise solutions, critical systems, KNS Global" />
-    <meta name="author" content="KNS Global" />
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="KNS Global | Sovereign Infrastructure & Critical Engineering" />
-    <meta property="og:description" content="Soluções enterprise para empresas que não podem falhar." />
-    <meta property="og:image" content="%PUBLIC_URL%/og-image.png" />
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="KNS Global | Sovereign Infrastructure & Critical Engineering" />
-    <meta name="twitter:description" content="Soluções enterprise para empresas que não podem falhar." />
-    <meta name="twitter:image" content="%PUBLIC_URL%/twitter-image.png" />
-    
-    <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    
-    <!-- Manifest -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    
-    <!-- Font Awesome -->
-    <link 
-      rel="stylesheet" 
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
-      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
-      crossorigin="anonymous" 
-      referrerpolicy="no-referrer" 
-    />
-    
-    <!-- Preconnect para performance -->
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
-    
-    <title>KNS Global | Sovereign Infrastructure & Critical Engineering</title>
-  </head>
-  <body>
-    <noscript>
-      <div style="padding: 20px; text-align: center; font-family: Arial, sans-serif;">
-        <h1>JavaScript é necessário</h1>
-        <p>Por favor, habilite o JavaScript no seu navegador para utilizar este aplicativo.</p>
-        <p>You need to enable JavaScript to run this app.</p>
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+
+const Navigation = () => {
+  const [lang, setLang] = useState('PT');
+  const [isDark, setIsDark] = useState(true);
+
+  return (
+    <nav className="fixed top-0 w-full z-[5000] px-8 py-6 flex justify-between items-center backdrop-blur-xl border-b border-white/5">
+      <motion.div 
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+        className="font-['Orbitron'] font-black tracking-[0.3em] text-sm"
+      >
+        KNS GLOBAL <span className="text-[#00ff88]">//</span>
+      </motion.div>
+
+      <div className="flex items-center gap-8 font-['JetBrains_Mono'] text-[10px] tracking-widest">
+        <div className="flex gap-3 border border-white/10 px-3 py-1 rounded">
+          {['PT', 'EN', 'ES'].map((l) => (
+            <button 
+              key={l}
+              onClick={() => setLang(l)}
+              className={`${lang === l ? 'text-[#00ff88]' : 'text-white/40'} transition-colors`}
+            >
+              {l}
+            </button>
+          ))}
+        </div>
+        
+        <button onClick={() => setIsDark(!isDark)} className="text-lg hover:text-[#00ff88] transition-colors">
+          <i className={`fa-solid ${isDark ? 'fa-sun' : 'fa-moon'}`}></i>
+        </button>
+
+        <a href="#contact" className="bg-[#00ff88] text-black px-6 py-2 font-bold hover:scale-105 transition-transform uppercase">
+          Request Access
+        </a>
       </div>
-    </noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+    </nav>
+  );
+};
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
-</html>
+export default Navigation;
