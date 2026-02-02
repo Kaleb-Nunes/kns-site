@@ -1,119 +1,79 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="dark">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KNS GLOBAL | Sovereign Infrastructure</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>KNS Global | Sovereign Infrastructure & Critical Engineering</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@200;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=JetBrains+Mono&family=Plus+Jakarta+Sans:wght@200;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        :root {
-            --neon: #00ff88;
-            --neon-glow: rgba(0, 255, 136, 0.4);
-            --bg: #050505;
-            --surface: rgba(15, 15, 15, 0.8);
-            --border: rgba(255, 255, 255, 0.08);
-            --text-main: #ffffff;
-            --text-muted: #888888;
+        :root { --neon: #00ff88; --bg: #000000; }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none !important; }
+        body { background-color: var(--bg); color: white; font-family: 'Plus Jakarta Sans', sans-serif; }
+        
+        /* Cursor Customizado */
+        #cursor-main {
+            position: fixed; pointer-events: none; z-index: 9999; mix-blend-mode: difference;
+            transition: transform 0.1s ease, width 0.2s, height 0.2s; transform: translate(-50%, -50%);
         }
+        .cursor-default { width: 20px; height: 20px; border: 1px solid white; border-radius: 50%; }
+        .cursor-active { width: 48px; height: 48px; border: 2px solid var(--neon); background: rgba(0,255,136,0.1); border-radius: 50%; }
 
-        [data-theme="light"] {
-            --bg: #f8fafc;
-            --surface: rgba(255, 255, 255, 0.9);
-            --border: rgba(0, 0, 0, 0.08);
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-            --neon: #059669;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        body { background: var(--bg); color: var(--text-main); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
-
-        /* Custom Cursor Experience */
-        #cursor { position: fixed; width: 10px; height: 10px; background: var(--neon); border-radius: 50%; pointer-events: none; z-index: 9999; }
-
-        /* HUD Navigation */
-        .navbar { position: fixed; top: 0; width: 100%; z-index: 5000; padding: 1.5rem 5%; background: var(--surface); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-        .lang-btn { background: none; border: 1px solid var(--border); color: var(--text-main); padding: 4px 8px; border-radius: 4px; cursor: pointer; font-family: 'JetBrains Mono'; font-size: 0.7rem; }
-        .lang-btn.active { background: var(--neon); color: #000; border-color: var(--neon); }
-
-        /* Hero: The Hook */
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 5%; }
-        .hero h1 { font-family: 'Orbitron'; font-size: clamp(2.5rem, 8vw, 6rem); line-height: 0.9; margin-bottom: 2rem; letter-spacing: -4px; }
-        .monitor-frame { width: 100%; max-width: 1100px; aspect-ratio: 16/9; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: #000; box-shadow: 0 50px 100px rgba(0,0,0,0.5); }
-
-        /* Founder: Trust & Identity */
-        .founder-box { max-width: 1200px; margin: 100px auto; display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: center; padding: 0 5%; }
-        .founder-img { width: 100%; border-radius: 12px; filter: grayscale(1); border: 1px solid var(--border); }
-        .founder-img:hover { filter: grayscale(0); border-color: var(--neon); }
-
-        .btn-prime { background: var(--neon); color: #000; padding: 1.2rem 2.5rem; border-radius: 8px; font-family: 'Orbitron'; font-weight: 900; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+        .font-orbitron { font-family: 'Orbitron', sans-serif; }
     </style>
 </head>
 <body>
 
-    <div id="cursor"></div>
+    <div id="cursor-main" class="cursor-default"></div>
 
-    <nav class="navbar">
-        <div style="font-family: 'Orbitron'; font-weight: 900; letter-spacing: 2px;">KNS GLOBAL //</div>
-        <div style="display: flex; gap: 15px; align-items: center;">
-            <button class="lang-btn active" onclick="setLang('PT')">PT</button>
-            <button class="lang-btn" onclick="setLang('EN')">EN</button>
-            <button onclick="toggleTheme()" style="background:none; border:none; color:var(--text-main); cursor:pointer;"><i class="fa-solid fa-bolt"></i></button>
-            <a href="https://wa.me/5547988901616" class="btn-prime" style="padding: 0.6rem 1.2rem; font-size: 0.6rem;">START PROTOCOL</a>
+    <nav class="fixed top-0 w-full z-50 p-6 backdrop-blur-md border-b border-white/10 flex justify-between items-center">
+        <div class="font-orbitron font-black tracking-widest">KNS GLOBAL //</div>
+        <div class="flex gap-8 items-center text-[10px] font-bold tracking-[0.2em]">
+            <a href="#solutions" class="hover:text-[#00ff88]">SOLUÇÕES</a>
+            <a href="https://wa.me/5547988901616" class="bg-[#00ff88] text-black px-4 py-2 font-orbitron">SOLICITAR ACESSO</a>
         </div>
     </nav>
 
-    <header class="hero">
-        <h1 id="hero-title">CONTINUIDADE<br><span style="color:var(--neon)">ABSOLUTA.</span></h1>
-        <div class="monitor-frame">
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/T9wvW0EYfE0?autoplay=1&mute=1&loop=1&playlist=T9wvW0EYfE0&controls=0" frameborder="0"></iframe>
+    <section class="min-h-screen pt-40 flex flex-col items-center px-6">
+        <h1 class="font-orbitron text-[10vw] font-black leading-none text-center tracking-tighter mb-12">
+            CONTINUIDADE<br><span class="text-[#00ff88]">ABSOLUTA.</span>
+        </h1>
+        <div class="w-full max-w-5xl aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl">
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/T9wvW0EYfE0?autoplay=1&mute=1&loop=1&playlist=T9wvW0EYfE0&controls=0" frameborder="0" allow="autoplay"></iframe>
         </div>
-    </header>
+    </section>
 
-    <section class="founder-box">
-        <div style="position: relative;">
-            <img src="./foto.jpg.jpg" alt="Kaleb Nunes CEO" class="founder-img" onerror="this.src='https://via.placeholder.com/400x500'">
-            <div style="position: absolute; bottom: 10px; right: 10px; background: var(--neon); color: #000; padding: 5px 10px; font-family: 'Orbitron'; font-weight: 900; font-size: 0.6rem;">SAGE CERTIFIED</div>
+    <section class="py-40 px-[10%] grid md:grid-cols-2 gap-20 items-center">
+        <div class="relative">
+            <img src="./foto.jpg.jpg" alt="Kaleb Nunes" class="rounded-lg grayscale hover:grayscale-0 transition duration-1000">
+            <div class="absolute -bottom-5 -right-5 bg-[#00ff88] text-black p-4 font-orbitron font-black text-xs">SAGE CERTIFIED</div>
         </div>
         <div>
-            <span class="mono" style="color:var(--neon); font-weight: bold; letter-spacing: 3px;">FOUNDER & CEO</span>
-            <h2 style="font-family: 'Orbitron'; font-size: 3rem; margin: 1.5rem 0;">KALEB NUNES</h2>
-            <p id="founder-text" style="font-size: 1.2rem; color: var(--text-muted); font-style: italic; margin-bottom: 2rem;">
-                "Garantimos que a tecnologia seja um ativo invisível e lucrativo através do Protocolo 09."
-            </p>
-            <img src="./sage- certificado.png" style="width: 150px;" onerror="this.src='https://he.net/img/sage-certified.png'">
+            <span class="text-[#00ff88] font-mono text-xs tracking-[0.5em]">CHIEF ENGINEERING OFFICER</span>
+            <h2 class="font-orbitron text-6xl font-black mt-4 mb-8">Kaleb Nunes</h2>
+            <p class="text-gray-400 text-xl italic leading-relaxed">"Nossa missão é garantir que a tecnologia seja um ativo invisível e lucrativo através do Protocolo 09."</p>
+            <img src="./sage- certificado.png" alt="SAGE Cert" class="w-40 mt-12 opacity-50">
         </div>
     </section>
 
     <script>
-        // Cursor Follower Logic
-        const cursor = document.getElementById('cursor');
+        // Lógica do Cursor
+        const cursor = document.getElementById('cursor-main');
         document.addEventListener('mousemove', e => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
         });
 
-        // Theme Switcher
-        function toggleTheme() {
-            const h = document.documentElement;
-            h.setAttribute('data-theme', h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-        }
-
-        // Translation Engine
-        const dict = {
-            PT: { title: "CONTINUIDADE<br><span style='color:#00ff88'>ABSOLUTA.</span>", text: "Garantimos o lucro através da estabilidade." },
-            EN: { title: "ABSOLUTE<br><span style='color:#00ff88'>CONTINUITY.</span>", text: "We secure profit through technical stability." }
-        };
-
-        function setLang(lang) {
-            document.getElementById('hero-title').innerHTML = dict[lang].title;
-            document.getElementById('founder-text').innerText = dict[lang].text;
-            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
-        }
+        document.addEventListener('mouseover', e => {
+            if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') {
+                cursor.classList.replace('cursor-default', 'cursor-active');
+            } else {
+                cursor.classList.replace('cursor-active', 'cursor-default');
+            }
+        });
     </script>
 </body>
 </html>
