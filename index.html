@@ -21,7 +21,7 @@
                         cyan: { DEFAULT: '#06b6d4', bright: '#00e5ff' },
                         neon: { green: '#00ff88' },
                         dark: { bg: '#020202', surface: '#0a0a0a', border: '#1a1a1a' },
-                        // Modo Claro Otimizado para Leitura (High Contrast)
+                        // Modo Claro Otimizado (High Contrast)
                         light: { bg: '#F3F4F6', surface: '#FFFFFF', text: '#111827', muted: '#4B5563', border: '#D1D5DB' }
                     },
                     fontFamily: {
@@ -30,10 +30,12 @@
                         mono: ['JetBrains Mono', 'monospace'],
                     },
                     animation: {
-                        'marquee': 'marquee 30s linear infinite',
+                        'marquee': 'marquee 40s linear infinite',
+                        'fade-up': 'fadeUp 0.8s ease-out forwards',
                     },
                     keyframes: {
-                        marquee: { '0%': { transform: 'translateX(0%)' }, '100%': { transform: 'translateX(-100%)' } }
+                        marquee: { '0%': { transform: 'translateX(0%)' }, '100%': { transform: 'translateX(-100%)' } },
+                        fadeUp: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } }
                     }
                 }
             }
@@ -44,7 +46,7 @@
         [x-cloak] { display: none !important; }
         body { transition: background-color 0.3s ease, color 0.3s ease; }
         
-        /* Grid Background Style */
+        /* Grid Background */
         .bg-grid {
             position: absolute; inset: 0; pointer-events: none; z-index: 0;
             background-size: 40px 40px;
@@ -56,14 +58,14 @@
         }
         html:not(.dark) .bg-grid {
             background-image: linear-gradient(to right, #9ca3af 1px, transparent 1px), linear-gradient(to bottom, #9ca3af 1px, transparent 1px);
-            opacity: 0.15;
+            opacity: 0.1;
         }
 
-        /* Ajustes de Contraste para Modo Claro */
-        html:not(.dark) .text-gradient-contrast {
-            background: none;
-            -webkit-text-fill-color: #111827; /* Preto Sólido */
-            color: #111827;
+        /* Ajuste de Contraste para Modo Claro (Sem Glow) */
+        html:not(.dark) .text-contrast {
+            color: #111827; 
+            text-shadow: none;
+            font-weight: 700;
         }
         
         /* Cards */
@@ -89,7 +91,7 @@
                   hero_badge: 'INFRAESTRUTURA CRÍTICA & ENGENHARIA DE REDE',
                   hero_t1: 'CONTINUIDADE', hero_t2: 'ABSOLUTA.',
                   hero_desc: 'Arquitetura de rede certificada SAGE para a elite global. Zero downtime. Máxima performance.',
-                  hero_noc: 'NOC/SOC 24x7: Monitoramento Ativo',
+                  hero_noc: 'NOC/SOC 24x7: MONITORAMENTO ATIVO',
                   hero_noc_desc: 'Nosso centro de operações monitora seus ativos em tempo real. Identificamos anomalias e neutralizamos ameaças antes que afetem seu faturamento.',
                   cta_main: 'Iniciar Diálogo Estratégico',
                   sol_tag: '// SOLUÇÕES ENTERPRISE', sol_title: 'SOLUÇÕES',
@@ -112,7 +114,7 @@
                   hero_badge: 'CRITICAL INFRASTRUCTURE & NETWORK ENGINEERING',
                   hero_t1: 'ABSOLUTE', hero_t2: 'CONTINUITY.',
                   hero_desc: 'SAGE certified network architecture for the global elite. Zero downtime. Maximum performance.',
-                  hero_noc: 'NOC/SOC 24x7: Active Monitoring',
+                  hero_noc: 'NOC/SOC 24x7: ACTIVE MONITORING',
                   hero_noc_desc: 'Our operations center monitors your assets in real-time. We identify anomalies and neutralize threats before they impact revenue.',
                   cta_main: 'Start Strategic Dialogue',
                   sol_tag: '// ENTERPRISE SOLUTIONS', sol_title: 'SOLUTIONS',
@@ -132,10 +134,10 @@
               },
               es: {
                   nav_sol: 'Soluciones', nav_about: 'Sobre', nav_contact: 'Contacto', nav_cta: 'Solicitar Acceso',
-                  hero_badge: 'INFRAESTRUCTURA CRÍTICA E INGENIERÍA DE REDES',
+                  hero_badge: 'INFRAESTRUTURA CRÍTICA E INGENIERÍA DE REDES',
                   hero_t1: 'CONTINUIDAD', hero_t2: 'ABSOLUTA.',
                   hero_desc: 'Arquitectura de red certificada SAGE para la élite global. Cero tiempo de inactividad. Máximo rendimiento.',
-                  hero_noc: 'NOC/SOC 24x7: Monitoreo Activo',
+                  hero_noc: 'NOC/SOC 24x7: MONITOREO ACTIVO',
                   hero_noc_desc: 'Nuestro centro de operaciones monitorea sus activos en tiempo real. Identificamos anomalías antes de que afecten la facturación.',
                   cta_main: 'Iniciar Diálogo Estratégico',
                   sol_tag: '// SOLUCIONES EMPRESARIALES', sol_title: 'SOLUCIONES',
@@ -192,7 +194,7 @@
 
         <h1 class="font-display font-black text-6xl md:text-8xl leading-none mb-6 tracking-tighter animate-fade-up" style="animation-delay: 0.1s;">
             <span x-text="texts[lang].hero_t1"></span><br>
-            <span class="text-transparent bg-clip-text bg-gradient-to-b from-cyan-500 to-cyan-800 dark:from-cyan-bright dark:to-cyan-700 text-gradient-contrast" x-text="texts[lang].hero_t2"></span>
+            <span class="text-transparent bg-clip-text bg-gradient-to-b from-cyan-500 to-cyan-800 dark:from-cyan-bright dark:to-cyan-700 text-contrast" x-text="texts[lang].hero_t2"></span>
         </h1>
 
         <p class="max-w-2xl text-lg md:text-xl mb-12 leading-relaxed text-light-text dark:text-gray-400 font-light animate-fade-up" style="animation-delay: 0.2s;" x-text="texts[lang].hero_desc"></p>
@@ -202,37 +204,31 @@
         </div>
 
         <div class="max-w-3xl bg-white dark:bg-white/5 border-l-4 border-cyan-500 p-6 rounded-r-lg shadow-sm text-left animate-fade-up" style="animation-delay: 0.4s;">
-            <h3 class="font-bold text-cyan-700 dark:text-cyan-bright mb-2" x-text="texts[lang].hero_noc"></h3>
-            <p class="text-sm text-gray-600 dark:text-gray-300" x-text="texts[lang].hero_noc_desc"></p>
+            <h3 class="font-bold text-cyan-700 dark:text-cyan-bright mb-2 font-display" x-text="texts[lang].hero_noc"></h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300 font-mono" x-text="texts[lang].hero_noc_desc"></p>
         </div>
 
-        <div class="mt-12 animate-fade-up" style="animation-delay: 0.5s;">
-            <a href="#contact" class="inline-flex items-center gap-3 bg-gradient-to-r from-cyan-600 to-cyan-800 dark:from-cyan-bright dark:to-cyan-600 text-white dark:text-black px-10 py-4 rounded-lg font-bold font-display tracking-wide text-lg hover:scale-105 transition-transform shadow-xl">
-                <span x-text="texts[lang].cta_main"></span> <i class="fa-solid fa-chevron-right text-sm"></i>
-            </a>
+        <div class="w-full mt-12 py-4 bg-gray-100 dark:bg-white/5 border-y border-gray-200 dark:border-white/10 overflow-hidden animate-fade-up" style="animation-delay: 0.5s;">
+            <div class="flex whitespace-nowrap animate-marquee gap-16 font-mono text-sm font-bold tracking-widest text-gray-600 dark:text-gray-400 uppercase">
+                <span><i class="fa-solid fa-server"></i> Zabbix</span>
+                <span><i class="fa-solid fa-chart-area"></i> Grafana</span>
+                <span><i class="fa-solid fa-eye"></i> PRTG</span>
+                <span><i class="fa-brands fa-aws"></i> AWS Cloud</span>
+                <span><i class="fa-solid fa-shield-cat"></i> Security</span>
+                <span><i class="fa-solid fa-network-wired"></i> BGP</span>
+                <span><i class="fa-brands fa-python"></i> Python</span>
+                <span><i class="fa-solid fa-terminal"></i> PowerShell</span>
+                <span><i class="fa-solid fa-server"></i> Zabbix</span>
+                <span><i class="fa-solid fa-chart-area"></i> Grafana</span>
+                <span><i class="fa-solid fa-eye"></i> PRTG</span>
+                <span><i class="fa-brands fa-aws"></i> AWS Cloud</span>
+                <span><i class="fa-solid fa-shield-cat"></i> Security</span>
+                <span><i class="fa-solid fa-network-wired"></i> BGP</span>
+                <span><i class="fa-brands fa-python"></i> Python</span>
+                <span><i class="fa-solid fa-terminal"></i> PowerShell</span>
+            </div>
         </div>
     </section>
-
-    <div class="py-8 bg-gray-100 dark:bg-white/5 border-y border-gray-200 dark:border-white/10 overflow-hidden">
-        <div class="flex whitespace-nowrap animate-marquee gap-16 font-mono text-sm font-bold tracking-widest text-gray-500 dark:text-gray-400 uppercase">
-            <span><i class="fa-solid fa-server"></i> Zabbix</span>
-            <span><i class="fa-solid fa-chart-area"></i> Grafana</span>
-            <span><i class="fa-solid fa-eye"></i> PRTG</span>
-            <span><i class="fa-brands fa-aws"></i> AWS Cloud</span>
-            <span><i class="fa-solid fa-shield-cat"></i> Security Shield</span>
-            <span><i class="fa-solid fa-network-wired"></i> BGP Routing</span>
-            <span><i class="fa-brands fa-python"></i> Python Automation</span>
-            <span><i class="fa-solid fa-terminal"></i> PowerShell</span>
-            <span><i class="fa-solid fa-server"></i> Zabbix</span>
-            <span><i class="fa-solid fa-chart-area"></i> Grafana</span>
-            <span><i class="fa-solid fa-eye"></i> PRTG</span>
-            <span><i class="fa-brands fa-aws"></i> AWS Cloud</span>
-            <span><i class="fa-solid fa-shield-cat"></i> Security Shield</span>
-            <span><i class="fa-solid fa-network-wired"></i> BGP Routing</span>
-            <span><i class="fa-brands fa-python"></i> Python Automation</span>
-            <span><i class="fa-solid fa-terminal"></i> PowerShell</span>
-        </div>
-    </div>
 
     <section id="services" class="py-32 px-6 bg-white dark:bg-dark-bg transition-colors">
         <div class="max-w-7xl mx-auto">
@@ -244,32 +240,32 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="tech-card p-8 rounded-xl bg-gray-50 dark:bg-dark-surface border border-gray-200 dark:border-white/10" data-aos="fade-up">
+                <div class="tech-card p-8 rounded-xl bg-gray-50 dark:bg-dark-surface border border-gray-200 dark:border-white/10">
                     <i class="fa-solid fa-chart-line text-cyan-600 dark:text-cyan-bright text-3xl mb-6"></i>
                     <h3 class="font-display font-bold text-xl mb-3 text-gray-900 dark:text-white" x-text="texts[lang].c1_t"></h3>
                     <p class="text-gray-600 dark:text-gray-400 text-sm" x-text="texts[lang].c1_d"></p>
                 </div>
-                <div class="tech-card p-8 rounded-xl bg-gray-50 dark:bg-dark-surface border border-gray-200 dark:border-white/10" data-aos="fade-up" data-aos-delay="100">
+                <div class="tech-card p-8 rounded-xl bg-gray-50 dark:bg-dark-surface border border-gray-200 dark:border-white/10">
                     <i class="fa-solid fa-bolt text-cyan-600 dark:text-cyan-bright text-3xl mb-6"></i>
                     <h3 class="font-display font-bold text-xl mb-3 text-gray-900 dark:text-white" x-text="texts[lang].c2_t"></h3>
                     <p class="text-gray-600 dark:text-gray-400 text-sm" x-text="texts[lang].c2_d"></p>
                 </div>
-                <div class="tech-card p-8 rounded-xl bg-gray-50 dark:bg-dark-surface border border-gray-200 dark:border-white/10" data-aos="fade-up" data-aos-delay="200">
+                <div class="tech-card p-8 rounded-xl bg-gray-50 dark:bg-dark-surface border border-gray-200 dark:border-white/10">
                     <i class="fa-solid fa-network-wired text-cyan-600 dark:text-cyan-bright text-3xl mb-6"></i>
                     <h3 class="font-display font-bold text-xl mb-3 text-gray-900 dark:text-white" x-text="texts[lang].c3_t"></h3>
                     <p class="text-gray-600 dark:text-gray-400 text-sm" x-text="texts[lang].c3_d"></p>
                 </div>
-                <div class="tech-card p-8 rounded-xl bg-gray-50 dark:bg-dark-surface border border-gray-200 dark:border-white/10" data-aos="fade-up" data-aos-delay="300">
+                <div class="tech-card p-8 rounded-xl bg-gray-50 dark:bg-dark-surface border border-gray-200 dark:border-white/10">
                     <i class="fa-solid fa-shield-halved text-cyan-600 dark:text-cyan-bright text-3xl mb-6"></i>
                     <h3 class="font-display font-bold text-xl mb-3 text-gray-900 dark:text-white" x-text="texts[lang].c4_t"></h3>
                     <p class="text-gray-600 dark:text-gray-400 text-sm" x-text="texts[lang].c4_d"></p>
                 </div>
-                <div class="tech-card p-8 rounded-xl bg-gray-50 dark:bg-dark-surface border border-gray-200 dark:border-white/10" data-aos="fade-up" data-aos-delay="400">
+                <div class="tech-card p-8 rounded-xl bg-gray-50 dark:bg-dark-surface border border-gray-200 dark:border-white/10">
                     <i class="fa-solid fa-server text-cyan-600 dark:text-cyan-bright text-3xl mb-6"></i>
                     <h3 class="font-display font-bold text-xl mb-3 text-gray-900 dark:text-white" x-text="texts[lang].c5_t"></h3>
                     <p class="text-gray-600 dark:text-gray-400 text-sm" x-text="texts[lang].c5_d"></p>
                 </div>
-                <div class="tech-card p-8 rounded-xl bg-gray-50 dark:bg-dark-surface border border-gray-200 dark:border-white/10" data-aos="fade-up" data-aos-delay="500">
+                <div class="tech-card p-8 rounded-xl bg-gray-50 dark:bg-dark-surface border border-gray-200 dark:border-white/10">
                     <i class="fa-solid fa-cloud text-cyan-600 dark:text-cyan-bright text-3xl mb-6"></i>
                     <h3 class="font-display font-bold text-xl mb-3 text-gray-900 dark:text-white" x-text="texts[lang].c6_t"></h3>
                     <p class="text-gray-600 dark:text-gray-400 text-sm" x-text="texts[lang].c6_d"></p>
@@ -285,6 +281,7 @@
                 <div class="relative rounded-xl shadow-2xl border border-gray-300 dark:border-white/10 overflow-hidden">
                     <img src="./foto.jpg.jpg" alt="Kaleb Nunes" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700">
                 </div>
+                
                 <div class="absolute bottom-10 left-[-10px] bg-white dark:bg-black border border-cyan-500/50 p-4 rounded-lg shadow-xl flex items-center gap-4">
                     <i class="fa-solid fa-shield-halved text-3xl text-cyan-600 dark:text-neon-green"></i>
                     <div>
@@ -297,6 +294,7 @@
             <div data-aos="fade-left">
                 <span class="font-mono text-cyan-600 dark:text-neon-green text-xs tracking-widest mb-2 block" x-text="texts[lang].bio_role"></span>
                 <h2 class="font-display font-black text-5xl mb-8 leading-tight text-gray-900 dark:text-white">KALEB NUNES</h2>
+                
                 <p class="text-xl text-gray-600 dark:text-gray-300 font-light italic mb-10 border-l-4 border-cyan-500 dark:border-neon-green pl-6 leading-relaxed" x-text="texts[lang].bio_quote"></p>
 
                 <div class="bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 p-6 rounded-xl flex items-center gap-6 mb-8 shadow-sm">
@@ -400,13 +398,14 @@
 
     <div x-show="modalOpen" x-transition.opacity 
          class="fixed inset-0 z-[9999] bg-black/90 flex items-center justify-center p-4 backdrop-blur-sm" 
-         @keydown.escape.window="modalOpen = false">
+         @keydown.escape.window="modalOpen = false"
+         x-cloak>
         
         <div class="relative" @click.outside="modalOpen = false">
             <button @click="modalOpen = false" class="absolute -top-12 right-0 text-white text-3xl hover:text-cyan-bright transition-colors">
                 <i class="fa-solid fa-xmark"></i>
             </button>
-            <img src="./sage- certificado.png" class="rounded-lg shadow-2xl border border-white/20 max-h-[85vh] max-w-full object-contain bg-white">
+            <img src="./sage- certificado.png" class="rounded-lg shadow-2xl border border-white/20 max-h-[80vh] max-w-full object-contain bg-white">
         </div>
     </div>
 
