@@ -1,346 +1,410 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#050505">
     <title>KNS GLOBAL | Sovereign Infrastructure Engineering</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;800&family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        neon: '#00ff88',
-                        void: '#030303',
-                        surface: '#0a0a0a',
-                        border: 'rgba(255, 255, 255, 0.08)'
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                        display: ['Orbitron', 'sans-serif'],
-                    },
-                    animation: {
-                        'spin-slow': 'spin 12s linear infinite',
-                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'marquee': 'marquee 25s linear infinite',
-                    },
-                    keyframes: {
-                        marquee: {
-                            '0%': { transform: 'translateX(0%)' },
-                            '100%': { transform: 'translateX(-100%)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* CORE ENGINE */
-        body { background-color: #030303; color: white; overflow-x: hidden; cursor: none; }
-        
-        /* GRID BACKGROUND: O visual "Tron/Matrix" moderno */
-        .cyber-grid {
-            position: fixed; inset: 0; z-index: -1;
-            background-image: 
-                linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+        /* --- CORE VARIABLES (THEME ENGINE) --- */
+        :root {
+            /* DARK MODE (DEFAULT) */
+            --bg-body: #050505;
+            --bg-surface: #0f0f0f;
+            --bg-glass: rgba(15, 15, 15, 0.7);
+            --border: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-sec: #888888;
+            --primary: #00F0FF; /* Cyan Cyberpunk */
+            --accent: #00ff88;  /* Success Green */
+            --shadow: 0 20px 80px -10px rgba(0,0,0,0.8);
+            --hero-gradient: radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.15), transparent 70%);
         }
 
-        /* CUSTOM CURSOR */
-        #cursor-dot, #cursor-outline { position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; pointer-events: none; z-index: 9999; mix-blend-mode: difference; }
-        #cursor-dot { width: 8px; height: 8px; background: #00ff88; }
-        #cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(255, 255, 255, 0.5); transition: width 0.2s, height 0.2s; }
-        
-        /* HOVER STATES */
-        body:hover #cursor-outline.hovered { width: 80px; height: 80px; border-color: #00ff88; background: rgba(0, 255, 136, 0.05); }
+        [data-theme="light"] {
+            /* LIGHT MODE (CORPORATE) */
+            --bg-body: #F2F4F7;
+            --bg-surface: #ffffff;
+            --bg-glass: rgba(255, 255, 255, 0.8);
+            --border: rgba(0, 0, 0, 0.08);
+            --text-main: #111827;
+            --text-sec: #64748B;
+            --primary: #0055FF; /* Corporate Blue */
+            --accent: #009955;
+            --shadow: 0 20px 60px -10px rgba(0,0,0,0.1);
+            --hero-gradient: radial-gradient(circle at 50% 0%, rgba(0, 85, 255, 0.08), transparent 70%);
+        }
 
-        /* SCROLLBAR */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #030303; }
-        ::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #00ff88; }
-
-        /* GLITCH TEXT EFFECT */
-        .glitch { position: relative; color: white; }
-        .glitch::before, .glitch::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-        .glitch::before { left: 2px; text-shadow: -1px 0 #ff00c1; clip: rect(44px, 450px, 56px, 0); animation: glitch-anim 5s infinite linear alternate-reverse; }
-        .glitch::after { left: -2px; text-shadow: -1px 0 #00ff88; clip: rect(44px, 450px, 56px, 0); animation: glitch-anim2 5s infinite linear alternate-reverse; }
+        /* --- GLOBAL RESET --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
-        @keyframes glitch-anim { 0% { clip: rect(14px, 9999px, 127px, 0); } 100% { clip: rect(66px, 9999px, 88px, 0); } }
-        @keyframes glitch-anim2 { 0% { clip: rect(2px, 9999px, 84px, 0); } 100% { clip: rect(122px, 9999px, 6px, 0); } }
+        body { 
+            background-color: var(--bg-body); 
+            color: var(--text-main); 
+            font-family: 'Inter', sans-serif; 
+            overflow-x: hidden;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* --- CUSTOM CURSOR (DESKTOP ONLY) --- */
+        @media (min-width: 992px) {
+            * { cursor: none; }
+            #cursor {
+                position: fixed; width: 12px; height: 12px;
+                background: var(--primary); border-radius: 50%;
+                pointer-events: none; z-index: 9999;
+                transform: translate(-50%, -50%);
+                mix-blend-mode: difference;
+                transition: width 0.3s, height 0.3s, background 0.3s;
+            }
+            #cursor.hovered { width: 50px; height: 50px; background: rgba(0, 240, 255, 0.2); backdrop-filter: blur(2px); }
+        }
+
+        /* --- NAVIGATION --- */
+        .nav-bar {
+            position: fixed; top: 0; width: 100%; height: 70px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 5%; z-index: 1000;
+            background: var(--bg-glass); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .brand { font-family: 'Orbitron'; font-weight: 900; letter-spacing: 2px; font-size: 1.1rem; color: var(--text-main); }
+        .brand span { color: var(--primary); }
+
+        .nav-controls { display: flex; gap: 20px; align-items: center; }
+
+        .theme-toggle, .lang-toggle { cursor: pointer; color: var(--text-sec); font-size: 0.9rem; transition: 0.3s; }
+        .theme-toggle:hover, .lang-toggle:hover { color: var(--primary); }
+
+        .btn-contact {
+            padding: 8px 20px; border: 1px solid var(--border); border-radius: 4px;
+            font-family: 'JetBrains Mono'; font-size: 0.75rem; color: var(--text-main);
+            text-decoration: none; transition: 0.3s; background: rgba(255,255,255,0.05);
+        }
+        .btn-contact:hover { background: var(--primary); border-color: var(--primary); color: #000; box-shadow: 0 0 20px var(--primary); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 100vh; padding: 120px 5% 50px;
+            display: flex; flex-direction: column; align-items: center; text-align: center;
+            background: var(--hero-gradient);
+            perspective: 1000px; /* 3D effect base */
+        }
+
+        .status-pill {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 6px 16px; border-radius: 50px;
+            background: rgba(0, 255, 136, 0.1); border: 1px solid rgba(0, 255, 136, 0.2);
+            color: var(--accent); font-family: 'JetBrains Mono'; font-size: 0.7rem; margin-bottom: 30px;
+        }
+        .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 10px var(--accent); animation: blink 2s infinite; }
+
+        h1.headline {
+            font-size: clamp(2.5rem, 8vw, 6rem); font-weight: 800; line-height: 1; margin-bottom: 20px;
+            letter-spacing: -0.03em;
+        }
+        .txt-grad { background: linear-gradient(135deg, var(--text-main) 30%, var(--text-sec)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        p.subheadline {
+            font-size: clamp(1rem, 2.5vw, 1.25rem); color: var(--text-sec); max-width: 700px;
+            margin-bottom: 60px; font-weight: 300;
+        }
+
+        /* 3D MONITOR CONTAINER */
+        .monitor-3d {
+            width: 100%; max-width: 1000px; aspect-ratio: 16/9;
+            background: #000; border-radius: 12px; border: 1px solid #333;
+            box-shadow: var(--shadow); position: relative;
+            transform: rotateX(10deg); transition: transform 0.5s;
+            animation: float 6s ease-in-out infinite;
+        }
+        .monitor-3d:hover { transform: rotateX(0deg) scale(1.02); }
+        .monitor-3d iframe { width: 100%; height: 100%; border: none; border-radius: 11px; opacity: 0.9; }
+
+        /* --- BENTO GRID SERVICES --- */
+        .section-grid {
+            padding: 100px 5%; max-width: 1400px; margin: 0 auto;
+        }
+
+        .bento-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;
+        }
+        
+        .bento-card {
+            background: var(--bg-surface); border: 1px solid var(--border); border-radius: 16px;
+            padding: 30px; display: flex; flex-direction: column; gap: 15px;
+            transition: 0.3s; position: relative; overflow: hidden;
+        }
+        .bento-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .bento-card.wide { grid-column: span 1; } 
+        @media(min-width: 992px) { .bento-card.wide { grid-column: span 2; } }
+
+        .icon-box { font-size: 1.8rem; color: var(--primary); margin-bottom: 10px; }
+        .card-title { font-family: 'Orbitron'; font-size: 1.1rem; }
+        .card-desc { font-size: 0.9rem; color: var(--text-sec); line-height: 1.6; }
+
+        /* --- FOUNDER PROFILE (MOBILE OPTIMIZED) --- */
+        .profile-container {
+            display: flex; flex-direction: column; gap: 50px; padding: 100px 5%;
+            border-top: 1px solid var(--border); max-width: 1200px; margin: 0 auto;
+        }
+        @media(min-width: 992px) { .profile-container { flex-direction: row; align-items: center; } }
+
+        .profile-img-box {
+            position: relative; flex: 1; max-width: 500px; margin: 0 auto;
+        }
+        .profile-img { width: 100%; border-radius: 16px; filter: grayscale(1); transition: 0.5s; border: 1px solid var(--border); }
+        .profile-img:hover { filter: grayscale(0); border-color: var(--accent); }
+
+        .sage-badge {
+            position: absolute; bottom: -20px; right: -20px;
+            background: var(--bg-surface); padding: 15px 25px; border-radius: 12px;
+            border: 1px solid var(--accent); box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: flex; align-items: center; gap: 15px;
+        }
+        .sage-logo { width: 80px; filter: invert(0.5); }
+        [data-theme="dark"] .sage-logo { filter: invert(0) brightness(100); }
+
+        .profile-content { flex: 1; }
+        .kpi-row { display: flex; gap: 40px; margin: 30px 0; border-top: 1px solid var(--border); padding-top: 30px; }
+        .kpi h3 { font-size: 2.5rem; font-weight: 800; color: var(--text-main); }
+        .kpi p { font-size: 0.75rem; color: var(--text-sec); font-family: 'JetBrains Mono'; }
+
+        /* --- SOCIAL GRID --- */
+        .social-grid { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px; }
+        .social-btn {
+            width: 50px; height: 50px; border-radius: 50%; border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-sec); text-decoration: none; transition: 0.3s; font-size: 1.2rem;
+        }
+        .social-btn:hover { background: var(--primary); color: #000; transform: translateY(-3px); }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center; padding: 80px 5%; background: var(--bg-surface);
+            border-top: 1px solid var(--border); margin-top: 50px;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        @keyframes float { 0% { transform: rotateX(10deg) translateY(0px); } 50% { transform: rotateX(10deg) translateY(-15px); } 100% { transform: rotateX(10deg) translateY(0px); } }
+        
+        .fade-in { opacity: 0; transform: translateY(20px); transition: 0.8s; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
     </style>
 </head>
 <body>
-    <div class="cyber-grid"></div>
-    <div id="cursor-dot"></div>
-    <div id="cursor-outline"></div>
 
-    <nav class="fixed w-full z-50 top-0 border-b border-white/5 bg-void/80 backdrop-blur-xl">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <i class="fa-solid fa-cube text-neon animate-pulse-fast"></i>
-                <span class="font-display font-black tracking-widest text-lg">KNS<span class="text-neon">GLOBAL</span></span>
-            </div>
-            
-            <div class="hidden md:flex gap-8 font-mono text-xs tracking-widest text-gray-400">
-                <a href="#solutions" class="hover:text-neon transition-colors hover-trigger">SOLUÇÕES</a>
-                <a href="#founder" class="hover:text-neon transition-colors hover-trigger">COMANDO</a>
-                <a href="#testimonials" class="hover:text-neon transition-colors hover-trigger">INTELIGÊNCIA</a>
-            </div>
+    <div id="cursor"></div>
 
-            <a href="https://wa.me/5547988901616" class="hover-trigger group relative px-6 py-2 bg-white/5 border border-white/10 overflow-hidden">
-                <div class="absolute inset-0 w-0 bg-neon transition-all duration-[250ms] ease-out group-hover:w-full opacity-10"></div>
-                <span class="relative font-mono text-xs font-bold text-neon group-hover:text-white flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-neon animate-pulse"></span> REQUEST ACCESS
-                </span>
+    <nav class="nav-bar">
+        <div class="brand">KNS <span>GLOBAL</span></div>
+        <div class="nav-controls">
+            <div class="lang-toggle" id="lang-btn" onclick="cycleLanguage()">
+                <i class="fa-solid fa-globe"></i> <span id="current-lang">PT</span>
+            </div>
+            <div class="theme-toggle" onclick="toggleTheme()">
+                <i class="fa-solid fa-circle-half-stroke"></i>
+            </div>
+            <a href="https://wa.me/5547988901616" class="btn-contact">
+                <i class="fa-brands fa-whatsapp"></i> <span id="btn-contact">CONTATO</span>
             </a>
         </div>
     </nav>
 
-    <section class="relative min-h-screen flex flex-col justify-center items-center pt-20 overflow-hidden">
-        <div class="absolute top-32 left-10 font-mono text-[10px] text-gray-600 flex flex-col gap-2 opacity-50">
-            <span>// SYSTEM_READY</span>
-            <span>// IP: 127.0.0.1</span>
-            <span>// SECURE_CONN: TRUE</span>
+    <header class="hero">
+        <div class="status-pill fade-in">
+            <div class="dot"></div>
+            <span id="system-status">SYSTEM NOMINAL // PROTOCOL 09 ACTIVE</span>
         </div>
 
-        <div class="text-center z-10 px-4" data-aos="zoom-in" data-aos-duration="1000">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neon/30 bg-neon/5 text-neon font-mono text-[10px] mb-6">
-                <i class="fa-solid fa-check-circle"></i> INFRAESTRUTURA DE ALTA DISPONIBILIDADE
+        <h1 class="headline fade-in txt-grad" id="hero-title">
+            CONTINUIDADE<br>ABSOLUTA.
+        </h1>
+        
+        <p class="subheadline fade-in" id="hero-desc">
+            Engenharia de infraestrutura soberana para multinacionais.
+            Zero downtime. Observabilidade preditiva.
+        </p>
+
+        <div class="monitor-3d fade-in">
+            <iframe src="https://www.youtube.com/embed/T9wvW0EYfE0?autoplay=1&mute=1&loop=1&playlist=T9wvW0EYfE0&controls=0&modestbranding=1&iv_load_policy=3" allow="autoplay; encrypted-media"></iframe>
+        </div>
+    </header>
+
+    <section class="section-grid">
+        <div class="bento-grid">
+            <div class="bento-card wide fade-in">
+                <div class="icon-box"><i class="fa-solid fa-eye"></i></div>
+                <h3 class="card-title" id="s1-title">Observabilidade Ativa</h3>
+                <p class="card-desc" id="s1-desc">Dashboards executivos com Zabbix/Grafana. Monitoramento que previne perdas financeiras.</p>
             </div>
+            <div class="bento-card fade-in">
+                <div class="icon-box"><i class="fa-solid fa-robot"></i></div>
+                <h3 class="card-title" id="s2-title">Auto-Healing</h3>
+                <p class="card-desc" id="s2-desc">Scripts Python que recuperam falhas automaticamente 24/7.</p>
+            </div>
+            <div class="bento-card fade-in">
+                <div class="icon-box"><i class="fa-solid fa-network-wired"></i></div>
+                <h3 class="card-title" id="s3-title">BGP & Cloud</h3>
+                <p class="card-desc" id="s3-desc">Engenharia de tráfego avançada para ISPs e Multinacionais.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="profile-container">
+        <div class="profile-img-box fade-in">
+            <img src="./assets/foto.jpg" alt="Kaleb Nunes" class="profile-img" onerror="this.src='https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1000&auto=format&fit=crop'">
             
-            <h1 class="font-display font-black text-6xl md:text-9xl leading-[0.9] tracking-tighter mb-8">
-                CONTINUIDADE<br>
-                <span class="glitch text-neon" data-text="ABSOLUTA.">ABSOLUTA.</span>
-            </h1>
-            
-            <p class="max-w-2xl mx-auto text-gray-400 text-lg md:text-xl font-light mb-12">
-                Engenharia de infraestrutura crítica para empresas que faturam bilhões. 
-                Não vendemos configuração, vendemos a <strong class="text-white">soberania dos seus dados.</strong>
+            <div class="sage-badge">
+                <img src="./assets/sage_full.png" class="sage-logo" alt="Sage Certified" onerror="this.style.display='none'">
+                <div>
+                    <div style="font-size: 0.6rem; color: var(--text-sec); font-family: 'JetBrains Mono';">CERTIFIED</div>
+                    <div style="font-weight: bold; color: var(--text-main);">SAGE LEVEL</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-content fade-in">
+            <div style="color: var(--primary); font-family: 'JetBrains Mono'; margin-bottom: 15px;">// HEAD OF ENGINEERING</div>
+            <h2 style="font-family: 'Orbitron'; font-size: 2.5rem; margin-bottom: 25px;">KALEB NUNES</h2>
+            <p style="font-size: 1.1rem; line-height: 1.6; color: var(--text-sec);" id="bio-text">
+                "Não vendemos configuração. Vendemos a certeza de que sua operação global nunca vai parar. Minha missão é garantir a proteção absoluta do seu ativo mais valioso: a disponibilidade."
             </p>
 
-            <div class="relative w-full max-w-5xl aspect-video mx-auto rounded-xl border border-white/10 bg-surface shadow-2xl shadow-neon/20 overflow-hidden group">
-                <div class="absolute inset-0 bg-gradient-to-t from-void to-transparent z-10 pointer-events-none"></div>
-                <iframe src="https://www.youtube.com/embed/T9wvW0EYfE0?autoplay=1&mute=1&loop=1&playlist=T9wvW0EYfE0&controls=0" class="w-full h-full scale-105 group-hover:scale-100 transition-transform duration-700"></iframe>
+            <div class="kpi-row">
+                <div class="kpi">
+                    <h3>10+</h3>
+                    <p>ANOS DE EXPERIÊNCIA</p>
+                </div>
+                <div class="kpi">
+                    <h3>99.9%</h3>
+                    <p>SLA GARANTIDO</p>
+                </div>
+            </div>
+
+            <div class="social-grid">
+                <a href="https://www.linkedin.com/in/kaleb-nunes/" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://github.com/Kaleb-Nunes" class="social-btn"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.instagram.com/kalebnunes.tech/" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.facebook.com/kalebnunessantos/" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.youtube.com/@KalebNunesTech" class="social-btn"><i class="fa-brands fa-youtube"></i></a>
+                <a href="mailto:kalebdossantos59924@gmail.com" class="social-btn"><i class="fa-solid fa-envelope"></i></a>
             </div>
         </div>
     </section>
 
-    <div class="py-10 border-y border-white/5 bg-surface/50 overflow-hidden">
-        <div class="flex whitespace-nowrap animate-marquee gap-20 font-mono text-gray-500 text-sm tracking-widest">
-            <span>/// BGP GOVERNANCE</span> <span>/// PYTHON AUTOMATION</span> <span>/// ZABBIX ENTERPRISE</span> <span>/// GRAFANA ANALYTICS</span> <span>/// AWS CLOUD</span> <span>/// AZURE SYSTEMS</span>
-            <span>/// BGP GOVERNANCE</span> <span>/// PYTHON AUTOMATION</span> <span>/// ZABBIX ENTERPRISE</span> <span>/// GRAFANA ANALYTICS</span> <span>/// AWS CLOUD</span> <span>/// AZURE SYSTEMS</span>
-        </div>
-    </div>
-
-    <section id="solutions" class="py-32 px-6 max-w-7xl mx-auto">
-        <div class="flex items-end justify-between mb-16">
-            <div>
-                <span class="text-neon font-mono text-xs tracking-widest">/// CAPACIDADES TÉCNICAS</span>
-                <h2 class="font-display text-4xl font-bold mt-4">MATRIZ DE SOLUÇÕES</h2>
-            </div>
-            <div class="hidden md:block w-32 h-[1px] bg-white/20"></div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="col-span-1 md:col-span-2 p-10 rounded-3xl bg-surface border border-white/5 hover:border-neon/50 transition-colors group hover-trigger" data-aos="fade-up">
-                <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-8 group-hover:bg-neon/20 transition-colors">
-                    <i class="fa-solid fa-eye text-2xl text-neon"></i>
-                </div>
-                <h3 class="font-display text-2xl font-bold mb-4">Observabilidade & Predição</h3>
-                <p class="text-gray-400 leading-relaxed">Implementamos painéis Zabbix/Grafana que não apenas mostram o passado, mas predizem falhas futuras. Monitoramento de processos de negócio, não apenas de servidores.</p>
-                <div class="mt-8 flex gap-2">
-                    <span class="px-3 py-1 rounded border border-white/10 text-[10px] font-mono text-gray-400">LOG_ANALYSIS</span>
-                    <span class="px-3 py-1 rounded border border-white/10 text-[10px] font-mono text-gray-400">REAL_TIME</span>
-                </div>
-            </div>
-
-            <div class="col-span-1 p-10 rounded-3xl bg-surface border border-white/5 hover:border-neon/50 transition-colors group hover-trigger" data-aos="fade-up" data-aos-delay="100">
-                <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-8 group-hover:bg-neon/20 transition-colors">
-                    <i class="fa-solid fa-robot text-2xl text-neon"></i>
-                </div>
-                <h3 class="font-display text-2xl font-bold mb-4">Auto-Cura (Protocolo 09)</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">Scripts Python autônomos que corrigem anomalias em milissegundos, antes que o NOC perceba.</p>
-            </div>
-
-            <div class="col-span-1 p-10 rounded-3xl bg-surface border border-white/5 hover:border-neon/50 transition-colors group hover-trigger" data-aos="fade-up" data-aos-delay="200">
-                <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-8 group-hover:bg-neon/20 transition-colors">
-                    <i class="fa-solid fa-network-wired text-2xl text-neon"></i>
-                </div>
-                <h3 class="font-display text-2xl font-bold mb-4">Engenharia BGP SAGE</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">Arquitetura de roteamento global para ISPs e empresas que exigem 99.999% de uptime.</p>
-            </div>
-
-            <div class="col-span-1 md:col-span-2 p-10 rounded-3xl bg-surface border border-white/5 hover:border-neon/50 transition-colors group hover-trigger" data-aos="fade-up" data-aos-delay="300">
-                <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-8 group-hover:bg-neon/20 transition-colors">
-                    <i class="fa-solid fa-chess-knight text-2xl text-neon"></i>
-                </div>
-                <h3 class="font-display text-2xl font-bold mb-4">Governança Corporativa</h3>
-                <p class="text-gray-400 leading-relaxed">Alinhamento de TI com objetivos de negócio. Auditoria, Compliance e estruturação de processos para escala multinacional.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="founder" class="py-32 border-y border-white/5 bg-surface/30">
-        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center">
-            
-            <div class="relative group hover-trigger" data-aos="fade-right">
-                <div class="absolute -inset-2 bg-neon/20 rounded-lg blur-xl opacity-20 group-hover:opacity-40 transition-opacity"></div>
-                <div class="relative rounded-xl border border-white/10 bg-void p-4">
-                    <div class="flex justify-between items-center mb-4 border-b border-white/10 pb-4">
-                        <span class="font-mono text-xs text-neon">ID: KN_ROOT_ACCESS</span>
-                        <i class="fa-solid fa-fingerprint text-white/20 text-2xl"></i>
-                    </div>
-                    <img src="./foto.jpg.jpg" alt="Kaleb Nunes" class="w-full rounded-lg grayscale group-hover:grayscale-0 transition-all duration-700">
-                    
-                    <div class="mt-4 flex justify-between items-end">
-                        <div>
-                            <p class="font-mono text-[10px] text-gray-500">CLEARANCE LEVEL</p>
-                            <p class="font-display font-bold text-white">LEVEL 5 (SOVEREIGN)</p>
-                        </div>
-                        <img src="./sage- certificado.png" class="h-16 opacity-80 group-hover:opacity-100 transition-opacity">
-                    </div>
-                </div>
-            </div>
-
-            <div data-aos="fade-left">
-                <span class="text-neon font-mono text-xs tracking-[0.5em]">/// CHIEF ENGINEER</span>
-                <h2 class="font-display text-5xl md:text-6xl font-black mt-4 mb-8">KALEB NUNES</h2>
-                
-                <div class="space-y-6 text-lg text-gray-400 font-light">
-                    <p>"Em um ambiente de alto escalão, o erro custa milhões. Minha função não é consertar problemas, é eliminar a possibilidade matemática de que eles ocorram."</p>
-                    <p>"Com a certificação <strong class="text-white">Hurricane Electric SAGE (Top 1% Global)</strong>, trago para sua empresa o mesmo nível de engenharia usado pelos backbones da internet."</p>
-                </div>
-
-                <div class="mt-12">
-                    <p class="font-mono text-xs text-gray-500 mb-4">/// NEURAL_LINKS</p>
-                    <div class="flex gap-4">
-                        <a href="https://www.linkedin.com/in/kaleb-nunes/" class="w-12 h-12 border border-white/10 flex items-center justify-center hover:bg-neon hover:text-black hover:border-neon transition-all hover-trigger"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="https://github.com/Kaleb-Nunes" class="w-12 h-12 border border-white/10 flex items-center justify-center hover:bg-neon hover:text-black hover:border-neon transition-all hover-trigger"><i class="fa-brands fa-github"></i></a>
-                        <a href="https://www.instagram.com/kalebnunes.tech/" class="w-12 h-12 border border-white/10 flex items-center justify-center hover:bg-neon hover:text-black hover:border-neon transition-all hover-trigger"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/@KalebNunes" class="w-12 h-12 border border-white/10 flex items-center justify-center hover:bg-neon hover:text-black hover:border-neon transition-all hover-trigger"><i class="fa-brands fa-youtube"></i></a>
-                        <a href="https://www.facebook.com/kalebnunessantos/" class="w-12 h-12 border border-white/10 flex items-center justify-center hover:bg-neon hover:text-black hover:border-neon transition-all hover-trigger"><i class="fa-brands fa-facebook-f"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="testimonials" class="py-32 px-6 max-w-7xl mx-auto">
-        <h2 class="font-display text-4xl font-bold mb-16 text-center">LOGS DE <span class="text-neon">CLIENTES</span></h2>
-        
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-surface p-8 border-l-2 border-neon font-mono text-sm relative hover-trigger" data-aos="fade-up">
-                <div class="absolute top-4 right-4 text-neon/20"><i class="fa-solid fa-quote-right text-4xl"></i></div>
-                <p class="text-neon mb-4">>> STATUS: VERIFICADO</p>
-                <p class="text-gray-400 mb-6">"O Protocolo 09 mudou nossa operação. Reduzimos o downtime em 99% no primeiro mês. Kaleb entrega engenharia de guerra."</p>
-                <div>
-                    <strong class="text-white block">CEO de ISP Regional</strong>
-                    <span class="text-xs text-gray-600">SC, Brasil</span>
-                </div>
-            </div>
-
-            <div class="bg-surface p-8 border-l-2 border-gray-700 hover:border-neon transition-colors font-mono text-sm relative hover-trigger" data-aos="fade-up" data-aos-delay="100">
-                <div class="absolute top-4 right-4 text-neon/20"><i class="fa-solid fa-quote-right text-4xl"></i></div>
-                <p class="text-neon mb-4">>> STATUS: VERIFICADO</p>
-                <p class="text-gray-400 mb-6">"Contratar a KNS foi um investimento de segurança. A visão de observabilidade nos deu controle total do fluxo de caixa digital."</p>
-                <div>
-                    <strong class="text-white block">Diretor de Tecnologia</strong>
-                    <span class="text-xs text-gray-600">Multinacional Varejo</span>
-                </div>
-            </div>
-
-            <div class="bg-surface p-8 border-l-2 border-gray-700 hover:border-neon transition-colors font-mono text-sm relative hover-trigger" data-aos="fade-up" data-aos-delay="200">
-                <div class="absolute top-4 right-4 text-neon/20"><i class="fa-solid fa-quote-right text-4xl"></i></div>
-                <p class="text-neon mb-4">>> STATUS: VERIFICADO</p>
-                <p class="text-gray-400 mb-6">"A automação de BGP implementada nos salvou de dois ataques DDoS massivos. O sistema se pagou em um dia."</p>
-                <div>
-                    <strong class="text-white block">Founder Fintech</strong>
-                    <span class="text-xs text-gray-600">São Paulo, SP</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-surface border-t border-white/5 pt-20 pb-10">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12 mb-20">
-            <div class="col-span-1 md:col-span-2">
-                <h3 class="font-display font-black text-2xl mb-6">KNS GLOBAL</h3>
-                <p class="text-gray-500 max-w-sm mb-6">Engenharia soberana para um mundo digital hostil. Protegendo ativos, garantindo continuidade.</p>
-                <a href="mailto:kaleb@knsconsultoria.com.br" class="text-neon font-mono text-sm hover:underline">kaleb@knsconsultoria.com.br</a>
-            </div>
-            
-            <div>
-                <h4 class="font-mono text-xs text-white mb-6">/// NAVEGAÇÃO</h4>
-                <ul class="space-y-4 text-sm text-gray-500 font-mono">
-                    <li><a href="#" class="hover:text-neon transition-colors">Home</a></li>
-                    <li><a href="#solutions" class="hover:text-neon transition-colors">Soluções</a></li>
-                    <li><a href="#founder" class="hover:text-neon transition-colors">Founder</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="font-mono text-xs text-white mb-6">/// LOCALIZAÇÃO</h4>
-                <p class="text-sm text-gray-500 font-mono mb-2">Balneário Camboriú, SC</p>
-                <p class="text-sm text-gray-500 font-mono">Brasil (Operação Global)</p>
-                <a href="https://wa.me/5547988901616" class="mt-6 inline-block bg-white/5 border border-white/10 px-4 py-2 text-xs font-bold hover:bg-neon hover:text-black transition-all">
-                    INICIAR CHAT CRIPTOGRAFADO
-                </a>
-            </div>
-        </div>
-
-        <div class="border-t border-white/5 pt-10 text-center font-mono text-[10px] text-gray-700 flex flex-col md:flex-row justify-between items-center px-6 max-w-7xl mx-auto">
-            <p>© 2026 KNS GLOBAL. TODOS OS DIREITOS RESERVADOS.</p>
-            <p class="mt-2 md:mt-0">SYSTEM STATUS: <span class="text-neon">ONLINE</span> // LATENCY: 2ms</p>
+    <footer>
+        <h2 style="font-family: 'Orbitron'; margin-bottom: 30px;" id="footer-title">PRONTO PARA ESCALAR?</h2>
+        <a href="https://wa.me/5547988901616" class="btn-contact" style="display: inline-block; padding: 15px 40px; font-size: 1rem;">
+            INICIAR DIÁLOGO ESTRATÉGICO
+        </a>
+        <div style="margin-top: 50px; font-size: 0.8rem; color: var(--text-sec);">
+            Balneário Camboriú, SC - Brasil<br>
+            KNS Consultoria Global © 2026. All Systems Operational.
         </div>
     </footer>
 
     <script>
-        // INIT ANIMATIONS
-        AOS.init({
-            once: true,
-            offset: 50,
-            duration: 800,
-        });
-
-        // CUSTOM CURSOR LOGIC
-        const cursorDot = document.getElementById('cursor-dot');
-        const cursorOutline = document.getElementById('cursor-outline');
-        const triggers = document.querySelectorAll('.hover-trigger');
-
-        window.addEventListener('mousemove', (e) => {
-            const posX = e.clientX;
-            const posY = e.clientY;
-
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
-
-            // Small delay for outline
-            cursorOutline.animate({
-                left: `${posX}px`,
-                top: `${posY}px`
-            }, { duration: 500, fill: "forwards" });
-        });
-
-        triggers.forEach(trigger => {
-            trigger.addEventListener('mouseenter', () => {
-                cursorOutline.classList.add('hovered');
+        // --- CUSTOM CURSOR ENGINE (DESKTOP) ---
+        const cursor = document.getElementById('cursor');
+        if (window.matchMedia("(min-width: 992px)").matches) {
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
             });
-            trigger.addEventListener('mouseleave', () => {
-                cursorOutline.classList.remove('hovered');
+            
+            document.querySelectorAll('a, div.lang-toggle, div.theme-toggle').forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
             });
-        });
+        }
+
+        // --- THEME ENGINE ---
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+        }
+
+        // --- LANGUAGE ENGINE (i18n) ---
+        const languages = ['pt', 'en', 'es'];
+        let langIndex = 0;
+
+        const translations = {
+            pt: {
+                status: "SYSTEM NOMINAL // PROTOCOL 09 ACTIVE",
+                h1: "CONTINUIDADE<br>ABSOLUTA.",
+                sub: "Engenharia de infraestrutura soberana para multinacionais. Zero downtime.",
+                btn: "CONTATO",
+                s1t: "Observabilidade Ativa", s1d: "Monitoramento preditivo que previne perdas financeiras.",
+                s2t: "Auto-Healing", s2d: "Recuperação automática de falhas 24/7.",
+                s3t: "BGP & Cloud", s3d: "Engenharia de tráfego avançada para ISPs.",
+                bio: "\"Não vendemos configuração. Vendemos a certeza de que sua operação global nunca vai parar.\"",
+                foot: "PRONTO PARA ESCALAR?"
+            },
+            en: {
+                status: "SYSTEM NOMINAL // PROTOCOL 09 ACTIVE",
+                h1: "ABSOLUTE<br>CONTINUITY.",
+                sub: "Sovereign infrastructure engineering for multinationals. Zero downtime.",
+                btn: "CONTACT",
+                s1t: "Active Observability", s1d: "Predictive monitoring preventing financial losses.",
+                s2t: "Auto-Healing", s2d: "Automatic failure recovery 24/7.",
+                s3t: "BGP & Cloud", s3d: "Advanced traffic engineering for ISPs.",
+                bio: "\"We don't sell configuration. We sell the certainty that your global operation will never stop.\"",
+                foot: "READY TO SCALE?"
+            },
+            es: {
+                status: "SISTEMA NOMINAL // PROTOCOLO 09 ACTIVO",
+                h1: "CONTINUIDAD<br>ABSOLUTA.",
+                sub: "Ingeniería de infraestructura soberana para multinacionales. Cero inactividad.",
+                btn: "CONTACTO",
+                s1t: "Observabilidad Activa", s1d: "Monitoreo predictivo que previene pérdidas financieras.",
+                s2t: "Auto-Healing", s2d: "Recuperación automática de fallos 24/7.",
+                s3t: "BGP & Cloud", s3d: "Ingeniería de tráfico avanzada para ISPs.",
+                bio: "\"No vendemos configuración. Vendemos la certeza de que su operación global nunca se detendrá.\"",
+                foot: "¿LISTO PARA ESCALAR?"
+            }
+        };
+
+        function cycleLanguage() {
+            langIndex = (langIndex + 1) % languages.length;
+            const lang = languages[langIndex];
+            const t = translations[lang];
+
+            document.getElementById('current-lang').innerText = lang.toUpperCase();
+            document.getElementById('system-status').innerText = t.status;
+            document.getElementById('hero-title').innerHTML = t.h1;
+            document.getElementById('hero-desc').innerText = t.sub;
+            document.getElementById('btn-contact').innerText = t.btn;
+            
+            document.getElementById('s1-title').innerText = t.s1t; document.getElementById('s1-desc').innerText = t.s1d;
+            document.getElementById('s2-title').innerText = t.s2t; document.getElementById('s2-desc').innerText = t.s2d;
+            document.getElementById('s3-title').innerText = t.s3t; document.getElementById('s3-desc').innerText = t.s3d;
+            
+            document.getElementById('bio-text').innerText = t.bio;
+            document.getElementById('footer-title').innerText = t.foot;
+        }
+
+        // --- ANIMATION OBSERVER ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
