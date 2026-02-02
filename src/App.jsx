@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useCallback } from "react";
-import { BrowserRouter } from "react-router-dom"; // <--- ADICIONEI ISSO
+import { BrowserRouter } from "react-router-dom"; // Importamos o Router aqui
 import "./App.css";
 
 // --- DADOS DE TRADUÇÃO ---
@@ -34,10 +34,9 @@ const TRANSLATIONS = {
   }
 };
 
-// Função local segura
 const getTranslations = (lang) => TRANSLATIONS[lang] || TRANSLATIONS['pt'];
 
-// --- IMPORTS DOS COMPONENTES ---
+// --- IMPORTS ---
 import Navigation from "./components/Navigation";
 import CustomCursor from "./components/CustomCursor";
 import WhatsAppFloat from "./components/WhatsAppFloat";
@@ -51,17 +50,14 @@ import FooterSection from "./components/sections/FooterSection";
 
 function App() {
   const [lang, setLang] = useState('pt');
-  
   const t = useMemo(() => getTranslations(lang), [lang]);
   
   const handleLanguageChange = useCallback((newLang) => {
-    if (newLang !== lang) {
-      setLang(newLang);
-    }
+    if (newLang !== lang) setLang(newLang);
   }, [lang]);
 
   return (
-    // ENVOLVI TUDO AQUI COM O ROUTER PARA CORRIGIR A TELA PRETA
+    // O ROTEADOR AGORA VIVE AQUI, BLINDADO
     <BrowserRouter>
       <div className="App" data-testid="app-container">
         <CustomCursor />
