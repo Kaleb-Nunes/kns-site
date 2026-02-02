@@ -9,26 +9,33 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=Orbitron:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
     <script>
-        // Configuração para suportar Dark Mode via 'class'
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        cyan: { DEFAULT: '#06b6d4', bright: '#00e5ff' },
+                        // Paleta Emergent Exata
+                        cyan: { DEFAULT: '#06b6d4', bright: '#00e5ff', dim: 'rgba(6,182,212,0.1)' },
                         neon: { green: '#00ff88' },
-                        // Paleta Dark Mode
-                        dark: { bg: '#020202', surface: '#0a0a0a', border: '#1a1a1a', text: '#ffffff' },
-                        // Paleta Light Mode (Eye-Safe - Tons de Slate suaves)
-                        light: { bg: '#f8fafc', surface: '#ffffff', border: '#e2e8f0', text: '#0f172a', muted: '#475569' }
+                        // Modos
+                        dark: { bg: '#020202', surface: '#0a0a0a', border: '#1a1a1a' },
+                        light: { bg: '#F3F4F6', surface: '#FFFFFF', border: '#E5E7EB', text: '#111827' }
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                         display: ['Orbitron', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    animation: {
+                        'marquee': 'marquee 30s linear infinite',
+                        'fade-up': 'fadeUp 1s ease-out forwards',
+                    },
+                    keyframes: {
+                        marquee: { '0%': { transform: 'translateX(0%)' }, '100%': { transform: 'translateX(-100%)' } },
+                        fadeUp: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } }
                     }
                 }
             }
@@ -36,240 +43,244 @@
     </script>
 
     <style>
-        /* Transição suave entre temas */
+        /* ESTILOS GERAIS */
+        html, body { overflow-x: hidden; }
         body { transition: background-color 0.3s ease, color 0.3s ease; }
 
-        /* Grid Background Adaptativo */
+        /* GRID BACKGROUND (Igual ao vídeo) */
         .bg-grid {
+            position: absolute; inset: 0; pointer-events: none; z-index: 0;
             background-size: 40px 40px;
             mask-image: radial-gradient(circle at 50% 0%, black 40%, transparent 100%);
-            position: absolute; inset: 0; pointer-events: none; z-index: -1;
         }
-        /* Grid no Dark Mode */
         html.dark .bg-grid {
             background-image: linear-gradient(to right, #1f2937 1px, transparent 1px), linear-gradient(to bottom, #1f2937 1px, transparent 1px);
-            opacity: 0.1;
+            opacity: 0.15;
         }
-        /* Grid no Light Mode (Sutil) */
         html:not(.dark) .bg-grid {
-            background-image: linear-gradient(to right, #e2e8f0 1px, transparent 1px), linear-gradient(to bottom, #e2e8f0 1px, transparent 1px);
-            opacity: 0.6;
+            background-image: linear-gradient(to right, #d1d5db 1px, transparent 1px), linear-gradient(to bottom, #d1d5db 1px, transparent 1px);
+            opacity: 0.4;
         }
 
-        /* Cards Hover Effect Adaptativo */
+        /* TEXTO LEGÍVEL NO MODO CLARO (Correção Solicitada) */
+        html:not(.dark) .hero-text-contrast {
+            color: #111827; /* Cinza Quase Preto */
+            font-weight: 600;
+            text-shadow: none;
+        }
+        html:not(.dark) .section-bg { background-color: #FFFFFF; }
+
+        /* CARDS HOVER */
         .tech-card { transition: all 0.3s ease; }
         html.dark .tech-card:hover { border-color: #00e5ff; transform: translateY(-5px); box-shadow: 0 10px 30px -10px rgba(0, 229, 255, 0.15); }
         html:not(.dark) .tech-card:hover { border-color: #06b6d4; transform: translateY(-5px); box-shadow: 0 10px 30px -10px rgba(6, 182, 212, 0.1); }
 
-        /* Modal do Certificado */
-        #cert-modal { backdrop-filter: blur(10px); }
+        /* MODAL ZOOM CONTROLADO */
+        .modal-content img {
+            max-height: 85vh; /* Impede que fique gigante */
+            max-width: 90vw;
+            object-fit: contain;
+        }
     </style>
 </head>
-<body class="antialiased dark bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text">
+<body class="antialiased dark bg-light-bg dark:bg-dark-bg text-light-text dark:text-white">
 
-    <nav class="fixed w-full z-50 top-0 border-b border-light-border dark:border-white/5 bg-light-bg/80 dark:bg-black/80 backdrop-blur-md transition-colors">
+    <nav class="fixed w-full z-50 top-0 border-b border-light-border dark:border-white/5 bg-white/90 dark:bg-black/80 backdrop-blur-md transition-colors">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
             <a href="#" class="font-display font-black text-xl tracking-wider">
-                KNS <span class="text-cyan-700 dark:text-cyan-bright">GLOBAL</span>
+                KNS <span class="text-cyan-600 dark:text-cyan-bright">GLOBAL</span>
             </a>
 
-            <div class="hidden md:flex items-center gap-8 font-sans text-sm font-medium text-light-muted dark:text-gray-400">
-                <a href="#services" class="hover:text-cyan-700 dark:hover:text-white transition-colors">Serviços</a>
-                <a href="#about" class="hover:text-cyan-700 dark:hover:text-white transition-colors">Sobre</a>
-                <a href="#contact" class="hover:text-cyan-700 dark:hover:text-white transition-colors">Contato</a>
+            <div class="hidden md:flex items-center gap-8 font-sans text-sm font-medium text-gray-600 dark:text-gray-400">
+                <a href="#services" class="hover:text-cyan-600 dark:hover:text-white transition-colors" data-i18n="nav_services">Soluções</a>
+                <a href="#about" class="hover:text-cyan-600 dark:hover:text-white transition-colors" data-i18n="nav_about">Sobre</a>
+                <a href="#contact" class="hover:text-cyan-600 dark:hover:text-white transition-colors" data-i18n="nav_contact">Contato</a>
             </div>
 
-            <div class="hidden md:flex items-center gap-6">
-                <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-white/10 transition-colors">
+            <div class="flex items-center gap-4">
+                <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 text-xl">
                     <i class="fa-solid fa-sun text-yellow-500 hidden dark:block"></i>
                     <i class="fa-solid fa-moon text-cyan-700 block dark:hidden"></i>
                 </button>
 
-                <div class="flex border border-light-border dark:border-white/10 rounded overflow-hidden">
-                    <button class="px-3 py-1 bg-cyan-100 dark:bg-white/10 text-xs font-bold text-cyan-800 dark:text-cyan-bright">PT</button>
-                    <button class="px-3 py-1 hover:bg-gray-100 dark:hover:bg-white/5 text-xs font-bold text-light-muted dark:text-gray-500">EN</button>
+                <div class="flex border border-gray-300 dark:border-white/10 rounded overflow-hidden">
+                    <button onclick="setLang('pt')" class="lang-btn px-3 py-1 text-xs font-bold transition-colors bg-cyan-100 dark:bg-white/10 text-cyan-800 dark:text-cyan-bright" data-lang="pt">PT</button>
+                    <button onclick="setLang('en')" class="lang-btn px-3 py-1 text-xs font-bold transition-colors hover:bg-gray-100 dark:hover:bg-white/5 text-gray-500" data-lang="en">EN</button>
+                    <button onclick="setLang('es')" class="lang-btn px-3 py-1 text-xs font-bold transition-colors hover:bg-gray-100 dark:hover:bg-white/5 text-gray-500" data-lang="es">ES</button>
                 </div>
-                <a href="#contact" class="bg-cyan-600 dark:bg-cyan-bright text-white dark:text-black px-6 py-2.5 rounded font-bold text-sm hover:brightness-110 transition-all shadow-lg shadow-cyan-500/20 dark:shadow-[0_0_15px_rgba(6,182,212,0.4)]">
+
+                <a href="#contact" class="hidden md:block bg-cyan-600 dark:bg-cyan-bright text-white dark:text-black px-6 py-2.5 rounded font-bold text-sm hover:brightness-110 transition-all shadow-lg shadow-cyan-500/20 dark:shadow-[0_0_15px_rgba(6,182,212,0.4)]" data-i18n="nav_cta">
                     Solicitar Acesso
                 </a>
             </div>
         </div>
     </nav>
 
-    <section class="relative min-h-screen pt-32 flex flex-col items-center justify-center text-center px-4 overflow-hidden">
+    <section class="relative pt-32 pb-20 flex flex-col items-center justify-center text-center px-4 overflow-hidden">
         <div class="bg-grid"></div>
         
-        <div class="mb-8 px-6 py-2 rounded-full border border-cyan-600/30 dark:border-neon-green/30 bg-cyan-100 dark:bg-neon-green/5 text-cyan-800 dark:text-neon-green font-mono text-[10px] uppercase tracking-widest" data-aos="fade-down">
-            Infraestrutura Crítica & Engenharia de Rede
+        <div class="mb-8 px-6 py-2 rounded-full border border-cyan-600/30 dark:border-neon-green/30 bg-cyan-50 dark:bg-neon-green/5 text-cyan-800 dark:text-neon-green font-mono text-[10px] uppercase tracking-widest animate-fade-up" style="animation-delay: 0.1s;">
+            <span data-i18n="hero_badge">Infraestrutura Crítica & Engenharia de Rede</span>
         </div>
 
-        <h1 class="font-display font-black text-6xl md:text-8xl leading-none mb-6 tracking-tighter" data-aos="zoom-in" data-aos-duration="1000">
-            CONTINUIDADE<br>
-            <span class="text-transparent bg-clip-text bg-gradient-to-b from-cyan-500 to-cyan-800 dark:from-cyan-bright dark:to-cyan-700">ABSOLUTA.</span>
+        <h1 class="font-display font-black text-6xl md:text-8xl leading-none mb-6 tracking-tighter animate-fade-up" style="animation-delay: 0.2s;">
+            <span data-i18n="hero_t1">CONTINUIDADE</span><br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-b from-cyan-500 to-cyan-800 dark:from-cyan-bright dark:to-cyan-700" data-i18n="hero_t2">ABSOLUTA.</span>
         </h1>
 
-        <p class="max-w-2xl text-light-muted dark:text-gray-400 text-lg md:text-xl font-light mb-10 leading-relaxed" data-aos="fade-up" data-aos-delay="200">
-            Arquitetura de rede certificada SAGE para a elite global. Zero downtime. <strong class="text-light-text dark:text-white">Máxima performance.</strong>
+        <p class="max-w-2xl text-lg md:text-xl mb-12 leading-relaxed hero-text-contrast text-gray-600 dark:text-gray-400 font-light animate-fade-up" style="animation-delay: 0.3s;" data-i18n="hero_desc">
+            Arquitetura de rede certificada SAGE para a elite global. Zero downtime. Máxima performance.
         </p>
 
-        <div class="relative group" data-aos="fade-up" data-aos-delay="400">
-            <div class="absolute -inset-1 bg-cyan-500 dark:bg-cyan-bright rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-200"></div>
-            <a href="#contact" class="relative flex items-center gap-3 bg-gradient-to-r from-cyan-600 to-cyan-800 dark:from-cyan-bright dark:to-cyan-600 text-white dark:text-black px-10 py-4 rounded-lg font-bold font-display tracking-wide text-lg hover:scale-105 transition-transform">
-                Iniciar Diálogo Estratégico <i class="fa-solid fa-chevron-right text-sm"></i>
-            </a>
+        <div class="relative w-full max-w-4xl aspect-video rounded-xl overflow-hidden shadow-2xl border border-gray-200 dark:border-white/10 animate-fade-up" style="animation-delay: 0.4s;">
+            <iframe src="https://www.youtube.com/embed/T9wvW0EYfE0?autoplay=1&mute=1&loop=1&playlist=T9wvW0EYfE0&controls=0&modestbranding=1" class="w-full h-full object-cover"></iframe>
+        </div>
+
+        <div class="mt-8 max-w-3xl text-sm font-mono text-gray-500 dark:text-gray-400 animate-fade-up" style="animation-delay: 0.5s;">
+            <p class="border-l-2 border-cyan-500 pl-4 text-left">
+                <strong class="text-cyan-700 dark:text-cyan-bright">PROTOCOLO 09 ATIVO:</strong> 
+                <span data-i18n="hero_expl">Nosso centro de operações (NOC) e segurança (SOC) monitora seus ativos 24x7. Identificamos anomalias e neutralizamos ameaças antes que afetem seu faturamento.</span>
+            </p>
         </div>
     </section>
 
-    <section id="services" class="py-32 px-6 bg-light-bg dark:bg-dark-bg relative transition-colors">
+    <div class="py-6 bg-gray-100 dark:bg-white/5 border-y border-gray-200 dark:border-white/10 overflow-hidden">
+        <div class="flex whitespace-nowrap animate-marquee gap-16 font-mono text-xs font-bold tracking-widest text-gray-500 dark:text-gray-400">
+            <span>ZABBIX</span> <span>GRAFANA</span> <span>PRTG MONITOR</span> <span>AWS CLOUD</span> <span>SECURITY SHIELD</span> <span>BGP ROUTING</span> <span>PYTHON AUTOMATION</span> <span>POWERSHELL</span>
+            <span>ZABBIX</span> <span>GRAFANA</span> <span>PRTG MONITOR</span> <span>AWS CLOUD</span> <span>SECURITY SHIELD</span> <span>BGP ROUTING</span> <span>PYTHON AUTOMATION</span> <span>POWERSHELL</span>
+        </div>
+    </div>
+
+    <section id="services" class="py-32 px-6 bg-white dark:bg-dark-bg transition-colors">
         <div class="max-w-7xl mx-auto">
             <div class="mb-16">
-                <span class="text-cyan-700 dark:text-cyan-bright font-mono text-xs tracking-widest">// SOLUÇÕES ENTERPRISE</span>
-                <h2 class="font-display font-bold text-5xl mt-4">MATRIZ DE <span class="text-cyan-700 dark:text-cyan-bright">SOLUÇÕES</span></h2>
+                <span class="text-cyan-700 dark:text-cyan-bright font-mono text-xs tracking-widest block mb-2" data-i18n="sol_tag">// SOLUÇÕES ENTERPRISE</span>
+                <h2 class="font-display font-bold text-4xl md:text-5xl">MATRIZ DE <span class="text-cyan-600 dark:text-cyan-bright" data-i18n="sol_title">SOLUÇÕES</span></h2>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="tech-card p-8 rounded-xl bg-white dark:bg-dark-surface border border-light-border dark:border-dark-border shadow-sm dark:shadow-none" data-aos="fade-up">
-                    <i class="fa-solid fa-chart-line text-cyan-700 dark:text-cyan-bright text-3xl mb-6"></i>
-                    <div class="font-mono text-[10px] text-cyan-700 dark:text-cyan-bright mb-2">// SYSTEM_OBSERVABILITY</div>
-                    <h3 class="font-display font-bold text-xl mb-3">Observabilidade Ativa</h3>
-                    <p class="text-light-muted dark:text-gray-500 text-sm leading-relaxed">Antecipamos a degradação de serviços críticos através de análise preditiva avançada.</p>
+                <div class="tech-card p-8 rounded-xl bg-gray-50 dark:bg-dark-surface border border-gray-200 dark:border-white/10">
+                    <i class="fa-solid fa-chart-line text-cyan-600 dark:text-cyan-bright text-3xl mb-6"></i>
+                    <h3 class="font-display font-bold text-xl mb-3 dark:text-white text-gray-900" data-i18n="c1_t">Observabilidade Ativa</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm" data-i18n="c1_d">Antecipamos a degradação de serviços críticos através de análise preditiva avançada.</p>
                 </div>
-
-                <div class="tech-card p-8 rounded-xl bg-white dark:bg-dark-surface border border-light-border dark:border-dark-border shadow-sm dark:shadow-none" data-aos="fade-up" data-aos-delay="100">
-                    <i class="fa-solid fa-bolt text-cyan-700 dark:text-cyan-bright text-3xl mb-6"></i>
-                    <div class="font-mono text-[10px] text-cyan-700 dark:text-cyan-bright mb-2">// AUTO_HEALING</div>
-                    <h3 class="font-display font-bold text-xl mb-3">Sistemas de Auto-Cura</h3>
-                    <p class="text-light-muted dark:text-gray-500 text-sm leading-relaxed">Protocolos de resposta automática que restabelecem o fluxo em milissegundos.</p>
+                <div class="tech-card p-8 rounded-xl bg-gray-50 dark:bg-dark-surface border border-gray-200 dark:border-white/10">
+                    <i class="fa-solid fa-bolt text-cyan-600 dark:text-cyan-bright text-3xl mb-6"></i>
+                    <h3 class="font-display font-bold text-xl mb-3 dark:text-white text-gray-900" data-i18n="c2_t">Sistemas de Auto-Cura</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm" data-i18n="c2_d">Protocolos de resposta automática que restabelecem o fluxo em milissegundos.</p>
                 </div>
-
-                <div class="tech-card p-8 rounded-xl bg-white dark:bg-dark-surface border border-light-border dark:border-dark-border shadow-sm dark:shadow-none" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fa-solid fa-network-wired text-cyan-700 dark:text-cyan-bright text-3xl mb-6"></i>
-                    <div class="font-mono text-[10px] text-cyan-700 dark:text-cyan-bright mb-2">// BGP_GOVERNANCE</div>
-                    <h3 class="font-display font-bold text-xl mb-3">Governança BGP/Cloud</h3>
-                    <p class="text-light-muted dark:text-gray-500 text-sm leading-relaxed">Arquitetura de alta performance para detentores de AS e ISPs de grande porte.</p>
+                <div class="tech-card p-8 rounded-xl bg-gray-50 dark:bg-dark-surface border border-gray-200 dark:border-white/10">
+                    <i class="fa-solid fa-network-wired text-cyan-600 dark:text-cyan-bright text-3xl mb-6"></i>
+                    <h3 class="font-display font-bold text-xl mb-3 dark:text-white text-gray-900" data-i18n="c3_t">Governança BGP/Cloud</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm" data-i18n="c3_d">Arquitetura de alta performance para detentores de AS e ISPs de grande porte.</p>
                 </div>
-
-                <div class="tech-card p-8 rounded-xl bg-white dark:bg-dark-surface border border-light-border dark:border-dark-border shadow-sm dark:shadow-none" data-aos="fade-up" data-aos-delay="300">
-                    <i class="fa-solid fa-shield-halved text-cyan-700 dark:text-cyan-bright text-3xl mb-6"></i>
-                    <div class="font-mono text-[10px] text-cyan-700 dark:text-cyan-bright mb-2">// CYBER_FORTRESS</div>
-                    <h3 class="font-display font-bold text-xl mb-3">Segurança Cibernética</h3>
-                    <p class="text-light-muted dark:text-gray-500 text-sm leading-relaxed">Auditorias e protocolos de segurança de nível militar para proteção de ativos.</p>
+                <div class="tech-card p-8 rounded-xl bg-gray-50 dark:bg-dark-surface border border-gray-200 dark:border-white/10">
+                    <i class="fa-solid fa-shield-halved text-cyan-600 dark:text-cyan-bright text-3xl mb-6"></i>
+                    <h3 class="font-display font-bold text-xl mb-3 dark:text-white text-gray-900" data-i18n="c4_t">Segurança Cibernética</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm" data-i18n="c4_d">Auditorias e protocolos de segurança de nível militar para proteção de ativos.</p>
+                </div>
+                <div class="tech-card p-8 rounded-xl bg-gray-50 dark:bg-dark-surface border border-gray-200 dark:border-white/10">
+                    <i class="fa-solid fa-server text-cyan-600 dark:text-cyan-bright text-3xl mb-6"></i>
+                    <h3 class="font-display font-bold text-xl mb-3 dark:text-white text-gray-900" data-i18n="c5_t">Engenharia Data Center</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm" data-i18n="c5_d">Design de infraestrutura com redundância N+1 e escalabilidade infinita.</p>
+                </div>
+                <div class="tech-card p-8 rounded-xl bg-gray-50 dark:bg-dark-surface border border-gray-200 dark:border-white/10">
+                    <i class="fa-solid fa-cloud text-cyan-600 dark:text-cyan-bright text-3xl mb-6"></i>
+                    <h3 class="font-display font-bold text-xl mb-3 dark:text-white text-gray-900" data-i18n="c6_t">Multi-Cloud Strategy</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm" data-i18n="c6_d">Integração entre AWS, Azure, GCP e infraestrutura on-premise.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="py-32 px-6 bg-slate-50 dark:bg-gradient-to-b dark:from-black dark:to-dark-surface border-y border-light-border dark:border-white/5 transition-colors">
+    <section id="about" class="py-32 px-6 bg-gray-100 dark:bg-gradient-to-b dark:from-black dark:to-dark-surface border-y border-gray-200 dark:border-white/5">
         <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-20 items-center">
             
             <div class="relative group" data-aos="fade-right">
-                <div class="absolute -inset-4 bg-gradient-to-r from-cyan-200 to-transparent dark:from-cyan-900 dark:to-transparent rounded-2xl opacity-50 blur-2xl transition-all group-hover:opacity-70"></div>
-                
-                <div class="relative rounded-xl shadow-2xl border border-light-border dark:border-white/10 overflow-hidden">
+                <div class="relative rounded-xl shadow-2xl border border-gray-300 dark:border-white/10 overflow-hidden">
                     <img src="./foto.jpg.jpg" alt="Kaleb Nunes" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700">
                 </div>
                 
-                <div class="absolute bottom-10 left-[-20px] bg-white dark:bg-black border border-cyan-200 dark:border-neon-green/50 p-4 rounded-lg shadow-lg flex items-center gap-4">
+                <div class="absolute bottom-10 left-[-10px] bg-white dark:bg-black border border-cyan-500/50 p-4 rounded-lg shadow-xl flex items-center gap-4">
                     <i class="fa-solid fa-shield-halved text-3xl text-cyan-600 dark:text-neon-green"></i>
                     <div>
-                        <div class="font-mono text-[10px] text-light-muted dark:text-gray-400">SAGE CERTIFIED</div>
-                        <div class="font-display font-bold text-light-text dark:text-white">HURRICANE ELECTRIC</div>
+                        <div class="font-mono text-[10px] text-gray-500 dark:text-gray-400">SAGE CERTIFIED</div>
+                        <div class="font-display font-bold text-gray-900 dark:text-white">HURRICANE ELECTRIC</div>
                     </div>
                 </div>
             </div>
 
             <div data-aos="fade-left">
-                <span class="font-mono text-cyan-700 dark:text-neon-green text-xs tracking-widest mb-2 block">[ CHIEF ENGINEER ]</span>
-                <h2 class="font-display font-black text-5xl mb-8 leading-tight">KALEB NUNES DOS SANTOS</h2>
+                <span class="font-mono text-cyan-600 dark:text-neon-green text-xs tracking-widest mb-2 block">[ CHIEF ENGINEER ]</span>
+                <h2 class="font-display font-black text-5xl mb-8 leading-tight text-gray-900 dark:text-white">KALEB NUNES</h2>
                 
-                <p class="text-xl text-light-muted dark:text-gray-300 font-light italic mb-10 border-l-4 border-cyan-500 dark:border-neon-green pl-6 leading-relaxed">
+                <p class="text-xl text-gray-600 dark:text-gray-300 font-light italic mb-10 border-l-4 border-cyan-500 dark:border-neon-green pl-6 leading-relaxed" data-i18n="bio_quote">
                     "Multinacionais não podem errar. Nossa engenharia foca na proteção da receita através da estabilidade técnica inquebrável."
                 </p>
 
-                <div class="bg-white dark:bg-white/5 border border-light-border dark:border-white/10 p-6 rounded-xl flex items-center gap-6 mb-8 shadow-sm dark:shadow-none">
+                <div class="bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 p-6 rounded-xl flex items-center gap-6 mb-8 shadow-sm">
                     <img src="./sage- certificado.png" class="w-32 rounded shadow-lg dark:mix-blend-lighten mix-blend-multiply">
                     <div>
-                        <h4 class="font-display font-bold text-cyan-700 dark:text-cyan-bright mb-1">CERTIFICAÇÃO:</h4>
-                        <div class="font-bold text-light-text dark:text-white mb-2">HURRICANE ELECTRIC</div>
+                        <h4 class="font-display font-bold text-cyan-700 dark:text-cyan-bright mb-1" data-i18n="cert_label">CERTIFICAÇÃO:</h4>
+                        <div class="font-bold text-gray-900 dark:text-white mb-2">HURRICANE ELECTRIC</div>
                         <div class="font-mono text-xs text-cyan-600 dark:text-neon-green mb-2">RANK: SAGE BGP CERTIFIED</div>
-                        <p class="text-xs text-light-muted dark:text-gray-500">Top 1% dos engenheiros de rede do mundo. Maestria completa em BGP e IPv6.</p>
+                        <p class="text-xs text-gray-500" data-i18n="cert_desc">Top 1% dos engenheiros de rede do mundo. Maestria completa em BGP e IPv6.</p>
                     </div>
                 </div>
 
                 <button onclick="openModal()" class="text-cyan-700 dark:text-cyan-bright font-bold text-sm hover:underline flex items-center gap-2 cursor-pointer">
-                    <i class="fa-solid fa-expand"></i> Ver Certificado Completo (Zoom)
+                    <i class="fa-solid fa-expand"></i> <span data-i18n="cert_zoom">Ver Certificado Completo</span>
                 </button>
             </div>
         </div>
     </section>
 
-    <section class="py-24 px-6 bg-light-bg dark:bg-black transition-colors">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="font-display font-bold text-3xl text-center mb-16 dark:text-white">O QUE DIZEM <span class="text-cyan-700 dark:text-cyan-bright">NOSSOS CLIENTES</span></h2>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white dark:bg-dark-surface p-8 rounded-xl border border-light-border dark:border-white/5 shadow-sm dark:shadow-none">
-                    <div class="text-cyan-500 dark:text-neon-green text-xs mb-4 flex gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p class="text-light-muted dark:text-gray-400 text-sm mb-6 leading-relaxed">"A KNS transformou completamente nossa infraestrutura. O uptime passou de 97% para 99.99%."</p>
-                    <div class="font-bold text-light-text dark:text-white text-sm">Carlos Mendes</div>
-                    <div class="text-xs text-light-muted dark:text-gray-600">CTO • TechCorp Brasil</div>
-                </div>
-                <div class="bg-white dark:bg-dark-surface p-8 rounded-xl border border-light-border dark:border-white/5 shadow-sm dark:shadow-none">
-                    <div class="text-cyan-500 dark:text-neon-green text-xs mb-4 flex gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p class="text-light-muted dark:text-gray-400 text-sm mb-6 leading-relaxed">"Reduzimos 40% dos custos de infraestrutura mantendo performance superior. O ROI foi imediato."</p>
-                    <div class="font-bold text-light-text dark:text-white text-sm">Roberto Silva</div>
-                    <div class="text-xs text-light-muted dark:text-gray-600">CEO • DataNet Solutions</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="py-32 px-6 bg-slate-50 dark:bg-dark-bg relative overflow-hidden transition-colors border-t border-light-border dark:border-white/5">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 relative z-10">
+    <section id="contact" class="py-32 px-6 bg-black relative">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16">
             <div>
-                <span class="font-mono text-cyan-700 dark:text-neon-green text-xs tracking-widest mb-2 block">// COMUNICAÇÃO DIRETA</span>
-                <h2 class="font-display font-black text-5xl mb-6 dark:text-white">PRONTO PARA <br> <span class="text-cyan-700 dark:text-white">PROTEGER SEU IMPÉRIO?</span></h2>
-                <p class="text-light-muted dark:text-gray-400 mb-10 leading-relaxed">Preencha os dados para iniciar uma análise estratégica imediata via canal seguro.</p>
+                <span class="font-mono text-neon-green text-xs tracking-widest mb-2 block" data-i18n="contact_tag">// COMUNICAÇÃO DIRETA</span>
+                <h2 class="font-display font-black text-5xl mb-6 text-white" data-i18n="contact_title">PRONTO PARA <br> PROTEGER SEU IMPÉRIO?</h2>
+                <p class="text-gray-400 mb-10" data-i18n="contact_sub">Entre em contato para uma análise estratégica.</p>
 
                 <form class="space-y-4" onsubmit="sendToWhatsapp(event)">
                     <div class="grid grid-cols-2 gap-4">
-                        <input id="contact-name" type="text" placeholder="Nome completo" required class="w-full bg-white dark:bg-white/5 border border-light-border dark:border-white/10 p-4 rounded text-light-text dark:text-white focus:border-cyan-500 dark:focus:border-cyan-bright focus:outline-none transition-colors shadow-sm dark:shadow-none">
-                        <input id="contact-email" type="email" placeholder="E-mail corporativo" required class="w-full bg-white dark:bg-white/5 border border-light-border dark:border-white/10 p-4 rounded text-light-text dark:text-white focus:border-cyan-500 dark:focus:border-cyan-bright focus:outline-none transition-colors shadow-sm dark:shadow-none">
+                        <input id="name" type="text" placeholder="Nome completo" required class="w-full bg-[#111] border border-[#333] p-4 rounded text-white focus:border-cyan-bright focus:outline-none placeholder-gray-600">
+                        <input id="email" type="email" placeholder="E-mail corporativo" required class="w-full bg-[#111] border border-[#333] p-4 rounded text-white focus:border-cyan-bright focus:outline-none placeholder-gray-600">
                     </div>
-                    <input id="contact-company" type="text" placeholder="Empresa" class="w-full bg-white dark:bg-white/5 border border-light-border dark:border-white/10 p-4 rounded text-light-text dark:text-white focus:border-cyan-500 dark:focus:border-cyan-bright focus:outline-none transition-colors shadow-sm dark:shadow-none">
-                    <textarea id="contact-message" rows="4" placeholder="Descreva seu desafio" required class="w-full bg-white dark:bg-white/5 border border-light-border dark:border-white/10 p-4 rounded text-light-text dark:text-white focus:border-cyan-500 dark:focus:border-cyan-bright focus:outline-none transition-colors shadow-sm dark:shadow-none"></textarea>
+                    <input id="company" type="text" placeholder="Empresa" class="w-full bg-[#111] border border-[#333] p-4 rounded text-white focus:border-cyan-bright focus:outline-none placeholder-gray-600">
+                    <textarea id="msg" rows="4" placeholder="Descreva seu desafio" required class="w-full bg-[#111] border border-[#333] p-4 rounded text-white focus:border-cyan-bright focus:outline-none placeholder-gray-600"></textarea>
                     
-                    <button type="submit" class="w-full bg-cyan-600 dark:bg-cyan-bright text-white dark:text-black font-bold py-4 rounded hover:brightness-110 transition-all flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20 dark:shadow-none">
-                        <i class="fa-brands fa-whatsapp"></i> Enviar via WhatsApp Seguro
+                    <button type="submit" class="w-full bg-cyan-bright text-black font-bold py-4 rounded hover:brightness-110 transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i> <span data-i18n="btn_send">Enviar Mensagem</span>
                     </button>
                 </form>
             </div>
 
-            <div class="space-y-8 md:pl-20 pt-10">
+            <div class="md:pl-20 pt-10 space-y-8">
                 <div class="flex items-start gap-4">
-                    <div class="w-10 h-10 bg-cyan-100 dark:bg-white/5 rounded flex items-center justify-center text-cyan-700 dark:text-cyan-bright"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="w-10 h-10 bg-[#111] rounded flex items-center justify-center text-cyan-bright"><i class="fa-solid fa-location-dot"></i></div>
                     <div>
-                        <div class="text-xs text-light-muted dark:text-gray-500 font-mono mb-1">Localização</div>
-                        <div class="font-bold text-light-text dark:text-white">Balneário Camboriú, SC</div>
+                        <div class="text-xs text-gray-500 font-mono mb-1">Localização</div>
+                        <div class="font-bold text-white">Balneário Camboriú, SC</div>
                     </div>
                 </div>
                 <div class="flex items-start gap-4">
-                    <div class="w-10 h-10 bg-cyan-100 dark:bg-white/5 rounded flex items-center justify-center text-cyan-700 dark:text-cyan-bright"><i class="fa-regular fa-envelope"></i></div>
+                    <div class="w-10 h-10 bg-[#111] rounded flex items-center justify-center text-cyan-bright"><i class="fa-regular fa-envelope"></i></div>
                     <div>
-                        <div class="text-xs text-light-muted dark:text-gray-500 font-mono mb-1">E-mail</div>
-                        <a href="mailto:kaleb@knsconsultoria.com.br" class="font-bold text-light-text dark:text-white hover:text-cyan-600 dark:hover:text-cyan-bright transition-colors">kaleb@knsconsultoria.com.br</a>
+                        <div class="text-xs text-gray-500 font-mono mb-1">E-mail</div>
+                        <a href="mailto:kaleb@knsconsultoria.com.br" class="font-bold text-white hover:text-cyan-bright">kaleb@knsconsultoria.com.br</a>
                     </div>
                 </div>
                 <div class="flex items-start gap-4">
-                    <div class="w-10 h-10 bg-cyan-100 dark:bg-white/5 rounded flex items-center justify-center text-cyan-700 dark:text-cyan-bright"><i class="fa-brands fa-whatsapp"></i></div>
+                    <div class="w-10 h-10 bg-[#111] rounded flex items-center justify-center text-cyan-bright"><i class="fa-brands fa-whatsapp"></i></div>
                     <div>
-                        <div class="text-xs text-light-muted dark:text-gray-500 font-mono mb-1">WhatsApp</div>
-                        <a href="https://wa.me/5547988901616" class="font-bold text-light-text dark:text-white hover:text-cyan-600 dark:hover:text-cyan-bright transition-colors">+55 47 98890-1616</a>
+                        <div class="text-xs text-gray-500 font-mono mb-1">WhatsApp</div>
+                        <a href="https://wa.me/5547988901616" class="font-bold text-white hover:text-cyan-bright">+55 47 98890-1616</a>
                     </div>
                 </div>
 
-                <div class="pt-10 border-t border-light-border dark:border-white/10">
-                    <div class="text-xs text-light-muted dark:text-gray-500 font-mono mb-4">Redes Sociais (Links Corrigidos)</div>
+                <div class="pt-10 border-t border-[#333]">
+                    <div class="text-xs text-gray-500 font-mono mb-4">Redes Sociais</div>
                     <div class="flex gap-4">
                         <a href="https://www.linkedin.com/in/kalebnunes" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
                         <a href="https://github.com/Kaleb-Nunes" class="social-btn"><i class="fa-brands fa-github"></i></a>
@@ -281,50 +292,33 @@
         </div>
     </section>
 
-    <div class="h-20 bg-light-bg dark:bg-black transition-colors"></div>
-
-    <div class="fixed bottom-0 w-full z-50 bg-white/80 dark:bg-black/80 backdrop-blur-lg border-t border-light-border dark:border-white/10 py-3 px-6 transition-colors">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-3 font-mono text-[10px]">
-                <span class="relative flex h-2 w-2">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                </span>
-                <span class="text-light-muted dark:text-gray-400">SYSTEM STATUS: <strong class="text-green-600 dark:text-green-400">OPERATIONAL</strong></span>
-            </div>
-
-            <a href="https://wa.me/5547988901616?text=Olá Kaleb, vim pelo site e gostaria de uma consultoria." class="flex items-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white px-4 py-2 rounded-full font-bold text-sm transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
-                <i class="fa-brands fa-whatsapp text-lg"></i>
-                <span class="hidden md:inline">Fale Conosco Agora</span>
-            </a>
-        </div>
+    <div class="fixed bottom-4 right-4 z-50">
+        <a href="https://wa.me/5547988901616" class="flex items-center gap-2 bg-[#25D366] text-white px-4 py-3 rounded-full font-bold shadow-lg hover:scale-105 transition-transform">
+            <i class="fa-brands fa-whatsapp text-xl"></i>
+            <span class="hidden md:inline text-sm">Fale Conosco</span>
+        </a>
     </div>
 
-    <div id="cert-modal" class="fixed inset-0 z-[9999] bg-black/90 hidden items-center justify-center p-4 opacity-0 transition-opacity duration-300" onclick="closeModal()">
-        <div class="relative max-w-4xl w-full transform scale-95 transition-transform duration-300">
-            <button onclick="closeModal()" class="absolute -top-10 right-0 text-white text-xl hover:text-cyan-bright"><i class="fa-solid fa-xmark"></i> Fechar</button>
-            <img src="./sage- certificado.png" class="w-full rounded-lg shadow-2xl border border-white/20 bg-white">
+    <div id="cert-modal" class="fixed inset-0 z-[9999] bg-black/90 hidden items-center justify-center p-4 backdrop-blur-sm" onclick="closeModal()">
+        <div class="relative modal-content" onclick="event.stopPropagation()">
+            <button onclick="closeModal()" class="absolute -top-10 right-0 text-white text-2xl hover:text-cyan-bright"><i class="fa-solid fa-xmark"></i></button>
+            <img src="./sage- certificado.png" class="rounded shadow-2xl border border-white/20">
         </div>
     </div>
 
     <style>
         .social-btn {
-            width: 2.5rem; height: 2.5rem;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 0.5rem;
-            border: 1px solid;
-            @apply border-light-border dark:border-white/10 text-light-muted dark:text-gray-400;
-            transition: all 0.3s ease;
+            width: 40px; height: 40px; border-radius: 8px; border: 1px solid #333;
+            display: flex; align-items: center; justify-content: center; color: #888;
+            transition: all 0.3s;
         }
-        html.dark .social-btn:hover { @apply text-white border-cyan-bright bg-cyan-bright/10; }
-        html:not(.dark) .social-btn:hover { @apply text-cyan-700 border-cyan-600 bg-cyan-50; }
+        .social-btn:hover { border-color: #00e5ff; color: white; background: rgba(0, 229, 255, 0.1); }
     </style>
 
     <script>
-        // Iniciar Animações
-        AOS.init({ once: true, offset: 50, duration: 800 });
+        AOS.init({ once: true, duration: 800 });
 
-        // --- Lógica do Tema (Dark/Light) ---
+        // 1. THEME LOGIC
         function toggleTheme() {
             const html = document.documentElement;
             if (html.classList.contains('dark')) {
@@ -335,59 +329,100 @@
                 localStorage.setItem('theme', 'dark');
             }
         }
-        // Verifica preferência salva ou do sistema ao carregar
-        if (localStorage.theme === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
-            document.documentElement.classList.remove('dark');
-        } else {
-            document.documentElement.classList.add('dark');
+        if (localStorage.theme === 'light') document.documentElement.classList.remove('dark');
+
+        // 2. TRANSLATION DICTIONARY
+        const langData = {
+            pt: {
+                nav_services: "Soluções", nav_about: "Sobre", nav_contact: "Contato", nav_cta: "Solicitar Acesso",
+                hero_badge: "Infraestrutura Crítica & Engenharia de Rede",
+                hero_t1: "CONTINUIDADE", hero_t2: "ABSOLUTA.",
+                hero_desc: "Arquitetura de rede certificada SAGE para a elite global. Zero downtime. Máxima performance.",
+                hero_expl: "Nosso centro de operações (NOC) e segurança (SOC) monitora seus ativos 24x7. Identificamos anomalias e neutralizamos ameaças antes que afetem seu faturamento.",
+                sol_tag: "// SOLUÇÕES ENTERPRISE", sol_title: "SOLUÇÕES",
+                c1_t: "Observabilidade Ativa", c1_d: "Antecipamos a degradação de serviços críticos através de análise preditiva avançada.",
+                c2_t: "Sistemas de Auto-Cura", c2_d: "Protocolos de resposta automática que restabelecem o fluxo em milissegundos.",
+                c3_t: "Governança BGP/Cloud", c3_d: "Arquitetura de alta performance para detentores de AS e ISPs de grande porte.",
+                c4_t: "Segurança Cibernética", c4_d: "Auditorias e protocolos de segurança de nível militar para proteção de ativos.",
+                c5_t: "Engenharia Data Center", c5_d: "Design de infraestrutura com redundância N+1 e escalabilidade infinita.",
+                c6_t: "Multi-Cloud Strategy", c6_d: "Integração entre AWS, Azure, GCP e infraestrutura on-premise.",
+                bio_quote: "\"Multinacionais não podem errar. Nossa engenharia foca na proteção da receita através da estabilidade técnica inquebrável.\"",
+                cert_label: "CERTIFICAÇÃO:", cert_desc: "Top 1% dos engenheiros de rede do mundo. Maestria completa em BGP e IPv6.",
+                cert_zoom: "Ver Certificado Completo",
+                contact_tag: "// COMUNICAÇÃO DIRETA", contact_title: "PRONTO PARA PROTEGER SEU IMPÉRIO?", contact_sub: "Entre em contato para uma análise estratégica.",
+                btn_send: "Enviar Mensagem"
+            },
+            en: {
+                nav_services: "Solutions", nav_about: "About", nav_contact: "Contact", nav_cta: "Request Access",
+                hero_badge: "Critical Infrastructure & Network Engineering",
+                hero_t1: "ABSOLUTE", hero_t2: "CONTINUITY.",
+                hero_desc: "SAGE certified network architecture for the global elite. Zero downtime. Maximum performance.",
+                hero_expl: "Our Operations Center (NOC) and Security (SOC) monitors your assets 24/7. We identify anomalies and neutralize threats before they impact your revenue.",
+                sol_tag: "// ENTERPRISE SOLUTIONS", sol_title: "SOLUTIONS",
+                c1_t: "Active Observability", c1_d: "We anticipate critical service degradation through advanced predictive analysis.",
+                c2_t: "Self-Healing Systems", c2_d: "Automatic response protocols that restore flow in milliseconds.",
+                c3_t: "BGP/Cloud Governance", c3_d: "High-performance architecture for AS holders and large ISPs.",
+                c4_t: "Cyber Security", c4_d: "Military-grade security audits and protocols for asset protection.",
+                c5_t: "Data Center Engineering", c5_d: "Infrastructure design with N+1 redundancy and infinite scalability.",
+                c6_t: "Multi-Cloud Strategy", c6_d: "Integration between AWS, Azure, GCP and on-premise infrastructure.",
+                bio_quote: "\"Multinationals cannot fail. Our engineering focuses on revenue protection through unbreakable technical stability.\"",
+                cert_label: "CERTIFICATION:", cert_desc: "Top 1% of network engineers worldwide. Complete mastery in BGP and IPv6.",
+                cert_zoom: "View Full Certificate",
+                contact_tag: "// DIRECT COMMUNICATION", contact_title: "READY TO PROTECT YOUR EMPIRE?", contact_sub: "Contact us for a strategic analysis.",
+                btn_send: "Send Message"
+            },
+            es: {
+                nav_services: "Soluciones", nav_about: "Sobre", nav_contact: "Contacto", nav_cta: "Solicitar Acceso",
+                hero_badge: "Infraestructura Crítica e Ingeniería de Redes",
+                hero_t1: "CONTINUIDAD", hero_t2: "ABSOLUTA.",
+                hero_desc: "Arquitectura de red certificada SAGE para la élite global. Cero tiempo de inactividad. Máximo rendimiento.",
+                hero_expl: "Nuestro Centro de Operaciones (NOC) y Seguridad (SOC) monitorea sus activos 24/7. Identificamos anomalías y neutralizamos amenazas antes de que afecten su facturación.",
+                sol_tag: "// SOLUCIONES EMPRESARIALES", sol_title: "SOLUCIONES",
+                c1_t: "Observabilidad Activa", c1_d: "Anticipamos la degradación de servicios críticos mediante análisis predictivo avanzado.",
+                c2_t: "Sistemas de Autocuración", c2_d: "Protocolos de respuesta automática que restablecen el flujo en milisegundos.",
+                c3_t: "Gobernanza BGP/Cloud", c3_d: "Arquitectura de alto rendimiento para titulares de AS e ISPs grandes.",
+                c4_t: "Ciberseguridad", c4_d: "Auditorías y protocolos de seguridad de nivel militar para la protección de activos.",
+                c5_t: "Ingeniería de Data Center", c5_d: "Diseño de infraestructura con redundancia N+1 y escalabilidad infinita.",
+                c6_t: "Estrategia Multi-Cloud", c6_d: "Integración entre AWS, Azure, GCP e infraestructura on-premise.",
+                bio_quote: "\"Las multinacionales no pueden fallar. Nuestra ingeniería se enfoca en proteger los ingresos a través de una estabilidad técnica inquebrantable.\"",
+                cert_label: "CERTIFICACIÓN:", cert_desc: "Top 1% de los ingenieros de redes del mundo. Dominio completo en BGP e IPv6.",
+                cert_zoom: "Ver Certificado Completo",
+                contact_tag: "// COMUNICACIÓN DIRECTA", contact_title: "¿LISTO PARA PROTEGER SU IMPERIO?", contact_sub: "Contáctenos para un análisis estratégico.",
+                btn_send: "Enviar Mensaje"
+            }
+        };
+
+        function setLang(lang) {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (langData[lang][key]) el.innerHTML = langData[lang][key].replace(/\n/g, '<br>');
+            });
+
+            // Update Buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                const isSelected = btn.dataset.lang === lang;
+                btn.className = isSelected 
+                    ? `lang-btn px-3 py-1 text-xs font-bold transition-colors bg-cyan-100 dark:bg-white/10 text-cyan-800 dark:text-cyan-bright`
+                    : `lang-btn px-3 py-1 text-xs font-bold transition-colors hover:bg-gray-100 dark:hover:bg-white/5 text-gray-500`;
+            });
         }
 
-        // --- Lógica do Modal de Zoom ---
-        const modal = document.getElementById('cert-modal');
-        const modalContent = modal.querySelector('div');
-
-        function openModal() {
-            modal.classList.remove('hidden');
-            // Pequeno delay para permitir a transição CSS
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                modalContent.classList.remove('scale-95');
-                modalContent.classList.add('scale-100');
-            }, 10);
-        }
-
-        function closeModal() {
-            modal.classList.add('opacity-0');
-            modalContent.classList.remove('scale-100');
-            modalContent.classList.add('scale-95');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-            }, 300); // Tempo da transição
-        }
-        // Fechar com ESC
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
-        });
-
-
-        // --- Lógica do Formulário WhatsApp ---
+        // 3. WHATSAPP FORM
         function sendToWhatsapp(e) {
             e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const company = document.getElementById('company').value;
+            const msg = document.getElementById('msg').value;
             
-            const name = document.getElementById('contact-name').value;
-            const email = document.getElementById('contact-email').value;
-            const company = document.getElementById('contact-company').value;
-            const message = document.getElementById('contact-message').value;
-
-            // Formata a mensagem para o WhatsApp
-            const text = `*Novo Lead via Site KNS*\n\n*Nome:* ${name}\n*Email:* ${email}\n*Empresa:* ${company}\n\n*Mensagem:*\n${message}`;
-            
-            // Codifica para URL
-            const encodedText = encodeURIComponent(text);
-            
-            // Redireciona para a API do WhatsApp
-            window.open(`https://wa.me/5547988901616?text=${encodedText}`, '_blank');
+            const text = `*NOVO LEAD KNS GLOBAL*\n\n*Nome:* ${name}\n*Email:* ${email}\n*Empresa:* ${company}\n\n*Mensagem:* ${msg}`;
+            window.open(`https://wa.me/5547988901616?text=${encodeURIComponent(text)}`, '_blank');
         }
+
+        // 4. MODAL
+        function openModal() { document.getElementById('cert-modal').classList.remove('hidden'); }
+        function closeModal() { document.getElementById('cert-modal').classList.add('hidden'); }
     </script>
 </body>
 </html>
