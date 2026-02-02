@@ -1,392 +1,463 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="dark">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Engenharia de Infraestrutura Crítica e Continuidade de Negócios para Multinacionais.">
-    <meta name="theme-color" content="#0f172a">
-    <title>KNS GLOBAL | Sovereign Infrastructure</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KNS GLOBAL | Sovereign Engineering</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        // O Azul "Emergent/Vercel"
+                        primary: {
+                            DEFAULT: '#0070F3',
+                            dark: '#3291FF',
+                            light: '#0051B3',
+                        },
+                        // Acentos Ciano/Teal
+                        accent: {
+                            DEFAULT: '#50E3C2',
+                            dim: 'rgba(80, 227, 194, 0.1)'
+                        },
+                        // Paleta Dark Mode (Deep Space)
+                        dark: {
+                            bg: '#000000',
+                            surface: '#111111',
+                            border: '#333333'
+                        },
+                        // Paleta Light Mode (Clean Paper)
+                        light: {
+                            bg: '#FAFAFA',      // Off-white suave
+                            surface: '#FFFFFF', // Branco puro
+                            border: '#EAEAEA',  // Bordas sutis
+                            text: '#171717',    // Quase preto (fácil de ler)
+                            muted: '#666666'    // Cinza médio
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    animation: {
+                        'marquee': 'marquee 40s linear infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        marquee: { '0%': { transform: 'translateX(0%)' }, '100%': { transform: 'translateX(-100%)' } }
+                    }
+                }
+            }
+        }
+    </script>
 
     <style>
-        /* --- THEME ENGINE V11 (THE BLUE ARCHITECT) --- */
-        :root {
-            /* FONTS */
-            --font-body: 'Inter', sans-serif;
-            --font-heading: 'Space Grotesk', sans-serif;
-
-            /* DARK MODE (DEFAULT - "THE EMERGENT NIGHT") */
-            --bg-main: #020617; /* Slate 950 - Profundo, não preto absoluto */
-            --bg-glass: rgba(15, 23, 42, 0.7);
-            --bg-card: rgba(30, 41, 59, 0.4);
-            --border: rgba(148, 163, 184, 0.1);
-            
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            
-            /* THE "EMERGENT BLUE" GRADIENT */
-            --primary: #3b82f6; /* Blue 500 */
-            --accent: #06b6d4;  /* Cyan 500 */
-            --glow: radial-gradient(circle at 50% -20%, rgba(59, 130, 246, 0.25), rgba(6, 182, 212, 0.1) 40%, transparent 70%);
-            
-            --shadow-card: 0 0 0 1px rgba(255,255,255,0.05), 0 20px 40px -15px rgba(0,0,0,0.5);
-        }
-
-        [data-theme="light"] {
-            /* LIGHT MODE ("PAPER-LIKE COMFORT") */
-            --bg-main: #F8FAFC; /* Slate 50 - Suave como papel */
-            --bg-glass: rgba(255, 255, 255, 0.85);
-            --bg-card: #ffffff;
-            --border: rgba(226, 232, 240, 0.8);
-            
-            --text-primary: #0F172A; /* Slate 900 - Leitura perfeita, zero agressão */
-            --text-secondary: #64748B; /* Slate 500 */
-            
-            /* VIBRANT ACCENTS FOR LIGHT MODE */
-            --primary: #2563EB;
-            --accent: #0891B2;
-            --glow: radial-gradient(circle at 50% -20%, rgba(37, 99, 235, 0.08), transparent 60%);
-            
-            --shadow-card: 0 0 0 1px rgba(0,0,0,0.05), 0 10px 30px -10px rgba(0,0,0,0.08);
-        }
-
-        /* --- PHYSICS & RESET --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        html { scroll-behavior: smooth; }
+        /* BASE PHYSICS */
+        html, body { overflow-x: hidden; cursor: none; }
         
+        /* THEME TRANSITIONS */
         body { 
-            background-color: var(--bg-main);
-            color: var(--text-primary);
-            font-family: var(--font-body);
-            overflow-x: hidden;
-            background-image: var(--glow);
-            background-attachment: fixed;
-            transition: background 0.5s ease, color 0.5s ease;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* --- NAVIGATION (ISLAND HUD) --- */
-        .nav-hud {
-            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-            width: 90%; max-width: 900px; height: 56px; z-index: 1000;
-            background: var(--bg-glass); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-            border: 1px solid var(--border); border-radius: 100px;
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 0 8px 0 24px;
-            box-shadow: 0 8px 32px -8px rgba(0,0,0,0.1);
-        }
-
-        .brand { font-family: var(--font-heading); font-weight: 700; letter-spacing: -0.5px; font-size: 1.1rem; }
-        .brand span { color: var(--primary); }
-
-        .nav-tools { display: flex; align-items: center; gap: 8px; }
+        /* DARK MODE (DEFAULT) */
+        body.dark { background-color: #000000; color: #ededed; }
         
-        .tool-btn { 
-            background: transparent; border: none; color: var(--text-secondary);
-            padding: 8px 12px; border-radius: 20px; cursor: pointer; font-size: 0.85rem;
-            font-weight: 500; transition: 0.2s; display: flex; align-items: center; gap: 6px;
+        /* LIGHT MODE (High Readability) */
+        body.light { background-color: #FAFAFA; color: #171717; }
+        body.light .text-muted { color: #666666; }
+
+        /* GRID BACKGROUND (Adaptive) */
+        .bg-grid {
+            position: fixed; inset: 0; z-index: -1;
+            background-size: 50px 50px;
+            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+            pointer-events: none;
         }
-        .tool-btn:hover { color: var(--text-primary); background: var(--bg-card); }
+        body.dark .bg-grid {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        }
+        body.light .bg-grid {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+        }
+
+        /* SPOTLIGHT CARD EFFECT (The "Magic" Hover) */
+        .spotlight-card {
+            position: relative; overflow: hidden;
+            transition: border-color 0.3s;
+        }
+        /* Dark Mode Card */
+        body.dark .spotlight-card {
+            background: rgba(17, 17, 17, 0.8);
+            border: 1px solid #333;
+        }
+        body.dark .spotlight-card:hover { border-color: #555; }
         
-        .cta-primary {
-            background: var(--text-primary); color: var(--bg-main);
-            padding: 10px 20px; border-radius: 100px; font-weight: 600; font-size: 0.85rem;
-            text-decoration: none; transition: transform 0.2s;
+        /* Light Mode Card - Clean & Crisp */
+        body.light .spotlight-card {
+            background: #FFFFFF;
+            border: 1px solid #EAEAEA;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
-        .cta-primary:hover { transform: scale(1.03); }
-
-        /* --- HERO SECTION (THE IMPACT) --- */
-        .hero {
-            min-height: 95vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            text-align: center; padding: 120px 20px 60px; position: relative;
+        body.light .spotlight-card:hover { 
+            border-color: #0070F3; 
+            box-shadow: 0 8px 30px rgba(0, 112, 243, 0.12);
         }
 
-        .badge-pill {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 6px 14px; border-radius: 100px;
-            background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2);
-            color: var(--primary); font-size: 0.75rem; font-weight: 600; margin-bottom: 32px;
-            animation: fadeIn 1s ease-out;
+        /* The Glow Beam */
+        .spotlight-card::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.06), transparent 40%);
+            opacity: 0; transition: opacity 0.5s; pointer-events: none; z-index: 2;
         }
-        .status-dot { width: 6px; height: 6px; background: var(--primary); border-radius: 50%; box-shadow: 0 0 10px var(--primary); animation: pulse 2s infinite; }
+        body.light .spotlight-card::before {
+            background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(0, 112, 243, 0.05), transparent 40%);
+        }
+        .spotlight-card:hover::before { opacity: 1; }
 
-        h1.hero-title {
-            font-family: var(--font-heading); font-size: clamp(3rem, 9vw, 6.5rem);
-            font-weight: 700; line-height: 1; letter-spacing: -0.04em; margin-bottom: 24px;
-            background: linear-gradient(to bottom, var(--text-primary) 30%, var(--text-secondary) 100%);
+        /* CUSTOM CURSOR */
+        #cursor { width: 12px; height: 12px; background: #0070F3; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: transform 0.1s; }
+        #cursor-follower { width: 40px; height: 40px; border: 1px solid rgba(0, 112, 243, 0.5); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: left 0.15s, top 0.15s, width 0.3s, height 0.3s; }
+        
+        body:hover #cursor-follower.active { width: 60px; height: 60px; background: rgba(0, 112, 243, 0.05); border-color: #0070F3; }
+
+        /* TEXT GRADIENTS */
+        .text-gradient-primary {
+            background: linear-gradient(135deg, #0070F3 0%, #00C6FF 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-
-        p.hero-sub {
-            font-size: clamp(1.1rem, 2.5vw, 1.25rem); color: var(--text-secondary);
-            max-width: 600px; line-height: 1.6; margin-bottom: 60px;
-            animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s backwards;
-        }
-
-        /* THE MONITOR (EMERGENT STYLE 3D) */
-        .monitor-stage {
-            width: 100%; max-width: 1100px; aspect-ratio: 16/9;
-            background: #000; border-radius: 16px; position: relative;
-            box-shadow: 0 40px 100px -20px rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.1);
-            transform: perspective(1000px) rotateX(2deg) translateY(0);
-            transition: transform 0.5s ease;
-            overflow: hidden;
-            animation: revealMonitor 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s backwards;
-        }
-        .monitor-stage:hover { transform: perspective(1000px) rotateX(0deg) scale(1.01); }
-        .monitor-stage iframe { width: 100%; height: 100%; border: none; opacity: 0.9; }
-
-        /* --- BENTO GRID SERVICES --- */
-        .grid-section { padding: 120px 24px; max-width: 1200px; margin: 0 auto; }
-        
-        .bento-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;
-        }
-
-        .card {
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: 24px; padding: 40px; display: flex; flex-direction: column;
-            transition: 0.3s; position: relative; overflow: hidden;
-            box-shadow: var(--shadow-card);
-        }
-        .card:hover { transform: translateY(-5px); border-color: var(--primary); }
-        
-        /* CARD GRADIENT GLOW */
-        .card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(59, 130, 246, 0.06), transparent 40%);
-            opacity: 0; transition: opacity 0.5s; pointer-events: none;
-        }
-        .card:hover::before { opacity: 1; }
-
-        .card-icon { 
-            width: 48px; height: 48px; border-radius: 12px;
-            background: rgba(59, 130, 246, 0.1); color: var(--primary);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.2rem; margin-bottom: 24px;
-        }
-        .card h3 { font-family: var(--font-heading); font-size: 1.25rem; margin-bottom: 12px; color: var(--text-primary); }
-        .card p { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; }
-
-        /* --- FOUNDER & SOCIAL PROOF --- */
-        .founder-wrap {
-            display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center;
-            padding: 100px 24px; border-top: 1px solid var(--border); max-width: 1200px; margin: 0 auto;
-        }
-
-        .photo-frame { position: relative; border-radius: 24px; overflow: hidden; border: 1px solid var(--border); }
-        .photo-frame img { width: 100%; display: block; filter: grayscale(1); transition: 0.5s; }
-        .photo-frame:hover img { filter: grayscale(0); }
-
-        .sage-badge {
-            position: absolute; bottom: 20px; right: 20px;
-            background: var(--bg-main); border: 1px solid var(--accent);
-            padding: 10px 16px; border-radius: 12px; font-size: 0.75rem;
-            font-weight: 700; color: var(--text-primary);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            display: flex; align-items: center; gap: 10px;
-        }
-
-        .social-row { display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
-        .social-chip {
-            padding: 8px 16px; border: 1px solid var(--border); border-radius: 50px;
-            text-decoration: none; color: var(--text-secondary); font-size: 0.9rem;
-            transition: 0.2s; display: flex; align-items: center; gap: 8px;
-        }
-        .social-chip:hover { border-color: var(--primary); color: var(--primary); background: rgba(59, 130, 246, 0.05); }
-
-        /* --- FOOTER --- */
-        footer { padding: 100px 24px; text-align: center; border-top: 1px solid var(--border); margin-top: 50px; }
-        .footer-logo { font-family: var(--font-heading); font-weight: 700; font-size: 2rem; margin-bottom: 40px; color: var(--text-primary); }
-
-        /* --- ANIMATIONS --- */
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes revealMonitor { from { opacity: 0; transform: perspective(1000px) rotateX(10deg) translateY(40px); } to { opacity: 1; transform: perspective(1000px) rotateX(2deg) translateY(0); } }
-
-        /* MOBILE OPTIMIZATIONS */
-        @media (max-width: 900px) {
-            .hero-title { font-size: 3.5rem; }
-            .founder-wrap { grid-template-columns: 1fr; gap: 40px; }
-            .nav-hud { width: 95%; padding: 0 16px; }
-            .badge-pill { margin-bottom: 20px; }
         }
     </style>
 </head>
-<body>
+<body class="antialiased selection:bg-primary selection:text-white dark">
 
-    <nav class="nav-hud">
-        <div class="brand">KNS <span>GLOBAL</span></div>
-        <div class="nav-tools">
-            <button class="tool-btn" id="lang-btn" onclick="cycleLang()"><i class="fa-solid fa-globe"></i> PT</button>
-            <button class="tool-btn" onclick="toggleTheme()"><i class="fa-solid fa-sun"></i></button>
-            <a href="https://wa.me/5547988901616" class="cta-primary" id="nav-cta">Contato</a>
+    <div class="bg-grid"></div>
+    <div id="cursor"></div>
+    <div id="cursor-follower"></div>
+
+    <nav class="fixed w-full z-50 top-0 border-b transition-colors duration-300 dark:bg-black/80 dark:border-white/10 light:bg-white/80 light:border-black/5 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="#" class="group flex items-center gap-3 hover-trigger">
+                <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/20 group-hover:rotate-12 transition-transform">
+                    <i class="fa-solid fa-cube text-sm"></i>
+                </div>
+                <span class="font-display font-bold text-lg tracking-tight dark:text-white light:text-black">
+                    KNS<span class="text-primary">GLOBAL</span>
+                </span>
+            </a>
+
+            <div class="flex items-center gap-6">
+                <button onclick="toggleTheme()" class="w-8 h-8 rounded-full flex items-center justify-center border transition-all hover-trigger dark:border-white/20 dark:hover:bg-white/10 light:border-black/10 light:hover:bg-black/5">
+                    <i class="fa-regular fa-sun text-yellow-500 hidden dark:block"></i>
+                    <i class="fa-regular fa-moon text-primary block dark:hidden"></i>
+                </button>
+
+                <div class="hidden md:flex items-center gap-1 p-1 rounded-full border transition-colors dark:border-white/10 light:border-black/10">
+                    <button onclick="setLang('pt')" class="lang-btn px-3 py-1 text-[10px] font-bold rounded-full transition-all hover-trigger" data-lang="pt">PT</button>
+                    <button onclick="setLang('en')" class="lang-btn px-3 py-1 text-[10px] font-bold rounded-full transition-all hover-trigger" data-lang="en">EN</button>
+                    <button onclick="setLang('es')" class="lang-btn px-3 py-1 text-[10px] font-bold rounded-full transition-all hover-trigger" data-lang="es">ES</button>
+                </div>
+
+                <a href="https://wa.me/5547988901616" class="hidden md:flex items-center gap-2 px-5 py-2 bg-primary hover:bg-primary-dark text-white text-xs font-bold rounded-full transition-all hover-trigger shadow-lg shadow-primary/25">
+                    <span data-i18n="cta">Start Protocol</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
         </div>
     </nav>
 
-    <header class="hero">
-        <div class="badge-pill">
-            <div class="status-dot"></div>
-            <span id="sys-status">PROTOCOL 09 ACTIVE // SYSTEM NOMINAL</span>
+    <section class="min-h-screen pt-32 flex flex-col items-center justify-center px-6 relative overflow-hidden">
+        
+        <div class="mb-8 px-4 py-1.5 rounded-full border dark:border-white/10 light:border-black/10 dark:bg-white/5 light:bg-black/5 backdrop-blur flex items-center gap-2" data-aos="fade-down">
+            <span class="flex h-2 w-2 relative">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+            </span>
+            <span class="font-mono text-[10px] font-medium tracking-widest dark:text-gray-300 light:text-gray-600" data-i18n="status">SYSTEM OPERATIONAL</span>
         </div>
 
-        <h1 class="hero-title" id="hero-h1">
-            CONTINUIDADE<br>ABSOLUTA.
+        <h1 class="text-center font-display font-bold text-6xl md:text-8xl leading-[1] tracking-tight mb-8 dark:text-white light:text-black" data-aos="zoom-in" data-aos-duration="1000">
+            <span data-i18n="hero1">CONTINUIDADE</span><br>
+            <span class="text-gradient-primary" data-i18n="hero2">ABSOLUTA.</span>
         </h1>
-        
-        <p class="hero-sub" id="hero-p">
-            Arquitetura soberana para multinacionais. Zero downtime. Observabilidade preditiva que protege sua receita.
+
+        <p class="max-w-2xl text-center text-lg md:text-xl font-light leading-relaxed mb-12 dark:text-gray-400 light:text-gray-600" data-aos="fade-up" data-aos-delay="200" data-i18n="hero_desc">
+            Engenharia de infraestrutura crítica para empresas de alto escalão. Soberania de dados através de arquitetura SAGE e automação preditiva.
         </p>
 
-        <div class="monitor-stage">
-            <iframe src="https://www.youtube.com/embed/T9wvW0EYfE0?autoplay=1&mute=1&loop=1&playlist=T9wvW0EYfE0&controls=0&modestbranding=1&iv_load_policy=3" allow="autoplay; encrypted-media"></iframe>
+        <div class="relative w-full max-w-5xl aspect-video rounded-xl overflow-hidden shadow-2xl border transition-colors dark:border-white/10 dark:shadow-primary/10 light:border-black/10 light:shadow-black/10 group hover-trigger" data-aos="fade-up" data-aos-delay="400">
+            <iframe src="https://www.youtube.com/embed/T9wvW0EYfE0?autoplay=1&mute=1&loop=1&playlist=T9wvW0EYfE0&controls=0&modestbranding=1" class="w-full h-full scale-[1.01] group-hover:scale-100 transition-transform duration-700"></iframe>
         </div>
-    </header>
+    </section>
 
-    <section class="grid-section">
-        <div class="bento-grid" id="cards-container">
-            <div class="card">
-                <div class="card-icon"><i class="fa-solid fa-eye"></i></div>
-                <h3 id="c1-t">Observabilidade Ativa</h3>
-                <p id="c1-d">Monitoramento Zabbix/Grafana que detecta anomalias financeiras antes da queda técnica.</p>
+    <div class="py-6 border-y transition-colors dark:bg-white/5 dark:border-white/5 light:bg-gray-50 light:border-gray-200 overflow-hidden">
+        <div class="flex whitespace-nowrap animate-marquee gap-20 font-mono text-xs font-bold tracking-widest dark:text-gray-500 light:text-gray-400">
+            <span>BGP GOVERNANCE</span> <span>PYTHON AUTOMATION</span> <span>ZABBIX ENTERPRISE</span> <span>GRAFANA ANALYTICS</span> <span>AWS CLOUD</span> <span>SECURITY SHIELD</span>
+            <span>BGP GOVERNANCE</span> <span>PYTHON AUTOMATION</span> <span>ZABBIX ENTERPRISE</span> <span>GRAFANA ANALYTICS</span>
+        </div>
+    </div>
+
+    <section id="solutions" class="py-32 px-6 max-w-7xl mx-auto">
+        <div class="mb-20 flex flex-col md:flex-row justify-between items-end gap-6">
+            <div>
+                <span class="font-mono text-primary text-xs font-bold tracking-widest mb-2 block" data-i18n="services_tag">TECHNICAL CAPABILITIES</span>
+                <h2 class="font-display font-bold text-4xl md:text-5xl dark:text-white light:text-black" data-i18n="services_title">MATRIZ DE SOLUÇÕES</h2>
             </div>
-            <div class="card">
-                <div class="card-icon"><i class="fa-solid fa-robot"></i></div>
-                <h3 id="c2-t">Auto-Healing</h3>
-                <p id="c2-d">Scripts Python autônomos que recuperam a infraestrutura em milissegundos.</p>
+            <p class="max-w-md text-sm text-right leading-relaxed dark:text-gray-400 light:text-gray-600" data-i18n="services_subtitle">
+                Arquitetura modular projetada para escalar do regional ao global sem fricção.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="cards-container">
+            <div class="spotlight-card col-span-1 md:col-span-2 p-10 rounded-2xl group hover-trigger">
+                <div class="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center mb-6 text-primary text-2xl">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <h3 class="font-display text-2xl font-bold mb-4 dark:text-white light:text-black" data-i18n="card1_title">Observabilidade Ativa</h3>
+                <p class="dark:text-gray-400 light:text-gray-600 leading-relaxed max-w-lg" data-i18n="card1_desc">
+                    Monitoramento financeiro da operação em tempo real. Painéis preditivos Zabbix/Grafana que antecipam degradação.
+                </p>
             </div>
-            <div class="card">
-                <div class="card-icon"><i class="fa-solid fa-network-wired"></i></div>
-                <h3 id="c3-t">BGP & Cloud</h3>
-                <p id="c3-d">Engenharia de tráfego avançada para ISPs e Multinacionais. Latência Zero.</p>
+
+            <div class="spotlight-card col-span-1 p-10 rounded-2xl group hover-trigger">
+                <div class="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center mb-6 text-primary text-2xl">
+                    <i class="fa-solid fa-code-branch"></i>
+                </div>
+                <h3 class="font-display text-2xl font-bold mb-4 dark:text-white light:text-black" data-i18n="card2_title">Auto-Cura</h3>
+                <p class="dark:text-gray-400 light:text-gray-600 leading-relaxed" data-i18n="card2_desc">
+                    Automação Python (Protocolo 09) que corrige falhas em milissegundos.
+                </p>
+            </div>
+
+            <div class="spotlight-card col-span-1 p-10 rounded-2xl group hover-trigger">
+                <div class="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center mb-6 text-primary text-2xl">
+                    <i class="fa-solid fa-network-wired"></i>
+                </div>
+                <h3 class="font-display text-2xl font-bold mb-4 dark:text-white light:text-black" data-i18n="card3_title">SAGE BGP</h3>
+                <p class="dark:text-gray-400 light:text-gray-600 leading-relaxed" data-i18n="card3_desc">
+                    Governança de roteamento global certificada Top 1% (Hurricane Electric).
+                </p>
+            </div>
+
+            <div class="spotlight-card col-span-1 md:col-span-2 p-10 rounded-2xl group hover-trigger">
+                <div class="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center mb-6 text-primary text-2xl">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h3 class="font-display text-2xl font-bold mb-4 dark:text-white light:text-black" data-i18n="card4_title">Cyber Security</h3>
+                <p class="dark:text-gray-400 light:text-gray-600 leading-relaxed max-w-lg" data-i18n="card4_desc">
+                    Proteção DDoS, Compliance e Auditoria de infraestrutura crítica para blindagem de ativos digitais.
+                </p>
             </div>
         </div>
     </section>
 
-    <section class="founder-wrap">
-        <div class="photo-frame">
-            <img src="./assets/foto.jpg" alt="Kaleb Nunes CEO" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop'">
-            <div class="sage-badge">
-                <i class="fa-solid fa-certificate" style="color: var(--primary);"></i>
-                <span>SAGE CERTIFIED</span>
+    <section id="founder" class="py-32 border-y transition-colors dark:bg-white/5 dark:border-white/5 light:bg-gray-50 light:border-gray-200">
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center">
+            
+            <div class="relative group hover-trigger" data-aos="fade-right">
+                <div class="relative p-2 rounded-2xl transition-all dark:bg-white/5 dark:border-white/10 light:bg-white light:border-gray-200 light:shadow-xl border">
+                    <div class="relative overflow-hidden rounded-xl">
+                        <img src="./foto.jpg.jpg" alt="Kaleb Nunes" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700">
+                        <div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black to-transparent">
+                            <p class="font-mono text-[10px] text-primary mb-1">CLEARANCE: ROOT</p>
+                            <p class="font-display font-bold text-white text-xl">KALEB NUNES</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div data-aos="fade-left">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold mb-8 dark:bg-white/10 dark:text-white light:bg-black/5 light:text-black">
+                    <i class="fa-solid fa-fingerprint"></i> FOUNDER PROFILE
+                </div>
+                
+                <h2 class="font-display text-5xl font-bold mb-6 dark:text-white light:text-black">KALEB NUNES</h2>
+                
+                <p class="text-xl font-light italic mb-10 leading-relaxed dark:text-gray-300 light:text-gray-600" data-i18n="bio_quote">
+                    "Multinacionais não podem errar. Minha missão não é consertar problemas, é eliminar a possibilidade matemática de que eles ocorram."
+                </p>
+
+                <div class="p-4 rounded-xl border mb-10 flex items-center gap-4 transition-colors dark:bg-white/5 dark:border-white/10 light:bg-white light:border-gray-200">
+                    <i class="fa-solid fa-certificate text-3xl text-primary"></i>
+                    <div>
+                        <strong class="block dark:text-white light:text-black">HURRICANE ELECTRIC SAGE</strong>
+                        <span class="text-sm dark:text-gray-400 light:text-gray-500">Top 1% Global Network Engineers Certified.</span>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="font-mono text-xs mb-4 dark:text-gray-500 light:text-gray-400">NEURAL LINKS</p>
+                    <div class="flex gap-2">
+                        <a href="https://www.linkedin.com/in/kaleb-nunes/" class="w-10 h-10 rounded flex items-center justify-center border transition-all hover:bg-primary hover:text-white hover:border-primary hover-trigger dark:border-white/10 dark:text-gray-400 light:border-gray-300 light:text-gray-600"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://github.com/Kaleb-Nunes" class="w-10 h-10 rounded flex items-center justify-center border transition-all hover:bg-black hover:text-white hover:border-black hover-trigger dark:border-white/10 dark:text-gray-400 light:border-gray-300 light:text-gray-600"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://www.instagram.com/kalebnunes.tech/" class="w-10 h-10 rounded flex items-center justify-center border transition-all hover:bg-pink-600 hover:text-white hover:border-pink-600 hover-trigger dark:border-white/10 dark:text-gray-400 light:border-gray-300 light:text-gray-600"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@KalebNunes" class="w-10 h-10 rounded flex items-center justify-center border transition-all hover:bg-red-600 hover:text-white hover:border-red-600 hover-trigger dark:border-white/10 dark:text-gray-400 light:border-gray-300 light:text-gray-600"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 px-6 border-t transition-colors dark:bg-black dark:border-white/10 light:bg-white light:border-gray-200">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
+            <div class="md:col-span-2">
+                <a href="#" class="font-display font-bold text-xl tracking-tight mb-6 block dark:text-white light:text-black">
+                    KNS<span class="text-primary">GLOBAL</span>
+                </a>
+                <p class="max-w-sm text-sm leading-relaxed mb-6 dark:text-gray-400 light:text-gray-500">
+                    Engenharia soberana para um mundo digital hostil. Protegendo ativos e garantindo continuidade.
+                </p>
+                <a href="mailto:kaleb@knsconsultoria.com.br" class="text-primary font-mono text-sm hover:underline">kaleb@knsconsultoria.com.br</a>
+            </div>
+            
+            <div>
+                <h4 class="font-mono text-xs font-bold mb-6 dark:text-white light:text-black">LOCALIZAÇÃO</h4>
+                <p class="text-sm dark:text-gray-400 light:text-gray-500">Balneário Camboriú, SC</p>
+                <p class="text-sm dark:text-gray-400 light:text-gray-500">Brasil</p>
+            </div>
+
+            <div>
+                <a href="https://wa.me/5547988901616" class="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary-dark text-white text-xs font-bold rounded-lg transition-all shadow-lg shadow-primary/20 hover-trigger">
+                    <i class="fa-brands fa-whatsapp"></i> FALE COM O BOARD
+                </a>
             </div>
         </div>
         
-        <div>
-            <div style="font-family: var(--font-heading); color: var(--primary); letter-spacing: 1px; margin-bottom: 20px;">// HEAD OF ENGINEERING</div>
-            <h2 style="font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 24px; color: var(--text-primary);">KALEB NUNES</h2>
-            <p style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.7; margin-bottom: 40px;" id="bio">
-                "Não vendemos configuração. Vendemos a certeza matemática de que sua operação global nunca vai parar. Minha engenharia foca na proteção absoluta do seu ativo mais valioso: disponibilidade."
-            </p>
-
-            <div class="social-row">
-                <a href="https://www.linkedin.com/in/kaleb-nunes/" class="social-chip"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
-                <a href="https://github.com/Kaleb-Nunes" class="social-chip"><i class="fa-brands fa-github"></i> GitHub</a>
-                <a href="https://www.instagram.com/kalebnunes.tech/" class="social-chip"><i class="fa-brands fa-instagram"></i> Instagram</a>
-                <a href="https://www.facebook.com/kalebnunessantos/" class="social-chip"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
-                <a href="mailto:kalebdossantos59924@gmail.com" class="social-chip"><i class="fa-solid fa-envelope"></i> Email</a>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer-logo" id="foot-cta">PRONTO PARA ESCALAR?</div>
-        <a href="https://wa.me/5547988901616" class="cta-primary" style="padding: 15px 40px; font-size: 1rem;">Iniciar Diálogo Estratégico</a>
-        <div style="margin-top: 60px; color: var(--text-secondary); font-size: 0.85rem;">
-            KNS Consultoria Global © 2026. Balneário Camboriú, SC.<br>
-            All Systems Operational.
+        <div class="max-w-7xl mx-auto mt-16 pt-8 border-t dark:border-white/5 light:border-gray-100 flex justify-between font-mono text-[10px] dark:text-gray-600 light:text-gray-400">
+            <p>© 2026 KNS GLOBAL</p>
+            <p>SYSTEM ONLINE</p>
         </div>
     </footer>
 
     <script>
-        // --- MOUSE TRACKING FOR CARD GLOW EFFECT ---
-        document.getElementById("cards-container").onmousemove = e => {
-            for(const card of document.getElementsByClassName("card")) {
+        // 1. THEME ENGINE
+        function toggleTheme() {
+            const body = document.body;
+            if (body.classList.contains('dark')) {
+                body.classList.replace('dark', 'light');
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.classList.replace('light', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+        
+        // Init Theme
+        if (localStorage.theme === 'light') {
+            document.body.classList.add('light');
+        } else {
+            document.body.classList.add('dark');
+        }
+
+        // 2. LANGUAGE ENGINE
+        const translations = {
+            pt: {
+                status: "SISTEMA OPERACIONAL",
+                hero1: "CONTINUIDADE",
+                hero2: "ABSOLUTA.",
+                hero_desc: "Engenharia de infraestrutura crítica para empresas de alto escalão. Soberania de dados através de arquitetura SAGE e automação preditiva.",
+                cta: "INICIAR PROTOCOLO",
+                services_tag: "CAPACIDADES TÉCNICAS",
+                services_title: "MATRIZ DE SOLUÇÕES",
+                services_subtitle: "Arquitetura modular projetada para escalar do regional ao global sem fricção.",
+                card1_title: "Observabilidade Ativa",
+                card1_desc: "Monitoramento financeiro da operação em tempo real. Painéis preditivos Zabbix/Grafana que antecipam degradação.",
+                card2_title: "Auto-Cura",
+                card2_desc: "Automação Python (Protocolo 09) que corrige falhas em milissegundos.",
+                card3_title: "SAGE BGP",
+                card3_desc: "Governança de roteamento global certificada pela Hurricane Electric (Top 1%).",
+                card4_title: "Cyber Security",
+                card4_desc: "Proteção DDoS, Compliance e Auditoria de infraestrutura crítica.",
+                bio_quote: "\"Multinacionais não podem errar. Minha missão não é consertar problemas, é eliminar a possibilidade matemática de que eles ocorram.\""
+            },
+            en: {
+                status: "SYSTEM OPERATIONAL",
+                hero1: "ABSOLUTE",
+                hero2: "CONTINUITY.",
+                hero_desc: "Critical infrastructure engineering for high-tier enterprises. Data sovereignty through SAGE architecture and predictive automation.",
+                cta: "START PROTOCOL",
+                services_tag: "TECHNICAL CAPABILITIES",
+                services_title: "SOLUTION MATRIX",
+                services_subtitle: "Modular architecture designed to scale from regional to global seamlessly.",
+                card1_title: "Active Observability",
+                card1_desc: "Real-time financial operation monitoring. Predictive Zabbix/Grafana dashboards.",
+                card2_title: "Self-Healing",
+                card2_desc: "Python automation (Protocol 09) that fixes faults in milliseconds.",
+                card3_title: "SAGE BGP",
+                card3_desc: "Global routing governance certified by Hurricane Electric (Top 1%).",
+                card4_title: "Cyber Security",
+                card4_desc: "DDoS protection, Compliance and critical infrastructure auditing.",
+                bio_quote: "\"Multinationals cannot fail. My mission is not to fix problems, but to eliminate the mathematical possibility of their occurrence.\""
+            },
+            es: {
+                status: "SISTEMA OPERATIVO",
+                hero1: "CONTINUIDAD",
+                hero2: "ABSOLUTA.",
+                hero_desc: "Ingeniería de infraestructura crítica para empresas de alto nivel. Soberanía de datos mediante arquitectura SAGE.",
+                cta: "INICIAR PROTOCOLO",
+                services_tag: "CAPACIDADES TÉCNICAS",
+                services_title: "MATRIZ DE SOLUCIONES",
+                services_subtitle: "Arquitectura modular diseñada para escalar de regional a global.",
+                card1_title: "Observabilidad Activa",
+                card1_desc: "Monitoreo financiero en tiempo real. Paneles predictivos Zabbix/Grafana.",
+                card2_title: "Auto-Curación",
+                card2_desc: "Automatización Python (Protocolo 09) que corrige fallos en milisegundos.",
+                card3_title: "SAGE BGP",
+                card3_desc: "Gobernanza de enrutamiento global certificada por Hurricane Electric (Top 1%).",
+                card4_title: "Ciberseguridad",
+                card4_desc: "Protección DDoS, Cumplimiento y Auditoría de infraestructura crítica.",
+                bio_quote: "\"Las multinacionales no pueden fallar. Mi misión es eliminar la posibilidad matemática de errores.\""
+            }
+        };
+
+        function setLang(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) el.innerText = translations[lang][key];
+            });
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                const isActive = btn.dataset.lang === lang;
+                btn.style.opacity = isActive ? '1' : '0.5';
+                btn.style.color = isActive ? (document.body.classList.contains('dark') ? 'white' : 'black') : 'inherit';
+            });
+        }
+
+        // 3. SPOTLIGHT & CURSOR
+        document.getElementById('cards-container').onmousemove = e => {
+            for(const card of document.getElementsByClassName("spotlight-card")) {
                 const rect = card.getBoundingClientRect(),
                       x = e.clientX - rect.left,
                       y = e.clientY - rect.top;
                 card.style.setProperty("--mouse-x", `${x}px`);
                 card.style.setProperty("--mouse-y", `${y}px`);
-            }
-        };
-
-        // --- THEME ENGINE V11 ---
-        function toggleTheme() {
-            const html = document.documentElement;
-            const current = html.getAttribute('data-theme');
-            const icon = document.querySelector('.fa-sun') || document.querySelector('.fa-moon');
-            
-            if (current === 'dark') {
-                html.setAttribute('data-theme', 'light');
-                if(icon) icon.className = 'fa-solid fa-moon';
-            } else {
-                html.setAttribute('data-theme', 'dark');
-                if(icon) icon.className = 'fa-solid fa-sun';
-            }
+            };
         }
 
-        // --- I18N ENGINE (Seamless) ---
-        const i18n = {
-            pt: {
-                status: "PROTOCOL 09 ACTIVE // SYSTEM NOMINAL",
-                h1: "CONTINUIDADE<br>ABSOLUTA.",
-                p: "Arquitetura soberana para multinacionais. Zero downtime. Observabilidade preditiva.",
-                cta: "Contato",
-                c1t: "Observabilidade Ativa", c1d: "Monitoramento Zabbix/Grafana que detecta anomalias financeiras.",
-                c2t: "Auto-Healing", c2d: "Scripts Python autônomos que recuperam a infraestrutura.",
-                c3t: "BGP & Cloud", c3d: "Engenharia de tráfego avançada para ISPs e Multinacionais.",
-                bio: "\"Não vendemos configuração. Vendemos a certeza matemática de que sua operação global nunca vai parar.\"",
-                foot: "PRONTO PARA ESCALAR?"
-            },
-            en: {
-                status: "PROTOCOL 09 ACTIVE // SYSTEM NOMINAL",
-                h1: "ABSOLUTE<br>CONTINUITY.",
-                p: "Sovereign architecture for multinationals. Zero downtime. Predictive observability.",
-                cta: "Contact",
-                c1t: "Active Observability", c1d: "Zabbix/Grafana monitoring detecting financial anomalies.",
-                c2t: "Auto-Healing", c2d: "Autonomous Python scripts recovering infrastructure instantly.",
-                c3t: "BGP & Cloud", c3d: "Advanced traffic engineering for ISPs and Multinationals.",
-                bio: "\"We don't sell configuration. We sell the mathematical certainty your global operation will never stop.\"",
-                foot: "READY TO SCALE?"
-            },
-            es: {
-                status: "PROTOCOLO 09 ACTIVO // SISTEMA NOMINAL",
-                h1: "CONTINUIDAD<br>ABSOLUTA.",
-                p: "Arquitectura soberana para multinacionales. Cero inactividad. Observabilidad predictiva.",
-                cta: "Contacto",
-                c1t: "Observabilidad Activa", c1d: "Monitoreo Zabbix/Grafana que detecta anomalías financieras.",
-                c2t: "Auto-Healing", c2d: "Scripts Python autónomos que recuperan la infraestructura.",
-                c3t: "BGP & Cloud", c3d: "Ingeniería de tráfico avanzada para ISPs y Multinacionales.",
-                bio: "\"No vendemos configuración. Vendemos la certeza matemática de que su operación global nunca se detendrá.\"",
-                foot: "¿LISTO PARA ESCALAR?"
-            }
-        };
+        AOS.init({ once: true, offset: 50, duration: 800 });
 
-        const langs = ['pt', 'en', 'es'];
-        let langIdx = 0;
+        const cursor = document.getElementById('cursor');
+        const cursorFollower = document.getElementById('cursor-follower');
 
-        function cycleLang() {
-            langIdx = (langIdx + 1) % langs.length;
-            const l = langs[langIdx];
-            const d = i18n[l];
+        window.addEventListener('mousemove', (e) => {
+            cursor.style.left = `${e.clientX}px`;
+            cursor.style.top = `${e.clientY}px`;
+            cursorFollower.style.left = `${e.clientX}px`;
+            cursorFollower.style.top = `${e.clientY}px`;
+        });
 
-            document.getElementById('lang-btn').innerHTML = `<i class="fa-solid fa-globe"></i> ${l.toUpperCase()}`;
-            document.getElementById('nav-cta').innerText = d.cta;
-            document.getElementById('sys-status').innerText = d.status;
-            document.getElementById('hero-h1').innerHTML = d.h1;
-            document.getElementById('hero-p').innerText = d.p;
-            
-            document.getElementById('c1-t').innerText = d.c1t; document.getElementById('c1-d').innerText = d.c1d;
-            document.getElementById('c2-t').innerText = d.c2t; document.getElementById('c2-d').innerText = d.c2d;
-            document.getElementById('c3-t').innerText = d.c3t; document.getElementById('c3-d').innerText = d.c3d;
-            
-            document.getElementById('bio').innerText = d.bio;
-            document.getElementById('foot-cta').innerText = d.foot;
-        }
+        document.querySelectorAll('.hover-trigger').forEach(el => {
+            el.addEventListener('mouseenter', () => cursorFollower.classList.add('active'));
+            el.addEventListener('mouseleave', () => cursorFollower.classList.remove('active'));
+        });
     </script>
 </body>
 </html>
