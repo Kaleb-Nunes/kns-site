@@ -1,7 +1,8 @@
 import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 import { Activity, Zap, Globe, Lock, Database, Cloud } from "lucide-react";
-import { getServicesData } from "../../data/translations";
+
+// Removi o import quebrado (getServicesData) para corrigir o erro de build.
 
 const IconMap = {
   Activity,
@@ -11,6 +12,17 @@ const IconMap = {
   Database,
   Cloud
 };
+
+// Configuração Estática dos Serviços (Engenharia: Separação de Configuração e Conteúdo)
+// Os textos virão dinamicamente do objeto 't', mas a estrutura técnica fica aqui.
+const SERVICES_CONFIG = [
+  { id: 0, icon: "Activity", code: "OBS-01" }, // Observability
+  { id: 1, icon: "Zap",      code: "AUT-02" }, // Automation
+  { id: 2, icon: "Globe",    code: "NET-03" }, // Networking
+  { id: 3, icon: "Lock",     code: "SEC-04" }, // Security
+  { id: 4, icon: "Database", code: "DAT-05" }, // Database
+  { id: 5, icon: "Cloud",    code: "CLD-06" }  // Cloud
+];
 
 const fadeInUp = {
   initial: { opacity: 0, y: 40 },
@@ -26,9 +38,29 @@ const staggerContainer = {
   }
 };
 
-const ServicesSection = ({ t, lang }) => {
-  // Memoize services data to prevent unnecessary recalculations
-  const services = useMemo(() => getServicesData(lang), [lang]);
+const ServicesSection = ({ t }) => {
+  // Construção inteligente dos dados:
+  // Combina a config técnica (ícones) com os textos de tradução (t).
+  // Se t.services.items existir, usamos ele. Se não, usamos um fallback seguro para não quebrar o site.
+  const services = useMemo(() => {
+    if (t?.services?.items && Array.isArray(t.services.items)) {
+      return t.services.items.map((item, index) => ({
+        ...item,
+        // Garante que o ícone e código existam, mesclando com a config se necessário
+        icon: item.icon || SERVICES_CONFIG[index]?.icon || "Activity",
+        code: item.code || SERVICES_CONFIG[index]?.code || "N/A"
+      }));
+    }
+    
+    // Fallback: Se o array 'items' não estiver no arquivo de tradução,
+    // montamos cards vazios para a UI não quebrar, mas avisamos no console.
+    console.warn("Aviso: 't.services.items' não foi encontrado nas traduções.");
+    return SERVICES_CONFIG.map((config) => ({
+      ...config,
+      title: "Service Title",
+      desc: "Description not found in translations."
+    }));
+  }, [t]);
   
   return (
     <section id="services" className="py-24 md:py-32 relative" data-testid="services-section">
@@ -42,10 +74,10 @@ const ServicesSection = ({ t, lang }) => {
           className="mb-16"
         >
           <motion.span variants={fadeInUp} className="font-mono text-[#00FF94] text-sm mb-4 block">
-            {t.services.badge}
+            {t?.services?.badge || "// SERVICES"}
           </motion.span>
           <motion.h2 variants={fadeInUp} className="font-heading text-4xl md:text-6xl font-bold">
-            {t.services.title} <span className="text-[#00F0FF]">{t.services.title2}</span>
+            {t?.services?.title || "Our"} <span className="text-[#00F0FF]">{t?.services?.title2 || "Expertise"}</span>
           </motion.h2>
         </motion.div>
 
@@ -58,12 +90,7 @@ const ServicesSection = ({ t, lang }) => {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {services.map((service, index) => {
-            const IconComponent = IconMap[service.icon];
-            
-            if (!IconComponent) {
-              console.warn(`Icon "${service.icon}" not found in IconMap`);
-              return null;
-            }
+            const IconComponent = IconMap[service.icon] || Activity;
             
             return (
               <motion.div
